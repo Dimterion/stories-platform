@@ -1,17 +1,30 @@
 import { useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 import StoryDiagram from "./StoryDiagram";
 
 export default function StoryEditor() {
+  const firstId = uuidv4();
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState("");
   const [description, setDescription] = useState("");
   const [nodes, setNodes] = useState({
-    1: { text: "", options: [] },
+    [firstId]: { text: "", options: [], createdAt: Date.now() },
   });
-  const [start, setStart] = useState("1");
-  const [selectedNode, setSelectedNode] = useState("1");
+  const [start, setStart] = useState(firstId);
+  const [selectedNode, setSelectedNode] = useState(firstId);
   const [showDiagram, setShowDiagram] = useState(false);
-  const [idCounter, setIdCounter] = useState(2);
+
+  // Get ordered list of node ids (for display & selects)
+  const orderedNodeIds = Object.entries(nodes)
+    .sort((a, b) => a[1].createdAt - b[1].createdAt)
+    .map(([id]) => id);
+
+  // Find display label for a node
+  const getNodeLabel = (id) => {
+    const index = orderedNodeIds.indexOf(id);
+
+    return index >= 0 ? `Node ${index + 1}` : "Unknown Node";
+  };
 
   // Handle text changes for current node
   const updateNodeText = (id, newText) => {
@@ -22,12 +35,10 @@ export default function StoryEditor() {
   };
 
   const addNode = () => {
-    const newId = String(idCounter);
-
-    setIdCounter(idCounter + 1);
+    const newId = uuidv4();
     setNodes((prev) => ({
       ...prev,
-      [newId]: { text: "", options: [] },
+      [newId]: { text: "", options: [], createdAt: Date.now() },
     }));
     setSelectedNode(newId);
   };
@@ -105,7 +116,26 @@ export default function StoryEditor() {
 
   // Export story JSON
   const exportStory = () => {
-    const story = { title, author, description, start, nodes };
+    // Compute display order mapping
+    const orderedNodeIds = Object.entries(nodes)
+      .sort((a, b) => a[1].createdAt - b[1].createdAt)
+      .map(([id]) => id);
+
+    const displayOrder = orderedNodeIds.map((id, index) => ({
+      id,
+      label: `Node ${index + 1}`,
+    }));
+
+    // Enriched story object
+    const story = {
+      title,
+      author,
+      description,
+      start,
+      nodes,
+      displayOrder, // <-- new field
+    };
+
     const blob = new Blob([JSON.stringify(story, null, 2)], {
       type: "application/json",
     });
@@ -168,7 +198,7 @@ export default function StoryEditor() {
       {/* Sidebar: nodes list */}
       <div className="w-1/3 space-y-2 bg-gray-800 p-1 sm:w-1/4 sm:p-4">
         <h2 className="mb-2 font-bold">Scenes</h2>
-        {Object.keys(nodes).map((id) => (
+        {orderedNodeIds.map((id) => (
           <div key={id} className="flex items-center gap-2">
             <button
               onClick={() => setSelectedNode(id)}
@@ -176,7 +206,7 @@ export default function StoryEditor() {
                 id === selectedNode ? "bg-blue-600" : "bg-gray-700"
               }`}
             >
-              Node {id}
+              {getNodeLabel(id)}
             </button>
             <button
               onClick={() => deleteNode(id)}
@@ -211,7 +241,7 @@ export default function StoryEditor() {
           <input
             className="rounded-lg border border-gray-500 bg-gray-800 p-2 text-white"
             placeholder="Author"
-            name="Title"
+            name="Author"
             value={author}
             onChange={(e) => setAuthor(e.target.value)}
           />
@@ -227,13 +257,15 @@ export default function StoryEditor() {
         {/* Node editor */}
         {selectedNode && (
           <div className="rounded-lg bg-gray-800 p-1 sm:p-4">
-            <h2 className="mb-2 font-semibold">Editing Node {selectedNode}</h2>
+            <h2 className="mb-2 font-semibold">
+              Editing {getNodeLabel(selectedNode)}
+            </h2>
             <textarea
               className="w-full rounded-lg border border-gray-500 p-2 text-white"
               rows="3"
               name="Story text"
               placeholder={
-                selectedNode === "1"
+                selectedNode === start
                   ? "Start your story here..."
                   : "New scene..."
               }
@@ -262,9 +294,9 @@ export default function StoryEditor() {
                       updateOption(selectedNode, i, "next", e.target.value)
                     }
                   >
-                    {Object.keys(nodes).map((id) => (
+                    {orderedNodeIds.map((id) => (
                       <option className="bg-gray-800" key={id} value={id}>
-                        Node {id}
+                        {getNodeLabel(id)}
                       </option>
                     ))}
                   </select>

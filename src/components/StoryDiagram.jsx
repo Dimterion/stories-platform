@@ -39,15 +39,10 @@ function getLayoutElements(nodes, edges, direction = "LR") {
   });
 }
 
-/* Custom node: shows label and a hover tooltip with full text */
+/* Custom node with tooltip */
 function CustomNode({ data }) {
   return (
-    <div
-      className="group relative"
-      style={{
-        width: NODE_WIDTH - 20,
-      }}
-    >
+    <div className="group relative" style={{ width: NODE_WIDTH - 20 }}>
       <div
         style={{
           background: data.bgColor,
@@ -62,7 +57,7 @@ function CustomNode({ data }) {
         <p className="truncate">{data.label}</p>
       </div>
 
-      {/* Tooltip (appears on hover) */}
+      {/* Tooltip */}
       <div
         className="absolute bottom-full left-1/2 mb-2 hidden max-w-xs -translate-x-1/2 group-hover:block sm:max-w-md"
         style={{
@@ -90,7 +85,19 @@ export default function StoryDiagram({ story, onClose, onSelectNode }) {
   const timeoutRef = useRef(null);
   const [rfInstance, setRfInstance] = useState(null);
 
+  // Compute UUID order once
+  const orderedNodeIds = useMemo(() => {
+    return Object.entries(story.nodes)
+      .sort((a, b) => (a[1].createdAt || 0) - (b[1].createdAt || 0))
+      .map(([id]) => id);
+  }, [story.nodes]);
+
   const { nodes, edges } = useMemo(() => {
+    const getNodeLabel = (id) => {
+      const index = orderedNodeIds.indexOf(id);
+      return index >= 0 ? `Node ${index + 1}` : "Unknown Node";
+    };
+
     const nodes = Object.keys(story.nodes).map((id) => {
       const nodeData = story.nodes[id];
       const isStart = story.start === id;
@@ -104,27 +111,30 @@ export default function StoryDiagram({ story, onClose, onSelectNode }) {
         id,
         type: "custom",
         data: {
-          label: `${id}: ${nodeData.text.slice(0, 40)}${nodeData.text.length > 40 ? "..." : ""}`,
+          label: `${getNodeLabel(id)}: ${nodeData.text.slice(0, 40)}${
+            nodeData.text.length > 40 ? "..." : ""
+          }`,
           fullText: nodeData.text,
           bgColor: bg,
         },
-        position: { x: 0, y: 0 }, // Dagre will replace this
+        position: { x: 0, y: 0 },
       };
     });
 
     const edges = [];
-
     Object.keys(story.nodes).forEach((id) => {
       story.nodes[id].options.forEach((opt, idx) => {
-        edges.push({
-          id: `${id}-${idx}`,
-          source: id,
-          target: opt.next,
-          label: opt.text,
-          animated: true,
-          style: { stroke: "#facc15" },
-          labelStyle: { fill: "#facc15", fontWeight: "600", fontSize: 12 },
-        });
+        if (opt.next && story.nodes[opt.next]) {
+          edges.push({
+            id: `${id}-${idx}`,
+            source: id,
+            target: opt.next,
+            label: opt.text,
+            animated: true,
+            style: { stroke: "#facc15" },
+            labelStyle: { fill: "#facc15", fontWeight: "600", fontSize: 12 },
+          });
+        }
       });
     });
 
@@ -132,26 +142,21 @@ export default function StoryDiagram({ story, onClose, onSelectNode }) {
       nodes: getLayoutElements(nodes, edges, "TB"),
       edges,
     };
-  }, [story]);
+  }, [story, orderedNodeIds]);
 
-  // When a node is clicked: animate center-on-node, then call onSelectNode after animation
   const handleNodeClick = useCallback(
     (_event, node) => {
       if (!rfInstance) {
-        onSelectNode?.(node.id); // Fallback: just select
-
+        onSelectNode?.(node.id);
         return;
       }
 
-      // Center coordinates for the node
       const centerX = node.position.x + NODE_WIDTH / 2;
       const centerY = node.position.y + NODE_HEIGHT / 2;
       const duration = 500;
 
-      // Animate the viewport
       rfInstance.setCenter(centerX, centerY, { duration });
 
-      // After animation, call the editor callback to jump to that node
       timeoutRef.current = setTimeout(() => {
         onSelectNode?.(node.id);
       }, duration + 50);
@@ -159,7 +164,6 @@ export default function StoryDiagram({ story, onClose, onSelectNode }) {
     [rfInstance, onSelectNode],
   );
 
-  // Cleanup timeout when modal unmounts
   useEffect(() => {
     return () => {
       if (timeoutRef.current) clearTimeout(timeoutRef.current);
