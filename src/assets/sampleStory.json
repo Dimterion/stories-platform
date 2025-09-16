@@ -1,0 +1,73 @@
+{
+  "title": "How to Succeed",
+  "author": "Dimterion",
+  "description": "An everlasting story of achieving greatness.",
+  "start": "1",
+  "nodes": {
+    "1": {
+      "text": "You wake up in the morning with the idea of a story.",
+      "options": [
+        {
+          "text": "Continue with your day",
+          "next": "2"
+        },
+        {
+          "text": "Develop the idea",
+          "next": "3"
+        }
+      ]
+    },
+    "2": {
+      "text": "You continue your day as usual, nothing happens.",
+      "options": [
+        {
+          "text": "Start another day",
+          "next": "1"
+        }
+      ]
+    },
+    "3": {
+      "text": "Your develop the idea and create something great.",
+      "options": [
+        {
+          "text": "Give up and go back to your routine",
+          "next": "2"
+        },
+        {
+          "text": "You continue developing the idea",
+          "next": "4"
+        }
+      ]
+    },
+    "4": {
+      "text": "Now you have more ideas in mind.",
+      "options": [
+        {
+          "text": "Go to sleep",
+          "next": "1"
+        },
+        {
+          "text": "Start working on all of your ideas at once",
+          "next": "5"
+        },
+        {
+          "text": "Focus on your initial idea and develop it fully",
+          "next": "6"
+        }
+      ]
+    },
+    "5": {
+      "text": "You get overwhelmed and want to go back to sleep.",
+      "options": [
+        {
+          "text": "Go back to sleep",
+          "next": "1"
+        }
+      ]
+    },
+    "6": {
+      "text": "You achieve success and can now develop other ideas.",
+      "options": []
+    }
+  }
+}
