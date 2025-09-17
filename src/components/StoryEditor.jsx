@@ -114,26 +114,34 @@ export default function StoryEditor() {
     });
   };
 
-  // Export story JSON
   const exportStory = () => {
-    // Compute display order mapping
     const orderedNodeIds = Object.entries(nodes)
       .sort((a, b) => a[1].createdAt - b[1].createdAt)
       .map(([id]) => id);
 
-    const displayOrder = orderedNodeIds.map((id, index) => ({
-      id,
-      label: `Node ${index + 1}`,
-    }));
+    const enrichedNodes = {};
+    orderedNodeIds.forEach((id, index) => {
+      const node = nodes[id];
+      const label = `Node ${index + 1}`;
 
-    // Enriched story object
+      enrichedNodes[id] = {
+        ...node,
+        label,
+        options: node.options.map((opt) => ({
+          ...opt,
+          nextLabel: nodes[opt.next]
+            ? `Node ${orderedNodeIds.indexOf(opt.next) + 1}`
+            : "Unknown Node",
+        })),
+      };
+    });
+
     const story = {
       title,
       author,
       description,
       start,
-      nodes,
-      displayOrder, // <-- new field
+      nodes: enrichedNodes,
     };
 
     const blob = new Blob([JSON.stringify(story, null, 2)], {
@@ -147,7 +155,6 @@ export default function StoryEditor() {
     link.click();
   };
 
-  // Import story JSON
   const importStory = (event) => {
     const file = event.target.files[0];
 
@@ -159,22 +166,43 @@ export default function StoryEditor() {
       try {
         const data = JSON.parse(e.target.result);
 
-        // Basic validation
         if (!data || !data.nodes || typeof data.nodes !== "object") {
           alert("Invalid story file!");
           return;
         }
 
+        // Recompute labels on import (ignores saved ones to stay consistent)
+        const orderedIds = Object.entries(data.nodes)
+          .sort((a, b) => (a[1].createdAt || 0) - (b[1].createdAt || 0))
+          .map(([id]) => id);
+
+        const rebuiltNodes = {};
+
+        orderedIds.forEach((id, index) => {
+          const node = data.nodes[id];
+
+          rebuiltNodes[id] = {
+            ...node,
+            label: `Node ${index + 1}`,
+            options: (node.options || []).map((opt) => ({
+              ...opt,
+              nextLabel: data.nodes[opt.next]
+                ? `Node ${orderedIds.indexOf(opt.next) + 1}`
+                : "Unknown Node",
+            })),
+          };
+        });
+
         const validStart =
-          data.start && data.nodes[data.start]
+          data.start && rebuiltNodes[data.start]
             ? data.start
-            : Object.keys(data.nodes)[0] || null;
+            : orderedIds[0] || null;
 
         setTitle(data.title || "Untitled Story");
         setAuthor(data.author || "Anonymous");
         setDescription(data.description || "");
         setStart(validStart);
-        setNodes(data.nodes);
+        setNodes(rebuiltNodes);
         setSelectedNode(validStart);
 
         alert("Story imported successfully!");
