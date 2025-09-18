@@ -125,14 +125,15 @@ export default function StoryEditor() {
       const label = `Node ${index + 1}`;
 
       enrichedNodes[id] = {
-        ...node,
         label,
+        text: node.text,
         options: node.options.map((opt) => ({
           ...opt,
           nextLabel: nodes[opt.next]
             ? `Node ${orderedNodeIds.indexOf(opt.next) + 1}`
             : "Unknown Node",
         })),
+        createdAt: node.createdAt,
       };
     });
 
