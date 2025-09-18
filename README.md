@@ -57,6 +57,10 @@ Once the project is running:
 
 MVP with basic functionality and simple interface.
 
+## 📄 License
+
+This project is licensed under the MIT License – see the [LICENSE](LICENSE) file for details.
+
 ## <a id="contact-info"></a>📫 Contact info
 
 ### Profile links ⬇️
