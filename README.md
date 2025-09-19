@@ -59,6 +59,12 @@ Once the project is running:
 
 **Caption:** Story editor to create interactive stories.
 
+### Story Diagram
+
+<img src="./public/screenshots/story-diagram-view.jpg" alt="Story diagram interface" width="300" />
+
+**Caption:** Story diagram to view stories structure.
+
 ## <a id="tech-stack"></a>⚙️ Tech Stack
 
 - JavaScript

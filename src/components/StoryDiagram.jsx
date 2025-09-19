@@ -180,6 +180,12 @@ export default function StoryDiagram({ story, onClose, onSelectNode }) {
           ✖ Close
         </button>
 
+        {/* Legend */}
+        <div className="absolute top-2 left-2 text-xs">
+          <p className="rounded bg-blue-500 px-2 py-1">Blue = start</p>
+          <p className="rounded bg-red-500 px-2 py-1">Red = end</p>
+        </div>
+
         <ReactFlow
           nodes={nodes}
           edges={edges}

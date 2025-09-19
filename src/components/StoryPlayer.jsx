@@ -45,8 +45,12 @@ export default function StoryPlayer() {
     <section className="flex flex-col items-center justify-center p-4 sm:p-6">
       <div className="w-full max-w-xl space-y-4 rounded-2xl bg-gray-800 p-6 shadow-lg">
         {/* Title/author/description */}
-        <h1 className="text-center text-2xl font-bold">{story.title}</h1>
-        <p className="text-center text-sm text-gray-400">By {story.author}</p>
+        <h1 className="text-center text-2xl font-bold">
+          {story.title || "Untitled Story"}
+        </h1>
+        <p className="text-center text-sm text-gray-400">
+          By {story.author || "an aspiring individual"}
+        </p>
         <p className="text-center text-sm text-gray-400 italic">
           {story.description}
         </p>
