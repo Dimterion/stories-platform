@@ -2,6 +2,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import ReactFlow, { Background, Controls, Handle } from "reactflow";
 import "reactflow/dist/style.css";
 import dagre from "dagre";
+import { X } from "lucide-react";
 
 const dagreGraph = new dagre.graphlib.Graph();
 
@@ -175,9 +176,10 @@ export default function StoryDiagram({ story, onClose, onSelectNode }) {
       <div className="relative h-4/5 w-4/5 rounded-lg bg-white p-4">
         <button
           onClick={onClose}
-          className="absolute top-2 right-2 z-50 cursor-pointer rounded bg-red-600 px-2 py-1 text-sm text-white hover:bg-red-500 sm:text-base"
+          className="absolute top-2 right-2 z-50 inline-flex cursor-pointer items-center rounded bg-red-600 px-2 py-1 text-sm text-white hover:bg-red-500 sm:text-base"
         >
-          ✖ Close
+          <X />
+          Close
         </button>
 
         {/* Legend */}

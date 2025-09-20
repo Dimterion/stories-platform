@@ -74,9 +74,11 @@ Once the project is running:
 - Dagre
 - uuid
 
-## <a id="current-version"></a>🚀 Current version
+## <a id="current-version"></a>🔗 Current version
 
 MVP with basic functionality and simple interface.
+
+[Live version](https://stories-platform.dimterion.com/)
 
 ## 📄 License
 

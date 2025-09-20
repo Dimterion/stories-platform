@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
+import { FileDown, FileUp, Map, Plus, Trash2 } from "lucide-react";
 import StoryDiagram from "./StoryDiagram";
 
 export default function StoryEditor() {
@@ -239,18 +240,19 @@ export default function StoryEditor() {
             </button>
             <button
               onClick={() => deleteNode(id)}
-              className="cursor-pointer rounded bg-red-100 pb-0.5 text-sm hover:bg-red-200 sm:px-2 sm:py-1 sm:text-base"
+              className="cursor-pointer rounded bg-red-500 p-1 hover:bg-red-400"
               title="Delete Node"
             >
-              ❌
+              <Trash2 className="size-3 sm:size-6" />
             </button>
           </div>
         ))}
         <button
           onClick={addNode}
-          className="mt-4 w-full cursor-pointer rounded bg-green-600 px-2 py-1 text-sm hover:bg-green-500 sm:text-base"
+          className="mt-4 inline-flex w-full cursor-pointer items-center rounded bg-green-600 px-1 py-1 text-sm hover:bg-green-500 sm:gap-2 sm:px-2 sm:text-base"
         >
-          ➕ Add Node
+          <Plus />
+          Add Node
         </button>
       </div>
 
@@ -331,19 +333,20 @@ export default function StoryEditor() {
                   </select>
                   <button
                     onClick={() => deleteOption(selectedNode, i)}
-                    className="cursor-pointer rounded bg-red-100 pb-0.5 text-sm hover:bg-red-200 sm:px-2 sm:py-1 sm:text-base"
+                    className="cursor-pointer rounded bg-red-500 p-1 hover:bg-red-400"
                     title="Delete Option"
                   >
-                    ❌
+                    <Trash2 />
                   </button>
                 </div>
               ))}
             </div>
             <button
               onClick={() => addOption(selectedNode)}
-              className="my-4 cursor-pointer rounded bg-blue-600 px-3 py-1 text-sm hover:bg-blue-500 sm:text-base"
+              className="my-4 inline-flex cursor-pointer items-center rounded bg-blue-600 px-1 py-1 text-sm hover:bg-blue-500 sm:gap-2 sm:px-2 sm:text-base"
             >
-              ➕ Add Option
+              <Plus />
+              Add Option
             </button>
           </div>
         )}
@@ -352,14 +355,16 @@ export default function StoryEditor() {
           {/* Export button */}
           <button
             onClick={exportStory}
-            className="w-3xs max-w-[50vw] cursor-pointer rounded bg-yellow-600 px-4 py-2 text-center hover:bg-yellow-500"
+            className="inline-flex w-3xs max-w-[50vw] cursor-pointer items-center gap-2 rounded bg-yellow-600 px-4 py-2 text-center hover:bg-yellow-500"
           >
-            📤 Export Story JSON
+            <FileUp />
+            Export Story JSON
           </button>
 
           {/* Import button */}
-          <label className="w-3xs max-w-[50vw] cursor-pointer rounded bg-green-600 px-4 py-2 text-center hover:bg-green-500">
-            📥 Import Story JSON
+          <label className="inline-flex w-3xs max-w-[50vw] cursor-pointer items-center gap-2 rounded bg-green-600 px-4 py-2 text-center hover:bg-green-500">
+            <FileDown />
+            Import Story JSON
             <input
               type="file"
               accept="application/json"
@@ -371,9 +376,10 @@ export default function StoryEditor() {
           {/* Story diagram button */}
           <button
             onClick={() => setShowDiagram(true)}
-            className="w-3xs max-w-[50vw] cursor-pointer rounded bg-purple-600 px-4 py-2 text-center hover:bg-purple-500"
+            className="inline-flex w-3xs max-w-[50vw] cursor-pointer items-center gap-2 rounded bg-purple-600 px-4 py-2 text-center hover:bg-purple-500"
           >
-            🗺️ View Story Diagram
+            <Map />
+            View Story Diagram
           </button>
         </div>
 
