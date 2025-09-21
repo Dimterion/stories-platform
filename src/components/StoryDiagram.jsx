@@ -1,8 +1,9 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import ReactFlow, { Background, Controls, Handle } from "reactflow";
 import "reactflow/dist/style.css";
 import dagre from "dagre";
-import { X } from "lucide-react";
+import { RefreshCcw, X } from "lucide-react";
 
 const dagreGraph = new dagre.graphlib.Graph();
 
@@ -50,8 +51,32 @@ function getLayoutElements(nodes, edges, direction = "LR") {
 
 /* Main Story Node */
 function CustomNode({ data }) {
+  const [showTooltip, setShowTooltip] = useState(false);
+  const nodeRef = useRef(null);
+  const [coords, setCoords] = useState({ x: 0, y: 0 });
+
+  const handleMouseEnter = () => {
+    if (nodeRef.current) {
+      const rect = nodeRef.current.getBoundingClientRect();
+      setCoords({
+        x: rect.left + rect.width / 2,
+        y: rect.top,
+      });
+    }
+    setShowTooltip(true);
+  };
+
+  const handleMouseLeave = () => {
+    setShowTooltip(false);
+  };
+
   return (
-    <div className="group relative" style={{ width: NODE_WIDTH - 20 }}>
+    <div
+      ref={nodeRef}
+      style={{ width: NODE_WIDTH - 20 }}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+    >
       <div
         style={{
           background: data.bgColor,
@@ -66,21 +91,29 @@ function CustomNode({ data }) {
         <p className="truncate">{data.label}</p>
       </div>
 
-      {/* Tooltip */}
-      <div
-        className="absolute bottom-full left-1/2 mb-2 hidden max-w-xs -translate-x-1/2 group-hover:block sm:max-w-md"
-        style={{
-          background: "rgba(31,41,55,0.95)",
-          color: "white",
-          padding: "8px",
-          borderRadius: 6,
-          zIndex: 50,
-          fontSize: 12,
-          boxShadow: "0 6px 18px rgba(0,0,0,0.3)",
-        }}
-      >
-        {data.fullText}
-      </div>
+      {showTooltip &&
+        createPortal(
+          <div
+            style={{
+              position: "fixed",
+              top: coords.y - 10,
+              left: coords.x,
+              transform: "translate(-50%, -100%)",
+              background: "rgba(31,41,55,0.95)",
+              color: "white",
+              padding: "8px",
+              borderRadius: 6,
+              zIndex: 99999,
+              fontSize: 12,
+              boxShadow: "0 6px 18px rgba(0,0,0,0.3)",
+              pointerEvents: "none",
+              maxWidth: "300px",
+            }}
+          >
+            {data.fullText}
+          </div>,
+          document.body,
+        )}
 
       <Handle type="target" position="top" style={{ borderRadius: 0 }} />
       <Handle type="source" position="bottom" style={{ borderRadius: 0 }} />
@@ -127,6 +160,10 @@ export default function StoryDiagram({ story, onClose, onSelectNode }) {
   const timeoutRef = useRef(null);
   const [rfInstance, setRfInstance] = useState(null);
 
+  const dragState = useRef({ isDragging: false, moved: false });
+
+  const [userPositions, setUserPositions] = useState({});
+
   const orderedNodeIds = useMemo(() => {
     return Object.entries(story.nodes)
       .sort((a, b) => (a[1].createdAt || 0) - (b[1].createdAt || 0))
@@ -159,6 +196,7 @@ export default function StoryDiagram({ story, onClose, onSelectNode }) {
           bgColor: bg,
         },
         position: { x: 0, y: 0 },
+        draggable: true,
       };
     });
 
@@ -170,15 +208,14 @@ export default function StoryDiagram({ story, onClose, onSelectNode }) {
         if (opt.next && story.nodes[opt.next]) {
           const optionId = `${id}-opt-${idx}`;
 
-          // Add option node
           optionNodes.push({
             id: optionId,
             type: "optionNode",
             data: { label: opt.text },
             position: { x: 0, y: 0 },
+            draggable: true,
           });
 
-          // Link source → optionNode
           edgeList.push({
             id: `${id}->${optionId}`,
             source: id,
@@ -187,7 +224,6 @@ export default function StoryDiagram({ story, onClose, onSelectNode }) {
             style: { stroke: "#facc15" },
           });
 
-          // Link optionNode → target
           edgeList.push({
             id: `${optionId}->${opt.next}`,
             source: optionId,
@@ -200,16 +236,43 @@ export default function StoryDiagram({ story, onClose, onSelectNode }) {
     });
 
     const allNodes = [...nodeList, ...optionNodes];
+    const layouted = getLayoutElements(allNodes, edgeList, "TB");
 
-    return {
-      nodes: getLayoutElements(allNodes, edgeList, "TB"),
-      edges: edgeList,
-    };
-  }, [story, orderedNodeIds]);
+    const nodesWithUserPos = layouted.map((n) => {
+      if (userPositions[n.id]) {
+        return { ...n, position: userPositions[n.id] };
+      }
+
+      return n;
+    });
+
+    return { nodes: nodesWithUserPos, edges: edgeList };
+  }, [story, orderedNodeIds, userPositions]);
+
+  const onNodeDragStart = useCallback(() => {
+    dragState.current.isDragging = true;
+    dragState.current.moved = false;
+  }, []);
+
+  const onNodeDrag = useCallback(() => {
+    dragState.current.moved = true;
+  }, []);
+
+  const onNodeDragStop = useCallback((_event, node) => {
+    if (dragState.current.moved) {
+      setUserPositions((prev) => ({
+        ...prev,
+        [node.id]: { x: node.position.x, y: node.position.y },
+      }));
+    }
+    dragState.current.isDragging = false;
+    dragState.current.moved = false;
+  }, []);
 
   const handleNodeClick = useCallback(
     (_event, node) => {
-      if (node.type === "optionNode") return; // Skip clicks on option nodes
+      if (dragState.current.moved) return;
+      if (node.type === "optionNode") return;
       if (!rfInstance) {
         onSelectNode?.(node.id);
         return;
@@ -228,6 +291,10 @@ export default function StoryDiagram({ story, onClose, onSelectNode }) {
     [rfInstance, onSelectNode],
   );
 
+  const resetLayout = () => {
+    setUserPositions({});
+  };
+
   useEffect(() => {
     return () => {
       if (timeoutRef.current) clearTimeout(timeoutRef.current);
@@ -237,12 +304,22 @@ export default function StoryDiagram({ story, onClose, onSelectNode }) {
   return (
     <div className="bg-opacity-70 fixed inset-0 z-50 flex items-center justify-center bg-black">
       <div className="relative h-4/5 w-4/5 rounded-lg bg-white p-4">
+        {/* Close button */}
         <button
           onClick={onClose}
           className="absolute top-2 right-2 z-50 inline-flex cursor-pointer items-center rounded bg-red-600 px-2 py-1 text-sm text-white hover:bg-red-500 sm:text-base"
         >
-          <X />
+          <X className="mr-1" />
           Close
+        </button>
+
+        {/* Reset Layout button */}
+        <button
+          onClick={resetLayout}
+          className="absolute top-11 right-2 z-50 inline-flex cursor-pointer items-center rounded bg-gray-600 px-2 py-1 text-sm text-white hover:bg-gray-500 sm:top-2 sm:right-24 sm:text-base"
+        >
+          <RefreshCcw className="mr-1" />
+          Reset
         </button>
 
         {/* Legend */}
@@ -259,12 +336,15 @@ export default function StoryDiagram({ story, onClose, onSelectNode }) {
           edges={edges}
           fitView
           nodeTypes={nodeTypes}
-          nodesDraggable={false}
+          nodesDraggable={true}
           nodesConnectable={false}
           zoomOnScroll
           panOnDrag
           onInit={(instance) => setRfInstance(instance)}
           onNodeClick={handleNodeClick}
+          onNodeDragStart={onNodeDragStart}
+          onNodeDrag={onNodeDrag}
+          onNodeDragStop={onNodeDragStop}
         >
           <Background />
           <Controls />
