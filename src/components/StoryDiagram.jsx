@@ -4,7 +4,7 @@ import ReactFlow, { Background, Controls, Handle } from "reactflow";
 import "reactflow/dist/style.css";
 import dagre from "dagre";
 import * as htmlToImage from "html-to-image";
-import { Download, RefreshCcw, X } from "lucide-react";
+import { Download, RefreshCcw, Settings, X } from "lucide-react";
 
 const dagreGraph = new dagre.graphlib.Graph();
 
@@ -164,6 +164,17 @@ export default function StoryDiagram({ story, onClose, onSelectNode }) {
 
   const [rfInstance, setRfInstance] = useState(null);
   const [userPositions, setUserPositions] = useState({});
+  const [isBtnMenuOpen, setIsBtnMenuOpen] = useState(false);
+
+  const handleOverlayClick = (e) => {
+    if (diagramRef.current && !diagramRef.current.contains(e.target)) {
+      onClose();
+    }
+  };
+
+  const toggleBtnMenu = () => {
+    setIsBtnMenuOpen(!isBtnMenuOpen);
+  };
 
   const orderedNodeIds = useMemo(() => {
     return Object.entries(story.nodes)
@@ -300,6 +311,8 @@ export default function StoryDiagram({ story, onClose, onSelectNode }) {
     if (!diagramRef.current) return;
 
     try {
+      setIsBtnMenuOpen(!isBtnMenuOpen);
+
       const dataUrl = await htmlToImage.toSvg(diagramRef.current, {
         backgroundColor: "white",
       });
@@ -323,37 +336,53 @@ export default function StoryDiagram({ story, onClose, onSelectNode }) {
   }, []);
 
   return (
-    <div className="bg-opacity-70 fixed inset-0 z-50 flex items-center justify-center bg-black">
+    <div
+      className="bg-opacity-70 fixed inset-0 z-50 flex items-center justify-center bg-black"
+      onClick={handleOverlayClick}
+    >
       <div
         className="relative h-4/5 w-4/5 rounded-lg bg-white p-4"
         ref={diagramRef}
       >
-        {/* Close button */}
         <button
-          onClick={onClose}
-          className="absolute top-2 right-2 z-50 inline-flex cursor-pointer items-center rounded bg-red-600 px-2 py-1 text-sm text-white hover:bg-red-500 sm:text-base"
+          onClick={toggleBtnMenu}
+          className="absolute top-2 right-2 z-50 inline-flex cursor-pointer items-center rounded bg-blue-600 px-2 py-1 text-sm text-white hover:bg-blue-500 sm:text-base"
         >
-          <X className="mr-1" />
-          Close
+          <Settings />
         </button>
 
-        {/* Reset Layout button */}
-        <button
-          onClick={resetLayout}
-          className="absolute top-11 right-2 z-50 inline-flex cursor-pointer items-center rounded bg-gray-600 px-2 py-1 text-sm text-white hover:bg-gray-500 sm:top-2 sm:right-24 sm:text-base"
-        >
-          <RefreshCcw className="mr-1" />
-          Reset
-        </button>
+        <div className="absolute top-10 right-2 z-50">
+          {isBtnMenuOpen && (
+            <div className="mt-2 flex flex-col space-y-2">
+              {/* Close button */}
+              <button
+                onClick={onClose}
+                className="inline-flex cursor-pointer items-center rounded bg-red-600 px-2 py-1 text-sm text-white hover:bg-red-500 sm:text-base"
+              >
+                <X className="mr-1" />
+                Close
+              </button>
 
-        {/* Download SVG button */}
-        <button
-          onClick={handleDownloadSvg}
-          className="absolute top-20 right-2 z-50 inline-flex cursor-pointer items-center rounded bg-green-600 px-2 py-1 text-sm text-white hover:bg-green-500 sm:top-12 sm:text-base"
-        >
-          <Download className="mr-1" />
-          SVG
-        </button>
+              {/* Reset Layout button */}
+              <button
+                onClick={resetLayout}
+                className="inline-flex cursor-pointer items-center rounded bg-gray-600 px-2 py-1 text-sm text-white hover:bg-gray-500 sm:text-base"
+              >
+                <RefreshCcw className="mr-1" />
+                Reset
+              </button>
+
+              {/* Download SVG button */}
+              <button
+                onClick={handleDownloadSvg}
+                className="inline-flex cursor-pointer items-center rounded bg-green-600 px-2 py-1 text-sm text-white hover:bg-green-500 sm:text-base"
+              >
+                <Download className="mr-1" />
+                SVG
+              </button>
+            </div>
+          )}
+        </div>
 
         {/* Legend */}
         <div className="absolute top-2 left-2 text-xs">
