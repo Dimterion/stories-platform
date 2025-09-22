@@ -3,7 +3,8 @@ import { createPortal } from "react-dom";
 import ReactFlow, { Background, Controls, Handle } from "reactflow";
 import "reactflow/dist/style.css";
 import dagre from "dagre";
-import { RefreshCcw, X } from "lucide-react";
+import * as htmlToImage from "html-to-image";
+import { Download, RefreshCcw, X } from "lucide-react";
 
 const dagreGraph = new dagre.graphlib.Graph();
 
@@ -157,11 +158,11 @@ function OptionNode({ data }) {
 const nodeTypes = { custom: CustomNode, optionNode: OptionNode };
 
 export default function StoryDiagram({ story, onClose, onSelectNode }) {
+  const diagramRef = useRef(null);
   const timeoutRef = useRef(null);
-  const [rfInstance, setRfInstance] = useState(null);
-
   const dragState = useRef({ isDragging: false, moved: false });
 
+  const [rfInstance, setRfInstance] = useState(null);
   const [userPositions, setUserPositions] = useState({});
 
   const orderedNodeIds = useMemo(() => {
@@ -295,6 +296,26 @@ export default function StoryDiagram({ story, onClose, onSelectNode }) {
     setUserPositions({});
   };
 
+  const handleDownloadSvg = async () => {
+    if (!diagramRef.current) return;
+
+    try {
+      const dataUrl = await htmlToImage.toSvg(diagramRef.current, {
+        backgroundColor: "white",
+      });
+
+      const link = document.createElement("a");
+
+      link.href = dataUrl;
+      link.download = "story-diagram.svg";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    } catch (err) {
+      console.error("SVG export failed:", err);
+    }
+  };
+
   useEffect(() => {
     return () => {
       if (timeoutRef.current) clearTimeout(timeoutRef.current);
@@ -303,7 +324,10 @@ export default function StoryDiagram({ story, onClose, onSelectNode }) {
 
   return (
     <div className="bg-opacity-70 fixed inset-0 z-50 flex items-center justify-center bg-black">
-      <div className="relative h-4/5 w-4/5 rounded-lg bg-white p-4">
+      <div
+        className="relative h-4/5 w-4/5 rounded-lg bg-white p-4"
+        ref={diagramRef}
+      >
         {/* Close button */}
         <button
           onClick={onClose}
@@ -322,6 +346,15 @@ export default function StoryDiagram({ story, onClose, onSelectNode }) {
           Reset
         </button>
 
+        {/* Download SVG button */}
+        <button
+          onClick={handleDownloadSvg}
+          className="absolute top-20 right-2 z-50 inline-flex cursor-pointer items-center rounded bg-green-600 px-2 py-1 text-sm text-white hover:bg-green-500 sm:top-12 sm:text-base"
+        >
+          <Download className="mr-1" />
+          SVG
+        </button>
+
         {/* Legend */}
         <div className="absolute top-2 left-2 text-xs">
           <p className="rounded bg-blue-500 px-2 py-1">Blue = start</p>
@@ -331,6 +364,7 @@ export default function StoryDiagram({ story, onClose, onSelectNode }) {
           </p>
         </div>
 
+        {/* Diagram */}
         <ReactFlow
           nodes={nodes}
           edges={edges}
