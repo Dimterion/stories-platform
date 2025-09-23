@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
+import { toast } from "sonner";
 import { FileDown, FileUp, Map, Plus, Trash2 } from "lucide-react";
 import StoryDiagram from "./StoryDiagram";
 
@@ -86,7 +87,7 @@ export default function StoryEditor() {
   // Delete a whole node
   const deleteNode = (nodeId) => {
     if (nodeId === start) {
-      alert("You can’t delete the start node!");
+      toast.error("You can’t delete the start node.");
 
       return;
     }
@@ -169,7 +170,7 @@ export default function StoryEditor() {
         const data = JSON.parse(e.target.result);
 
         if (!data || !data.nodes || typeof data.nodes !== "object") {
-          alert("Invalid story file!");
+          toast.error("Invalid story file.");
           return;
         }
 
@@ -207,10 +208,11 @@ export default function StoryEditor() {
         setNodes(rebuiltNodes);
         setSelectedNode(validStart);
 
-        alert("Story imported successfully!");
+        toast.success("Story imported successfully.");
       } catch (err) {
         console.error(err);
-        alert("Error reading story file.");
+
+        toast.error("Error reading story file.");
       }
     };
 

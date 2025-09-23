@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { toast } from "sonner";
 import sampleStory from "../assets/sampleStory";
 
 export default function StoryPlayer() {
@@ -22,8 +23,10 @@ export default function StoryPlayer() {
             ? json.start
             : Object.keys(json.nodes)[0],
         );
+
+        toast.success("Story imported successfully.");
       } catch (err) {
-        alert(
+        toast.error(
           `Error: invalid story file. Please choose a JSON-file. More info: ${err}`,
         );
       }

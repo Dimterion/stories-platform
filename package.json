@@ -17,6 +17,7 @@
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "reactflow": "^11.11.4",
+    "sonner": "^2.0.7",
     "tailwindcss": "^4.1.13",
     "uuid": "^13.0.0"
   },

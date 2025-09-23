@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Toaster } from "sonner";
 import { BookOpenCheck, Pencil } from "lucide-react";
 import StoryPlayer from "./components/StoryPlayer";
 import StoryEditor from "./components/StoryEditor";
@@ -8,6 +9,7 @@ export default function App() {
 
   return (
     <div className="flex min-h-screen flex-col justify-between bg-gray-900 text-white">
+      <Toaster position="top-right" richColors closeButton />
       <header className="flex items-center justify-between bg-gray-800 p-4">
         <h1 className="font-bold sm:text-xl">Interactive Story Platform</h1>
         <nav className="flex flex-wrap justify-end gap-4">
