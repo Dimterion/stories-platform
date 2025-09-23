@@ -111,7 +111,7 @@ function CustomNode({ data }) {
               maxWidth: "300px",
             }}
           >
-            {data.fullText}
+            {data.fullText || data.label}
           </div>,
           document.body,
         )}
@@ -135,7 +135,7 @@ function OptionNode({ data }) {
         fontSize: 12,
         fontWeight: 600,
         minWidth: OPTION_WIDTH - 20,
-        cursor: "default",
+        cursor: "pointer",
         position: "relative",
       }}
     >
@@ -311,7 +311,7 @@ export default function StoryDiagram({ story, onClose, onSelectNode }) {
     if (!diagramRef.current) return;
 
     try {
-      setIsBtnMenuOpen(!isBtnMenuOpen);
+      setIsBtnMenuOpen(false);
 
       const dataUrl = await htmlToImage.toSvg(diagramRef.current, {
         backgroundColor: "white",
@@ -346,38 +346,42 @@ export default function StoryDiagram({ story, onClose, onSelectNode }) {
       >
         <button
           onClick={toggleBtnMenu}
-          className="absolute top-2 right-2 z-50 inline-flex cursor-pointer items-center rounded bg-blue-600 px-2 py-1 text-sm text-white hover:bg-blue-500 sm:text-base"
+          className="absolute top-2 right-2 z-50 inline-flex cursor-pointer items-center rounded bg-blue-600 px-2 py-1 text-white hover:bg-blue-500"
         >
-          <Settings />
+          {isBtnMenuOpen ? (
+            <X className="size-5" />
+          ) : (
+            <Settings className="size-5" />
+          )}
         </button>
 
-        <div className="absolute top-10 right-2 z-50">
+        <div className="absolute top-8 right-2 z-50">
           {isBtnMenuOpen && (
-            <div className="mt-2 flex flex-col space-y-2">
+            <div className="mt-2 flex flex-col space-y-1">
               {/* Close button */}
               <button
                 onClick={onClose}
-                className="inline-flex cursor-pointer items-center rounded bg-red-600 px-2 py-1 text-sm text-white hover:bg-red-500 sm:text-base"
+                className="inline-flex cursor-pointer items-center rounded bg-red-600 px-2 py-1 text-sm text-white hover:bg-red-500"
               >
-                <X className="mr-1" />
+                <X className="mr-1 size-5" />
                 Close
               </button>
 
               {/* Reset Layout button */}
               <button
                 onClick={resetLayout}
-                className="inline-flex cursor-pointer items-center rounded bg-gray-600 px-2 py-1 text-sm text-white hover:bg-gray-500 sm:text-base"
+                className="inline-flex cursor-pointer items-center rounded bg-gray-600 px-2 py-1 text-sm text-white hover:bg-gray-500"
               >
-                <RefreshCcw className="mr-1" />
+                <RefreshCcw className="mr-1 size-5" />
                 Reset
               </button>
 
               {/* Download SVG button */}
               <button
                 onClick={handleDownloadSvg}
-                className="inline-flex cursor-pointer items-center rounded bg-green-600 px-2 py-1 text-sm text-white hover:bg-green-500 sm:text-base"
+                className="inline-flex cursor-pointer items-center rounded bg-green-600 px-2 py-1 text-sm text-white hover:bg-green-500"
               >
-                <Download className="mr-1" />
+                <Download className="mr-1 size-5" />
                 SVG
               </button>
             </div>
@@ -410,7 +414,7 @@ export default function StoryDiagram({ story, onClose, onSelectNode }) {
           onNodeDragStop={onNodeDragStop}
         >
           <Background />
-          <Controls />
+          {isBtnMenuOpen && <Controls />}
         </ReactFlow>
       </div>
     </div>
