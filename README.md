@@ -80,6 +80,8 @@ MVP with basic functionality and simple interface.
 
 [Live version](https://stories-platform.dimterion.com/)
 
+[Roadmap](docs/ROADMAP.md) of potential features and improvements.
+
 ## 📄 License
 
 This project is licensed under the MIT License – see the [LICENSE](LICENSE) file for details.

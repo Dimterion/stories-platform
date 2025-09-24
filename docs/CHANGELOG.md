@@ -15,6 +15,7 @@ All notable changes to this project will be documented in this file.
 ### Changed
 
 - Diagram settings are now enabled/disabled by toggle
+- Replaced alerts with toast notifications (Sonner)
 
 ### Fixed
 

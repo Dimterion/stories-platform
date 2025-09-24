@@ -17,6 +17,11 @@ export default function StoryPlayer() {
       try {
         const json = JSON.parse(e.target.result);
 
+        if (!json || !json.nodes || typeof json.nodes !== "object") {
+          toast.error("Invalid story file.");
+          return;
+        }
+
         setStory(json);
         setCurrentNodeId(
           json.start && json.nodes[json.start]
