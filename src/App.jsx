@@ -18,6 +18,7 @@ export default function App() {
             className={`inline-flex min-w-36 cursor-pointer items-center gap-2 rounded px-3 py-1 text-sm sm:text-base ${
               activeTab === "play" ? "bg-blue-600" : "bg-gray-700"
             }`}
+            aria-label="Play Stories tab"
           >
             <BookOpenCheck />
             Play Stories
@@ -27,6 +28,7 @@ export default function App() {
             className={`inline-flex min-w-36 cursor-pointer items-center gap-2 rounded px-3 py-1 text-sm sm:text-base ${
               activeTab === "create" ? "bg-green-600" : "bg-gray-700"
             }`}
+            aria-label="Create Stories tab"
           >
             <Pencil />
             Create Stories

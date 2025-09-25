@@ -347,6 +347,7 @@ export default function StoryDiagram({ story, onClose, onSelectNode }) {
         <button
           onClick={toggleBtnMenu}
           className="absolute top-2 right-2 z-50 inline-flex cursor-pointer items-center rounded bg-blue-600 px-2 py-1 text-white hover:bg-blue-500"
+          aria-label="Diagram menu"
         >
           {isBtnMenuOpen ? (
             <X className="size-5" />
@@ -362,6 +363,7 @@ export default function StoryDiagram({ story, onClose, onSelectNode }) {
               <button
                 onClick={onClose}
                 className="inline-flex cursor-pointer items-center rounded bg-red-600 px-2 py-1 text-sm text-white hover:bg-red-500"
+                aria-label="Close diagram"
               >
                 <X className="mr-1 size-5" />
                 Close
@@ -371,6 +373,7 @@ export default function StoryDiagram({ story, onClose, onSelectNode }) {
               <button
                 onClick={resetLayout}
                 className="inline-flex cursor-pointer items-center rounded bg-gray-600 px-2 py-1 text-sm text-white hover:bg-gray-500"
+                aria-label="Reset diagram"
               >
                 <RefreshCcw className="mr-1 size-5" />
                 Reset
@@ -380,6 +383,7 @@ export default function StoryDiagram({ story, onClose, onSelectNode }) {
               <button
                 onClick={handleDownloadSvg}
                 className="inline-flex cursor-pointer items-center rounded bg-green-600 px-2 py-1 text-sm text-white hover:bg-green-500"
+                aria-label="Download SVG"
               >
                 <Download className="mr-1 size-5" />
                 SVG

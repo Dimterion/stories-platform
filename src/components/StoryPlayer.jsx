@@ -75,6 +75,7 @@ export default function StoryPlayer() {
                 key={index}
                 onClick={() => setCurrentNodeId(option.next)}
                 className="cursor-pointer rounded-lg bg-blue-600 px-4 py-2 hover:bg-blue-500"
+                aria-label="Option"
               >
                 {option.text}
               </button>

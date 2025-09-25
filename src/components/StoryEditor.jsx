@@ -237,6 +237,7 @@ export default function StoryEditor() {
               className={`flex-1 cursor-pointer rounded px-1 py-1 text-sm sm:px-2 sm:text-base ${
                 id === selectedNode ? "bg-blue-600" : "bg-gray-700"
               }`}
+              aria-label="Open node"
             >
               {getNodeLabel(id)}
             </button>
@@ -244,6 +245,7 @@ export default function StoryEditor() {
               onClick={() => deleteNode(id)}
               className="cursor-pointer rounded bg-red-500 p-1 hover:bg-red-400"
               title="Delete Node"
+              aria-label="Delete node"
             >
               <Trash2 className="size-3 sm:size-6" />
             </button>
@@ -337,6 +339,7 @@ export default function StoryEditor() {
                     onClick={() => deleteOption(selectedNode, i)}
                     className="cursor-pointer rounded bg-red-500 p-1 hover:bg-red-400"
                     title="Delete Option"
+                    aria-label="Delete option"
                   >
                     <Trash2 />
                   </button>
