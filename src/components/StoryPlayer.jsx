@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { toast } from "sonner";
+import { validateStoryJson } from "../utils/storyUtils";
 import sampleStory from "../assets/sampleStory";
 
 export default function StoryPlayer() {
@@ -16,18 +17,16 @@ export default function StoryPlayer() {
     reader.onload = (e) => {
       try {
         const json = JSON.parse(e.target.result);
+        const validation = validateStoryJson(json);
 
-        if (!json || !json.nodes || typeof json.nodes !== "object") {
-          toast.error("Invalid story file.");
+        if (!validation.valid) {
+          toast.error(validation.error);
+
           return;
         }
 
         setStory(json);
-        setCurrentNodeId(
-          json.start && json.nodes[json.start]
-            ? json.start
-            : Object.keys(json.nodes)[0],
-        );
+        setCurrentNodeId(json.start);
 
         toast.success("Story imported successfully.");
       } catch (err) {

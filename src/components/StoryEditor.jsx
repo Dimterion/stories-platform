@@ -2,6 +2,7 @@ import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { toast } from "sonner";
 import { FileDown, FileUp, Map, Plus, Trash2 } from "lucide-react";
+import { validateStoryJson } from "../utils/storyUtils";
 import StoryDiagram from "./StoryDiagram";
 
 export default function StoryEditor() {
@@ -168,9 +169,11 @@ export default function StoryEditor() {
     reader.onload = (e) => {
       try {
         const data = JSON.parse(e.target.result);
+        const validation = validateStoryJson(data);
 
-        if (!data || !data.nodes || typeof data.nodes !== "object") {
-          toast.error("Invalid story file.");
+        if (!validation.valid) {
+          toast.error(validation.error);
+
           return;
         }
 
@@ -196,10 +199,7 @@ export default function StoryEditor() {
           };
         });
 
-        const validStart =
-          data.start && rebuiltNodes[data.start]
-            ? data.start
-            : orderedIds[0] || null;
+        const validStart = data.start;
 
         setTitle(data.title || "Untitled Story");
         setAuthor(data.author || "Anonymous");
