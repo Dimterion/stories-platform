@@ -13,6 +13,24 @@ export function validateStoryJson(json) {
     return { valid: false, error: "Story has no nodes." };
   }
 
+  for (const id of nodeIds) {
+    const node = json.nodes[id];
+
+    if (!node || typeof node !== "object") {
+      return {
+        valid: false,
+        error: `Node ${id} is not a valid object. Please make sure your JSON file structure is correct.`,
+      };
+    }
+
+    if (!Array.isArray(node.options)) {
+      return {
+        valid: false,
+        error: `Node ${id} is missing a valid "options" array. Please make sure your JSON file structure is correct.`,
+      };
+    }
+  }
+
   const hasValidStart = json.start && json.nodes[json.start];
 
   if (!hasValidStart) {

@@ -64,7 +64,7 @@
 
 ### Accessibility
 
-- [ ] Buttons lack aria-labels for icons (especially Trash2, Map, etc.).
+- [x] Buttons lack aria-labels for icons (especially Trash2, Map, etc.).
 - [ ] Color contrast: blue/red/yellow backgrounds on nodes are good, but yellow option nodes with black border may be hard for colorblind users. Consider icons or patterns in addition to colors.
 - [ ] File inputs could have more descriptive labels (Load JSON story instead of just “Load another story”).
 - [ ] Semantic HTML elements: button inside label may confuse screen readers.
