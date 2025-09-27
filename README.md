@@ -17,7 +17,7 @@ A web-based tool for creating and reading interactive, branching text stories.
 
 - Create interactive stories with multiple choices
 - View stories structure through diagram
-- Import existing stories and export created ones
+- Import existing stories and export created ones ([exported file example](src/assets/sampleStory.json))
 - Add/delete/modify stories choices and structure
 - Upload existing stories to explore them interactively
 
