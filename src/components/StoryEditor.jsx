@@ -48,7 +48,7 @@ export default function StoryEditor() {
 
   // Add option (choice) to current node
   const addOption = (nodeId) => {
-    const newOption = { text: "", next: start };
+    const newOption = { text: "", next: null };
 
     setNodes((prev) => ({
       ...prev,
@@ -153,6 +153,17 @@ export default function StoryEditor() {
     });
     const url = URL.createObjectURL(blob);
     const link = document.createElement("a");
+
+    const hasUnlinked = Object.values(nodes).some((n) =>
+      n.options.some((opt) => !opt.next),
+    );
+
+    if (hasUnlinked) {
+      toast.error(
+        "Some options have no target node. Please link or delete them before exporting.",
+      );
+      return;
+    }
 
     link.download = `${title.replace(/\s+/g, "_")}.json`;
     link.href = url;
@@ -308,13 +319,13 @@ export default function StoryEditor() {
               onChange={(e) => updateNodeText(selectedNode, e.target.value)}
             />
 
-            <h3 className="mt-3 font-semibold">Options</h3>
+            <h3 className="mt-3 mb-2 font-semibold">Options</h3>
             <div className="space-y-2">
               {nodes[selectedNode].options.map((opt, i) => (
                 <div key={i} className="flex flex-wrap items-center gap-2">
                   <input
                     name="Option text"
-                    className="flex-1 rounded-lg border border-gray-500 p-0.5 text-sm text-white sm:p-1 sm:text-base"
+                    className="flex-1 rounded-lg border border-gray-500 p-0.5 py-1 text-sm text-white sm:p-1 sm:text-base"
                     value={opt.text}
                     placeholder="New choice"
                     onChange={(e) =>
@@ -324,11 +335,19 @@ export default function StoryEditor() {
                   <select
                     name="Next option"
                     className="rounded-lg border border-gray-500 p-1 text-sm text-white sm:text-base"
-                    value={opt.next}
+                    value={opt.next ?? ""}
                     onChange={(e) =>
-                      updateOption(selectedNode, i, "next", e.target.value)
+                      updateOption(
+                        selectedNode,
+                        i,
+                        "next",
+                        e.target.value || null,
+                      )
                     }
                   >
+                    <option className="bg-gray-800" value="">
+                      Select target
+                    </option>
                     {orderedNodeIds.map((id) => (
                       <option className="bg-gray-800" key={id} value={id}>
                         {getNodeLabel(id)}

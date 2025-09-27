@@ -42,7 +42,7 @@
 ### Story Editor
 
 - [ ] `deleteNode` removes nodes and options, but if the deleted node was referenced by the start node, story consistency could break.
-- [ ] Adding a new option defaults next to start. Might cause “loops” unintentionally.
+- [x] Adding a new option defaults next to start. Might cause “loops” unintentionally.
 - [ ] Export filename sanitization: `title.replace(/\s+/g, "_")` — fails if title has special characters (`/`, `\`, etc).
 
 ### Code Organization
