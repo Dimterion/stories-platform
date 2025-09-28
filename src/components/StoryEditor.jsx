@@ -74,6 +74,10 @@ export default function StoryEditor() {
 
   // Delete option from a node
   const deleteOption = (nodeId, optionIndex) => {
+    const confirmed = window.confirm("Delete this option?");
+
+    if (!confirmed) return;
+
     setNodes((prev) => {
       const updated = { ...prev };
       updated[nodeId] = {
@@ -92,6 +96,10 @@ export default function StoryEditor() {
 
       return;
     }
+
+    const confirmed = window.confirm("Delete this node?");
+
+    if (!confirmed) return;
 
     setNodes((prev) => {
       const updated = { ...prev };
