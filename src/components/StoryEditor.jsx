@@ -379,16 +379,16 @@ export default function StoryEditor() {
           {/* Export button */}
           <button
             onClick={exportStory}
-            className="inline-flex w-3xs max-w-[50vw] cursor-pointer items-center gap-2 rounded bg-yellow-600 px-4 py-2 text-center hover:bg-yellow-500"
+            className="inline-flex w-3xs max-w-[55vw] cursor-pointer items-center gap-2 rounded bg-yellow-600 px-4 py-2 text-center hover:bg-yellow-500"
           >
             <FileUp />
-            Export Story JSON
+            Export Story (JSON file)
           </button>
 
           {/* Import button */}
-          <label className="inline-flex w-3xs max-w-[50vw] cursor-pointer items-center gap-2 rounded bg-green-600 px-4 py-2 text-center hover:bg-green-500">
+          <label className="inline-flex w-3xs max-w-[55vw] cursor-pointer items-center gap-2 rounded bg-green-600 px-4 py-2 text-center hover:bg-green-500">
             <FileDown />
-            Import Story JSON
+            Import Story (JSON file)
             <input
               type="file"
               accept="application/json"
@@ -400,7 +400,7 @@ export default function StoryEditor() {
           {/* Story diagram button */}
           <button
             onClick={() => setShowDiagram(true)}
-            className="inline-flex w-3xs max-w-[50vw] cursor-pointer items-center gap-2 rounded bg-purple-600 px-4 py-2 text-center hover:bg-purple-500"
+            className="inline-flex w-3xs max-w-[55vw] cursor-pointer items-center gap-2 rounded bg-purple-600 px-4 py-2 text-center hover:bg-purple-500"
           >
             <Map />
             View Story Diagram
