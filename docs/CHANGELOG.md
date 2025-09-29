@@ -4,13 +4,31 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [0.1.2] - 2025-09-29
+
+### Added
+
+- Docs directory with Changelog and Roadmap
+- Type check for files upload
+- JSON validation
+- Undo functionality for deleted nodes/options (toast notifications with "Undo" button)
+
+### Changed
+
+- Accessibility adjustment (aria-labels/names for buttons)
+- Metadata correction
+
+### Fixed
+
+- Minor styling adjustments for responsiveness of the options fields
+
 ## [0.1.1] - 2025-09-23
 
 ### Added
 
-- Enabled nodes & options dragging functionality
-- Added reset layout feature
-- Added download SVG functionality for stories diagrams
+- Nodes & options dragging functionality
+- Reset layout feature
+- Download SVG functionality for stories diagrams
 
 ### Changed
 

@@ -4,8 +4,14 @@
 
 ### Editor
 
-- [ ] Undo/redo support (currently destructive actions can’t be reverted).
-- [ ] Confirmation before deleting a node (to prevent accidents).
+- [x] Undo/redo support (currently destructive actions can’t be reverted).
+
+  `NOTE`: undo is implemented in the form of toast messages after deletion of nodes/options (might add full undo/redo system in the future).
+
+- [x] Confirmation before deleting a node (to prevent accidents).
+
+  `NOTE`: currently showing toast messages with "Undo" button (might swap to confirmation dialog in the future).
+
 - [ ] Default metadata for new stories (Untitled, Anonymous) to reduce empty fields.
 - [ ] Option reordering (drag-and-drop instead of static list).
 - [ ] “Set as start node” option in editor sidebar.
@@ -29,7 +35,9 @@
 
 - [ ] No validation for very large JSON files — could freeze the UI on big stories.
 - [x] Using `alert()` for errors: blocks rendering (better: toast notifications or inline error messages).
-- [ ] In `StoryEditor.importStory()`, the imported nodes overwrite local state without schema validation (missing fields like createdAt could cause issues).
+- [x] In `StoryEditor.importStory()`, the imported nodes overwrite local state without schema validation (missing fields like createdAt could cause issues).
+
+  `NOTE`: added stricter validation (normalizing JSON file could be implemented in the future, but it may depend on whether users should be able to use other file structure or strictly follow the one implemented on the platform).
 
 ### Story Diagram
 
