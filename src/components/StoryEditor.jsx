@@ -74,9 +74,7 @@ export default function StoryEditor() {
 
   // Delete option from a node
   const deleteOption = (nodeId, optionIndex) => {
-    const confirmed = window.confirm("Delete this option?");
-
-    if (!confirmed) return;
+    const oldOptions = { ...nodes };
 
     setNodes((prev) => {
       const updated = { ...prev };
@@ -86,6 +84,17 @@ export default function StoryEditor() {
       };
 
       return updated;
+    });
+
+    toast.info("Option deleted", {
+      action: {
+        label: "Undo",
+        onClick: () => setNodes(oldOptions),
+      },
+      classNames: {
+        actionButton:
+          "!bg-blue-500 !text-white px-4 py-1 rounded hover:!bg-blue-600 transition-colors",
+      },
     });
   };
 
@@ -97,9 +106,7 @@ export default function StoryEditor() {
       return;
     }
 
-    const confirmed = window.confirm("Delete this node?");
-
-    if (!confirmed) return;
+    const oldNodes = { ...nodes };
 
     setNodes((prev) => {
       const updated = { ...prev };
@@ -122,6 +129,17 @@ export default function StoryEditor() {
       }
 
       return updated;
+    });
+
+    toast.info("Node deleted", {
+      action: {
+        label: "Undo",
+        onClick: () => setNodes(oldNodes),
+      },
+      classNames: {
+        actionButton:
+          "!bg-blue-500 !text-white px-4 py-1 rounded hover:!bg-blue-600 transition-colors",
+      },
     });
   };
 
