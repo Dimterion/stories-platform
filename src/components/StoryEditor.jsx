@@ -167,18 +167,12 @@ export default function StoryEditor() {
     });
 
     const story = {
-      title,
-      author,
-      description,
+      title: title.trim() || "Untitled Story",
+      author: author.trim() || "Anonymous",
+      description: description.trim() || "",
       start,
       nodes: enrichedNodes,
     };
-
-    const blob = new Blob([JSON.stringify(story, null, 2)], {
-      type: "application/json",
-    });
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement("a");
 
     const hasUnlinked = Object.values(nodes).some((n) =>
       n.options.some((opt) => !opt.next),
@@ -191,9 +185,19 @@ export default function StoryEditor() {
       return;
     }
 
-    link.download = `${title.replace(/\s+/g, "_")}.json`;
+    const blob = new Blob([JSON.stringify(story, null, 2)], {
+      type: "application/json",
+    });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+
+    const safeTitle = (title.trim() || "Untitled_Story").replace(/\s+/g, "_");
+
+    link.download = `${safeTitle}.json`;
     link.href = url;
     link.click();
+
+    toast.success("Story exported successfully.");
   };
 
   const importStory = (event) => {

@@ -12,7 +12,7 @@
 
   `NOTE`: currently showing toast messages with "Undo" button (might swap to confirmation dialog in the future).
 
-- [ ] Default metadata for new stories (Untitled, Anonymous) to reduce empty fields.
+- [x] Default metadata for new stories (Untitled, Anonymous) to reduce empty fields.
 - [ ] Option reordering (drag-and-drop instead of static list).
 - [ ] “Set as start node” option in editor sidebar.
 
