@@ -191,7 +191,10 @@ export default function StoryEditor() {
     const url = URL.createObjectURL(blob);
     const link = document.createElement("a");
 
-    const safeTitle = (title.trim() || "Untitled_Story").replace(/\s+/g, "_");
+    const safeTitle = (title.trim() || "Untitled_Story")
+      .replace(/[<>:"/\\|?*]+/g, "")
+      .replace(/\s+/g, "_")
+      .slice(0, 50);
 
     link.download = `${safeTitle}.json`;
     link.href = url;
@@ -284,7 +287,7 @@ export default function StoryEditor() {
             </button>
             <button
               onClick={() => deleteNode(id)}
-              className="cursor-pointer rounded bg-red-500 p-1 hover:bg-red-400"
+              className="cursor-pointer rounded bg-red-500 px-1 py-2 hover:bg-red-400 sm:p-1"
               title="Delete Node"
               aria-label="Delete node"
             >
@@ -352,10 +355,10 @@ export default function StoryEditor() {
             <h3 className="mt-3 mb-2 font-semibold">Options</h3>
             <div className="space-y-2">
               {nodes[selectedNode].options.map((opt, i) => (
-                <div key={i} className="flex flex-wrap items-center gap-2">
+                <div key={i} className="flex flex-wrap items-center gap-2 pb-1">
                   <input
                     name="Option text"
-                    className="flex-1 rounded-lg border border-gray-500 p-0.5 py-1 text-sm text-white sm:p-1 sm:text-base"
+                    className="max-w-[140px] flex-1 rounded-lg border border-gray-500 p-0.5 py-1 text-sm text-white sm:max-w-full sm:p-1 sm:text-base"
                     value={opt.text}
                     placeholder="New choice"
                     onChange={(e) =>
@@ -386,7 +389,7 @@ export default function StoryEditor() {
                   </select>
                   <button
                     onClick={() => deleteOption(selectedNode, i)}
-                    className="cursor-pointer rounded bg-red-500 p-1 hover:bg-red-400"
+                    className="cursor-pointer rounded bg-red-500 p-0.5 hover:bg-red-400 sm:p-1"
                     title="Delete Option"
                     aria-label="Delete option"
                   >
