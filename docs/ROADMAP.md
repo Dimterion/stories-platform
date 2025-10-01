@@ -18,7 +18,7 @@
 
 ### Diagram
 
-- [ ] Better export (full graph, not just viewport).
+- [x] Better export (full graph, not just viewport).
 - [ ] Hide UI elements (buttons, ReactFlow controls) in export (via filter).
 - [ ] Mini-map (ReactFlow feature) for navigation in large stories.
 - [ ] Color coding for special nodes (branching nodes, long text, etc.).
@@ -41,7 +41,10 @@
 
 ### Story Diagram
 
-- [ ] `handleDownloadSvg` exports the currently visible viewport only — the user expects the full diagram (may be confusing).
+- [x] `handleDownloadSvg` exports the currently visible viewport only — the user expects the full diagram (may be confusing).
+
+  `NOTE`: might need to add other formats (PNG, PDF) for exports and review edge-cases (e.g., diagram is too wide to fit into the exported image properly).
+
 - [ ] Tooltips (createPortal) don’t handle window resize or scroll. If the user scrolls the page, tooltip positioning may break.
 - [ ] Clicking outside closes the modal — but dragging inside the diagram could also trigger overlay clicks if mouse moves fast (edge case).
 - [ ] `rfInstance.wrapper` vs `diagramRef.current`: exporting with `diagramRef` may capture buttons/legend. There’s no proper filter yet.

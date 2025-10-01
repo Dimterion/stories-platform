@@ -1,6 +1,12 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
-import ReactFlow, { Background, Controls, Handle } from "reactflow";
+import ReactFlow, {
+  Background,
+  Controls,
+  getNodesBounds,
+  getViewportForBounds,
+  Handle,
+} from "reactflow";
 import "reactflow/dist/style.css";
 import dagre from "dagre";
 import * as htmlToImage from "html-to-image";
@@ -307,19 +313,39 @@ export default function StoryDiagram({ story, onClose, onSelectNode }) {
     setUserPositions({});
   };
 
-  const handleDownloadSvg = async () => {
-    if (!diagramRef.current) return;
+  const handleDownloadSvg = useCallback(async () => {
+    if (!rfInstance || !diagramRef.current) return;
 
     try {
       setIsBtnMenuOpen(false);
 
-      const dataUrl = await htmlToImage.toSvg(diagramRef.current, {
-        backgroundColor: "white",
-      });
+      const nodes = rfInstance.getNodes();
+      
+      if (!nodes.length) return;
+
+      const bounds = getNodesBounds(nodes);
+
+      const width = Math.round(bounds.width + 100);
+      const height = Math.round(bounds.height + 100);
+
+      const viewport = getViewportForBounds(bounds, width, height, 0.1, 2);
+
+      const svgDataUrl = await htmlToImage.toSvg(
+        diagramRef.current.querySelector(".react-flow__viewport"),
+        {
+          width,
+          height,
+          style: {
+            width: `${width}px`,
+            height: `${height}px`,
+            transform: `translate(${viewport.x}px, ${viewport.y}px) scale(${viewport.zoom})`,
+            backgroundColor: "white",
+          },
+        },
+      );
 
       const link = document.createElement("a");
-
-      link.href = dataUrl;
+      link.href = svgDataUrl;
       link.download = "story-diagram.svg";
       document.body.appendChild(link);
       link.click();
@@ -327,7 +353,7 @@ export default function StoryDiagram({ story, onClose, onSelectNode }) {
     } catch (err) {
       console.error("SVG export failed:", err);
     }
-  };
+  }, [rfInstance]);
 
   useEffect(() => {
     return () => {
