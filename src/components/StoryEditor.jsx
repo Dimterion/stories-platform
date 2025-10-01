@@ -175,12 +175,12 @@ export default function StoryEditor() {
     };
 
     const hasUnlinked = Object.values(nodes).some((n) =>
-      n.options.some((opt) => !opt.next),
+      n.options.some((opt) => !opt.next || !nodes[opt.next]),
     );
 
     if (hasUnlinked) {
       toast.error(
-        "Some options have no target node. Please link or delete them before exporting.",
+        "Some options are not connected to nodes. Please fix or delete them before exporting.",
       );
       return;
     }
@@ -243,7 +243,7 @@ export default function StoryEditor() {
           };
         });
 
-        const validStart = data.start;
+        const validStart = data.nodes[data.start] ? data.start : orderedIds[0];
 
         setTitle(data.title || "Untitled Story");
         setAuthor(data.author || "Anonymous");
