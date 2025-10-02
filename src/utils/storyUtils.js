@@ -13,6 +13,13 @@ export function validateStoryJson(json) {
     return { valid: false, error: "Story has no nodes." };
   }
 
+  if (nodeIds.length > 5000) {
+    return {
+      valid: false,
+      error: "Story is too large to load (max 5000 nodes).",
+    };
+  }
+
   const hasValidStart = json.start && json.nodes[json.start];
 
   if (!hasValidStart) {

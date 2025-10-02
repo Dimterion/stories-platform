@@ -208,6 +208,11 @@ export default function StoryEditor() {
 
     if (!file) return;
 
+    if (file.size > 5 * 1024 * 1024) {
+      toast.error("File too large. Please upload a story smaller than 5MB.");
+      return;
+    }
+
     const reader = new FileReader();
 
     reader.onload = (e) => {

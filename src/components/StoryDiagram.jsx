@@ -320,7 +320,7 @@ export default function StoryDiagram({ story, onClose, onSelectNode }) {
       setIsBtnMenuOpen(false);
 
       const nodes = rfInstance.getNodes();
-      
+
       if (!nodes.length) return;
 
       const bounds = getNodesBounds(nodes);
@@ -444,7 +444,7 @@ export default function StoryDiagram({ story, onClose, onSelectNode }) {
           onNodeDragStop={onNodeDragStop}
         >
           <Background />
-          {isBtnMenuOpen && <Controls />}
+          <Controls />
         </ReactFlow>
       </div>
     </div>

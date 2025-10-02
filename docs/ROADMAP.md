@@ -19,7 +19,7 @@
 ### Diagram
 
 - [x] Better export (full graph, not just viewport).
-- [ ] Hide UI elements (buttons, ReactFlow controls) in export (via filter).
+- [x] Hide UI elements (buttons, ReactFlow controls) in export (via filter).
 - [ ] Mini-map (ReactFlow feature) for navigation in large stories.
 - [ ] Color coding for special nodes (branching nodes, long text, etc.).
 
@@ -33,7 +33,7 @@
 
 ### File Uploads
 
-- [ ] No validation for very large JSON files — could freeze the UI on big stories.
+- [x] No validation for very large JSON files — could freeze the UI on big stories.
 - [x] Using `alert()` for errors: blocks rendering (better: toast notifications or inline error messages).
 - [x] In `StoryEditor.importStory()`, the imported nodes overwrite local state without schema validation (missing fields like createdAt could cause issues).
 
@@ -78,7 +78,7 @@
 - [x] Buttons lack aria-labels for icons (especially Trash2, Map, etc.).
 - [ ] Color contrast: blue/red/yellow backgrounds on nodes are good, but yellow option nodes with black border may be hard for colorblind users. Consider icons or patterns in addition to colors.
 - [x] File inputs could have more descriptive labels (Load JSON story instead of just “Load another story”).
-- [ ] Semantic HTML elements: button inside label may confuse screen readers.
+- [x] Semantic HTML elements: button inside label may confuse screen readers.
 
 ### SEO
 
