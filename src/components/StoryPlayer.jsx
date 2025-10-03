@@ -102,7 +102,7 @@ export default function StoryPlayer() {
             type="file"
             accept="application/json"
             onChange={handleFileUpload}
-            className="max-w-[95%] rounded bg-gray-700 p-2"
+            className="max-w-[95%] cursor-pointer rounded bg-gray-700 p-2"
           />
         </div>
       </div>

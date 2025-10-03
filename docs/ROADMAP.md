@@ -46,7 +46,7 @@
   `NOTE`: might need to add other formats (PNG, PDF) for exports and review edge-cases (e.g., diagram is too wide to fit into the exported image properly).
 
 - [x] Tooltips (createPortal) don’t handle window resize or scroll. If the user scrolls the page, tooltip positioning may break.
-- [ ] Clicking outside closes the modal — but dragging inside the diagram could also trigger overlay clicks if mouse moves fast (edge case).
+- [x] Clicking outside closes the modal — but dragging inside the diagram could also trigger overlay clicks if mouse moves fast (edge case).
 - [ ] `rfInstance.wrapper` vs `diagramRef.current`: exporting with `diagramRef` may capture buttons/legend. There’s no proper filter yet.
 - [ ] `dragState` works, but if a node is dragged slightly, click vs drag detection may feel inconsistent.
 

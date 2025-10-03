@@ -190,6 +190,7 @@ export default function StoryDiagram({ story, onClose, onSelectNode }) {
   const [isBtnMenuOpen, setIsBtnMenuOpen] = useState(false);
 
   const handleOverlayClick = (e) => {
+    if (dragState.current.isDragging) return;
     if (diagramRef.current && !diagramRef.current.contains(e.target)) {
       onClose();
     }
