@@ -62,7 +62,7 @@ function CustomNode({ data }) {
   const nodeRef = useRef(null);
   const [coords, setCoords] = useState({ x: 0, y: 0 });
 
-  const handleMouseEnter = () => {
+  const updateTooltipPosition = useCallback(() => {
     if (nodeRef.current) {
       const rect = nodeRef.current.getBoundingClientRect();
       setCoords({
@@ -70,12 +70,29 @@ function CustomNode({ data }) {
         y: rect.top,
       });
     }
+  }, []);
+
+  const handleMouseEnter = () => {
+    updateTooltipPosition();
     setShowTooltip(true);
   };
 
   const handleMouseLeave = () => {
     setShowTooltip(false);
   };
+
+  // Recalculate position on scroll/resize if tooltip is visible
+  useEffect(() => {
+    if (!showTooltip) return;
+
+    window.addEventListener("scroll", updateTooltipPosition, true);
+    window.addEventListener("resize", updateTooltipPosition);
+
+    return () => {
+      window.removeEventListener("scroll", updateTooltipPosition, true);
+      window.removeEventListener("resize", updateTooltipPosition);
+    };
+  }, [showTooltip, updateTooltipPosition]);
 
   return (
     <div
