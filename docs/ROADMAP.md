@@ -47,7 +47,7 @@
 
 - [x] Tooltips (createPortal) don’t handle window resize or scroll. If the user scrolls the page, tooltip positioning may break.
 - [x] Clicking outside closes the modal — but dragging inside the diagram could also trigger overlay clicks if mouse moves fast (edge case).
-- [ ] `rfInstance.wrapper` vs `diagramRef.current`: exporting with `diagramRef` may capture buttons/legend. There’s no proper filter yet.
+- [x] `rfInstance.wrapper` vs `diagramRef.current`: exporting with `diagramRef` may capture buttons/legend. There’s no proper filter yet.
 - [ ] `dragState` works, but if a node is dragged slightly, click vs drag detection may feel inconsistent.
 
 ### Story Editor

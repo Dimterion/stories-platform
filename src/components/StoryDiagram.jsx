@@ -348,19 +348,28 @@ export default function StoryDiagram({ story, onClose, onSelectNode }) {
 
       const viewport = getViewportForBounds(bounds, width, height, 0.1, 2);
 
-      const svgDataUrl = await htmlToImage.toSvg(
-        diagramRef.current.querySelector(".react-flow__viewport"),
-        {
-          width,
-          height,
-          style: {
-            width: `${width}px`,
-            height: `${height}px`,
-            transform: `translate(${viewport.x}px, ${viewport.y}px) scale(${viewport.zoom})`,
-            backgroundColor: "white",
-          },
-        },
+      const viewportEl = diagramRef.current.querySelector(
+        ".react-flow__viewport",
       );
+
+      if (!viewportEl) {
+        console.error("Could not find React Flow viewport element for export");
+        return;
+      }
+
+      const svgDataUrl = await htmlToImage.toSvg(viewportEl, {
+        width,
+        height,
+        style: {
+          width: `${width}px`,
+          height: `${height}px`,
+          transform: `translate(${viewport.x}px, ${viewport.y}px) scale(${viewport.zoom})`,
+          backgroundColor: "white",
+        },
+        filter: (node) => {
+          return !node.classList?.contains("react-flow__controls");
+        },
+      });
 
       const link = document.createElement("a");
       link.href = svgDataUrl;
