@@ -67,7 +67,10 @@
 
 - [ ] StoryEditor recalculates orderedNodeIds inline multiple times. Better: memoize once.
 - [ ] StoryDiagram recalculates layout on every state change — could be heavy for large stories. Suggest caching dagre layout until nodes/options actually change.
-- [ ] File Export/Import: JSON stringify/parse is fine now, but for very large stories (>MBs), consider web workers.
+- [x] File Export/Import: JSON stringify/parse is fine now, but for very large stories (>MBs), consider web workers.
+
+  `NOTE`: considered and addressed — no action needed beyond the current validation.
+
 - [ ] Currently enabling fitView every time — for very large diagrams, this may become slow. Could allow manual zoom instead.
 - [ ] Tooltip rendering with createPortal is lightweight, but rendering many simultaneously might be an issue.
 

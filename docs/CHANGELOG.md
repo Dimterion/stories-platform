@@ -2,42 +2,63 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.1.3] - 2025-10-04
+
+### Added
+
+- Default metadata for JSON files on export.
+- Filename sanitization for exports.
+- File size and nodes length validation.
+
+### Changed
+
+- Adjusted editor's elements positions/dimensions.
+- Refactored handleDownloadSvg to download the whole diagram.
+- Enhanced exported files validation in case of missing links between nodes and options and imports validation to ensure start exists in nodes.
+- Adjusted story diagram controls display.
+- Refactored handleOverlayClick to check for dragState before closing the modal.
+
+### Fixed
+
+- Adjusted tooltip position handling on scroll/resize in CustomNode.
+- Improved export functionality to ensure React Flow viewport is found and filter out controls.
+
 ## [0.1.2] - 2025-09-29
 
 ### Added
 
-- Docs directory with Changelog and Roadmap
-- Type check for files upload
-- JSON validation
-- Undo functionality for deleted nodes/options (toast notifications with "Undo" button)
+- Docs directory with Changelog and Roadmap.
+- Type check for files upload.
+- JSON validation.
+- Undo functionality for deleted nodes/options (toast notifications with "Undo" button).
 
 ### Changed
 
-- Accessibility adjustment (aria-labels/names for buttons)
-- Metadata correction
+- Accessibility adjustment (aria-labels/names for buttons).
+- Metadata correction.
 
 ### Fixed
 
-- Minor styling adjustments for responsiveness of the options fields
+- Minor styling adjustments for responsiveness of the options fields.
 
 ## [0.1.1] - 2025-09-23
 
 ### Added
 
-- Nodes & options dragging functionality
-- Reset layout feature
-- Download SVG functionality for stories diagrams
+- Nodes & options dragging functionality.
+- Reset layout feature.
+- Download SVG functionality for stories diagrams.
 
 ### Changed
 
-- Diagram settings are now enabled/disabled by toggle
-- Replaced alerts with toast notifications (Sonner)
+- Diagram settings are now enabled/disabled by toggle.
+- Replaced alerts with toast notifications (Sonner).
 
 ### Fixed
 
-- Improved nodes display in diagram
-- Improved nodes tooltips visibility
-- Minor diagram UI and style adjustments
+- Improved nodes display in diagram.
+- Improved nodes tooltips visibility.
+- Minor diagram UI and style adjustments.
 
 ## [0.1.0] - 2025-09-20
 
