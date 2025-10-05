@@ -159,7 +159,6 @@ function OptionNode({ data }) {
         fontWeight: 600,
         minWidth: OPTION_WIDTH - 20,
         cursor: "pointer",
-        position: "relative",
       }}
     >
       {data.label}
@@ -196,9 +195,7 @@ export default function StoryDiagram({ story, onClose, onSelectNode }) {
     }
   };
 
-  const toggleBtnMenu = () => {
-    setIsBtnMenuOpen(!isBtnMenuOpen);
-  };
+  const toggleBtnMenu = () => setIsBtnMenuOpen(!isBtnMenuOpen);
 
   const orderedNodeIds = useMemo(() => {
     return Object.entries(story.nodes)
@@ -231,7 +228,7 @@ export default function StoryDiagram({ story, onClose, onSelectNode }) {
           fullText: nodeData.text,
           bgColor: bg,
         },
-        position: { x: 0, y: 0 },
+        position: userPositions[id] || { x: 0, y: 0 },
         draggable: true,
       };
     });
@@ -248,7 +245,7 @@ export default function StoryDiagram({ story, onClose, onSelectNode }) {
             id: optionId,
             type: "optionNode",
             data: { label: opt.text },
-            position: { x: 0, y: 0 },
+            position: userPositions[optionId] || { x: 0, y: 0 },
             draggable: true,
           });
 
@@ -271,18 +268,18 @@ export default function StoryDiagram({ story, onClose, onSelectNode }) {
       });
     });
 
-    const allNodes = [...nodeList, ...optionNodes];
-    const layouted = getLayoutElements(allNodes, edgeList, "TB");
+    const layouted = getLayoutElements(
+      [...nodeList, ...optionNodes],
+      edgeList,
+      "TB",
+    );
 
-    const nodesWithUserPos = layouted.map((n) => {
-      if (userPositions[n.id]) {
-        return { ...n, position: userPositions[n.id] };
-      }
+    const finalNodes = layouted.map((n) => ({
+      ...n,
+      position: userPositions[n.id] ?? n.position,
+    }));
 
-      return n;
-    });
-
-    return { nodes: nodesWithUserPos, edges: edgeList };
+    return { nodes: finalNodes, edges: edgeList };
   }, [story, orderedNodeIds, userPositions]);
 
   const onNodeDragStart = useCallback(() => {
@@ -327,9 +324,7 @@ export default function StoryDiagram({ story, onClose, onSelectNode }) {
     [rfInstance, onSelectNode],
   );
 
-  const resetLayout = () => {
-    setUserPositions({});
-  };
+  const resetLayout = () => setUserPositions({});
 
   const handleDownloadSvg = useCallback(async () => {
     if (!rfInstance || !diagramRef.current) return;
@@ -366,9 +361,7 @@ export default function StoryDiagram({ story, onClose, onSelectNode }) {
           transform: `translate(${viewport.x}px, ${viewport.y}px) scale(${viewport.zoom})`,
           backgroundColor: "white",
         },
-        filter: (node) => {
-          return !node.classList?.contains("react-flow__controls");
-        },
+        filter: (node) => !node.classList?.contains("react-flow__controls"),
       });
 
       const link = document.createElement("a");
@@ -409,43 +402,32 @@ export default function StoryDiagram({ story, onClose, onSelectNode }) {
           )}
         </button>
 
-        <div className="absolute top-8 right-2 z-50">
-          {isBtnMenuOpen && (
-            <div className="mt-2 flex flex-col space-y-1">
-              {/* Close button */}
-              <button
-                onClick={onClose}
-                className="inline-flex cursor-pointer items-center rounded bg-red-600 px-2 py-1 text-sm text-white hover:bg-red-500"
-                aria-label="Close diagram"
-              >
-                <X className="mr-1 size-5" />
-                Close
-              </button>
+        {isBtnMenuOpen && (
+          <div className="absolute top-8 right-2 z-50 mt-2 flex flex-col space-y-1">
+            <button
+              onClick={onClose}
+              className="inline-flex cursor-pointer items-center rounded bg-red-600 px-2 py-1 text-sm text-white hover:bg-red-500"
+            >
+              <X className="mr-1 size-5" />
+              Close
+            </button>
+            <button
+              onClick={resetLayout}
+              className="inline-flex cursor-pointer items-center rounded bg-gray-600 px-2 py-1 text-sm text-white hover:bg-gray-500"
+            >
+              <RefreshCcw className="mr-1 size-5" />
+              Reset
+            </button>
+            <button
+              onClick={handleDownloadSvg}
+              className="inline-flex cursor-pointer items-center rounded bg-green-600 px-2 py-1 text-sm text-white hover:bg-green-500"
+            >
+              <Download className="mr-1 size-5" />
+              SVG
+            </button>
+          </div>
+        )}
 
-              {/* Reset Layout button */}
-              <button
-                onClick={resetLayout}
-                className="inline-flex cursor-pointer items-center rounded bg-gray-600 px-2 py-1 text-sm text-white hover:bg-gray-500"
-                aria-label="Reset diagram"
-              >
-                <RefreshCcw className="mr-1 size-5" />
-                Reset
-              </button>
-
-              {/* Download SVG button */}
-              <button
-                onClick={handleDownloadSvg}
-                className="inline-flex cursor-pointer items-center rounded bg-green-600 px-2 py-1 text-sm text-white hover:bg-green-500"
-                aria-label="Download SVG"
-              >
-                <Download className="mr-1 size-5" />
-                SVG
-              </button>
-            </div>
-          )}
-        </div>
-
-        {/* Legend */}
         <div className="absolute top-2 left-2 text-xs">
           <p className="rounded bg-blue-500 px-2 py-1">Blue = start</p>
           <p className="rounded bg-red-500 px-2 py-1">Red = end</p>
@@ -454,17 +436,16 @@ export default function StoryDiagram({ story, onClose, onSelectNode }) {
           </p>
         </div>
 
-        {/* Diagram */}
         <ReactFlow
           nodes={nodes}
           edges={edges}
           fitView
           nodeTypes={nodeTypes}
-          nodesDraggable={true}
+          nodesDraggable
           nodesConnectable={false}
           zoomOnScroll
           panOnDrag
-          onInit={(instance) => setRfInstance(instance)}
+          onInit={setRfInstance}
           onNodeClick={handleNodeClick}
           onNodeDragStart={onNodeDragStart}
           onNodeDrag={onNodeDrag}
