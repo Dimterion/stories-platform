@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { toast } from "sonner";
 import { FileDown, FileUp, Map, Plus, Trash2 } from "lucide-react";
@@ -18,9 +18,11 @@ export default function StoryEditor() {
   const [showDiagram, setShowDiagram] = useState(false);
 
   // Get ordered list of node ids (for display & selects)
-  const orderedNodeIds = Object.entries(nodes)
-    .sort((a, b) => a[1].createdAt - b[1].createdAt)
-    .map(([id]) => id);
+  const orderedNodeIds = useMemo(() => {
+    return Object.entries(nodes)
+      .sort((a, b) => a[1].createdAt - b[1].createdAt)
+      .map(([id]) => id);
+  }, [nodes]);
 
   // Find display label for a node
   const getNodeLabel = (id) => {
@@ -144,11 +146,8 @@ export default function StoryEditor() {
   };
 
   const exportStory = () => {
-    const orderedNodeIds = Object.entries(nodes)
-      .sort((a, b) => a[1].createdAt - b[1].createdAt)
-      .map(([id]) => id);
-
     const enrichedNodes = {};
+
     orderedNodeIds.forEach((id, index) => {
       const node = nodes[id];
       const label = `Node ${index + 1}`;

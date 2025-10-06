@@ -65,7 +65,7 @@
 
 ### Performance
 
-- [ ] StoryEditor recalculates orderedNodeIds inline multiple times. Better: memoize once.
+- [x] StoryEditor recalculates orderedNodeIds inline multiple times. Better: memoize once.
 - [ ] StoryDiagram recalculates layout on every state change — could be heavy for large stories. Suggest caching dagre layout until nodes/options actually change.
 - [x] File Export/Import: JSON stringify/parse is fine now, but for very large stories (>MBs), consider web workers.
 
