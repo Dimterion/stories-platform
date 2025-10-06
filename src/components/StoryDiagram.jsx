@@ -439,13 +439,16 @@ export default function StoryDiagram({ story, onClose, onSelectNode }) {
         <ReactFlow
           nodes={nodes}
           edges={edges}
-          fitView
+          fitView={false}
           nodeTypes={nodeTypes}
           nodesDraggable
           nodesConnectable={false}
           zoomOnScroll
           panOnDrag
-          onInit={setRfInstance}
+          onInit={(instance) => {
+            setRfInstance(instance);
+            instance.fitView({ duration: 0 });
+          }}
           onNodeClick={handleNodeClick}
           onNodeDragStart={onNodeDragStart}
           onNodeDrag={onNodeDrag}

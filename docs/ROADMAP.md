@@ -66,13 +66,15 @@
 ### Performance
 
 - [x] StoryEditor recalculates orderedNodeIds inline multiple times. Better: memoize once.
-- [ ] StoryDiagram recalculates layout on every state change — could be heavy for large stories. Suggest caching dagre layout until nodes/options actually change.
+- [x] StoryDiagram recalculates layout on every state change — could be heavy for large stories. Suggest caching dagre layout until nodes/options actually change.
 - [x] File Export/Import: JSON stringify/parse is fine now, but for very large stories (>MBs), consider web workers.
 
   `NOTE`: considered and addressed — no action needed beyond the current validation.
 
-- [ ] Currently enabling fitView every time — for very large diagrams, this may become slow. Could allow manual zoom instead.
-- [ ] Tooltip rendering with createPortal is lightweight, but rendering many simultaneously might be an issue.
+- [x] Currently enabling fitView every time — for very large diagrams, this may become slow. Could allow manual zoom instead.
+- [x] Tooltip rendering with createPortal is lightweight, but rendering many simultaneously might be an issue.
+
+  `NOTE`: should not affect performance in the current implementation of the tooltips: rendering happens on hover only; on mouse leave the portal unmounts; every node manages its own tooltip independently (consideration for a scenario when all tooltips are rendered at once or nodes have an always visible hover zone: a single shared tooltip component that updates its content/position based on hover events from any node).
 
 ## Accessibility, SEO & Style
 
