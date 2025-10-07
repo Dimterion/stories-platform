@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Toaster } from "sonner";
 import { BookOpenCheck, Pencil } from "lucide-react";
+import MetaUpdater from "./components/MetaUpdater";
 import StoryPlayer from "./components/StoryPlayer";
 import StoryEditor from "./components/StoryEditor";
 
@@ -38,8 +39,25 @@ export default function App() {
 
       {/* Main Content */}
       <main className="flex-1">
-        {activeTab === "play" && <StoryPlayer />}
-        {activeTab === "create" && <StoryEditor />}
+        {activeTab === "play" && (
+          <>
+            <MetaUpdater
+              title="Play Stories | Interactive Story Platform"
+              description="Experience interactive stories with multiple choices and outcomes."
+            />
+            <StoryPlayer />
+          </>
+        )}
+
+        {activeTab === "create" && (
+          <>
+            <MetaUpdater
+              title="Create Stories | Interactive Story Platform"
+              description="Create your own interactive stories with multiple choices and outcomes."
+            />
+            <StoryEditor />
+          </>
+        )}
       </main>
 
       <footer className="flex items-center justify-center gap-1 bg-gray-800 py-1 text-sm">

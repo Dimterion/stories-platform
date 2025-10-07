@@ -87,9 +87,9 @@
 
 ### SEO
 
-- [ ] Add `<title>`, `<meta description>` per view (e.g., StoryPlayer vs Editor).
+- [x] Add `<title>`, `<meta description>` per view (e.g., StoryPlayer vs Editor).
 - [ ] Use semantic `<main>`, `<aside>`, `<section>` more consistently.
-- [ ] For shareability: Open Graph tags (title, description).
+- [x] For shareability: Open Graph tags (title, description).
 
 ### Style / UX
 
