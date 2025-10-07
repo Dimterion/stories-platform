@@ -10,7 +10,15 @@ import ReactFlow, {
 import "reactflow/dist/style.css";
 import dagre from "dagre";
 import * as htmlToImage from "html-to-image";
-import { Download, RefreshCcw, Settings, X } from "lucide-react";
+import {
+  ChevronDown,
+  Download,
+  Play,
+  RefreshCcw,
+  Settings,
+  Square,
+  X,
+} from "lucide-react";
 
 const dagreGraph = new dagre.graphlib.Graph();
 
@@ -112,7 +120,11 @@ function CustomNode({ data }) {
           textAlign: "center",
         }}
       >
-        <p className="truncate">{data.label}</p>
+        <p className="flex items-center justify-start gap-1 truncate">
+          {data.isStart && <Play className="h-3 w-3 shrink-0" />}
+          {data.isEnding && <Square className="h-3 w-3 shrink-0" />}
+          <span className="truncate">{data.label}</span>
+        </p>
       </div>
 
       {showTooltip &&
@@ -161,7 +173,10 @@ function OptionNode({ data }) {
         cursor: "pointer",
       }}
     >
-      {data.label}
+      <p className="flex items-center justify-start gap-1">
+        <ChevronDown className="h-3 w-3" />
+        {data.label}
+      </p>
 
       <Handle
         type="target"
@@ -227,6 +242,8 @@ export default function StoryDiagram({ story, onClose, onSelectNode }) {
           }`,
           fullText: nodeData.text,
           bgColor: bg,
+          isStart,
+          isEnding,
         },
         position: userPositions[id] || { x: 0, y: 0 },
         draggable: true,
@@ -428,13 +445,17 @@ export default function StoryDiagram({ story, onClose, onSelectNode }) {
           </div>
         )}
 
-        <div className="absolute top-2 left-2 text-xs">
-          <p className="rounded bg-blue-500 px-2 py-1">Blue = start</p>
-          <p className="rounded bg-red-500 px-2 py-1">Red = end</p>
-          <p className="rounded bg-yellow-400 px-2 py-1 text-black">
-            Yellow = option
+        <aside className="absolute top-2 left-2 space-y-1 text-xs">
+          <p className="flex items-center rounded border border-blue-600 bg-blue-500 px-2 py-1 text-white">
+            <Play className="mr-1 h-3 w-3" /> Start
           </p>
-        </div>
+          <p className="flex items-center rounded border border-red-600 bg-red-500 px-2 py-1 text-white">
+            <Square className="mr-1 h-3 w-3" /> End
+          </p>
+          <p className="flex items-center rounded border border-yellow-600 bg-yellow-400 px-2 py-1 text-gray-900">
+            <ChevronDown className="mr-1 h-3 w-3" /> Option
+          </p>
+        </aside>
 
         <ReactFlow
           nodes={nodes}
