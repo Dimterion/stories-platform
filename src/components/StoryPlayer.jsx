@@ -1,11 +1,55 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
 import { validateStoryJson } from "../utils/storyUtils";
 import sampleStory from "../assets/sampleStory";
 
+const STORAGE_KEY = "storyPlayerState";
+
 export default function StoryPlayer() {
-  const [story, setStory] = useState(sampleStory);
-  const [currentNodeId, setCurrentNodeId] = useState(story.start);
+  const hasLoadedRef = useRef(false);
+
+  const loadInitialState = () => {
+    try {
+      const saved = localStorage.getItem(STORAGE_KEY);
+
+      if (saved) {
+        const { story: savedStory, currentNodeId } = JSON.parse(saved);
+        const validation = validateStoryJson(savedStory);
+
+        if (validation.valid) {
+          hasLoadedRef.current = true;
+
+          return { story: savedStory, currentNodeId };
+        }
+      }
+    } catch {
+      localStorage.removeItem(STORAGE_KEY);
+    }
+    return { story: sampleStory, currentNodeId: sampleStory.start };
+  };
+
+  const initialState = loadInitialState();
+  const [story, setStory] = useState(initialState.story);
+  const [currentNodeId, setCurrentNodeId] = useState(
+    initialState.currentNodeId,
+  );
+
+  useEffect(() => {
+    if (!hasLoadedRef.current) {
+      hasLoadedRef.current = true;
+
+      return;
+    }
+
+    const timeout = setTimeout(() => {
+      localStorage.setItem(
+        STORAGE_KEY,
+        JSON.stringify({ story, currentNodeId }),
+      );
+    }, 300);
+
+    return () => clearTimeout(timeout);
+  }, [story, currentNodeId]);
 
   const handleFileUpload = (event) => {
     const file = event.target.files[0];
@@ -27,6 +71,7 @@ export default function StoryPlayer() {
 
         setStory(json);
         setCurrentNodeId(json.start);
+        hasLoadedRef.current = false;
 
         toast.success("Story imported successfully.");
       } catch (err) {
@@ -45,6 +90,14 @@ export default function StoryPlayer() {
         ? story.start
         : Object.keys(story.nodes)[0],
     );
+
+  const resetProgress = () => {
+    localStorage.removeItem(STORAGE_KEY);
+    setStory(sampleStory);
+    hasLoadedRef.current = false;
+    setCurrentNodeId(sampleStory.start);
+    toast.success("Progress reset. Sample story reloaded.");
+  };
 
   const currentNode = story.nodes[currentNodeId] || { text: "", options: [] };
 
@@ -85,7 +138,7 @@ export default function StoryPlayer() {
               <p className="mb-4 font-semibold text-yellow-400">The End</p>
               <button
                 onClick={restart}
-                className="cursor-pointer rounded-lg bg-green-600 px-4 py-2 hover:bg-green-500"
+                className="w-full cursor-pointer rounded-lg bg-green-600 px-4 py-2 hover:bg-green-500"
               >
                 Restart Story
               </button>
@@ -105,6 +158,13 @@ export default function StoryPlayer() {
             className="max-w-[95%] cursor-pointer rounded bg-gray-700 p-2"
           />
         </div>
+
+        <button
+          onClick={resetProgress}
+          className="w-full cursor-pointer rounded-lg bg-red-600 px-4 py-2 hover:bg-red-500"
+        >
+          Reset Progress
+        </button>
       </div>
     </section>
   );

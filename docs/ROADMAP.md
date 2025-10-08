@@ -27,7 +27,7 @@
 
 - [ ] “Back” button to revisit previous node.
 - [ ] Progress indicator (e.g., “Scene 3 of 12”).
-- [ ] Persistent story state (resume after refresh).
+- [x] Persistent story state (resume after refresh).
 
 ## Improvements
 
