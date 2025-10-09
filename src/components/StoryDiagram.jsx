@@ -6,6 +6,7 @@ import ReactFlow, {
   getNodesBounds,
   getViewportForBounds,
   Handle,
+  MiniMap,
 } from "reactflow";
 import "reactflow/dist/style.css";
 import dagre from "dagre";
@@ -13,6 +14,7 @@ import * as htmlToImage from "html-to-image";
 import {
   ChevronDown,
   Download,
+  Map,
   Play,
   RefreshCcw,
   Settings,
@@ -202,6 +204,7 @@ export default function StoryDiagram({ story, onClose, onSelectNode }) {
   const [rfInstance, setRfInstance] = useState(null);
   const [userPositions, setUserPositions] = useState({});
   const [isBtnMenuOpen, setIsBtnMenuOpen] = useState(false);
+  const [miniMap, setMiniMap] = useState(false);
 
   const handleOverlayClick = (e) => {
     if (dragState.current.isDragging) return;
@@ -211,6 +214,8 @@ export default function StoryDiagram({ story, onClose, onSelectNode }) {
   };
 
   const toggleBtnMenu = () => setIsBtnMenuOpen(!isBtnMenuOpen);
+
+  const toggleMiniMap = () => setMiniMap(!miniMap);
 
   const orderedNodeIds = useMemo(() => {
     return Object.entries(story.nodes)
@@ -230,8 +235,16 @@ export default function StoryDiagram({ story, onClose, onSelectNode }) {
       const isEnding = nodeData.options.length === 0;
 
       let bg = "#1f2937";
-      if (isStart) bg = "#2563eb";
-      if (isEnding) bg = "#dc2626";
+
+      if (isStart) {
+        bg = "#2563eb"; // blue
+      } else if (isEnding) {
+        bg = "#dc2626"; // red
+      } else if (nodeData.options.length > 1) {
+        bg = "#7e22ce"; // purple for branching
+      } else if (nodeData.text.length > 120) {
+        bg = "#0d9488"; // teal for long passages
+      }
 
       return {
         id,
@@ -442,6 +455,13 @@ export default function StoryDiagram({ story, onClose, onSelectNode }) {
               <Download className="mr-1 size-5" />
               SVG
             </button>
+            <button
+              onClick={toggleMiniMap}
+              className="inline-flex cursor-pointer items-center rounded bg-yellow-600 px-2 py-1 text-sm text-white hover:bg-yellow-500"
+            >
+              <Map className="mr-1 size-5" />
+              Map
+            </button>
           </div>
         )}
 
@@ -454,6 +474,12 @@ export default function StoryDiagram({ story, onClose, onSelectNode }) {
           </p>
           <p className="flex items-center rounded border border-yellow-600 bg-yellow-400 px-2 py-1 text-gray-900">
             <ChevronDown className="mr-1 h-3 w-3" /> Option
+          </p>
+          <p className="flex items-center rounded border border-purple-600 bg-purple-500 px-2 py-1 text-white">
+            Branching Node
+          </p>
+          <p className="flex items-center rounded border border-teal-600 bg-teal-500 px-2 py-1 text-white">
+            Long Text Node
           </p>
         </aside>
 
@@ -477,6 +503,15 @@ export default function StoryDiagram({ story, onClose, onSelectNode }) {
         >
           <Background />
           <Controls />
+          {miniMap && (
+            <MiniMap
+              nodeColor={(node) => node.data.bgColor || "#fff"}
+              nodeStrokeWidth={2}
+              pannable
+              zoomable
+              style={{ background: "#333", borderRadius: 8 }}
+            />
+          )}
         </ReactFlow>
       </div>
     </div>

@@ -20,8 +20,8 @@
 
 - [x] Better export (full graph, not just viewport).
 - [x] Hide UI elements (buttons, ReactFlow controls) in export (via filter).
-- [ ] Mini-map (ReactFlow feature) for navigation in large stories.
-- [ ] Color coding for special nodes (branching nodes, long text, etc.).
+- [x] Mini-map (ReactFlow feature) for navigation in large stories.
+- [x] Color coding for special nodes (branching nodes, long text, etc.).
 
 ### Player
 
