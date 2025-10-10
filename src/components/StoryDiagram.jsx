@@ -422,64 +422,64 @@ export default function StoryDiagram({ story, onClose, onSelectNode }) {
       >
         <button
           onClick={toggleBtnMenu}
-          className="absolute top-2 right-2 z-50 inline-flex cursor-pointer items-center rounded bg-blue-600 px-2 py-1 text-white hover:bg-blue-500"
+          className="absolute top-2 right-2 z-50 inline-flex cursor-pointer items-center rounded border border-blue-600 bg-blue-500 p-1 text-white hover:bg-blue-700"
           aria-label="Diagram menu"
         >
           {isBtnMenuOpen ? (
-            <X className="size-5" />
+            <X className="size-4" />
           ) : (
-            <Settings className="size-5" />
+            <Settings className="size-4" />
           )}
         </button>
 
         {isBtnMenuOpen && (
-          <div className="absolute top-8 right-2 z-50 mt-2 flex flex-col space-y-1">
+          <div className="absolute top-7.5 right-2 z-50 mt-2 flex flex-col space-y-1">
             <button
               onClick={onClose}
-              className="inline-flex cursor-pointer items-center rounded bg-red-600 px-2 py-1 text-sm text-white hover:bg-red-500"
+              className="inline-flex cursor-pointer items-center rounded border border-red-600 bg-red-500 p-1 text-xs text-white hover:bg-red-700"
             >
-              <X className="mr-1 size-5" />
+              <X className="mr-1 size-4" />
               Close
             </button>
             <button
               onClick={resetLayout}
-              className="inline-flex cursor-pointer items-center rounded bg-gray-600 px-2 py-1 text-sm text-white hover:bg-gray-500"
+              className="inline-flex cursor-pointer items-center rounded border border-gray-600 bg-gray-500 p-1 text-xs text-white hover:bg-gray-700"
             >
-              <RefreshCcw className="mr-1 size-5" />
+              <RefreshCcw className="mr-1 size-4" />
               Reset
             </button>
             <button
               onClick={handleDownloadSvg}
-              className="inline-flex cursor-pointer items-center rounded bg-green-600 px-2 py-1 text-sm text-white hover:bg-green-500"
+              className="inline-flex cursor-pointer items-center rounded border border-gray-600 bg-green-500 p-1 text-xs text-white hover:bg-green-700"
             >
-              <Download className="mr-1 size-5" />
+              <Download className="mr-1 size-4" />
               SVG
             </button>
             <button
               onClick={toggleMiniMap}
-              className="inline-flex cursor-pointer items-center rounded bg-yellow-600 px-2 py-1 text-sm text-white hover:bg-yellow-500"
+              className="inline-flex cursor-pointer items-center rounded border border-yellow-600 bg-yellow-500 p-1 text-xs text-white hover:bg-yellow-700"
             >
-              <Map className="mr-1 size-5" />
+              <Map className="mr-1 size-4" />
               Map
             </button>
           </div>
         )}
 
-        <aside className="absolute top-2 left-2 space-y-1 text-xs">
-          <p className="flex items-center rounded border border-blue-600 bg-blue-500 px-2 py-1 text-white">
-            <Play className="mr-1 h-3 w-3" /> Start
+        <aside className="absolute top-2 left-2 z-50 space-y-1 text-xs">
+          <p className="flex items-center justify-center rounded border border-blue-600 bg-blue-500 p-1 text-white">
+            <Play className="mr-1 size-4" /> Start
           </p>
-          <p className="flex items-center rounded border border-red-600 bg-red-500 px-2 py-1 text-white">
-            <Square className="mr-1 h-3 w-3" /> End
+          <p className="flex items-center justify-center rounded border border-red-600 bg-red-500 p-1 text-white">
+            <Square className="mr-1 size-4" /> End
           </p>
-          <p className="flex items-center rounded border border-yellow-600 bg-yellow-400 px-2 py-1 text-gray-900">
-            <ChevronDown className="mr-1 h-3 w-3" /> Option
+          <p className="flex items-center justify-center rounded border border-yellow-600 bg-yellow-400 p-1 text-gray-900">
+            <ChevronDown className="mr-1 size-4" /> Option
           </p>
-          <p className="flex items-center rounded border border-purple-600 bg-purple-500 px-2 py-1 text-white">
-            Branching Node
+          <p className="flex items-center justify-center rounded border border-purple-600 bg-purple-500 p-1 text-white">
+            {">"} 1 choice
           </p>
-          <p className="flex items-center rounded border border-teal-600 bg-teal-500 px-2 py-1 text-white">
-            Long Text Node
+          <p className="flex items-center justify-center rounded border border-teal-600 bg-teal-500 p-1 text-white">
+            Long Text
           </p>
         </aside>
 
@@ -505,7 +505,7 @@ export default function StoryDiagram({ story, onClose, onSelectNode }) {
           <Controls />
           {miniMap && (
             <MiniMap
-              nodeColor={(node) => node.data.bgColor || "#fff"}
+              nodeColor={(node) => node.data.bgColor || "rgb(250, 204, 21)"}
               nodeStrokeWidth={2}
               pannable
               zoomable
