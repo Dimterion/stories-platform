@@ -116,8 +116,17 @@ export default function StoryPlayer() {
         </p>
 
         {/* Text */}
-        <div className="mt-6">
-          <p className="text-lg">{currentNode.text}</p>
+        <div className="mt-6 text-lg leading-relaxed">
+          {currentNode.text.split(/\n{2,}/).map((paragraph, pIndex) => (
+            <p key={pIndex} className="mb-4">
+              {paragraph.split(/\n/).map((line, lIndex) => (
+                <span key={lIndex}>
+                  {line}
+                  {lIndex < paragraph.split(/\n/).length - 1 && <br />}
+                </span>
+              ))}
+            </p>
+          ))}
         </div>
 
         {/* Options */}
