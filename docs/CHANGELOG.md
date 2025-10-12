@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.1.4] - 2025-10-12
+
+### Added
+
+- Additional icons.
+- Dynamic meta tags (+ additional tags).
+- Local storage support for saving story state in Story Player (+ reset progress functionality).
+- Mini map and color coding for the nodes in Story Diagram.
+
+### Changed
+
+- Refactored Nodes IDs (useMemo) in Story Editor and navigation buttons in Header to avoid duplication.
+- Adjusted fit view for Story Diagram on mount only.
+- Updated text rendering in Story Player to support multi-paragraph display.
+
+### Fixed
+
+- Improved Story Diagram readability and elements consistency.
+- Minor styling fixes/adjustments throughout the components for responsiveness/accessibility.
+
 ## [0.1.3] - 2025-10-04
 
 ### Added
