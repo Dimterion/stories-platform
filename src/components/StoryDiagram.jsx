@@ -405,6 +405,54 @@ export default function StoryDiagram({ story, onClose, onSelectNode }) {
     }
   }, [rfInstance]);
 
+  const handleDownloadPng = useCallback(async () => {
+    if (!rfInstance || !diagramRef.current) return;
+
+    try {
+      setIsBtnMenuOpen(false);
+
+      const nodes = rfInstance.getNodes();
+
+      if (!nodes.length) return;
+
+      const bounds = getNodesBounds(nodes);
+      const width = Math.round(bounds.width + 100);
+      const height = Math.round(bounds.height + 100);
+      const viewport = getViewportForBounds(bounds, width, height, 0.1, 2);
+
+      const viewportEl = diagramRef.current.querySelector(
+        ".react-flow__viewport",
+      );
+
+      if (!viewportEl) {
+        console.error("Could not find React Flow viewport element for export");
+        return;
+      }
+
+      const pngDataUrl = await htmlToImage.toPng(viewportEl, {
+        width,
+        height,
+        backgroundColor: "#ffffff",
+        style: {
+          width: `${width}px`,
+          height: `${height}px`,
+          transform: `translate(${viewport.x}px, ${viewport.y}px) scale(${viewport.zoom})`,
+          backgroundColor: "white",
+        },
+        filter: (node) => !node.classList?.contains("react-flow__controls"),
+      });
+
+      const link = document.createElement("a");
+      link.href = pngDataUrl;
+      link.download = "story-diagram.png";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    } catch (err) {
+      console.error("PNG export failed:", err);
+    }
+  }, [rfInstance]);
+
   useEffect(() => {
     return () => {
       if (timeoutRef.current) clearTimeout(timeoutRef.current);
@@ -454,6 +502,13 @@ export default function StoryDiagram({ story, onClose, onSelectNode }) {
             >
               <Download className="mr-1 size-4" />
               SVG
+            </button>
+            <button
+              onClick={handleDownloadPng}
+              className="inline-flex cursor-pointer items-center rounded border border-gray-600 bg-blue-500 p-1 text-xs text-white hover:bg-blue-700"
+            >
+              <Download className="mr-1 size-4" />
+              PNG
             </button>
             <button
               onClick={toggleMiniMap}
