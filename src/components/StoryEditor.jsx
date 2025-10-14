@@ -1,23 +1,92 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { toast } from "sonner";
-import { FileDown, FileUp, Map, Plus, Trash2 } from "lucide-react";
+import { FileDown, FileUp, Map, Plus, Trash2, XCircle } from "lucide-react";
 import { validateStoryJson } from "../utils/storyUtils";
 import StoryDiagram from "./StoryDiagram";
 
 export default function StoryEditor() {
-  const firstId = uuidv4();
+  const STORAGE_KEY = "storyEditorState";
+
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState("");
   const [description, setDescription] = useState("");
-  const [nodes, setNodes] = useState({
-    [firstId]: { text: "", options: [], createdAt: Date.now() },
-  });
-  const [start, setStart] = useState(firstId);
-  const [selectedNode, setSelectedNode] = useState(firstId);
+  const [nodes, setNodes] = useState({});
+  const [start, setStart] = useState(null);
+  const [selectedNode, setSelectedNode] = useState(null);
   const [showDiagram, setShowDiagram] = useState(false);
 
-  // Get ordered list of node ids (for display & selects)
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem(STORAGE_KEY);
+      if (saved) {
+        const data = JSON.parse(saved);
+
+        // Validate structure
+        if (data && typeof data === "object" && data.nodes) {
+          setTitle(data.title || "");
+          setAuthor(data.author || "");
+          setDescription(data.description || "");
+          setNodes(data.nodes);
+          const firstId = Object.keys(data.nodes)[0];
+          setStart(data.start || firstId);
+          setSelectedNode(data.selectedNode || data.start || firstId);
+          return;
+        }
+      }
+
+      // If nothing is saved, start fresh
+      const firstId = uuidv4();
+      const freshNodes = {
+        [firstId]: { text: "", options: [], createdAt: Date.now() },
+      };
+      setTitle("");
+      setAuthor("");
+      setDescription("");
+      setNodes(freshNodes);
+      setStart(firstId);
+      setSelectedNode(firstId);
+    } catch (e) {
+      console.error("Failed to load story editor state:", e);
+    }
+  }, []);
+
+  // Autosave whenever state changes
+  useEffect(() => {
+    // Don’t autosave if nothing meaningful is ready
+    if (!start || Object.keys(nodes).length === 0) return;
+
+    const saveData = {
+      title,
+      author,
+      description,
+      nodes,
+      start,
+      selectedNode,
+    };
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(saveData));
+  }, [title, author, description, nodes, start, selectedNode]);
+
+  // Clear local save and reset editor
+  const clearLocalSave = () => {
+    localStorage.removeItem(STORAGE_KEY);
+
+    // Reset all editor fields
+    const firstId = uuidv4();
+    const freshNodes = {
+      [firstId]: { text: "", options: [], createdAt: Date.now() },
+    };
+
+    setTitle("");
+    setAuthor("");
+    setDescription("");
+    setNodes(freshNodes);
+    setStart(firstId);
+    setSelectedNode(firstId);
+
+    toast.success("Local save cleared and editor reset.");
+  };
+
   const orderedNodeIds = useMemo(() => {
     return Object.entries(nodes)
       .sort((a, b) => a[1].createdAt - b[1].createdAt)
@@ -76,7 +145,7 @@ export default function StoryEditor() {
 
   // Delete option from a node
   const deleteOption = (nodeId, optionIndex) => {
-    const oldOptions = { ...nodes };
+    const oldNodes = { ...nodes };
 
     setNodes((prev) => {
       const updated = { ...prev };
@@ -91,7 +160,7 @@ export default function StoryEditor() {
     toast.info("Option deleted", {
       action: {
         label: "Undo",
-        onClick: () => setNodes(oldOptions),
+        onClick: () => setNodes(oldNodes),
       },
       classNames: {
         actionButton:
@@ -273,6 +342,14 @@ export default function StoryEditor() {
     setShowDiagram(false); // Close the diagram modal
   };
 
+  if (!selectedNode || Object.keys(nodes).length === 0) {
+    return (
+      <section className="flex min-h-screen items-center justify-center text-gray-400">
+        Loading story editor...
+      </section>
+    );
+  }
+
   return (
     <section className="flex min-h-screen bg-gray-900 text-white">
       {/* Sidebar: nodes list */}
@@ -441,6 +518,13 @@ export default function StoryEditor() {
           >
             <Map />
             View Story Diagram
+          </button>
+          <button
+            onClick={clearLocalSave}
+            className="inline-flex w-3xs max-w-[55vw] cursor-pointer items-center gap-2 rounded bg-red-600 px-4 py-2 text-center hover:bg-red-500"
+          >
+            <XCircle />
+            Clear Local Save
           </button>
         </div>
 
