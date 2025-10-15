@@ -15,6 +15,7 @@ export default function StoryEditor() {
   const [start, setStart] = useState(null);
   const [selectedNode, setSelectedNode] = useState(null);
   const [showDiagram, setShowDiagram] = useState(false);
+  const [lastSaved, setLastSaved] = useState(null);
 
   useEffect(() => {
     try {
@@ -65,6 +66,7 @@ export default function StoryEditor() {
       selectedNode,
     };
     localStorage.setItem(STORAGE_KEY, JSON.stringify(saveData));
+    setLastSaved(Date.now());
   }, [title, author, description, nodes, start, selectedNode]);
 
   // Clear local save and reset editor
@@ -350,6 +352,15 @@ export default function StoryEditor() {
     );
   }
 
+  const formatTimeAgo = (timestamp) => {
+    if (!timestamp) return "";
+    const seconds = Math.floor((Date.now() - timestamp) / 1000);
+    if (seconds < 5) return "just now";
+    if (seconds < 60) return `${seconds} seconds ago`;
+    if (seconds < 3600) return `${Math.floor(seconds / 60)} minutes ago`;
+    return `${Math.floor(seconds / 3600)} hours ago`;
+  };
+
   return (
     <section className="flex min-h-screen bg-gray-900 text-white">
       {/* Sidebar: nodes list */}
@@ -387,7 +398,15 @@ export default function StoryEditor() {
 
       {/* Main editor */}
       <div className="flex-1 space-y-4 p-2 sm:p-6">
-        <h1 className="text-xl font-bold">Story Editor</h1>
+        <div className="flex flex-wrap items-center justify-between gap-2">
+          <h1 className="text-xl font-bold">Story Editor</h1>
+          {lastSaved && (
+            <p className="text-sm text-gray-400 italic">
+              Last saved to your browser local storage{" "}
+              {formatTimeAgo(lastSaved)}.
+            </p>
+          )}
+        </div>
 
         {/* Story metadata */}
         <div className="grid grid-cols-2 gap-4">
