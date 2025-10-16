@@ -93,5 +93,8 @@
 
 ### Style / UX
 
-- [ ] Mobile: Sidebar (StoryEditor) is fixed width; on small screens, it may overflow (could add collapsible sidebar for mobile).
+- [x] Mobile: Sidebar (StoryEditor) is fixed width; on small screens, it may overflow (could add collapsible sidebar for mobile).
+
+  `NOTE`: collapsible sidebar is added for small screens (might need to redo this in the future versions for better visuals/accessibility).
+
 - [x] Alerts break immersion. Could be replaced with toast/notification system.

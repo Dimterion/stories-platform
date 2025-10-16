@@ -1,7 +1,16 @@
 import { useEffect, useMemo, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { toast } from "sonner";
-import { FileDown, FileUp, Map, Plus, Trash2, XCircle } from "lucide-react";
+import {
+  FileDown,
+  FileUp,
+  Map,
+  PanelLeftClose,
+  PanelLeftOpen,
+  Plus,
+  Trash2,
+  XCircle,
+} from "lucide-react";
 import { validateStoryJson } from "../utils/storyUtils";
 import StoryDiagram from "./StoryDiagram";
 
@@ -16,6 +25,7 @@ export default function StoryEditor() {
   const [selectedNode, setSelectedNode] = useState(null);
   const [showDiagram, setShowDiagram] = useState(false);
   const [lastSaved, setLastSaved] = useState(null);
+  const [sidebarVisible, setSidebarVisible] = useState(true);
 
   useEffect(() => {
     try {
@@ -362,48 +372,62 @@ export default function StoryEditor() {
   };
 
   return (
-    <section className="flex min-h-screen bg-gray-900 text-white">
+    <section className="relative flex min-h-screen bg-gray-900 text-white">
+      {/* Sidebar toggle button - visible on small screens */}
+      <button
+        onClick={() => setSidebarVisible(!sidebarVisible)}
+        className={`absolute ${sidebarVisible ? "left-16" : "top-2 left-34"} h-fit w-fit rounded bg-gray-700 p-2 hover:bg-gray-600 sm:hidden`}
+        aria-label="Toggle sidebar"
+      >
+        {sidebarVisible ? (
+          <PanelLeftClose className="size-3 sm:size-6" />
+        ) : (
+          <PanelLeftOpen className="size-3 sm:size-6" />
+        )}
+      </button>
+
       {/* Sidebar: nodes list */}
-      <div className="w-1/3 space-y-2 bg-gray-800 p-1 sm:w-1/4 sm:p-4">
-        <h2 className="mb-2 font-bold">Scenes</h2>
-        {orderedNodeIds.map((id) => (
-          <div key={id} className="flex items-center gap-2">
-            <button
-              onClick={() => setSelectedNode(id)}
-              className={`flex-1 cursor-pointer rounded px-1 py-1 text-sm sm:px-2 sm:text-base ${
-                id === selectedNode ? "bg-blue-600" : "bg-gray-700"
-              }`}
-              aria-label="Open node"
-            >
-              {getNodeLabel(id)}
-            </button>
-            <button
-              onClick={() => deleteNode(id)}
-              className="cursor-pointer rounded bg-red-500 px-1 py-2 hover:bg-red-400 sm:p-1"
-              title="Delete Node"
-              aria-label="Delete node"
-            >
-              <Trash2 className="size-3 sm:size-6" />
-            </button>
-          </div>
-        ))}
-        <button
-          onClick={addNode}
-          className="mt-4 inline-flex w-full cursor-pointer items-center rounded bg-green-600 px-1 py-1 text-sm hover:bg-green-500 sm:gap-2 sm:px-2 sm:text-base"
-        >
-          <Plus />
-          Add Node
-        </button>
-      </div>
+      {sidebarVisible && (
+        <div className="w-1/3 space-y-2 bg-gray-800 p-1 sm:w-1/4 sm:p-4">
+          <h2 className="mb-2 font-bold">Scenes</h2>
+          {orderedNodeIds.map((id) => (
+            <div key={id} className="flex items-center gap-2">
+              <button
+                onClick={() => setSelectedNode(id)}
+                className={`flex-1 cursor-pointer rounded px-1 py-1 text-sm sm:px-2 sm:text-base ${
+                  id === selectedNode ? "bg-blue-600" : "bg-gray-700"
+                }`}
+                aria-label="Open node"
+              >
+                {getNodeLabel(id)}
+              </button>
+              <button
+                onClick={() => deleteNode(id)}
+                className="cursor-pointer rounded bg-red-500 px-1 py-2 hover:bg-red-400 sm:p-1"
+                title="Delete Node"
+                aria-label="Delete node"
+              >
+                <Trash2 className="size-3 sm:size-6" />
+              </button>
+            </div>
+          ))}
+          <button
+            onClick={addNode}
+            className="mt-4 inline-flex w-full cursor-pointer items-center rounded bg-green-600 px-1 py-1 text-sm hover:bg-green-500 sm:gap-2 sm:px-2 sm:text-base"
+          >
+            <Plus />
+            Add Node
+          </button>
+        </div>
+      )}
 
       {/* Main editor */}
       <div className="flex-1 space-y-4 p-2 sm:p-6">
-        <div className="flex flex-wrap items-center justify-between gap-2">
+        <div className="flex flex-col flex-wrap justify-between gap-2 sm:flex-row sm:items-center">
           <h1 className="text-xl font-bold">Story Editor</h1>
           {lastSaved && (
             <p className="text-sm text-gray-400 italic">
-              Last saved to your browser local storage{" "}
-              {formatTimeAgo(lastSaved)}.
+              Saved to browser local storage {formatTimeAgo(lastSaved)}.
             </p>
           )}
         </div>
