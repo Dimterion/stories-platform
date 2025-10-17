@@ -376,13 +376,13 @@ export default function StoryEditor() {
       {/* Sidebar toggle button - visible on small screens */}
       <button
         onClick={() => setSidebarVisible(!sidebarVisible)}
-        className={`absolute ${sidebarVisible ? "left-16" : "top-2 left-34"} h-fit w-fit rounded bg-gray-700 p-2 hover:bg-gray-600 sm:hidden`}
+        className={`absolute ${sidebarVisible ? "left-16 sm:top-3 sm:left-18" : "top-2 left-34 sm:top-6 sm:left-36"} h-fit w-fit cursor-pointer rounded bg-gray-700 p-2 hover:bg-gray-600`}
         aria-label="Toggle sidebar"
       >
         {sidebarVisible ? (
-          <PanelLeftClose className="size-3 sm:size-6" />
+          <PanelLeftClose className="size-3" />
         ) : (
-          <PanelLeftOpen className="size-3 sm:size-6" />
+          <PanelLeftOpen className="size-3" />
         )}
       </button>
 
@@ -395,7 +395,9 @@ export default function StoryEditor() {
               <button
                 onClick={() => setSelectedNode(id)}
                 className={`flex-1 cursor-pointer rounded px-1 py-1 text-sm sm:px-2 sm:text-base ${
-                  id === selectedNode ? "bg-blue-600" : "bg-gray-700"
+                  id === selectedNode
+                    ? "bg-blue-600 hover:bg-blue-500"
+                    : "bg-gray-700 hover:bg-gray-600"
                 }`}
                 aria-label="Open node"
               >
@@ -532,7 +534,7 @@ export default function StoryEditor() {
           </div>
         )}
 
-        <div className="flex flex-wrap justify-center gap-4 sm:justify-start">
+        <section className="flex flex-wrap justify-center gap-4 pb-2 md:justify-start">
           {/* Export button */}
           <button
             onClick={exportStory}
@@ -569,7 +571,7 @@ export default function StoryEditor() {
             <XCircle />
             Clear Local Save
           </button>
-        </div>
+        </section>
 
         {/* Diagram modal */}
         {showDiagram && (
