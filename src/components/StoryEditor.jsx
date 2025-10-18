@@ -373,10 +373,10 @@ export default function StoryEditor() {
 
   return (
     <section className="relative flex min-h-screen bg-gray-900 text-white">
-      {/* Sidebar toggle button - visible on small screens */}
+      {/* Sidebar toggle button */}
       <button
         onClick={() => setSidebarVisible(!sidebarVisible)}
-        className={`absolute ${sidebarVisible ? "left-16 sm:top-3 sm:left-18" : "top-2 left-34 sm:top-6 sm:left-36"} h-fit w-fit cursor-pointer rounded bg-gray-700 p-2 hover:bg-gray-600`}
+        className={`absolute ${sidebarVisible ? "top-1 left-16 sm:top-4 sm:left-20" : "top-2 left-34 sm:top-6 sm:left-36"} h-fit w-fit cursor-pointer rounded bg-gray-700 p-2 hover:bg-gray-600`}
         aria-label="Toggle sidebar"
       >
         {sidebarVisible ? (
@@ -388,8 +388,8 @@ export default function StoryEditor() {
 
       {/* Sidebar: nodes list */}
       {sidebarVisible && (
-        <div className="w-1/3 space-y-2 bg-gray-800 p-1 sm:w-1/4 sm:p-4">
-          <h2 className="mb-2 font-bold">Scenes</h2>
+        <section className="w-1/3 space-y-2 bg-gray-800 p-1 sm:w-1/4 sm:p-4">
+          <h2 className="mb-6 font-bold sm:text-lg">Scenes</h2>
           {orderedNodeIds.map((id) => (
             <div key={id} className="flex items-center gap-2">
               <button
@@ -420,7 +420,7 @@ export default function StoryEditor() {
             <Plus />
             Add Node
           </button>
-        </div>
+        </section>
       )}
 
       {/* Main editor */}
