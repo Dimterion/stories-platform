@@ -26,7 +26,7 @@
 ### Player
 
 - [ ] “Back” button to revisit previous node.
-- [ ] Progress indicator (e.g., “Scene 3 of 12”).
+- [x] Progress indicator (e.g., “Scene 3 of 12”).
 - [x] Persistent story state (resume after refresh).
 
 ## Improvements

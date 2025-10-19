@@ -104,6 +104,8 @@ export default function StoryEditor() {
       .sort((a, b) => a[1].createdAt - b[1].createdAt)
       .map(([id]) => id);
   }, [nodes]);
+  const currentSceneIndex = orderedNodeIds.indexOf(selectedNode);
+  const totalScenes = orderedNodeIds.length;
 
   // Find display label for a node
   const getNodeLabel = (id) => {
@@ -427,6 +429,11 @@ export default function StoryEditor() {
       <div className="flex-1 space-y-4 p-2 sm:p-6">
         <div className="flex flex-col flex-wrap justify-between gap-2 sm:flex-row sm:items-center">
           <h1 className="text-xl font-bold">Story Editor</h1>
+          {totalScenes > 0 && currentSceneIndex >= 0 && (
+            <p className="text-sm text-gray-400">
+              Scene {currentSceneIndex + 1} of {totalScenes}
+            </p>
+          )}
           {lastSaved && (
             <p className="text-sm text-gray-400 italic">
               Saved to browser local storage {formatTimeAgo(lastSaved)}.

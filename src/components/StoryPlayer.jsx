@@ -100,6 +100,9 @@ export default function StoryPlayer() {
   };
 
   const currentNode = story.nodes[currentNodeId] || { text: "", options: [] };
+  const orderedNodeIds = Object.keys(story.nodes);
+  const currentSceneIndex = orderedNodeIds.indexOf(currentNodeId);
+  const totalScenes = orderedNodeIds.length;
 
   return (
     <section className="flex flex-col items-center justify-center p-4 sm:p-6">
@@ -114,6 +117,16 @@ export default function StoryPlayer() {
         <p className="text-center text-sm text-gray-400 italic">
           {story.description}
         </p>
+        {totalScenes > 0 && currentSceneIndex >= 0 && (
+          <div className="mx-auto mt-1 h-2 w-2/3 rounded-full bg-gray-700">
+            <div
+              className="h-2 rounded-full bg-blue-500 transition-all duration-500"
+              style={{
+                width: `${((currentSceneIndex + 1) / totalScenes) * 100}%`,
+              }}
+            ></div>
+          </div>
+        )}
 
         {/* Text */}
         <div className="mt-6 text-lg leading-relaxed">
