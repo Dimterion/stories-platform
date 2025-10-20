@@ -26,6 +26,7 @@ export default function StoryEditor() {
   const [showDiagram, setShowDiagram] = useState(false);
   const [lastSaved, setLastSaved] = useState(null);
   const [sidebarVisible, setSidebarVisible] = useState(true);
+  const [showProgress, setShowProgress] = useState(true);
 
   useEffect(() => {
     try {
@@ -38,6 +39,7 @@ export default function StoryEditor() {
           setTitle(data.title || "");
           setAuthor(data.author || "");
           setDescription(data.description || "");
+          setShowProgress(data.showProgress ?? true);
           setNodes(data.nodes);
           const firstId = Object.keys(data.nodes)[0];
           setStart(data.start || firstId);
@@ -73,11 +75,12 @@ export default function StoryEditor() {
       description,
       nodes,
       start,
+      showProgress,
       selectedNode,
     };
     localStorage.setItem(STORAGE_KEY, JSON.stringify(saveData));
     setLastSaved(Date.now());
-  }, [title, author, description, nodes, start, selectedNode]);
+  }, [title, author, description, nodes, start, showProgress, selectedNode]);
 
   // Clear local save and reset editor
   const clearLocalSave = () => {
@@ -94,6 +97,7 @@ export default function StoryEditor() {
     setDescription("");
     setNodes(freshNodes);
     setStart(firstId);
+    setShowProgress(true);
     setSelectedNode(firstId);
 
     toast.success("Local save cleared and editor reset.");
@@ -253,6 +257,7 @@ export default function StoryEditor() {
       author: author.trim() || "Anonymous",
       description: description.trim() || "",
       start,
+      showProgress,
       nodes: enrichedNodes,
     };
 
@@ -464,6 +469,17 @@ export default function StoryEditor() {
             value={description}
             onChange={(e) => setDescription(e.target.value)}
           />
+          <div className="col-span-2 flex items-center gap-2">
+            <input
+              type="checkbox"
+              id="showProgress"
+              checked={showProgress}
+              onChange={(e) => setShowProgress(e.target.checked)}
+            />
+            <label htmlFor="showProgress" className="text-sm text-gray-300">
+              Show progress indicator in Story Player
+            </label>
+          </div>
         </div>
 
         {/* Node editor */}

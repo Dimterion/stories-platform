@@ -117,7 +117,7 @@ export default function StoryPlayer() {
         <p className="text-center text-sm text-gray-400 italic">
           {story.description}
         </p>
-        {totalScenes > 0 && currentSceneIndex >= 0 && (
+        {story.showProgress && totalScenes > 0 && currentSceneIndex >= 0 && (
           <div className="mx-auto mt-1 h-2 w-2/3 rounded-full bg-gray-700">
             <div
               className="h-2 rounded-full bg-blue-500 transition-all duration-500"
