@@ -27,6 +27,7 @@ export default function StoryEditor() {
   const [lastSaved, setLastSaved] = useState(null);
   const [sidebarVisible, setSidebarVisible] = useState(true);
   const [showProgress, setShowProgress] = useState(true);
+  const [allowBackNavigation, setAllowBackNavigation] = useState(false);
 
   useEffect(() => {
     try {
@@ -40,6 +41,7 @@ export default function StoryEditor() {
           setAuthor(data.author || "");
           setDescription(data.description || "");
           setShowProgress(data.showProgress ?? true);
+          setAllowBackNavigation(data.allowBackNavigation ?? false);
           setNodes(data.nodes);
           const firstId = Object.keys(data.nodes)[0];
           setStart(data.start || firstId);
@@ -76,11 +78,21 @@ export default function StoryEditor() {
       nodes,
       start,
       showProgress,
+      allowBackNavigation,
       selectedNode,
     };
     localStorage.setItem(STORAGE_KEY, JSON.stringify(saveData));
     setLastSaved(Date.now());
-  }, [title, author, description, nodes, start, showProgress, selectedNode]);
+  }, [
+    title,
+    author,
+    description,
+    nodes,
+    start,
+    showProgress,
+    allowBackNavigation,
+    selectedNode,
+  ]);
 
   // Clear local save and reset editor
   const clearLocalSave = () => {
@@ -98,6 +110,7 @@ export default function StoryEditor() {
     setNodes(freshNodes);
     setStart(firstId);
     setShowProgress(true);
+    setAllowBackNavigation(false);
     setSelectedNode(firstId);
 
     toast.success("Local save cleared and editor reset.");
@@ -258,6 +271,7 @@ export default function StoryEditor() {
       description: description.trim() || "",
       start,
       showProgress,
+      allowBackNavigation,
       nodes: enrichedNodes,
     };
 
@@ -478,6 +492,20 @@ export default function StoryEditor() {
             />
             <label htmlFor="showProgress" className="text-sm text-gray-300">
               Show progress indicator in Story Player
+            </label>
+          </div>
+          <div className="col-span-2 flex items-center gap-2">
+            <input
+              type="checkbox"
+              id="allowBackNavigation"
+              checked={allowBackNavigation}
+              onChange={(e) => setAllowBackNavigation(e.target.checked)}
+            />
+            <label
+              htmlFor="allowBackNavigation"
+              className="text-sm text-gray-300"
+            >
+              Allow back button in Story Player
             </label>
           </div>
         </div>

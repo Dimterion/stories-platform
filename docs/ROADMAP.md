@@ -25,8 +25,14 @@
 
 ### Player
 
-- [ ] “Back” button to revisit previous node.
+- [x] “Back” button to revisit previous node.
+
+  `NOTE`: “Back” button is an optional parameter that can be toggled on/off during the story editing.
+
 - [x] Progress indicator (e.g., “Scene 3 of 12”).
+
+  `NOTE`: progress indicator is also added to the Story Editor + it is an optional parameter that can be toggled on/off during the story editing.
+
 - [x] Persistent story state (resume after refresh).
 
 ## Improvements

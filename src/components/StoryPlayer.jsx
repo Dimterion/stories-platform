@@ -13,19 +13,30 @@ export default function StoryPlayer() {
       const saved = localStorage.getItem(STORAGE_KEY);
 
       if (saved) {
-        const { story: savedStory, currentNodeId } = JSON.parse(saved);
+        const { story: savedStory, currentNodeId, history } = JSON.parse(saved);
         const validation = validateStoryJson(savedStory);
 
         if (validation.valid) {
           hasLoadedRef.current = true;
 
-          return { story: savedStory, currentNodeId };
+          return {
+            story: savedStory,
+            currentNodeId,
+            history:
+              Array.isArray(history) && history.length > 0
+                ? history
+                : [currentNodeId],
+          };
         }
       }
     } catch {
       localStorage.removeItem(STORAGE_KEY);
     }
-    return { story: sampleStory, currentNodeId: sampleStory.start };
+    return {
+      story: sampleStory,
+      currentNodeId: sampleStory.start,
+      history: [sampleStory.start],
+    };
   };
 
   const initialState = loadInitialState();
@@ -33,6 +44,7 @@ export default function StoryPlayer() {
   const [currentNodeId, setCurrentNodeId] = useState(
     initialState.currentNodeId,
   );
+  const [history, setHistory] = useState(initialState.history);
 
   useEffect(() => {
     if (!hasLoadedRef.current) {
@@ -44,12 +56,12 @@ export default function StoryPlayer() {
     const timeout = setTimeout(() => {
       localStorage.setItem(
         STORAGE_KEY,
-        JSON.stringify({ story, currentNodeId }),
+        JSON.stringify({ story, currentNodeId, history }),
       );
     }, 300);
 
     return () => clearTimeout(timeout);
-  }, [story, currentNodeId]);
+  }, [story, currentNodeId, history]);
 
   const handleFileUpload = (event) => {
     const file = event.target.files[0];
@@ -69,8 +81,14 @@ export default function StoryPlayer() {
           return;
         }
 
+        const startNode =
+          json.start && json.nodes[json.start]
+            ? json.start
+            : Object.keys(json.nodes)[0];
+
         setStory(json);
-        setCurrentNodeId(json.start);
+        setCurrentNodeId(startNode);
+        setHistory([startNode]);
         hasLoadedRef.current = false;
 
         toast.success("Story imported successfully.");
@@ -84,18 +102,22 @@ export default function StoryPlayer() {
     reader.readAsText(file);
   };
 
-  const restart = () =>
-    setCurrentNodeId(
+  const restart = () => {
+    const startNode =
       story.start && story.nodes[story.start]
         ? story.start
-        : Object.keys(story.nodes)[0],
-    );
+        : Object.keys(story.nodes)[0];
+    setCurrentNodeId(startNode);
+    setHistory([startNode]);
+  };
 
   const resetProgress = () => {
     localStorage.removeItem(STORAGE_KEY);
+    const startNode = sampleStory.start;
     setStory(sampleStory);
+    setCurrentNodeId(startNode);
+    setHistory([startNode]);
     hasLoadedRef.current = false;
-    setCurrentNodeId(sampleStory.start);
     toast.success("Progress reset. Sample story reloaded.");
   };
 
@@ -144,11 +166,30 @@ export default function StoryPlayer() {
 
         {/* Options */}
         <div className="mt-6 flex flex-col gap-2">
+          {story.allowBackNavigation && history.length > 1 && (
+            <button
+              onClick={() => {
+                setHistory((prev) => {
+                  const newHistory = [...prev];
+                  newHistory.pop();
+                  const previousNode = newHistory[newHistory.length - 1];
+                  setCurrentNodeId(previousNode);
+                  return newHistory;
+                });
+              }}
+              className="w-full cursor-pointer rounded-lg bg-gray-600 px-4 py-2 hover:bg-gray-500"
+            >
+              Back
+            </button>
+          )}
           {currentNode.options.length > 0 ? (
             currentNode.options.map((option, index) => (
               <button
                 key={index}
-                onClick={() => setCurrentNodeId(option.next)}
+                onClick={() => {
+                  setHistory((prev) => [...prev, option.next]);
+                  setCurrentNodeId(option.next);
+                }}
                 className="cursor-pointer rounded-lg bg-blue-600 px-4 py-2 hover:bg-blue-500"
                 aria-label="Option"
               >
