@@ -311,6 +311,7 @@ export default function StoryEditor() {
 
     if (file.size > 5 * 1024 * 1024) {
       toast.error("File too large. Please upload a story smaller than 5MB.");
+
       return;
     }
 
@@ -354,6 +355,8 @@ export default function StoryEditor() {
         setTitle(data.title || "Untitled Story");
         setAuthor(data.author || "Anonymous");
         setDescription(data.description || "");
+        setShowProgress(data.showProgress ?? true);
+        setAllowBackNavigation(data.allowBackNavigation ?? false);
         setStart(validStart);
         setNodes(rebuiltNodes);
         setSelectedNode(validStart);
@@ -363,6 +366,8 @@ export default function StoryEditor() {
         console.error(err);
 
         toast.error("Error reading story file.");
+      } finally {
+        event.target.value = "";
       }
     };
 

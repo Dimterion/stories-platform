@@ -7,6 +7,7 @@ const STORAGE_KEY = "storyPlayerState";
 
 export default function StoryPlayer() {
   const hasLoadedRef = useRef(false);
+  const fileInputRef = useRef(null);
 
   const loadInitialState = () => {
     try {
@@ -118,6 +119,7 @@ export default function StoryPlayer() {
     setCurrentNodeId(startNode);
     setHistory([startNode]);
     hasLoadedRef.current = false;
+    if (fileInputRef.current) fileInputRef.current.value = "";
     toast.success("Progress reset. Sample story reloaded.");
   };
 
@@ -215,6 +217,7 @@ export default function StoryPlayer() {
             Load another story (JSON file):
           </label>
           <input
+            ref={fileInputRef}
             type="file"
             accept="application/json"
             onChange={handleFileUpload}
