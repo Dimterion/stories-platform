@@ -46,6 +46,7 @@ export default function StoryPlayer() {
     initialState.currentNodeId,
   );
   const [history, setHistory] = useState(initialState.history);
+  const [fileName, setFileName] = useState(null);
 
   useEffect(() => {
     if (!hasLoadedRef.current) {
@@ -120,6 +121,7 @@ export default function StoryPlayer() {
     setHistory([startNode]);
     hasLoadedRef.current = false;
     if (fileInputRef.current) fileInputRef.current.value = "";
+    setFileName(null);
     toast.success("Progress reset. Sample story reloaded.");
   };
 
@@ -216,13 +218,37 @@ export default function StoryPlayer() {
           <label className="mb-2 block text-sm text-gray-400">
             Load another story (JSON file):
           </label>
-          <input
-            ref={fileInputRef}
-            type="file"
-            accept="application/json"
-            onChange={handleFileUpload}
-            className="max-w-[95%] cursor-pointer rounded bg-gray-700 p-2"
-          />
+
+          <div className="flex flex-col items-center gap-2 sm:flex-row sm:justify-center">
+            {/* Hidden file input */}
+            <input
+              ref={fileInputRef}
+              type="file"
+              accept="application/json"
+              onChange={(e) => {
+                handleFileUpload(e);
+                if (e.target.files && e.target.files[0]) {
+                  setFileName(e.target.files[0].name);
+                } else {
+                  setFileName(null);
+                }
+              }}
+              className="hidden"
+            />
+
+            {/* Custom upload button */}
+            <button
+              onClick={() => fileInputRef.current?.click()}
+              className="inline-flex cursor-pointer items-center gap-2 rounded bg-blue-600 px-4 py-2 text-sm hover:bg-blue-500"
+            >
+              Choose File
+            </button>
+
+            {/* File name display */}
+            <span className="text-sm text-gray-300">
+              {fileName || "No file chosen"}
+            </span>
+          </div>
         </div>
 
         <button
