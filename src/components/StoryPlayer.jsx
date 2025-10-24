@@ -6,7 +6,6 @@ import sampleStory from "../assets/sampleStory";
 const STORAGE_KEY = "storyPlayerState";
 
 export default function StoryPlayer() {
-  const hasLoadedRef = useRef(false);
   const fileInputRef = useRef(null);
 
   const loadInitialState = () => {
@@ -18,8 +17,6 @@ export default function StoryPlayer() {
         const validation = validateStoryJson(savedStory);
 
         if (validation.valid) {
-          hasLoadedRef.current = true;
-
           return {
             story: savedStory,
             currentNodeId,
@@ -47,11 +44,11 @@ export default function StoryPlayer() {
   );
   const [history, setHistory] = useState(initialState.history);
   const [fileName, setFileName] = useState(null);
+  const [isReadyToSave, setIsReadyToSave] = useState(false);
 
   useEffect(() => {
-    if (!hasLoadedRef.current) {
-      hasLoadedRef.current = true;
-
+    if (!isReadyToSave) {
+      setIsReadyToSave(true);
       return;
     }
 
@@ -63,7 +60,7 @@ export default function StoryPlayer() {
     }, 300);
 
     return () => clearTimeout(timeout);
-  }, [story, currentNodeId, history]);
+  }, [story, currentNodeId, history, isReadyToSave]);
 
   const handleFileUpload = (event) => {
     const file = event.target.files[0];
@@ -91,9 +88,20 @@ export default function StoryPlayer() {
         setStory(json);
         setCurrentNodeId(startNode);
         setHistory([startNode]);
-        hasLoadedRef.current = false;
+        setFileName(file.name);
+
+        localStorage.setItem(
+          STORAGE_KEY,
+          JSON.stringify({
+            story: json,
+            currentNodeId: startNode,
+            history: [startNode],
+          }),
+        );
 
         toast.success("Story imported successfully.");
+
+        if (fileInputRef.current) fileInputRef.current.value = "";
       } catch (err) {
         toast.error(
           `Error: invalid story file. Please choose a JSON-file. More info: ${err}`,
@@ -119,9 +127,8 @@ export default function StoryPlayer() {
     setStory(sampleStory);
     setCurrentNodeId(startNode);
     setHistory([startNode]);
-    hasLoadedRef.current = false;
-    if (fileInputRef.current) fileInputRef.current.value = "";
     setFileName(null);
+    if (fileInputRef.current) fileInputRef.current.value = "";
     toast.success("Progress reset. Sample story reloaded.");
   };
 
@@ -225,14 +232,7 @@ export default function StoryPlayer() {
               ref={fileInputRef}
               type="file"
               accept="application/json"
-              onChange={(e) => {
-                handleFileUpload(e);
-                if (e.target.files && e.target.files[0]) {
-                  setFileName(e.target.files[0].name);
-                } else {
-                  setFileName(null);
-                }
-              }}
+              onChange={handleFileUpload}
               className="hidden"
             />
 
