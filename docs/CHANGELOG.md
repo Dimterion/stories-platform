@@ -2,6 +2,28 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.1.5] - 2025-10-25
+
+### Added
+
+- Download PNG functionality to Story Diagram.
+- Browser local storage support.
+- Reset progress/local storage functionality.
+- Last saved indicator in Story Editor.
+- Progress indicators in Story Player and Story Editor (optional during the story creation in Story Editor).
+- Back button functionality for Story Player (optional during the story creation in Story Editor).
+
+### Changed
+
+- Made sidebar in Story Editor collapsible.
+- Changed story progress handling logic.
+- Updated the file upload button in Story Player with a custom one.
+
+### Fixed
+
+- Imported files can be correctly reuploaded after a reset.
+- Minor styling adjustments.
+
 ## [0.1.4] - 2025-10-12
 
 ### Added
