@@ -8,6 +8,7 @@ import {
   PanelLeftClose,
   PanelLeftOpen,
   Plus,
+  Star,
   Trash2,
   XCircle,
 } from "lucide-react";
@@ -245,6 +246,11 @@ export default function StoryEditor() {
     });
   };
 
+  const setAsStartNode = (nodeId) => {
+    setStart(nodeId);
+    toast.success(`${getNodeLabel(nodeId)} set as start node.`);
+  };
+
   const exportStory = () => {
     const enrichedNodes = {};
 
@@ -420,7 +426,7 @@ export default function StoryEditor() {
             <div key={id} className="flex items-center gap-2">
               <button
                 onClick={() => setSelectedNode(id)}
-                className={`flex-1 cursor-pointer rounded px-1 py-1 text-sm sm:px-2 sm:text-base ${
+                className={`inline-flex flex-1 cursor-pointer items-center justify-center gap-2 rounded px-1 py-1 text-sm sm:px-2 sm:text-base ${
                   id === selectedNode
                     ? "bg-blue-600 hover:bg-blue-500"
                     : "bg-gray-700 hover:bg-gray-600"
@@ -428,6 +434,7 @@ export default function StoryEditor() {
                 aria-label="Open node"
               >
                 {getNodeLabel(id)}
+                {id === start && <Star className="size-3 sm:size-6" />}
               </button>
               <button
                 onClick={() => deleteNode(id)}
@@ -580,13 +587,26 @@ export default function StoryEditor() {
                 </div>
               ))}
             </div>
-            <button
-              onClick={() => addOption(selectedNode)}
-              className="my-4 inline-flex cursor-pointer items-center rounded bg-blue-600 px-1 py-1 text-sm hover:bg-blue-500 sm:gap-2 sm:px-2 sm:text-base"
-            >
-              <Plus />
-              Add Option
-            </button>
+            <div className="mt-2 flex flex-wrap items-center justify-between">
+              <button
+                onClick={() => addOption(selectedNode)}
+                className="my-2 inline-flex w-full cursor-pointer items-center gap-2 rounded bg-blue-600 px-1 py-1 text-sm hover:bg-blue-500 sm:w-fit sm:gap-2 sm:px-2 sm:text-base"
+              >
+                <Plus />
+                Add Option
+              </button>
+              <button
+                onClick={() => setAsStartNode(selectedNode)}
+                disabled={selectedNode === start}
+                className={`my-2 inline-flex w-full items-center gap-2 rounded px-1 py-1 text-sm sm:w-fit sm:gap-2 sm:px-2 sm:text-base ${
+                  selectedNode === start
+                    ? "bg-yellow-800 text-gray-300"
+                    : "cursor-pointer bg-yellow-600 hover:bg-yellow-500"
+                }`}
+              >
+                <Star /> Set as Start Node
+              </button>
+            </div>
           </div>
         )}
 

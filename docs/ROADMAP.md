@@ -14,7 +14,9 @@
 
 - [x] Default metadata for new stories (Untitled, Anonymous) to reduce empty fields.
 - [ ] Option reordering (drag-and-drop instead of static list).
-- [ ] “Set as start node” option in editor sidebar.
+- [x] “Set as start node” option in editor sidebar.
+
+  `NOTE`: “Set as start node” button is added in the editor itself (+ icon in the sidebar to indicate the start node).
 
 ### Diagram
 
