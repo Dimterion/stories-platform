@@ -408,13 +408,13 @@ export default function StoryEditor() {
       {/* Sidebar toggle button */}
       <button
         onClick={() => setSidebarVisible(!sidebarVisible)}
-        className={`absolute ${sidebarVisible ? "top-1 left-16 sm:top-4 sm:left-20" : "top-2 left-34 sm:top-6 sm:left-36"} h-fit w-fit cursor-pointer rounded bg-gray-700 p-2 hover:bg-gray-600`}
+        className={`absolute ${sidebarVisible ? "top-1 left-16 sm:top-3 sm:left-20" : "top-2 left-34 sm:top-5 sm:left-36"} h-fit w-fit cursor-pointer rounded bg-gray-700 p-2 hover:bg-gray-600`}
         aria-label="Toggle sidebar"
       >
         {sidebarVisible ? (
-          <PanelLeftClose className="size-3" />
+          <PanelLeftClose className="size-3 sm:size-6" />
         ) : (
-          <PanelLeftOpen className="size-3" />
+          <PanelLeftOpen className="size-3 sm:size-6" />
         )}
       </button>
 
@@ -525,8 +525,10 @@ export default function StoryEditor() {
         {/* Node editor */}
         {selectedNode && (
           <div className="rounded-lg bg-gray-800 p-1 sm:p-4">
-            <h2 className="mb-2 font-semibold">
-              Editing {getNodeLabel(selectedNode)}
+            <h2 className="mb-2 inline-flex items-center gap-2 font-semibold">
+              {selectedNode === start && <Star />}
+              Editing {getNodeLabel(selectedNode)}{" "}
+              {selectedNode === start && "(start node)"}
             </h2>
             <textarea
               className="w-full rounded-lg border border-gray-500 p-2 text-white"
