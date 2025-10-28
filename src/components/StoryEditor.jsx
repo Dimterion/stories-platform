@@ -13,6 +13,8 @@ import {
   XCircle,
 } from "lucide-react";
 import { validateStoryJson } from "../utils/storyUtils";
+import { generateStandaloneStoryHTML } from "../utils/exportStandaloneHTML";
+import { downloadFile } from "../utils/downloadFile";
 import StoryDiagram from "./StoryDiagram";
 
 export default function StoryEditor() {
@@ -308,6 +310,56 @@ export default function StoryEditor() {
     link.click();
 
     toast.success("Story exported successfully.");
+  };
+
+  const exportStandaloneHTML = () => {
+    const enrichedNodes = {};
+
+    orderedNodeIds.forEach((id, index) => {
+      const node = nodes[id];
+      const label = `Node ${index + 1}`;
+      enrichedNodes[id] = {
+        label,
+        text: node.text,
+        options: node.options.map((opt) => ({
+          ...opt,
+          nextLabel: nodes[opt.next]
+            ? `Node ${orderedNodeIds.indexOf(opt.next) + 1}`
+            : "Unknown Node",
+        })),
+        createdAt: node.createdAt,
+      };
+    });
+
+    const story = {
+      title: title.trim() || "Untitled Story",
+      author: author.trim() || "Anonymous",
+      description: description.trim() || "",
+      start,
+      showProgress,
+      allowBackNavigation,
+      nodes: enrichedNodes,
+    };
+
+    const hasUnlinked = Object.values(nodes).some((n) =>
+      n.options.some((opt) => !opt.next || !nodes[opt.next]),
+    );
+
+    if (hasUnlinked) {
+      toast.error(
+        "Some options are not connected to nodes. Please fix or delete them before exporting.",
+      );
+      return;
+    }
+
+    const html = generateStandaloneStoryHTML(story);
+    const safeTitle = (title.trim() || "Untitled_Story")
+      .replace(/[<>:"/\\|?*]+/g, "")
+      .replace(/\s+/g, "_")
+      .slice(0, 50);
+
+    downloadFile(html, `${safeTitle}.html`);
+    toast.success("HTML file exported successfully!");
   };
 
   const importStory = (event) => {
@@ -620,6 +672,15 @@ export default function StoryEditor() {
           >
             <FileUp />
             Export Story (JSON file)
+          </button>
+
+          {/* Export standalone HTML button */}
+          <button
+            onClick={exportStandaloneHTML}
+            className="inline-flex w-3xs max-w-[55vw] cursor-pointer items-center gap-2 rounded bg-teal-600 px-4 py-2 text-center hover:bg-teal-500"
+          >
+            <FileUp />
+            Export Story (HTML file)
           </button>
 
           {/* Import button */}
