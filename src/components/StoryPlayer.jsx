@@ -255,7 +255,7 @@ export default function StoryPlayer() {
           onClick={resetProgress}
           className="w-full cursor-pointer rounded-lg bg-red-600 px-4 py-2 hover:bg-red-500"
         >
-          Reset Progress
+          Clear Save & Reset Progress
         </button>
       </div>
     </section>

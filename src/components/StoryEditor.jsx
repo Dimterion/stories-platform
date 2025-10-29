@@ -191,7 +191,7 @@ export default function StoryEditor() {
       return updated;
     });
 
-    toast.info("Option deleted", {
+    toast.info("Option deleted.", {
       action: {
         label: "Undo",
         onClick: () => setNodes(oldNodes),
@@ -236,7 +236,7 @@ export default function StoryEditor() {
       return updated;
     });
 
-    toast.info("Node deleted", {
+    toast.info("Node deleted.", {
       action: {
         label: "Undo",
         onClick: () => setNodes(oldNodes),
@@ -318,6 +318,7 @@ export default function StoryEditor() {
     orderedNodeIds.forEach((id, index) => {
       const node = nodes[id];
       const label = `Node ${index + 1}`;
+
       enrichedNodes[id] = {
         label,
         text: node.text,
@@ -349,6 +350,7 @@ export default function StoryEditor() {
       toast.error(
         "Some options are not connected to nodes. Please fix or delete them before exporting.",
       );
+
       return;
     }
 
@@ -359,7 +361,8 @@ export default function StoryEditor() {
       .slice(0, 50);
 
     downloadFile(html, `${safeTitle}.html`);
-    toast.success("HTML file exported successfully!");
+
+    toast.success("HTML file exported successfully.");
   };
 
   const importStory = (event) => {
@@ -708,7 +711,7 @@ export default function StoryEditor() {
             className="inline-flex w-3xs max-w-[55vw] cursor-pointer items-center gap-2 rounded bg-red-600 px-4 py-2 text-center hover:bg-red-500"
           >
             <XCircle />
-            Clear Local Save
+            Clear Save & Reset Editor
           </button>
         </section>
 
