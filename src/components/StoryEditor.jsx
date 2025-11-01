@@ -481,7 +481,7 @@ export default function StoryEditor() {
             <div key={id} className="flex items-center gap-2">
               <button
                 onClick={() => setSelectedNode(id)}
-                className={`inline-flex flex-1 cursor-pointer items-center justify-center gap-2 rounded px-1 py-1 text-sm sm:px-2 sm:text-base ${
+                className={`inline-flex flex-1 cursor-pointer items-center justify-center rounded px-1 py-1 text-sm sm:gap-2 sm:px-2 sm:text-base ${
                   id === selectedNode
                     ? "bg-blue-600 hover:bg-blue-500"
                     : "bg-gray-700 hover:bg-gray-600"

@@ -65,6 +65,10 @@ Once the project is running:
 
 **Caption:** Story diagram to view stories structure.
 
+### Brief demonstration
+
+<img src="public/screenshots/video-demonstration.gif" alt="Video demonstration" width="300" />
+
 ## <a id="tech-stack"></a>⚙️ Tech Stack
 
 - JavaScript
