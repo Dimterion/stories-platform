@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.1.6] - 2025-11-02
+
+### Added
+
+- Set as start node option in Story Editor.
+- Export HTML file functionality in Story Editor.
+- Back button and progress bar options support for HTML files export.
+- Local storage support for HTML files export.
+
+### Changed
+
+- Icons size and position.
+
+### Fixed
+
+- Minor typing/naming adjustments.
+
 ## [0.1.5] - 2025-10-25
 
 ### Added

@@ -8,7 +8,7 @@ A web-based tool for creating and reading interactive, branching text stories.
 
 - [Features](#features)
 - [Installation](#installation)
-- [Screenshots](#screenshots)
+- [Screenshots/Video](#screenshots)
 - [Tech Stack](#tech-stack)
 - [Current version](#current-version)
 - [Contact Info](#contact-info)
@@ -45,7 +45,7 @@ Once the project is running:
 - Users can view story diagram with nodes and choices
 - Users can import existing stories into the editor or export the ones they create in JSON format
 
-## <a id="screenshots"></a>📷 Screenshots
+## <a id="screenshots"></a>📷 Screenshots/Video
 
 ### Story Player
 
@@ -65,9 +65,11 @@ Once the project is running:
 
 **Caption:** Story diagram to view stories structure.
 
-### Brief demonstration
+### Video demonstration
 
-<img src="public/screenshots/video-demonstration.gif" alt="Video demonstration" width="300" />
+<img src="public/screenshots/video-demonstration.gif" alt="Stories platform - video demonstration" width="300" />
+
+**Caption:** Stories platform overview.
 
 ## <a id="tech-stack"></a>⚙️ Tech Stack
 
