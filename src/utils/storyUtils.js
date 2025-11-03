@@ -1,3 +1,14 @@
+export function getOrderedNodeIds(nodes) {
+  return Object.entries(nodes)
+    .sort((a, b) => (a[1].createdAt || 0) - (b[1].createdAt || 0))
+    .map(([id]) => id);
+}
+
+export function getNodeLabel(id, orderedIds) {
+  const index = orderedIds.indexOf(id);
+  return index >= 0 ? `Node ${index + 1}` : "Unknown Node";
+}
+
 export function validateStoryJson(json) {
   if (!json || typeof json !== "object") {
     return { valid: false, error: "File is not valid JSON." };

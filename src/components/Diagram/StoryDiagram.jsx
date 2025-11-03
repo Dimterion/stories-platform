@@ -3,13 +3,12 @@ import { createPortal } from "react-dom";
 import ReactFlow, {
   Background,
   Controls,
+  MiniMap,
   getNodesBounds,
   getViewportForBounds,
   Handle,
-  MiniMap,
 } from "reactflow";
 import "reactflow/dist/style.css";
-import dagre from "dagre";
 import * as htmlToImage from "html-to-image";
 import {
   ChevronDown,
@@ -21,50 +20,20 @@ import {
   Square,
   X,
 } from "lucide-react";
-
-const dagreGraph = new dagre.graphlib.Graph();
-
-dagreGraph.setDefaultEdgeLabel(() => ({}));
-
-const NODE_WIDTH = 220;
-const NODE_HEIGHT = 80;
-const OPTION_WIDTH = 160;
-const OPTION_HEIGHT = 50;
-
-function getLayoutElements(nodes, edges, direction = "LR") {
-  const isHorizontal = direction === "LR";
-
-  dagreGraph.setGraph({ rankdir: direction });
-
-  nodes.forEach((node) => {
-    const width = node.type === "optionNode" ? OPTION_WIDTH : NODE_WIDTH;
-    const height = node.type === "optionNode" ? OPTION_HEIGHT : NODE_HEIGHT;
-
-    dagreGraph.setNode(node.id, { width, height });
-  });
-
-  edges.forEach((edge) => {
-    dagreGraph.setEdge(edge.source, edge.target);
-  });
-
-  dagre.layout(dagreGraph);
-
-  return nodes.map((node) => {
-    const nodeWithPosition = dagreGraph.node(node.id);
-
-    node.targetPosition = isHorizontal ? "left" : "top";
-    node.sourcePosition = isHorizontal ? "right" : "bottom";
-    node.position = {
-      x:
-        nodeWithPosition.x -
-        (node.type === "optionNode" ? OPTION_WIDTH : NODE_WIDTH) / 2,
-      y:
-        nodeWithPosition.y -
-        (node.type === "optionNode" ? OPTION_HEIGHT : NODE_HEIGHT) / 2,
-    };
-    return node;
-  });
-}
+import { getLayoutElements } from "./useDiagramLayout";
+import { getOrderedNodeIds, getNodeLabel } from "../../utils/storyUtils";
+import {
+  NODE_WIDTH,
+  NODE_HEIGHT,
+  OPTION_WIDTH,
+  COLOR_NODE_START,
+  COLOR_NODE_END,
+  COLOR_NODE_BRANCH,
+  COLOR_NODE_LONG,
+  COLOR_NODE_DEFAULT,
+  COLOR_OPTION,
+  DEFAULT_LAYOUT_DIRECTION,
+} from "../../utils/constants";
 
 /* Main Story Node */
 function CustomNode({ data }) {
@@ -163,7 +132,7 @@ function OptionNode({ data }) {
   return (
     <div
       style={{
-        background: "#facc15",
+        background: COLOR_OPTION,
         color: "#111",
         padding: "6px 10px",
         borderRadius: 12,
@@ -217,40 +186,31 @@ export default function StoryDiagram({ story, onClose, onSelectNode }) {
 
   const toggleMiniMap = () => setMiniMap(!miniMap);
 
-  const orderedNodeIds = useMemo(() => {
-    return Object.entries(story.nodes)
-      .sort((a, b) => (a[1].createdAt || 0) - (b[1].createdAt || 0))
-      .map(([id]) => id);
-  }, [story.nodes]);
+  const orderedNodeIds = getOrderedNodeIds(story.nodes);
 
   const { nodes, edges } = useMemo(() => {
-    const getNodeLabel = (id) => {
-      const index = orderedNodeIds.indexOf(id);
-      return index >= 0 ? `Node ${index + 1}` : "Unknown Node";
-    };
-
     const nodeList = Object.keys(story.nodes).map((id) => {
       const nodeData = story.nodes[id];
       const isStart = story.start === id;
       const isEnding = nodeData.options.length === 0;
 
-      let bg = "#1f2937";
+      let bg = COLOR_NODE_DEFAULT;
 
       if (isStart) {
-        bg = "#2563eb"; // blue
+        bg = COLOR_NODE_START;
       } else if (isEnding) {
-        bg = "#dc2626"; // red
+        bg = COLOR_NODE_END;
       } else if (nodeData.options.length > 1) {
-        bg = "#7e22ce"; // purple for branching
+        bg = COLOR_NODE_BRANCH;
       } else if (nodeData.text.length > 120) {
-        bg = "#0d9488"; // teal for long passages
+        bg = COLOR_NODE_LONG;
       }
 
       return {
         id,
         type: "custom",
         data: {
-          label: `${getNodeLabel(id)}: ${nodeData.text.slice(0, 40)}${
+          label: `${getNodeLabel(id, orderedNodeIds)}: ${nodeData.text.slice(0, 40)}${
             nodeData.text.length > 40 ? "..." : ""
           }`,
           fullText: nodeData.text,
@@ -284,7 +244,7 @@ export default function StoryDiagram({ story, onClose, onSelectNode }) {
             source: id,
             target: optionId,
             animated: true,
-            style: { stroke: "#facc15" },
+            style: { stroke: COLOR_OPTION },
           });
 
           edgeList.push({
@@ -292,7 +252,7 @@ export default function StoryDiagram({ story, onClose, onSelectNode }) {
             source: optionId,
             target: opt.next,
             animated: true,
-            style: { stroke: "#facc15" },
+            style: { stroke: COLOR_OPTION },
           });
         }
       });
@@ -301,7 +261,7 @@ export default function StoryDiagram({ story, onClose, onSelectNode }) {
     const layouted = getLayoutElements(
       [...nodeList, ...optionNodes],
       edgeList,
-      "TB",
+      DEFAULT_LAYOUT_DIRECTION,
     );
 
     const finalNodes = layouted.map((n) => ({
@@ -356,33 +316,55 @@ export default function StoryDiagram({ story, onClose, onSelectNode }) {
 
   const resetLayout = () => setUserPositions({});
 
+  const captureElement = (el) => {
+    if (!el) return null;
+    return el;
+  };
+
+  const delayNextFrame = () =>
+    new Promise((resolve) => {
+      requestAnimationFrame(() => requestAnimationFrame(resolve));
+    });
+
   const handleDownloadSvg = useCallback(async () => {
     if (!rfInstance || !diagramRef.current) return;
 
     try {
       setIsBtnMenuOpen(false);
+      await delayNextFrame();
 
       const nodes = rfInstance.getNodes();
-
-      if (!nodes.length) return;
+      if (!nodes || nodes.length === 0) return;
 
       const bounds = getNodesBounds(nodes);
+      const viewportElCandidate =
+        diagramRef.current.querySelector(".react-flow__viewport") ||
+        diagramRef.current.querySelector(".react-flow");
 
-      const width = Math.round(bounds.width + 100);
-      const height = Math.round(bounds.height + 100);
+      let width = Math.round(bounds.width + 100);
+      let height = Math.round(bounds.height + 100);
+
+      if (!width || !height) {
+        const rect = (
+          viewportElCandidate || diagramRef.current
+        ).getBoundingClientRect();
+        width = Math.max(800, Math.round(rect.width));
+        height = Math.max(400, Math.round(rect.height));
+      }
 
       const viewport = getViewportForBounds(bounds, width, height, 0.1, 2);
 
-      const viewportEl = diagramRef.current.querySelector(
-        ".react-flow__viewport",
-      );
+      const viewportEl =
+        viewportElCandidate ||
+        diagramRef.current.querySelector(".react-flow") ||
+        diagramRef.current;
 
       if (!viewportEl) {
-        console.error("Could not find React Flow viewport element for export");
+        console.error("No viewport element to export.");
         return;
       }
 
-      const svgDataUrl = await htmlToImage.toSvg(viewportEl, {
+      const svgDataUrl = await htmlToImage.toSvg(captureElement(viewportEl), {
         width,
         height,
         style: {
@@ -391,7 +373,17 @@ export default function StoryDiagram({ story, onClose, onSelectNode }) {
           transform: `translate(${viewport.x}px, ${viewport.y}px) scale(${viewport.zoom})`,
           backgroundColor: "white",
         },
-        filter: (node) => !node.classList?.contains("react-flow__controls"),
+        filter: (node) => {
+          try {
+            return (
+              !node.classList?.contains?.("react-flow__controls") &&
+              !node.classList?.contains?.("diagram-export-button")
+            );
+          } catch (e) {
+            console.log(e);
+            return true;
+          }
+        },
       });
 
       const link = document.createElement("a");
@@ -410,26 +402,40 @@ export default function StoryDiagram({ story, onClose, onSelectNode }) {
 
     try {
       setIsBtnMenuOpen(false);
+      await delayNextFrame();
 
       const nodes = rfInstance.getNodes();
-
-      if (!nodes.length) return;
+      if (!nodes || nodes.length === 0) return;
 
       const bounds = getNodesBounds(nodes);
-      const width = Math.round(bounds.width + 100);
-      const height = Math.round(bounds.height + 100);
+      let width = Math.round(bounds.width + 100);
+      let height = Math.round(bounds.height + 100);
+
+      const viewportElCandidate =
+        diagramRef.current.querySelector(".react-flow__viewport") ||
+        diagramRef.current.querySelector(".react-flow");
+
+      if (!width || !height) {
+        const rect = (
+          viewportElCandidate || diagramRef.current
+        ).getBoundingClientRect();
+        width = Math.max(800, Math.round(rect.width));
+        height = Math.max(400, Math.round(rect.height));
+      }
+
       const viewport = getViewportForBounds(bounds, width, height, 0.1, 2);
 
-      const viewportEl = diagramRef.current.querySelector(
-        ".react-flow__viewport",
-      );
+      const viewportEl =
+        viewportElCandidate ||
+        diagramRef.current.querySelector(".react-flow") ||
+        diagramRef.current;
 
       if (!viewportEl) {
-        console.error("Could not find React Flow viewport element for export");
+        console.error("No viewport element to export.");
         return;
       }
 
-      const pngDataUrl = await htmlToImage.toPng(viewportEl, {
+      const pngDataUrl = await htmlToImage.toPng(captureElement(viewportEl), {
         width,
         height,
         backgroundColor: "#ffffff",
@@ -439,7 +445,17 @@ export default function StoryDiagram({ story, onClose, onSelectNode }) {
           transform: `translate(${viewport.x}px, ${viewport.y}px) scale(${viewport.zoom})`,
           backgroundColor: "white",
         },
-        filter: (node) => !node.classList?.contains("react-flow__controls"),
+        filter: (node) => {
+          try {
+            return (
+              !node.classList?.contains?.("react-flow__controls") &&
+              !node.classList?.contains?.("diagram-export-button")
+            );
+          } catch (e) {
+            console.log(e);
+            return true;
+          }
+        },
       });
 
       const link = document.createElement("a");

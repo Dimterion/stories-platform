@@ -15,7 +15,7 @@ import {
 import { validateStoryJson } from "../utils/storyUtils";
 import { generateStandaloneStoryHTML } from "../utils/exportStandaloneHTML";
 import { downloadFile } from "../utils/downloadFile";
-import StoryDiagram from "./StoryDiagram";
+import StoryDiagram from "./Diagram/StoryDiagram";
 
 export default function StoryEditor() {
   const STORAGE_KEY = "storyEditorState";
