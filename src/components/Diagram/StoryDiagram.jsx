@@ -379,8 +379,8 @@ export default function StoryDiagram({ story, onClose, onSelectNode }) {
               !node.classList?.contains?.("react-flow__controls") &&
               !node.classList?.contains?.("diagram-export-button")
             );
-          } catch (e) {
-            console.log(e);
+          } catch (err) {
+            console.error(err);
             return true;
           }
         },
@@ -451,8 +451,8 @@ export default function StoryDiagram({ story, onClose, onSelectNode }) {
               !node.classList?.contains?.("react-flow__controls") &&
               !node.classList?.contains?.("diagram-export-button")
             );
-          } catch (e) {
-            console.log(e);
+          } catch (err) {
+            console.error(err);
             return true;
           }
         },
