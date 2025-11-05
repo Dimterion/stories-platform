@@ -3,7 +3,7 @@ import { Toaster } from "sonner";
 import { BookOpenCheck, Pencil } from "lucide-react";
 import MetaUpdater from "./components/MetaUpdater";
 import StoryPlayer from "./components/StoryPlayer";
-import StoryEditor from "./components/StoryEditor";
+import StoryEditor from "./components/StoryEditor/StoryEditor";
 
 export default function App() {
   const [activeTab, setActiveTab] = useState("play");

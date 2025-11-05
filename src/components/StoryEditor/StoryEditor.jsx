@@ -12,10 +12,11 @@ import {
   Trash2,
   XCircle,
 } from "lucide-react";
-import { validateStoryJson } from "../utils/storyUtils";
-import { generateStandaloneStoryHTML } from "../utils/exportStandaloneHTML";
-import { downloadFile } from "../utils/downloadFile";
-import StoryDiagram from "./Diagram/StoryDiagram";
+import { validateStoryJson } from "../../utils/storyUtils";
+import { generateStandaloneStoryHTML } from "../../utils/exportStandaloneHTML";
+import { downloadFile } from "../../utils/downloadFile";
+import Sidebar from "./Sidebar";
+import StoryDiagram from "../StoryDiagram/StoryDiagram";
 
 export default function StoryEditor() {
   const STORAGE_KEY = "storyEditorState";
@@ -475,40 +476,16 @@ export default function StoryEditor() {
 
       {/* Sidebar: nodes list */}
       {sidebarVisible && (
-        <section className="w-1/3 space-y-2 bg-gray-800 p-1 sm:w-1/4 sm:p-4">
-          <h2 className="mb-6 font-bold sm:text-lg">Scenes</h2>
-          {orderedNodeIds.map((id) => (
-            <div key={id} className="flex items-center gap-2">
-              <button
-                onClick={() => setSelectedNode(id)}
-                className={`inline-flex flex-1 cursor-pointer items-center justify-center rounded px-1 py-1 text-sm sm:gap-2 sm:px-2 sm:text-base ${
-                  id === selectedNode
-                    ? "bg-blue-600 hover:bg-blue-500"
-                    : "bg-gray-700 hover:bg-gray-600"
-                }`}
-                aria-label="Open node"
-              >
-                {getNodeLabel(id)}
-                {id === start && <Star className="size-3 sm:size-6" />}
-              </button>
-              <button
-                onClick={() => deleteNode(id)}
-                className="cursor-pointer rounded bg-red-500 px-1 py-2 hover:bg-red-400 sm:p-1"
-                title="Delete Node"
-                aria-label="Delete node"
-              >
-                <Trash2 className="size-3 sm:size-6" />
-              </button>
-            </div>
-          ))}
-          <button
-            onClick={addNode}
-            className="mt-4 inline-flex w-full cursor-pointer items-center rounded bg-green-600 px-1 py-1 text-sm hover:bg-green-500 sm:gap-2 sm:px-2 sm:text-base"
-          >
-            <Plus />
-            Add Node
-          </button>
-        </section>
+        <Sidebar
+          nodes={nodes}
+          start={start}
+          selectedNode={selectedNode}
+          orderedNodeIds={orderedNodeIds}
+          onSelectNode={setSelectedNode}
+          onAddNode={addNode}
+          onDeleteNode={deleteNode}
+          getNodeLabel={getNodeLabel}
+        />
       )}
 
       {/* Main editor */}
