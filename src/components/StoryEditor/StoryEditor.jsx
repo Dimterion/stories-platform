@@ -16,6 +16,7 @@ import { validateStoryJson } from "../../utils/storyUtils";
 import { generateStandaloneStoryHTML } from "../../utils/exportStandaloneHTML";
 import { downloadFile } from "../../utils/downloadFile";
 import Sidebar from "./Sidebar";
+import MetadataForm from "./MetadataForm";
 import StoryDiagram from "../StoryDiagram/StoryDiagram";
 
 export default function StoryEditor() {
@@ -505,54 +506,20 @@ export default function StoryEditor() {
         </div>
 
         {/* Story metadata */}
-        <div className="grid grid-cols-2 gap-4">
-          <input
-            className="rounded-lg border border-gray-500 bg-gray-800 p-2 text-white"
-            placeholder="Story Title"
-            name="Title"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-          />
-          <input
-            className="rounded-lg border border-gray-500 bg-gray-800 p-2 text-white"
-            placeholder="Author"
-            name="Author"
-            value={author}
-            onChange={(e) => setAuthor(e.target.value)}
-          />
-          <textarea
-            className="col-span-2 rounded-lg border border-gray-500 bg-gray-800 p-2 text-white"
-            placeholder="Description"
-            name="Description"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-          />
-          <div className="col-span-2 flex items-center gap-2">
-            <input
-              type="checkbox"
-              id="showProgress"
-              checked={showProgress}
-              onChange={(e) => setShowProgress(e.target.checked)}
-            />
-            <label htmlFor="showProgress" className="text-sm text-gray-300">
-              Show progress indicator in Story Player
-            </label>
-          </div>
-          <div className="col-span-2 flex items-center gap-2">
-            <input
-              type="checkbox"
-              id="allowBackNavigation"
-              checked={allowBackNavigation}
-              onChange={(e) => setAllowBackNavigation(e.target.checked)}
-            />
-            <label
-              htmlFor="allowBackNavigation"
-              className="text-sm text-gray-300"
-            >
-              Allow back button in Story Player
-            </label>
-          </div>
-        </div>
+         <MetadataForm
+          title={title}
+          author={author}
+          description={description}
+          showProgress={showProgress}
+          allowBackNavigation={allowBackNavigation}
+          onChange={{
+            setTitle,
+            setAuthor,
+            setDescription,
+            setShowProgress,
+            setAllowBackNavigation,
+          }}
+        />
 
         {/* Node editor */}
         {selectedNode && (
