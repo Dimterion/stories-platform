@@ -7,9 +7,6 @@ import {
   Map,
   PanelLeftClose,
   PanelLeftOpen,
-  Plus,
-  Star,
-  Trash2,
   XCircle,
 } from "lucide-react";
 import { validateStoryJson } from "../../utils/storyUtils";
@@ -17,6 +14,7 @@ import { generateStandaloneStoryHTML } from "../../utils/exportStandaloneHTML";
 import { downloadFile } from "../../utils/downloadFile";
 import Sidebar from "./Sidebar";
 import MetadataForm from "./MetadataForm";
+import NodeEditor from "./NodeEditor";
 import StoryDiagram from "../StoryDiagram/StoryDiagram";
 
 export default function StoryEditor() {
@@ -506,7 +504,7 @@ export default function StoryEditor() {
         </div>
 
         {/* Story metadata */}
-         <MetadataForm
+        <MetadataForm
           title={title}
           author={author}
           description={description}
@@ -522,94 +520,18 @@ export default function StoryEditor() {
         />
 
         {/* Node editor */}
-        {selectedNode && (
-          <div className="rounded-lg bg-gray-800 p-1 sm:p-4">
-            <h2 className="mb-2 inline-flex items-center gap-2 font-semibold">
-              {selectedNode === start && <Star />}
-              Editing {getNodeLabel(selectedNode)}{" "}
-              {selectedNode === start && "(start node)"}
-            </h2>
-            <textarea
-              className="w-full rounded-lg border border-gray-500 p-2 text-white"
-              rows="3"
-              name="Story text"
-              placeholder={
-                selectedNode === start
-                  ? "Start your story here..."
-                  : "New scene..."
-              }
-              value={nodes[selectedNode].text}
-              onChange={(e) => updateNodeText(selectedNode, e.target.value)}
-            />
-
-            <h3 className="mt-3 mb-2 font-semibold">Options</h3>
-            <div className="space-y-2">
-              {nodes[selectedNode].options.map((opt, i) => (
-                <div key={i} className="flex flex-wrap items-center gap-2 pb-1">
-                  <input
-                    name="Option text"
-                    className="max-w-[140px] flex-1 rounded-lg border border-gray-500 p-0.5 py-1 text-sm text-white sm:max-w-full sm:p-1 sm:text-base"
-                    value={opt.text}
-                    placeholder="New choice"
-                    onChange={(e) =>
-                      updateOption(selectedNode, i, "text", e.target.value)
-                    }
-                  />
-                  <select
-                    name="Next option"
-                    className="rounded-lg border border-gray-500 p-1 text-sm text-white sm:text-base"
-                    value={opt.next ?? ""}
-                    onChange={(e) =>
-                      updateOption(
-                        selectedNode,
-                        i,
-                        "next",
-                        e.target.value || null,
-                      )
-                    }
-                  >
-                    <option className="bg-gray-800" value="">
-                      Select target
-                    </option>
-                    {orderedNodeIds.map((id) => (
-                      <option className="bg-gray-800" key={id} value={id}>
-                        {getNodeLabel(id)}
-                      </option>
-                    ))}
-                  </select>
-                  <button
-                    onClick={() => deleteOption(selectedNode, i)}
-                    className="cursor-pointer rounded bg-red-500 p-0.5 hover:bg-red-400 sm:p-1"
-                    title="Delete Option"
-                    aria-label="Delete option"
-                  >
-                    <Trash2 />
-                  </button>
-                </div>
-              ))}
-            </div>
-            <div className="mt-2 flex flex-wrap items-center justify-between">
-              <button
-                onClick={() => addOption(selectedNode)}
-                className="my-2 inline-flex w-full cursor-pointer items-center gap-2 rounded bg-blue-600 px-1 py-1 text-sm hover:bg-blue-500 sm:w-fit sm:gap-2 sm:px-2 sm:text-base"
-              >
-                <Plus />
-                Add Option
-              </button>
-              <button
-                onClick={() => setAsStartNode(selectedNode)}
-                disabled={selectedNode === start}
-                className={`my-2 inline-flex w-full items-center gap-2 rounded px-1 py-1 text-sm sm:w-fit sm:gap-2 sm:px-2 sm:text-base ${
-                  selectedNode === start
-                    ? "bg-yellow-800 text-gray-300"
-                    : "cursor-pointer bg-yellow-600 hover:bg-yellow-500"
-                }`}
-              >
-                <Star /> Set as Start Node
-              </button>
-            </div>
-          </div>
-        )}
+        <NodeEditor
+          selectedNode={selectedNode}
+          start={start}
+          nodes={nodes}
+          orderedNodeIds={orderedNodeIds}
+          getNodeLabel={getNodeLabel}
+          onUpdateText={updateNodeText}
+          onAddOption={addOption}
+          onUpdateOption={updateOption}
+          onDeleteOption={deleteOption}
+          onSetAsStart={setAsStartNode}
+        />
 
         <section className="flex flex-wrap justify-center gap-4 pb-2 md:justify-start">
           {/* Export button */}
