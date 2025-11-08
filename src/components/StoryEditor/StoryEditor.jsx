@@ -1,20 +1,14 @@
 import { useEffect, useMemo, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { toast } from "sonner";
-import {
-  FileDown,
-  FileUp,
-  Map,
-  PanelLeftClose,
-  PanelLeftOpen,
-  XCircle,
-} from "lucide-react";
+import { PanelLeftClose, PanelLeftOpen } from "lucide-react";
 import { validateStoryJson } from "../../utils/storyUtils";
 import { generateStandaloneStoryHTML } from "../../utils/exportStandaloneHTML";
 import { downloadFile } from "../../utils/downloadFile";
 import Sidebar from "./Sidebar";
 import MetadataForm from "./MetadataForm";
 import NodeEditor from "./NodeEditor";
+import Toolbar from "./Toolbar";
 import StoryDiagram from "../StoryDiagram/StoryDiagram";
 
 export default function StoryEditor() {
@@ -533,53 +527,13 @@ export default function StoryEditor() {
           onSetAsStart={setAsStartNode}
         />
 
-        <section className="flex flex-wrap justify-center gap-4 pb-2 md:justify-start">
-          {/* Export button */}
-          <button
-            onClick={exportStory}
-            className="inline-flex w-3xs max-w-[55vw] cursor-pointer items-center gap-2 rounded bg-yellow-600 px-4 py-2 text-center hover:bg-yellow-500"
-          >
-            <FileUp />
-            Export Story (JSON file)
-          </button>
-
-          {/* Export standalone HTML button */}
-          <button
-            onClick={exportStandaloneHTML}
-            className="inline-flex w-3xs max-w-[55vw] cursor-pointer items-center gap-2 rounded bg-teal-600 px-4 py-2 text-center hover:bg-teal-500"
-          >
-            <FileUp />
-            Export Story (HTML file)
-          </button>
-
-          {/* Import button */}
-          <label className="inline-flex w-3xs max-w-[55vw] cursor-pointer items-center gap-2 rounded bg-green-600 px-4 py-2 text-center hover:bg-green-500">
-            <FileDown />
-            Import Story (JSON file)
-            <input
-              type="file"
-              accept="application/json"
-              onChange={importStory}
-              className="hidden"
-            />
-          </label>
-
-          {/* Story diagram button */}
-          <button
-            onClick={() => setShowDiagram(true)}
-            className="inline-flex w-3xs max-w-[55vw] cursor-pointer items-center gap-2 rounded bg-purple-600 px-4 py-2 text-center hover:bg-purple-500"
-          >
-            <Map />
-            View Story Diagram
-          </button>
-          <button
-            onClick={clearLocalSave}
-            className="inline-flex w-3xs max-w-[55vw] cursor-pointer items-center gap-2 rounded bg-red-600 px-4 py-2 text-center hover:bg-red-500"
-          >
-            <XCircle />
-            Clear Save & Reset Editor
-          </button>
-        </section>
+        <Toolbar
+          onExportStory={exportStory}
+          onExportHTML={exportStandaloneHTML}
+          onImportStory={importStory}
+          onShowDiagram={() => setShowDiagram(true)}
+          onClearSave={clearLocalSave}
+        />
 
         {/* Diagram modal */}
         {showDiagram && (
