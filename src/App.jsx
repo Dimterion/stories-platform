@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { Toaster } from "sonner";
-import { BookOpenCheck, Pencil } from "lucide-react";
+import Header from "./components/Layout/Header";
 import MetaUpdater from "./components/MetaUpdater";
 import StoryPlayer from "./components/StoryPlayer";
 import StoryEditor from "./components/StoryEditor/StoryEditor";
+import Footer from "./components/Layout/Footer";
 
 export default function App() {
   const [activeTab, setActiveTab] = useState("play");
@@ -24,14 +25,7 @@ export default function App() {
   return (
     <div className="flex min-h-screen flex-col bg-gray-900 text-white">
       <Toaster position="top-right" richColors closeButton />
-      <header className="flex items-center justify-between bg-gray-800 p-4">
-        <h1 className="font-bold sm:text-xl">Interactive Story Platform</h1>
-        <nav className="flex flex-wrap justify-end gap-4">
-          {navButton("play", <BookOpenCheck />, "Play Stories", "bg-blue-600")}
-          {navButton("create", <Pencil />, "Create Stories", "bg-green-600")}
-        </nav>
-      </header>
-
+      <Header navButton={navButton} />
       {/* Main Content */}
       <main className="flex-1">
         {activeTab === "play" && (
@@ -43,7 +37,6 @@ export default function App() {
             <StoryPlayer />
           </>
         )}
-
         {activeTab === "create" && (
           <>
             <MetaUpdater
@@ -54,18 +47,7 @@ export default function App() {
           </>
         )}
       </main>
-
-      <footer className="flex items-center justify-center gap-1 bg-gray-800 py-1 text-sm">
-        <p>&copy; {new Date().getFullYear()}</p>
-        <a
-          href="https://www.dimterion.com/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="hover:underline"
-        >
-          Dimterion
-        </a>
-      </footer>
+      <Footer />
     </div>
   );
 }
