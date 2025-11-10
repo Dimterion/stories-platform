@@ -9,23 +9,10 @@ import Footer from "./components/Layout/Footer";
 export default function App() {
   const [activeTab, setActiveTab] = useState("play");
 
-  const navButton = (tab, icon, label, activeColor) => (
-    <button
-      onClick={() => setActiveTab(tab)}
-      className={`inline-flex min-w-36 cursor-pointer items-center gap-2 rounded px-3 py-1 text-sm sm:text-base ${
-        activeTab === tab ? activeColor : "bg-gray-700"
-      }`}
-      aria-label={`${label} tab`}
-    >
-      {icon}
-      {label}
-    </button>
-  );
-
   return (
     <div className="flex min-h-screen flex-col bg-gray-900 text-white">
       <Toaster position="top-right" richColors closeButton />
-      <Header navButton={navButton} />
+      <Header activeTab={activeTab} setActiveTab={setActiveTab} />
       {/* Main Content */}
       <main className="flex-1">
         {activeTab === "play" && (
