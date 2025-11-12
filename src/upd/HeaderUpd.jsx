@@ -1,5 +1,5 @@
 import { BookOpenCheck, Pencil } from "lucide-react";
-import NavBtn from "./NavBtn";
+import NavBtn from "../components/Layout/NavBtn";
 
 export default function Header({ activeTab, setActiveTab }) {
   return (
