@@ -1,20 +1,20 @@
 import { useState } from "react";
 import { Toaster } from "sonner";
-import Header from "./components/Layout/Header";
+import Header from "./upd/HeaderUpd";
 import MetaUpdater from "./components/MetaUpdater";
-import StoryPlayer from "./components/StoryPlayer";
+import StoryPlayer from "./upd/StoryPlayerUpd";
 import StoryEditor from "./components/StoryEditor/StoryEditor";
-import Footer from "./components/Layout/Footer";
+import Footer from "./upd/FooterUpd";
 
 export default function App() {
   const [activeTab, setActiveTab] = useState("play");
 
   return (
-    <div>
+    <div className="flex min-h-screen flex-col">
       <Toaster position="top-right" richColors closeButton />
       <Header activeTab={activeTab} setActiveTab={setActiveTab} />
       {/* Main Content */}
-      <main>
+      <main className="flex-1">
         {activeTab === "play" && (
           <>
             <MetaUpdater

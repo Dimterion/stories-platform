@@ -217,6 +217,7 @@ export default function StoryPlayer() {
               type="file"
               accept="application/json"
               onChange={handleFileUpload}
+              className="hidden"
             />
 
             {/* Custom upload button */}
