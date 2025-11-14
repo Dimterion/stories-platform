@@ -1,6 +1,6 @@
 export default function Footer() {
   return (
-    <footer>
+    <footer className="text-[#669bbc]">
       <p>&copy; {new Date().getFullYear()}</p>
       <a
         href="https://www.dimterion.com/"
