@@ -7,7 +7,11 @@ export default function NavBtn({
   activeColor,
 }) {
   return (
-    <button onClick={() => setActiveTab(tab)} aria-label={`${label} tab`}>
+    <button
+      onClick={() => setActiveTab(tab)}
+      aria-label={`${label} tab`}
+      className="flex flex-nowrap gap-1"
+    >
       {icon}
       {label}
     </button>

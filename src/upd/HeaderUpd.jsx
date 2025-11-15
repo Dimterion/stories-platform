@@ -3,9 +3,9 @@ import NavBtn from "./NavBtnUpd";
 
 export default function Header({ activeTab, setActiveTab }) {
   return (
-    <header>
+    <header className="flex flex-wrap justify-between p-1">
       <h1>Interactive Story Platform</h1>
-      <nav>
+      <nav className="flex flex-wrap gap-2">
         <NavBtn
           activeTab={activeTab}
           setActiveTab={setActiveTab}
