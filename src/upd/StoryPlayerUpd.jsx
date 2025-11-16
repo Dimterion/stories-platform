@@ -141,7 +141,9 @@ export default function StoryPlayer() {
     <section>
       <div>
         {/* Title/author/description */}
-        <h1>{story.title || "Untitled Story"}</h1>
+        <h1 className="text-center font-bold">
+          {story.title || "Untitled Story"}
+        </h1>
         <p>By {story.author || "an aspiring individual"}</p>
         <p>{story.description}</p>
         {story.showProgress && totalScenes > 0 && currentSceneIndex >= 0 && (

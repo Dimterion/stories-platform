@@ -10,7 +10,7 @@ export default function NavBtn({
     <button
       onClick={() => setActiveTab(tab)}
       aria-label={`${label} tab`}
-      className="flex flex-nowrap gap-1"
+      className="flex cursor-pointer flex-nowrap items-center gap-1 text-sm sm:text-base"
     >
       {icon}
       {label}
