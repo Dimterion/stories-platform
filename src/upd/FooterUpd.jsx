@@ -6,7 +6,7 @@ export default function Footer() {
         href="https://www.dimterion.com/"
         target="_blank"
         rel="noopener noreferrer"
-        className="hover:text-[#fdf0d5]"
+        className="underline hover:text-[#fdf0d5]"
       >
         Dimterion
       </a>

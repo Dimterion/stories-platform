@@ -14,7 +14,7 @@ export default function Header({ activeTab, setActiveTab }) {
           tab="play"
           icon={<BookOpenCheck className="size-4 sm:size-fit" />}
           label="Play Stories"
-          activeColor="bg-blue-600"
+          activeColor="text-[#669bbc]"
         />
         <NavBtn
           activeTab={activeTab}
@@ -22,7 +22,7 @@ export default function Header({ activeTab, setActiveTab }) {
           tab="create"
           icon={<Pencil className="size-4 sm:size-fit" />}
           label="Create Stories"
-          activeColor="bg-green-600"
+          activeColor="text-[#669bbc]"
         />
       </nav>
     </header>

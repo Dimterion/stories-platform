@@ -139,101 +139,97 @@ export default function StoryPlayer() {
 
   return (
     <section>
+      {/* Title/author/description */}
+      <h1 className="text-center font-bold">
+        {story.title || "Untitled Story"}
+      </h1>
+      <p>By {story.author || "an aspiring individual"}</p>
+      <p>{story.description}</p>
+      {story.showProgress && totalScenes > 0 && currentSceneIndex >= 0 && (
+        <div
+          style={{
+            width: `${((currentSceneIndex + 1) / totalScenes) * 100}%`,
+          }}
+        ></div>
+      )}
+
+      {/* Text */}
       <div>
-        {/* Title/author/description */}
-        <h1 className="text-center font-bold">
-          {story.title || "Untitled Story"}
-        </h1>
-        <p>By {story.author || "an aspiring individual"}</p>
-        <p>{story.description}</p>
-        {story.showProgress && totalScenes > 0 && currentSceneIndex >= 0 && (
-          <div>
-            <div
-              style={{
-                width: `${((currentSceneIndex + 1) / totalScenes) * 100}%`,
+        {currentNode.text.split(/\n{2,}/).map((paragraph, pIndex) => (
+          <p key={pIndex}>
+            {paragraph.split(/\n/).map((line, lIndex) => (
+              <span key={lIndex}>
+                {line}
+                {lIndex < paragraph.split(/\n/).length - 1 && <br />}
+              </span>
+            ))}
+          </p>
+        ))}
+      </div>
+
+      {/* Options */}
+      <div>
+        {story.allowBackNavigation && history.length > 1 && (
+          <button
+            onClick={() => {
+              setHistory((prev) => {
+                const newHistory = [...prev];
+                newHistory.pop();
+                const previousNode = newHistory[newHistory.length - 1];
+                setCurrentNodeId(previousNode);
+                return newHistory;
+              });
+            }}
+          >
+            Back
+          </button>
+        )}
+        {currentNode.options.length > 0 ? (
+          currentNode.options.map((option, index) => (
+            <button
+              key={index}
+              onClick={() => {
+                setHistory((prev) => [...prev, option.next]);
+                setCurrentNodeId(option.next);
               }}
-            ></div>
+              aria-label="Option"
+            >
+              {option.text}
+            </button>
+          ))
+        ) : (
+          <div>
+            <p>The End</p>
+            <button onClick={restart}>Restart Story</button>
           </div>
         )}
-
-        {/* Text */}
-        <div>
-          {currentNode.text.split(/\n{2,}/).map((paragraph, pIndex) => (
-            <p key={pIndex}>
-              {paragraph.split(/\n/).map((line, lIndex) => (
-                <span key={lIndex}>
-                  {line}
-                  {lIndex < paragraph.split(/\n/).length - 1 && <br />}
-                </span>
-              ))}
-            </p>
-          ))}
-        </div>
-
-        {/* Options */}
-        <div>
-          {story.allowBackNavigation && history.length > 1 && (
-            <button
-              onClick={() => {
-                setHistory((prev) => {
-                  const newHistory = [...prev];
-                  newHistory.pop();
-                  const previousNode = newHistory[newHistory.length - 1];
-                  setCurrentNodeId(previousNode);
-                  return newHistory;
-                });
-              }}
-            >
-              Back
-            </button>
-          )}
-          {currentNode.options.length > 0 ? (
-            currentNode.options.map((option, index) => (
-              <button
-                key={index}
-                onClick={() => {
-                  setHistory((prev) => [...prev, option.next]);
-                  setCurrentNodeId(option.next);
-                }}
-                aria-label="Option"
-              >
-                {option.text}
-              </button>
-            ))
-          ) : (
-            <div>
-              <p>The End</p>
-              <button onClick={restart}>Restart Story</button>
-            </div>
-          )}
-        </div>
-
-        {/* Upload new story */}
-        <div>
-          <label>Load another story (JSON file):</label>
-
-          <div>
-            {/* Hidden file input */}
-            <input
-              ref={fileInputRef}
-              type="file"
-              accept="application/json"
-              onChange={handleFileUpload}
-              className="hidden"
-            />
-
-            {/* Custom upload button */}
-            <button onClick={() => fileInputRef.current?.click()}>
-              Choose File
-            </button>
-
-            {/* File name display */}
-            <span>{fileName || "No file chosen"}</span>
-          </div>
-        </div>
-
-        <button onClick={resetProgress}>Clear Save & Reset Progress</button>
       </div>
+
+      {/* Upload new story */}
+      <div>
+        <label>Load another story (JSON file):</label>
+
+        <div>
+          {/* Hidden file input */}
+          <input
+            ref={fileInputRef}
+            type="file"
+            accept="application/json"
+            onChange={handleFileUpload}
+            className="hidden"
+          />
+
+          {/* Custom upload button */}
+          <button onClick={() => fileInputRef.current?.click()}>
+            Choose File
+          </button>
+
+          {/* File name display */}
+          <span>{fileName || "No file chosen"}</span>
+        </div>
+      </div>
+
+      <button onClick={resetProgress}>Clear Save & Reset Progress</button>
     </section>
   );
 }
