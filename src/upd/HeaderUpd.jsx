@@ -5,7 +5,7 @@ export default function Header({ activeTab, setActiveTab }) {
   return (
     <header className="flex flex-wrap justify-between p-1">
       <h1 className="text-sm font-bold sm:text-base">
-        Interactive Story Platform
+        Interactive Stories Platform
       </h1>
       <nav className="flex flex-wrap gap-2">
         <NavBtn

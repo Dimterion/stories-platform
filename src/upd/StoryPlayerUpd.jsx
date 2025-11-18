@@ -138,12 +138,14 @@ export default function StoryPlayer() {
   const totalScenes = orderedNodeIds.length;
 
   return (
-    <section>
+    <section className="flex flex-col items-center gap-2">
       {/* Title/author/description */}
-      <h1 className="text-center font-bold">
+      <h2 className="text-center text-xl font-bold">
         {story.title || "Untitled Story"}
-      </h1>
-      <p>By {story.author || "an aspiring individual"}</p>
+      </h2>
+      <p className="mt-2 text-center font-semibold italic">
+        By {story.author || "an aspiring individual"}
+      </p>
       <p>{story.description}</p>
       {story.showProgress && totalScenes > 0 && currentSceneIndex >= 0 && (
         <div
