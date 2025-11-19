@@ -156,7 +156,7 @@ export default function StoryPlayer() {
       )}
 
       {/* Text */}
-      <div>
+      <div className="m-2 min-h-96 border-4 border-[#669bbc] bg-[#fdf0d5] p-2 text-[#003049]">
         {currentNode.text.split(/\n{2,}/).map((paragraph, pIndex) => (
           <p key={pIndex}>
             {paragraph.split(/\n/).map((line, lIndex) => (
@@ -195,6 +195,7 @@ export default function StoryPlayer() {
                 setCurrentNodeId(option.next);
               }}
               aria-label="Option"
+              className="m-2 min-h-20 border-2 p-2"
             >
               {option.text}
             </button>
