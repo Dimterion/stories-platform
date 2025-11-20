@@ -12,7 +12,8 @@ import Footer from "./upd/FooterUpd";
   #780000 - dark red
   #c1121f - red
   #fdf0d5 - soft white
-  #003049 - dark blue
+  #0a122a - dark blue
+  #003049 - deep blue
   #669bbc - light blue
 
 */

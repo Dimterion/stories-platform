@@ -138,15 +138,17 @@ export default function StoryPlayer() {
   const totalScenes = orderedNodeIds.length;
 
   return (
-    <section className="flex flex-col items-center gap-2">
+    <section className="flex flex-col items-center">
       {/* Title/author/description */}
-      <h2 className="text-center text-xl font-bold">
-        {story.title || "Untitled Story"}
-      </h2>
-      <p className="mt-2 text-center font-semibold italic">
-        By {story.author || "an aspiring individual"}
-      </p>
-      <p>{story.description}</p>
+      <div className="flex w-full max-w-[1024px] flex-col items-center border-4 border-b-0 border-[#669bbc]">
+        <h2 className="w-full bg-[#669bbc] text-center text-xl font-bold">
+          {story.title || "Untitled Story"}
+        </h2>
+        <p className="mt-2 font-semibold italic">
+          By {story.author || "an aspiring individual"}
+        </p>
+        <p>{story.description}</p>
+      </div>
       {story.showProgress && totalScenes > 0 && currentSceneIndex >= 0 && (
         <div
           style={{
@@ -156,7 +158,7 @@ export default function StoryPlayer() {
       )}
 
       {/* Text */}
-      <div className="m-2 min-h-96 border-4 border-[#669bbc] bg-[#fdf0d5] p-2 text-[#003049]">
+      <div className="m-2 mt-0 flex min-h-72 w-full max-w-[1024px] flex-col items-center justify-center border-4 border-[#669bbc] bg-[#fdf0d5] p-2 text-[#003049]">
         {currentNode.text.split(/\n{2,}/).map((paragraph, pIndex) => (
           <p key={pIndex}>
             {paragraph.split(/\n/).map((line, lIndex) => (
@@ -195,7 +197,7 @@ export default function StoryPlayer() {
                 setCurrentNodeId(option.next);
               }}
               aria-label="Option"
-              className="m-2 min-h-20 border-2 p-2"
+              className="my-2 w-full border-2 p-2"
             >
               {option.text}
             </button>
