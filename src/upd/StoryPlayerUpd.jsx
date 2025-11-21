@@ -138,14 +138,14 @@ export default function StoryPlayer() {
   const totalScenes = orderedNodeIds.length;
 
   return (
-    <section className="flex flex-col items-center">
+    <section className="mx-auto flex max-w-[1440px] flex-col items-center gap-2 p-2">
       {/* Title/author/description */}
-      <div className="flex w-full max-w-[1024px] flex-col items-center border-3 border-b-0 border-[#669bbc]">
-        <h2 className="w-full border-3 border-[#0a122a] bg-[#669bbc] text-center text-xl font-bold">
+      <div className="flex w-full max-w-[1024px] flex-col items-center gap-1 border-3 border-[#0a122a] bg-[#fdf0d5] p-1 text-[#0a122a]">
+        <h2 className="w-full border-3 border-[#0a122a] bg-[#669bbc] text-center text-2xl font-bold text-[#fdf0d5]">
           {story.title || "Untitled Story"}
         </h2>
-        <div className="flex w-full flex-col items-center gap-2 border-3 border-t-0 border-[#0a122a] px-2 pt-2 pb-4">
-          <p className="mt-2 font-semibold italic">
+        <div className="flex w-full flex-col items-center border-3 border-[#0a122a] p-1">
+          <p className="font-semibold italic">
             By {story.author || "an aspiring individual"}
           </p>
           <p>{story.description}</p>
@@ -160,7 +160,7 @@ export default function StoryPlayer() {
       )}
 
       {/* Text */}
-      <div className="m-2 mt-0 flex min-h-72 w-full max-w-[1024px] flex-col items-center justify-center border-3 border-[#669bbc] bg-[#fdf0d5] p-2 text-[#003049]">
+      <div className="flex min-h-72 w-full max-w-[1024px] flex-col items-center justify-center border-3 border-[#0a122a] bg-[#fdf0d5] text-[#0a122a]">
         {currentNode.text.split(/\n{2,}/).map((paragraph, pIndex) => (
           <p key={pIndex}>
             {paragraph.split(/\n/).map((line, lIndex) => (
@@ -174,7 +174,7 @@ export default function StoryPlayer() {
       </div>
 
       {/* Options */}
-      <div>
+      <div className="w-full max-w-[1024px] space-y-2 border-3 border-[#0a122a] bg-[#fdf0d5] p-2 text-[#0a122a]">
         {story.allowBackNavigation && history.length > 1 && (
           <button
             onClick={() => {
@@ -186,6 +186,7 @@ export default function StoryPlayer() {
                 return newHistory;
               });
             }}
+            className="w-full cursor-pointer border-3 border-[#0a122a] p-1 transition duration-200 hover:bg-[#669bbc] hover:text-[#fdf0d5]"
           >
             Back
           </button>
@@ -199,7 +200,7 @@ export default function StoryPlayer() {
                 setCurrentNodeId(option.next);
               }}
               aria-label="Option"
-              className="my-2 w-full border-2 p-2"
+              className="w-full cursor-pointer border-3 border-[#0a122a] p-1 transition duration-200 hover:bg-[#669bbc] hover:text-[#fdf0d5]"
             >
               {option.text}
             </button>

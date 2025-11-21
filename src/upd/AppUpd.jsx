@@ -26,7 +26,7 @@ export default function App() {
       <Toaster position="top-right" richColors closeButton />
       <Header activeTab={activeTab} setActiveTab={setActiveTab} />
       {/* Main Content */}
-      <main className="m-3 flex-1 gap-3 border-4 border-[#fdf0d5] p-3">
+      <main className="flex-1">
         {activeTab === "play" && (
           <>
             <MetaUpdater
