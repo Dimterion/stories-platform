@@ -140,14 +140,16 @@ export default function StoryPlayer() {
   return (
     <section className="flex flex-col items-center">
       {/* Title/author/description */}
-      <div className="flex w-full max-w-[1024px] flex-col items-center border-4 border-b-0 border-[#669bbc]">
-        <h2 className="w-full bg-[#669bbc] text-center text-xl font-bold">
+      <div className="flex w-full max-w-[1024px] flex-col items-center border-3 border-b-0 border-[#669bbc]">
+        <h2 className="w-full border-3 border-[#0a122a] bg-[#669bbc] text-center text-xl font-bold">
           {story.title || "Untitled Story"}
         </h2>
-        <p className="mt-2 font-semibold italic">
-          By {story.author || "an aspiring individual"}
-        </p>
-        <p>{story.description}</p>
+        <div className="flex w-full flex-col items-center gap-2 border-3 border-t-0 border-[#0a122a] px-2 pt-2 pb-4">
+          <p className="mt-2 font-semibold italic">
+            By {story.author || "an aspiring individual"}
+          </p>
+          <p>{story.description}</p>
+        </div>
       </div>
       {story.showProgress && totalScenes > 0 && currentSceneIndex >= 0 && (
         <div
@@ -158,7 +160,7 @@ export default function StoryPlayer() {
       )}
 
       {/* Text */}
-      <div className="m-2 mt-0 flex min-h-72 w-full max-w-[1024px] flex-col items-center justify-center border-4 border-[#669bbc] bg-[#fdf0d5] p-2 text-[#003049]">
+      <div className="m-2 mt-0 flex min-h-72 w-full max-w-[1024px] flex-col items-center justify-center border-3 border-[#669bbc] bg-[#fdf0d5] p-2 text-[#003049]">
         {currentNode.text.split(/\n{2,}/).map((paragraph, pIndex) => (
           <p key={pIndex}>
             {paragraph.split(/\n/).map((line, lIndex) => (
