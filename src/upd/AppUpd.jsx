@@ -9,12 +9,12 @@ import Footer from "./upd/FooterUpd";
 /*
 
   Colors:
-  #780000 - dark red
-  #c1121f - red
   #fdf0d5 - soft white
-  #0a122a - dark blue
-  #003049 - deep blue
+  #c1121f - red
+  #780000 - dark red
   #669bbc - light blue
+  #003049 - deep blue
+  #0a122a - dark blue
 
 */
 

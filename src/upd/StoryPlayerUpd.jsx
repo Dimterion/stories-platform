@@ -141,7 +141,7 @@ export default function StoryPlayer() {
     <section className="mx-auto flex max-w-[1440px] flex-col items-center gap-2 p-2">
       {/* Title/author/description */}
       <div className="flex w-full max-w-[1024px] flex-col items-center gap-1 border-3 border-[#0a122a] bg-[#fdf0d5] p-1 text-[#0a122a]">
-        <h2 className="w-full border-3 border-[#0a122a] bg-[#669bbc] text-center text-2xl font-bold text-[#fdf0d5]">
+        <h2 className="w-full border-3 border-[#0a122a] bg-[#0a122a] text-center text-2xl font-bold text-[#fdf0d5]">
           {story.title || "Untitled Story"}
         </h2>
         <div className="flex w-full flex-col items-center border-3 border-[#0a122a] p-1">
@@ -186,7 +186,7 @@ export default function StoryPlayer() {
                 return newHistory;
               });
             }}
-            className="w-full cursor-pointer border-3 border-[#0a122a] p-1 transition duration-200 hover:bg-[#669bbc] hover:text-[#fdf0d5]"
+            className="w-full cursor-pointer border-3 border-[#0a122a] bg-[#c1121f] p-1 text-[#fdf0d5] transition duration-200 hover:bg-[#780000]"
           >
             Back
           </button>
@@ -200,16 +200,21 @@ export default function StoryPlayer() {
                 setCurrentNodeId(option.next);
               }}
               aria-label="Option"
-              className="w-full cursor-pointer border-3 border-[#0a122a] p-1 transition duration-200 hover:bg-[#669bbc] hover:text-[#fdf0d5]"
+              className="w-full cursor-pointer border-3 border-[#0a122a] bg-[#669bbc] p-1 text-[#fdf0d5] transition duration-200 hover:bg-[#003049]"
             >
               {option.text}
             </button>
           ))
         ) : (
-          <div>
-            <p>The End</p>
-            <button onClick={restart}>Restart Story</button>
-          </div>
+          <>
+            <p className="m-5 text-center text-xl font-bold">The End</p>
+            <button
+              onClick={restart}
+              className="w-full cursor-pointer border-3 border-[#0a122a] bg-[#669bbc] p-1 text-[#fdf0d5] transition duration-200 hover:bg-[#003049]"
+            >
+              Restart Story
+            </button>
+          </>
         )}
       </div>
 
