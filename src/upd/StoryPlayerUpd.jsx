@@ -152,11 +152,14 @@ export default function StoryPlayer() {
         </div>
       </div>
       {story.showProgress && totalScenes > 0 && currentSceneIndex >= 0 && (
-        <div
-          style={{
-            width: `${((currentSceneIndex + 1) / totalScenes) * 100}%`,
-          }}
-        ></div>
+        <div className="mx-auto h-2 w-2/3 bg-[#fdf0d5]">
+          <div
+            className="h-2 bg-[#669bbc] transition-all duration-500"
+            style={{
+              width: `${((currentSceneIndex + 1) / totalScenes) * 100}%`,
+            }}
+          ></div>
+        </div>
       )}
 
       {/* Text */}
@@ -207,7 +210,9 @@ export default function StoryPlayer() {
           ))
         ) : (
           <>
-            <p className="m-5 text-center text-xl font-bold">The End</p>
+            <h3 className="w-full border-3 border-[#0a122a] bg-[#0a122a] text-center text-xl font-bold text-[#fdf0d5]">
+              The End
+            </h3>
             <button
               onClick={restart}
               className="w-full cursor-pointer border-3 border-[#0a122a] bg-[#669bbc] p-1 text-[#fdf0d5] transition duration-200 hover:bg-[#003049]"
