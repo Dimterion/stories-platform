@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
+import { ArrowBigLeft, RotateCcw } from "lucide-react";
 import { validateStoryJson } from "../utils/storyUtils";
 import sampleStory from "../assets/sampleStory";
 
@@ -141,7 +142,7 @@ export default function StoryPlayer() {
     <section className="mx-auto flex max-w-[1440px] flex-col items-center gap-2 p-2">
       {/* Title/author/description */}
       <div className="flex w-full max-w-[1024px] flex-col items-center gap-1 border-3 border-[#0a122a] bg-[#fdf0d5] p-1 text-[#0a122a]">
-        <h2 className="w-full border-3 border-[#0a122a] bg-[#0a122a] text-center text-2xl font-bold text-[#fdf0d5]">
+        <h2 className="w-full border-3 border-[#0a122a] bg-[#0a122a] p-1 text-center text-2xl font-bold text-[#fdf0d5]">
           {story.title || "Untitled Story"}
         </h2>
         <div className="flex w-full flex-col items-center border-3 border-[#0a122a] p-1">
@@ -152,18 +153,20 @@ export default function StoryPlayer() {
         </div>
       </div>
       {story.showProgress && totalScenes > 0 && currentSceneIndex >= 0 && (
-        <div className="mx-auto h-2 w-2/3 bg-[#fdf0d5]">
-          <div
-            className="h-2 bg-[#669bbc] transition-all duration-500"
-            style={{
-              width: `${((currentSceneIndex + 1) / totalScenes) * 100}%`,
-            }}
-          ></div>
+        <div className="w-full max-w-[1024px] border-3 border-[#0a122a]">
+          <div className="mx-auto h-3 w-full bg-[#fdf0d5]">
+            <div
+              className="h-3 bg-[#669bbc] transition-all duration-500"
+              style={{
+                width: `${((currentSceneIndex + 1) / totalScenes) * 100}%`,
+              }}
+            ></div>
+          </div>
         </div>
       )}
 
       {/* Text */}
-      <div className="flex min-h-72 w-full max-w-[1024px] flex-col items-center justify-center border-3 border-[#0a122a] bg-[#fdf0d5] text-[#0a122a]">
+      <div className="flex min-h-72 w-full max-w-[1024px] flex-col items-center justify-center border-3 border-[#0a122a] bg-[#fdf0d5] p-1 text-[#0a122a]">
         {currentNode.text.split(/\n{2,}/).map((paragraph, pIndex) => (
           <p key={pIndex}>
             {paragraph.split(/\n/).map((line, lIndex) => (
@@ -189,8 +192,9 @@ export default function StoryPlayer() {
                 return newHistory;
               });
             }}
-            className="w-full cursor-pointer border-3 border-[#0a122a] bg-[#c1121f] p-1 text-[#fdf0d5] transition duration-200 hover:bg-[#780000]"
+            className="inline-flex w-full cursor-pointer justify-center gap-1 border-3 border-[#0a122a] bg-[#c1121f] p-1 text-[#fdf0d5] transition duration-200 hover:bg-[#780000]"
           >
+            <ArrowBigLeft />
             Back
           </button>
         )}
@@ -210,14 +214,15 @@ export default function StoryPlayer() {
           ))
         ) : (
           <>
-            <h3 className="w-full border-3 border-[#0a122a] bg-[#0a122a] text-center text-xl font-bold text-[#fdf0d5]">
+            <h3 className="w-full border-3 border-[#0a122a] bg-[#0a122a] p-1 text-center text-xl font-bold text-[#fdf0d5]">
               The End
             </h3>
             <button
               onClick={restart}
-              className="w-full cursor-pointer border-3 border-[#0a122a] bg-[#669bbc] p-1 text-[#fdf0d5] transition duration-200 hover:bg-[#003049]"
+              className="inline-flex w-full cursor-pointer justify-center gap-1 border-3 border-[#0a122a] bg-[#669bbc] p-1 text-[#fdf0d5] transition duration-200 hover:bg-[#003049]"
             >
-              Restart Story
+              <RotateCcw />
+              Restart
             </button>
           </>
         )}
