@@ -139,7 +139,7 @@ export default function StoryPlayer() {
   const totalScenes = orderedNodeIds.length;
 
   return (
-    <section className="mx-auto flex max-w-[1440px] flex-col items-center gap-2 p-2">
+    <section className="mx-auto flex max-w-[1440px] flex-col items-center gap-2 p-2 sm:p-10">
       {/* Title/author/description */}
       <div className="flex w-full max-w-[1024px] flex-col items-center gap-1 border-3 border-[#0a122a] bg-[#fdf0d5] p-1 text-[#0a122a]">
         <h2 className="w-full border-3 border-[#0a122a] bg-[#0a122a] p-1 text-center text-2xl font-bold text-[#fdf0d5]">
@@ -229,7 +229,7 @@ export default function StoryPlayer() {
       </div>
 
       {/* Upload new story */}
-      <div>
+      <div className="flex w-full max-w-[1024px] flex-col items-center space-y-2 border-3 border-[#0a122a] bg-[#fdf0d5] p-2 text-center text-[#0a122a]">
         <label>Load another story (JSON file):</label>
 
         <div>
@@ -243,7 +243,10 @@ export default function StoryPlayer() {
           />
 
           {/* Custom upload button */}
-          <button onClick={() => fileInputRef.current?.click()}>
+          <button
+            onClick={() => fileInputRef.current?.click()}
+            className="w-full cursor-pointer border-3 border-[#0a122a] bg-[#669bbc] p-1 text-[#fdf0d5] transition duration-200 hover:bg-[#003049]"
+          >
             Choose File
           </button>
 
@@ -252,7 +255,12 @@ export default function StoryPlayer() {
         </div>
       </div>
 
-      <button onClick={resetProgress}>Clear Save & Reset Progress</button>
+      <button
+        onClick={resetProgress}
+        className="inline-flex w-full max-w-[1024px] cursor-pointer justify-center gap-1 border-3 border-[#0a122a] bg-[#c1121f] p-1 text-[#fdf0d5] transition duration-200 hover:bg-[#780000]"
+      >
+        Clear Save & Reset Progress
+      </button>
     </section>
   );
 }

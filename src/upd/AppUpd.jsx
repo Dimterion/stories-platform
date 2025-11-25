@@ -26,11 +26,11 @@ export default function App() {
       <Toaster position="top-right" richColors closeButton />
       <Header activeTab={activeTab} setActiveTab={setActiveTab} />
       {/* Main Content */}
-      <main className="flex-1">
+      <main className="flex-1 border-x-4 border-[#0a122a]">
         {activeTab === "play" && (
           <>
             <MetaUpdater
-              title="Play Stories | Interactive Stories Platform"
+              title="Play | Interactive Stories Platform"
               description="Experience interactive stories with multiple choices and outcomes."
             />
             <StoryPlayer />
@@ -39,7 +39,7 @@ export default function App() {
         {activeTab === "create" && (
           <>
             <MetaUpdater
-              title="Create Stories | Interactive Stories Platform"
+              title="Create | Interactive Stories Platform"
               description="Create your own interactive stories with multiple choices and outcomes."
             />
             <StoryEditor />

@@ -10,7 +10,7 @@ export default function NavBtn({
     <button
       onClick={() => setActiveTab(tab)}
       aria-label={`${label} tab`}
-      className={`flex cursor-pointer flex-nowrap items-center gap-1 text-sm sm:text-base ${activeTab === tab ? activeColor : "text-[#fdf0d5] hover:opacity-90"}`}
+      className={`font-scienceGothic flex cursor-pointer flex-nowrap items-center gap-1 text-sm uppercase ${activeTab === tab ? activeColor : "text-[#fdf0d5] hover:opacity-90"}`}
     >
       {icon}
       {label}
