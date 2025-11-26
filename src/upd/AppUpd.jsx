@@ -22,7 +22,7 @@ export default function App() {
   const [activeTab, setActiveTab] = useState("play");
 
   return (
-    <div className="flex min-h-screen flex-col bg-[#003049] text-[#fdf0d5]">
+    <div className="font-scienceGothic flex min-h-screen flex-col bg-[#003049] text-[#fdf0d5]">
       <Toaster position="top-right" richColors closeButton />
       <Header activeTab={activeTab} setActiveTab={setActiveTab} />
       {/* Main Content */}

@@ -145,11 +145,11 @@ export default function StoryPlayer() {
         <h2 className="w-full border-3 border-[#0a122a] bg-[#0a122a] p-1 text-center text-2xl font-bold text-[#fdf0d5]">
           {story.title || "Untitled Story"}
         </h2>
-        <div className="flex w-full flex-col items-center border-3 border-[#0a122a] p-1">
+        <div className="flex w-full flex-col items-center border-3 border-[#0a122a] px-4 py-1">
           <p className="font-semibold italic">
             By {story.author || "an aspiring individual"}
           </p>
-          <p>{story.description}</p>
+          <p className="max-w-prose">{story.description}</p>
         </div>
       </div>
       {story.showProgress && totalScenes > 0 && currentSceneIndex >= 0 && (
@@ -166,17 +166,19 @@ export default function StoryPlayer() {
       )}
 
       {/* Text */}
-      <div className="flex min-h-72 w-full max-w-[1024px] flex-col items-center justify-center border-3 border-[#0a122a] bg-[#fdf0d5] p-1 text-[#0a122a]">
-        {currentNode.text.split(/\n{2,}/).map((paragraph, pIndex) => (
-          <p key={pIndex}>
-            {paragraph.split(/\n/).map((line, lIndex) => (
-              <span key={lIndex}>
-                {line}
-                {lIndex < paragraph.split(/\n/).length - 1 && <br />}
-              </span>
-            ))}
-          </p>
-        ))}
+      <div className="flex min-h-72 w-full max-w-[1024px] flex-col items-center justify-center border-3 border-[#0a122a] bg-[#fdf0d5] p-4 text-[#0a122a]">
+        <div className="max-w-prose">
+          {currentNode.text.split(/\n{2,}/).map((paragraph, pIndex) => (
+            <p key={pIndex}>
+              {paragraph.split(/\n/).map((line, lIndex) => (
+                <span key={lIndex}>
+                  {line}
+                  {lIndex < paragraph.split(/\n/).length - 1 && <br />}
+                </span>
+              ))}
+            </p>
+          ))}
+        </div>
       </div>
 
       {/* Options */}
