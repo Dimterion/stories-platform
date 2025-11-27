@@ -183,23 +183,6 @@ export default function StoryPlayer() {
 
       {/* Options */}
       <div className="w-full max-w-[1024px] space-y-2 border-3 border-[#0a122a] bg-[#fdf0d5] p-2 text-[#0a122a]">
-        {story.allowBackNavigation && history.length > 1 && (
-          <button
-            onClick={() => {
-              setHistory((prev) => {
-                const newHistory = [...prev];
-                newHistory.pop();
-                const previousNode = newHistory[newHistory.length - 1];
-                setCurrentNodeId(previousNode);
-                return newHistory;
-              });
-            }}
-            className="inline-flex w-full cursor-pointer justify-center gap-1 border-3 border-[#0a122a] bg-[#c1121f] p-1 text-[#fdf0d5] transition duration-200 hover:bg-[#780000]"
-          >
-            <ArrowBigLeft />
-            Back
-          </button>
-        )}
         {currentNode.options.length > 0 ? (
           currentNode.options.map((option, index) => (
             <button
@@ -228,11 +211,28 @@ export default function StoryPlayer() {
             </button>
           </>
         )}
+        {story.allowBackNavigation && history.length > 1 && (
+          <button
+            onClick={() => {
+              setHistory((prev) => {
+                const newHistory = [...prev];
+                newHistory.pop();
+                const previousNode = newHistory[newHistory.length - 1];
+                setCurrentNodeId(previousNode);
+                return newHistory;
+              });
+            }}
+            className="inline-flex w-full cursor-pointer justify-center gap-1 border-3 border-[#0a122a] bg-[#2a9d8f] p-1 text-[#fdf0d5] transition duration-200 hover:bg-[#006d77]"
+          >
+            <ArrowBigLeft />
+            Back
+          </button>
+        )}
       </div>
 
       {/* Upload new story */}
       <div className="flex w-full max-w-[1024px] flex-col items-center space-y-2 border-3 border-[#0a122a] bg-[#fdf0d5] p-2 text-center text-[#0a122a]">
-        <label>Load another story (JSON file):</label>
+        <label>File Upload (JSON format):</label>
 
         <div>
           {/* Hidden file input */}
