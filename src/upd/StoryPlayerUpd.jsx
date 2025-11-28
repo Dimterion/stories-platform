@@ -100,7 +100,17 @@ export default function StoryPlayer() {
           }),
         );
 
-        toast.success("Story imported successfully.");
+        toast.success("Story imported successfully.", {
+          style: {
+            background: "#003049",
+            border: "2px solid #0a122a",
+            borderRadius: "0",
+            color: "#fdf0d5",
+          },
+          classNames: {
+            closeButton: "!bg-[#003049] !border-[#0a122a] !text-[#fdf0d5]",
+          },
+        });
 
         if (fileInputRef.current) fileInputRef.current.value = "";
       } catch (err) {
@@ -130,7 +140,17 @@ export default function StoryPlayer() {
     setHistory([startNode]);
     setFileName(null);
     if (fileInputRef.current) fileInputRef.current.value = "";
-    toast.success("Progress reset. Sample story reloaded.");
+    toast.success("Progress reset. Sample story reloaded.", {
+      style: {
+        background: "#003049",
+        border: "2px solid #0a122a",
+        borderRadius: "0",
+        color: "#fdf0d5",
+      },
+      classNames: {
+        closeButton: "!bg-[#003049] !border-[#0a122a] !text-[#fdf0d5]",
+      },
+    });
   };
 
   const currentNode = story.nodes[currentNodeId] || { text: "", options: [] };
