@@ -76,7 +76,18 @@ export default function StoryPlayer() {
         const validation = validateStoryJson(json);
 
         if (!validation.valid) {
-          toast.error(validation.error);
+          toast.error(validation.error, {
+            style: {
+              background: "#003049",
+              border: "2px solid #fdf0d5",
+              borderRadius: "0",
+              color: "#fdf0d5",
+            },
+            classNames: {
+              closeButton:
+                "!bg-[#003049] !border-[#fdf0d5] !border-2 !text-[#fdf0d5] !rounded-none",
+            },
+          });
 
           return;
         }
@@ -103,12 +114,13 @@ export default function StoryPlayer() {
         toast.success("Story imported successfully.", {
           style: {
             background: "#003049",
-            border: "2px solid #0a122a",
+            border: "2px solid #fdf0d5",
             borderRadius: "0",
             color: "#fdf0d5",
           },
           classNames: {
-            closeButton: "!bg-[#003049] !border-[#0a122a] !text-[#fdf0d5]",
+            closeButton:
+              "!bg-[#003049] !border-[#fdf0d5] !border-2 !text-[#fdf0d5] !rounded-none",
           },
         });
 
@@ -116,6 +128,18 @@ export default function StoryPlayer() {
       } catch (err) {
         toast.error(
           `Error: invalid story file. Please choose a JSON-file. More info: ${err}`,
+          {
+            style: {
+              background: "#003049",
+              border: "2px solid #fdf0d5",
+              borderRadius: "0",
+              color: "#fdf0d5",
+            },
+            classNames: {
+              closeButton:
+                "!bg-[#003049] !border-[#fdf0d5] !border-2 !text-[#fdf0d5] !rounded-none",
+            },
+          },
         );
       }
     };
@@ -143,12 +167,13 @@ export default function StoryPlayer() {
     toast.success("Progress reset. Sample story reloaded.", {
       style: {
         background: "#003049",
-        border: "2px solid #0a122a",
+        border: "2px solid #fdf0d5",
         borderRadius: "0",
         color: "#fdf0d5",
       },
       classNames: {
-        closeButton: "!bg-[#003049] !border-[#0a122a] !text-[#fdf0d5]",
+        closeButton:
+          "!bg-[#003049] !border-[#fdf0d5] !border-2 !text-[#fdf0d5] !rounded-none",
       },
     });
   };
