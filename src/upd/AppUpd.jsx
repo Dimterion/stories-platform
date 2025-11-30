@@ -3,7 +3,7 @@ import { Toaster } from "sonner";
 import Header from "./upd/HeaderUpd";
 import MetaUpdater from "./components/MetaUpdater";
 import StoryPlayer from "./upd/StoryPlayerUpd";
-import StoryEditor from "./components/StoryEditor/StoryEditor";
+import StoryEditor from "./upd/StoryEditorUpd";
 import Footer from "./upd/FooterUpd";
 
 /*
