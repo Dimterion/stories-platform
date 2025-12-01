@@ -110,7 +110,18 @@ export default function StoryEditor() {
     setAllowBackNavigation(false);
     setSelectedNode(firstId);
 
-    toast.success("Local save cleared and editor reset.");
+    toast.success("Local save cleared and editor reset.", {
+      style: {
+        background: "#003049",
+        border: "2px solid #fdf0d5",
+        borderRadius: "0",
+        color: "#fdf0d5",
+      },
+      classNames: {
+        closeButton:
+          "!bg-[#003049] !border-[#fdf0d5] !border-2 !text-[#fdf0d5] !rounded-none",
+      },
+    });
   };
 
   const orderedNodeIds = useMemo(() => {
@@ -190,9 +201,17 @@ export default function StoryEditor() {
         label: "Undo",
         onClick: () => setNodes(oldNodes),
       },
+      style: {
+        background: "#003049",
+        border: "2px solid #fdf0d5",
+        borderRadius: "0",
+        color: "#fdf0d5",
+      },
       classNames: {
         actionButton:
-          "!bg-blue-500 !text-white px-4 py-1 rounded hover:!bg-blue-600 transition-colors",
+          "!bg-[#fdf0d5] !text-[#0a122a] px-4 py-1 !rounded-none hover:!bg-[#0a122a] hover:!text-[#fdf0d5] transition-colors",
+        closeButton:
+          "!bg-[#003049] !border-[#fdf0d5] !border-2 !text-[#fdf0d5] !rounded-none",
       },
     });
   };
@@ -200,7 +219,18 @@ export default function StoryEditor() {
   // Delete a whole node
   const deleteNode = (nodeId) => {
     if (nodeId === start) {
-      toast.error("You can’t delete the start node.");
+      toast.error("You can’t delete the start node.", {
+        style: {
+          background: "#003049",
+          border: "2px solid #fdf0d5",
+          borderRadius: "0",
+          color: "#fdf0d5",
+        },
+        classNames: {
+          closeButton:
+            "!bg-[#003049] !border-[#fdf0d5] !border-2 !text-[#fdf0d5] !rounded-none",
+        },
+      });
 
       return;
     }
@@ -235,16 +265,35 @@ export default function StoryEditor() {
         label: "Undo",
         onClick: () => setNodes(oldNodes),
       },
+      style: {
+        background: "#003049",
+        border: "2px solid #fdf0d5",
+        borderRadius: "0",
+        color: "#fdf0d5",
+      },
       classNames: {
         actionButton:
-          "!bg-blue-500 !text-white px-4 py-1 rounded hover:!bg-blue-600 transition-colors",
+          "!bg-[#fdf0d5] !text-[#0a122a] px-4 py-1 !rounded-none hover:!bg-[#0a122a] hover:!text-[#fdf0d5] transition-colors",
+        closeButton:
+          "!bg-[#003049] !border-[#fdf0d5] !border-2 !text-[#fdf0d5] !rounded-none",
       },
     });
   };
 
   const setAsStartNode = (nodeId) => {
     setStart(nodeId);
-    toast.success(`${getNodeLabel(nodeId)} set as start node.`);
+    toast.success(`${getNodeLabel(nodeId)} set as start node.`, {
+      style: {
+        background: "#003049",
+        border: "2px solid #fdf0d5",
+        borderRadius: "0",
+        color: "#fdf0d5",
+      },
+      classNames: {
+        closeButton:
+          "!bg-[#003049] !border-[#fdf0d5] !border-2 !text-[#fdf0d5] !rounded-none",
+      },
+    });
   };
 
   const exportStory = () => {
@@ -284,6 +333,18 @@ export default function StoryEditor() {
     if (hasUnlinked) {
       toast.error(
         "Some options are not connected to nodes. Please fix or delete them before exporting.",
+        {
+          style: {
+            background: "#003049",
+            border: "2px solid #fdf0d5",
+            borderRadius: "0",
+            color: "#fdf0d5",
+          },
+          classNames: {
+            closeButton:
+              "!bg-[#003049] !border-[#fdf0d5] !border-2 !text-[#fdf0d5] !rounded-none",
+          },
+        },
       );
       return;
     }
@@ -303,7 +364,18 @@ export default function StoryEditor() {
     link.href = url;
     link.click();
 
-    toast.success("Story exported successfully.");
+    toast.success("Story exported successfully.", {
+      style: {
+        background: "#003049",
+        border: "2px solid #fdf0d5",
+        borderRadius: "0",
+        color: "#fdf0d5",
+      },
+      classNames: {
+        closeButton:
+          "!bg-[#003049] !border-[#fdf0d5] !border-2 !text-[#fdf0d5] !rounded-none",
+      },
+    });
   };
 
   const exportStandaloneHTML = () => {
@@ -343,6 +415,18 @@ export default function StoryEditor() {
     if (hasUnlinked) {
       toast.error(
         "Some options are not connected to nodes. Please fix or delete them before exporting.",
+        {
+          style: {
+            background: "#003049",
+            border: "2px solid #fdf0d5",
+            borderRadius: "0",
+            color: "#fdf0d5",
+          },
+          classNames: {
+            closeButton:
+              "!bg-[#003049] !border-[#fdf0d5] !border-2 !text-[#fdf0d5] !rounded-none",
+          },
+        },
       );
 
       return;
@@ -356,7 +440,18 @@ export default function StoryEditor() {
 
     downloadFile(html, `${safeTitle}.html`);
 
-    toast.success("HTML file exported successfully.");
+    toast.success("HTML file exported successfully.", {
+      style: {
+        background: "#003049",
+        border: "2px solid #fdf0d5",
+        borderRadius: "0",
+        color: "#fdf0d5",
+      },
+      classNames: {
+        closeButton:
+          "!bg-[#003049] !border-[#fdf0d5] !border-2 !text-[#fdf0d5] !rounded-none",
+      },
+    });
   };
 
   const importStory = (event) => {
@@ -365,7 +460,18 @@ export default function StoryEditor() {
     if (!file) return;
 
     if (file.size > 5 * 1024 * 1024) {
-      toast.error("File too large. Please upload a story smaller than 5MB.");
+      toast.error("File too large. Please upload a story smaller than 5MB.", {
+        style: {
+          background: "#003049",
+          border: "2px solid #fdf0d5",
+          borderRadius: "0",
+          color: "#fdf0d5",
+        },
+        classNames: {
+          closeButton:
+            "!bg-[#003049] !border-[#fdf0d5] !border-2 !text-[#fdf0d5] !rounded-none",
+        },
+      });
 
       return;
     }
@@ -378,7 +484,18 @@ export default function StoryEditor() {
         const validation = validateStoryJson(data);
 
         if (!validation.valid) {
-          toast.error(validation.error);
+          toast.error(validation.error, {
+            style: {
+              background: "#003049",
+              border: "2px solid #fdf0d5",
+              borderRadius: "0",
+              color: "#fdf0d5",
+            },
+            classNames: {
+              closeButton:
+                "!bg-[#003049] !border-[#fdf0d5] !border-2 !text-[#fdf0d5] !rounded-none",
+            },
+          });
 
           return;
         }
@@ -416,11 +533,33 @@ export default function StoryEditor() {
         setNodes(rebuiltNodes);
         setSelectedNode(validStart);
 
-        toast.success("Story imported successfully.");
+        toast.success("Story imported successfully.", {
+          style: {
+            background: "#003049",
+            border: "2px solid #fdf0d5",
+            borderRadius: "0",
+            color: "#fdf0d5",
+          },
+          classNames: {
+            closeButton:
+              "!bg-[#003049] !border-[#fdf0d5] !border-2 !text-[#fdf0d5] !rounded-none",
+          },
+        });
       } catch (err) {
         console.error(err);
 
-        toast.error("Error reading story file.");
+        toast.error("Error reading story file.", {
+          style: {
+            background: "#003049",
+            border: "2px solid #fdf0d5",
+            borderRadius: "0",
+            color: "#fdf0d5",
+          },
+          classNames: {
+            closeButton:
+              "!bg-[#003049] !border-[#fdf0d5] !border-2 !text-[#fdf0d5] !rounded-none",
+          },
+        });
       } finally {
         event.target.value = "";
       }
@@ -457,7 +596,7 @@ export default function StoryEditor() {
       {/* Sidebar toggle button */}
       <button
         onClick={() => setSidebarVisible(!sidebarVisible)}
-        className={`absolute ${sidebarVisible ? "top-1 left-16 sm:top-3 sm:left-20" : "top-2 left-34 sm:top-5 sm:left-36"} h-fit w-fit cursor-pointer rounded bg-gray-700 p-2 hover:bg-gray-600`}
+        className={`absolute ${sidebarVisible ? "top-1 left-16 sm:top-3 sm:left-20" : "top-2 left-34 sm:top-5 sm:left-36"} h-fit w-fit cursor-pointer bg-gray-700 p-2 hover:bg-gray-600`}
         aria-label="Toggle sidebar"
       >
         {sidebarVisible ? (
