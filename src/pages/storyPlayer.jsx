@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { toast } from "sonner";
+import { Toaster, toast } from "sonner";
 import { ArrowBigLeft, RotateCcw } from "lucide-react";
 import { validateStoryJson } from "../utils/storyUtils";
 import sampleStory from "../assets/sampleStory";
@@ -184,130 +184,133 @@ export default function StoryPlayerPage() {
   const totalScenes = orderedNodeIds.length;
 
   return (
-    <section className="flex flex-col items-center justify-center p-4 sm:p-6">
-      {/* Title/author/description */}
-      <div className="flex w-full max-w-[1024px] flex-col items-center gap-1 border-3 border-[#0a122a] bg-[#fdf0d5] p-1 text-[#0a122a]">
-        <h2 className="w-full border-3 border-[#0a122a] bg-[#0a122a] p-1 text-center text-2xl font-bold text-[#fdf0d5]">
-          {story.title || "Untitled Story"}
-        </h2>
-        <div className="flex w-full flex-col items-center border-3 border-[#0a122a] px-4 py-1">
-          <p className="font-semibold italic">
-            By {story.author || "an aspiring individual"}
-          </p>
-          <p className="max-w-prose">{story.description}</p>
-        </div>
-      </div>
-      {story.showProgress && totalScenes > 0 && currentSceneIndex >= 0 && (
-        <div className="w-full max-w-[1024px] border-3 border-[#0a122a]">
-          <div className="mx-auto h-3 w-full bg-[#fdf0d5]">
-            <div
-              className="h-3 bg-[#669bbc] transition-all duration-500"
-              style={{
-                width: `${((currentSceneIndex + 1) / totalScenes) * 100}%`,
-              }}
-            ></div>
+    <>
+      <Toaster position="top-right" richColors closeButton />
+      <section className="flex flex-col items-center justify-center p-4 sm:p-6">
+        {/* Title/author/description */}
+        <div className="flex w-full max-w-[1024px] flex-col items-center gap-1 border-3 border-[#0a122a] bg-[#fdf0d5] p-1 text-[#0a122a]">
+          <h2 className="w-full border-3 border-[#0a122a] bg-[#0a122a] p-1 text-center text-2xl font-bold text-[#fdf0d5]">
+            {story.title || "Untitled Story"}
+          </h2>
+          <div className="flex w-full flex-col items-center border-3 border-[#0a122a] px-4 py-1">
+            <p className="font-semibold italic">
+              By {story.author || "an aspiring individual"}
+            </p>
+            <p className="max-w-prose">{story.description}</p>
           </div>
         </div>
-      )}
+        {story.showProgress && totalScenes > 0 && currentSceneIndex >= 0 && (
+          <div className="w-full max-w-[1024px] border-3 border-[#0a122a]">
+            <div className="mx-auto h-3 w-full bg-[#fdf0d5]">
+              <div
+                className="h-3 bg-[#669bbc] transition-all duration-500"
+                style={{
+                  width: `${((currentSceneIndex + 1) / totalScenes) * 100}%`,
+                }}
+              ></div>
+            </div>
+          </div>
+        )}
 
-      {/* Text */}
-      <div className="flex min-h-72 w-full max-w-[1024px] flex-col items-center justify-center border-3 border-[#0a122a] bg-[#fdf0d5] p-4 text-[#0a122a]">
-        <div className="max-w-prose">
-          {currentNode.text.split(/\n{2,}/).map((paragraph, pIndex) => (
-            <p key={pIndex}>
-              {paragraph.split(/\n/).map((line, lIndex) => (
-                <span key={lIndex}>
-                  {line}
-                  {lIndex < paragraph.split(/\n/).length - 1 && <br />}
-                </span>
-              ))}
-            </p>
-          ))}
+        {/* Text */}
+        <div className="flex min-h-72 w-full max-w-[1024px] flex-col items-center justify-center border-3 border-[#0a122a] bg-[#fdf0d5] p-4 text-[#0a122a]">
+          <div className="max-w-prose">
+            {currentNode.text.split(/\n{2,}/).map((paragraph, pIndex) => (
+              <p key={pIndex}>
+                {paragraph.split(/\n/).map((line, lIndex) => (
+                  <span key={lIndex}>
+                    {line}
+                    {lIndex < paragraph.split(/\n/).length - 1 && <br />}
+                  </span>
+                ))}
+              </p>
+            ))}
+          </div>
         </div>
-      </div>
 
-      {/* Options */}
-      <div className="w-full max-w-[1024px] space-y-2 border-3 border-[#0a122a] bg-[#fdf0d5] p-2 text-[#0a122a]">
-        {currentNode.options.length > 0 ? (
-          currentNode.options.map((option, index) => (
+        {/* Options */}
+        <div className="w-full max-w-[1024px] space-y-2 border-3 border-[#0a122a] bg-[#fdf0d5] p-2 text-[#0a122a]">
+          {currentNode.options.length > 0 ? (
+            currentNode.options.map((option, index) => (
+              <button
+                key={index}
+                onClick={() => {
+                  setHistory((prev) => [...prev, option.next]);
+                  setCurrentNodeId(option.next);
+                }}
+                aria-label="Option"
+                className="w-full cursor-pointer border-3 border-[#0a122a] bg-[#669bbc] p-1 text-[#fdf0d5] transition duration-200 hover:bg-[#003049]"
+              >
+                {option.text}
+              </button>
+            ))
+          ) : (
+            <>
+              <h3 className="w-full border-3 border-[#0a122a] bg-[#0a122a] p-1 text-center text-xl font-bold text-[#fdf0d5]">
+                The End
+              </h3>
+              <button
+                onClick={restart}
+                className="inline-flex w-full cursor-pointer justify-center gap-1 border-3 border-[#0a122a] bg-[#669bbc] p-1 text-[#fdf0d5] transition duration-200 hover:bg-[#003049]"
+              >
+                <RotateCcw />
+                Restart
+              </button>
+            </>
+          )}
+          {story.allowBackNavigation && history.length > 1 && (
             <button
-              key={index}
               onClick={() => {
-                setHistory((prev) => [...prev, option.next]);
-                setCurrentNodeId(option.next);
+                setHistory((prev) => {
+                  const newHistory = [...prev];
+                  newHistory.pop();
+                  const previousNode = newHistory[newHistory.length - 1];
+                  setCurrentNodeId(previousNode);
+                  return newHistory;
+                });
               }}
-              aria-label="Option"
+              className="inline-flex w-full cursor-pointer justify-center gap-1 border-3 border-[#0a122a] bg-[#2a9d8f] p-1 text-[#fdf0d5] transition duration-200 hover:bg-[#006d77]"
+            >
+              <ArrowBigLeft />
+              Back
+            </button>
+          )}
+        </div>
+
+        {/* Upload new story */}
+        <div className="flex w-full max-w-[1024px] flex-col items-center space-y-2 border-3 border-[#0a122a] bg-[#fdf0d5] p-2 text-center text-[#0a122a]">
+          <label>File Upload (JSON format):</label>
+
+          <div>
+            {/* Hidden file input */}
+            <input
+              ref={fileInputRef}
+              type="file"
+              accept="application/json"
+              onChange={handleFileUpload}
+              className="hidden"
+            />
+
+            {/* Custom upload button */}
+            <button
+              onClick={() => fileInputRef.current?.click()}
               className="w-full cursor-pointer border-3 border-[#0a122a] bg-[#669bbc] p-1 text-[#fdf0d5] transition duration-200 hover:bg-[#003049]"
             >
-              {option.text}
+              Choose File
             </button>
-          ))
-        ) : (
-          <>
-            <h3 className="w-full border-3 border-[#0a122a] bg-[#0a122a] p-1 text-center text-xl font-bold text-[#fdf0d5]">
-              The End
-            </h3>
-            <button
-              onClick={restart}
-              className="inline-flex w-full cursor-pointer justify-center gap-1 border-3 border-[#0a122a] bg-[#669bbc] p-1 text-[#fdf0d5] transition duration-200 hover:bg-[#003049]"
-            >
-              <RotateCcw />
-              Restart
-            </button>
-          </>
-        )}
-        {story.allowBackNavigation && history.length > 1 && (
-          <button
-            onClick={() => {
-              setHistory((prev) => {
-                const newHistory = [...prev];
-                newHistory.pop();
-                const previousNode = newHistory[newHistory.length - 1];
-                setCurrentNodeId(previousNode);
-                return newHistory;
-              });
-            }}
-            className="inline-flex w-full cursor-pointer justify-center gap-1 border-3 border-[#0a122a] bg-[#2a9d8f] p-1 text-[#fdf0d5] transition duration-200 hover:bg-[#006d77]"
-          >
-            <ArrowBigLeft />
-            Back
-          </button>
-        )}
-      </div>
 
-      {/* Upload new story */}
-      <div className="flex w-full max-w-[1024px] flex-col items-center space-y-2 border-3 border-[#0a122a] bg-[#fdf0d5] p-2 text-center text-[#0a122a]">
-        <label>File Upload (JSON format):</label>
-
-        <div>
-          {/* Hidden file input */}
-          <input
-            ref={fileInputRef}
-            type="file"
-            accept="application/json"
-            onChange={handleFileUpload}
-            className="hidden"
-          />
-
-          {/* Custom upload button */}
-          <button
-            onClick={() => fileInputRef.current?.click()}
-            className="w-full cursor-pointer border-3 border-[#0a122a] bg-[#669bbc] p-1 text-[#fdf0d5] transition duration-200 hover:bg-[#003049]"
-          >
-            Choose File
-          </button>
-
-          {/* File name display */}
-          <span>{fileName || "No file chosen"}</span>
+            {/* File name display */}
+            <span>{fileName || "No file chosen"}</span>
+          </div>
         </div>
-      </div>
 
-      <button
-        onClick={resetProgress}
-        className="inline-flex w-full max-w-[1024px] cursor-pointer justify-center gap-1 border-3 border-[#0a122a] bg-[#c1121f] p-1 text-[#fdf0d5] transition duration-200 hover:bg-[#780000]"
-      >
-        Clear Save & Reset Progress
-      </button>
-    </section>
+        <button
+          onClick={resetProgress}
+          className="inline-flex w-full max-w-[1024px] cursor-pointer justify-center gap-1 border-3 border-[#0a122a] bg-[#c1121f] p-1 text-[#fdf0d5] transition duration-200 hover:bg-[#780000]"
+        >
+          Clear Save & Reset Progress
+        </button>
+      </section>
+    </>
   );
 }
