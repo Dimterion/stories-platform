@@ -1,6 +1,20 @@
 @import url("https://fonts.googleapis.com/css2?family=Science+Gothic:wght@100..900&display=swap");
 @import "tailwindcss";
 
+/*
+
+  Colors:
+  #fdf0d5 - soft white
+  #c1121f - red
+  #780000 - dark red
+  #669bbc - light blue
+  #003049 - deep blue
+  #0a122a - dark blue
+  #2a9d8f - light green
+  #006d77 - dark green
+
+*/
+
 @theme {
   --font-scienceGothic: "Science Gothic", sans-serif;
 }

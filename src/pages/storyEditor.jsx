@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
-import { Toaster, toast } from "sonner";
+import { toast } from "sonner";
 import { PanelLeftClose, PanelLeftOpen } from "lucide-react";
 import { validateStoryJson } from "../utils/storyUtils";
 import { generateStandaloneStoryHTML } from "../utils/exportStandaloneHTML";
@@ -592,100 +592,97 @@ export default function StoryEditorPage() {
   };
 
   return (
-    <>
-      <Toaster position="top-right" richColors closeButton />
-      <section className="relative flex min-h-screen">
-        {/* Sidebar toggle button */}
-        <button
-          onClick={() => setSidebarVisible(!sidebarVisible)}
-          className={`absolute ${sidebarVisible ? "top-1 left-16 sm:top-3 sm:left-20" : "top-2 left-34 sm:top-5 sm:left-36"} h-fit w-fit cursor-pointer bg-gray-700 p-2 hover:bg-gray-600`}
-          aria-label="Toggle sidebar"
-        >
-          {sidebarVisible ? (
-            <PanelLeftClose className="size-3 sm:size-6" />
-          ) : (
-            <PanelLeftOpen className="size-3 sm:size-6" />
-          )}
-        </button>
-
-        {/* Sidebar: nodes list */}
-        {sidebarVisible && (
-          <Sidebar
-            nodes={nodes}
-            start={start}
-            selectedNode={selectedNode}
-            orderedNodeIds={orderedNodeIds}
-            onSelectNode={setSelectedNode}
-            onAddNode={addNode}
-            onDeleteNode={deleteNode}
-            getNodeLabel={getNodeLabel}
-          />
+    <main className="relative flex min-h-screen">
+      {/* Sidebar toggle button */}
+      <button
+        onClick={() => setSidebarVisible(!sidebarVisible)}
+        className={`absolute ${sidebarVisible ? "top-1 left-16 sm:top-3 sm:left-20" : "top-2 left-34 sm:top-5 sm:left-36"} h-fit w-fit cursor-pointer bg-gray-700 p-2 hover:bg-gray-600`}
+        aria-label="Toggle sidebar"
+      >
+        {sidebarVisible ? (
+          <PanelLeftClose className="size-3 sm:size-6" />
+        ) : (
+          <PanelLeftOpen className="size-3 sm:size-6" />
         )}
+      </button>
 
-        {/* Main editor */}
-        <div className="flex-1 space-y-4 p-2 sm:p-6">
-          <div className="flex flex-col flex-wrap justify-between gap-2 sm:flex-row sm:items-center">
-            <h1 className="text-xl font-bold">Story Editor</h1>
-            {totalScenes > 0 && currentSceneIndex >= 0 && (
-              <p className="text-sm text-gray-400">
-                Scene {currentSceneIndex + 1} of {totalScenes}
-              </p>
-            )}
-            {lastSaved && (
-              <p className="text-sm text-gray-400 italic">
-                Saved to browser local storage {formatTimeAgo(lastSaved)}.
-              </p>
-            )}
-          </div>
+      {/* Sidebar: nodes list */}
+      {sidebarVisible && (
+        <Sidebar
+          nodes={nodes}
+          start={start}
+          selectedNode={selectedNode}
+          orderedNodeIds={orderedNodeIds}
+          onSelectNode={setSelectedNode}
+          onAddNode={addNode}
+          onDeleteNode={deleteNode}
+          getNodeLabel={getNodeLabel}
+        />
+      )}
 
-          {/* Story metadata */}
-          <MetadataForm
-            title={title}
-            author={author}
-            description={description}
-            showProgress={showProgress}
-            allowBackNavigation={allowBackNavigation}
-            onChange={{
-              setTitle,
-              setAuthor,
-              setDescription,
-              setShowProgress,
-              setAllowBackNavigation,
-            }}
-          />
-
-          {/* Node editor */}
-          <NodeEditor
-            selectedNode={selectedNode}
-            start={start}
-            nodes={nodes}
-            orderedNodeIds={orderedNodeIds}
-            getNodeLabel={getNodeLabel}
-            onUpdateText={updateNodeText}
-            onAddOption={addOption}
-            onUpdateOption={updateOption}
-            onDeleteOption={deleteOption}
-            onSetAsStart={setAsStartNode}
-          />
-
-          <Toolbar
-            onExportStory={exportStory}
-            onExportHTML={exportStandaloneHTML}
-            onImportStory={importStory}
-            onShowDiagram={() => setShowDiagram(true)}
-            onClearSave={clearLocalSave}
-          />
-
-          {/* Diagram modal */}
-          {showDiagram && (
-            <StoryDiagram
-              story={{ title, author, description, start, nodes }}
-              onClose={() => setShowDiagram(false)}
-              onSelectNode={handleSelectNodeFromDiagram}
-            />
+      {/* Main editor */}
+      <div className="flex-1 space-y-4 p-2 sm:p-6">
+        <div className="flex flex-col flex-wrap justify-between gap-2 sm:flex-row sm:items-center">
+          <h1 className="text-xl font-bold">Story Editor</h1>
+          {totalScenes > 0 && currentSceneIndex >= 0 && (
+            <p className="text-sm text-gray-400">
+              Scene {currentSceneIndex + 1} of {totalScenes}
+            </p>
+          )}
+          {lastSaved && (
+            <p className="text-sm text-gray-400 italic">
+              Saved to browser local storage {formatTimeAgo(lastSaved)}.
+            </p>
           )}
         </div>
-      </section>
-    </>
+
+        {/* Story metadata */}
+        <MetadataForm
+          title={title}
+          author={author}
+          description={description}
+          showProgress={showProgress}
+          allowBackNavigation={allowBackNavigation}
+          onChange={{
+            setTitle,
+            setAuthor,
+            setDescription,
+            setShowProgress,
+            setAllowBackNavigation,
+          }}
+        />
+
+        {/* Node editor */}
+        <NodeEditor
+          selectedNode={selectedNode}
+          start={start}
+          nodes={nodes}
+          orderedNodeIds={orderedNodeIds}
+          getNodeLabel={getNodeLabel}
+          onUpdateText={updateNodeText}
+          onAddOption={addOption}
+          onUpdateOption={updateOption}
+          onDeleteOption={deleteOption}
+          onSetAsStart={setAsStartNode}
+        />
+
+        <Toolbar
+          onExportStory={exportStory}
+          onExportHTML={exportStandaloneHTML}
+          onImportStory={importStory}
+          onShowDiagram={() => setShowDiagram(true)}
+          onClearSave={clearLocalSave}
+        />
+
+        {/* Diagram modal */}
+        {showDiagram && (
+          <StoryDiagram
+            story={{ title, author, description, start, nodes }}
+            onClose={() => setShowDiagram(false)}
+            onSelectNode={handleSelectNodeFromDiagram}
+          />
+        )}
+      </div>
+    </main>
   );
 }
