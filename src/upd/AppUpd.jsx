@@ -1,6 +1,5 @@
 import { Routes, Route } from "react-router";
 import { Toaster } from "sonner";
-
 import Header from "./upd/HeaderUpd";
 import HomePage from "./pages/home";
 import StoryPlayerPage from "./pages/storyPlayer";
