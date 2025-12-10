@@ -5,7 +5,7 @@ import { PanelLeftClose, PanelLeftOpen } from "lucide-react";
 import { validateStoryJson } from "../utils/storyUtils";
 import { generateStandaloneStoryHTML } from "../utils/exportStandaloneHTML";
 import { downloadFile } from "../utils/downloadFile";
-import Sidebar from "../components/StoryEditor/Sidebar";
+import Sidebar from "../upd/SidebarUpd";
 import MetadataForm from "../components/StoryEditor/MetadataForm";
 import NodeEditor from "../components/StoryEditor/NodeEditor";
 import Toolbar from "../components/StoryEditor/Toolbar";
@@ -596,7 +596,7 @@ export default function StoryEditorPage() {
       {/* Sidebar toggle button */}
       <button
         onClick={() => setSidebarVisible(!sidebarVisible)}
-        className={`absolute ${sidebarVisible ? "top-1 left-16 sm:top-3 sm:left-20" : "top-2 left-34 sm:top-5 sm:left-36"} h-fit w-fit cursor-pointer bg-gray-700 p-2 hover:bg-gray-600`}
+        className={`absolute ${sidebarVisible ? "top-1.5 left-19 sm:top-3.5 sm:left-26" : "top-3 left-41 sm:top-5.5 sm:left-45"} h-fit w-fit cursor-pointer bg-gray-700 p-1 hover:bg-gray-600`}
         aria-label="Toggle sidebar"
       >
         {sidebarVisible ? (
