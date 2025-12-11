@@ -11,8 +11,8 @@ export default function Sidebar({
   sidebarVisible,
 }) {
   return (
-    <section className="w-1/3 space-y-2 bg-gray-800 p-1 sm:w-1/4 sm:p-4">
-      <div className="flex items-center justify-between">
+    <section className="w-1/3 space-y-2 bg-gray-800 p-1 sm:w-1/4">
+      <div className="mb-3 flex items-center justify-between">
         <h2 className="text-sm font-bold sm:text-lg">Scenes</h2>
         <button
           onClick={sidebarVisible}
@@ -26,7 +26,7 @@ export default function Sidebar({
         <div key={id} className="flex items-center gap-2">
           <button
             onClick={() => onSelectNode(id)}
-            className={`inline-flex flex-1 cursor-pointer items-center justify-center px-1 py-1 text-sm sm:gap-2 sm:px-2 sm:text-base ${
+            className={`flex flex-1 cursor-pointer flex-col items-center justify-center px-1 py-1 text-sm sm:flex-row sm:gap-2 sm:px-2 sm:text-base ${
               id === selectedNode
                 ? "bg-blue-600 hover:bg-blue-500"
                 : "bg-gray-700 hover:bg-gray-600"
@@ -48,7 +48,7 @@ export default function Sidebar({
       ))}
       <button
         onClick={onAddNode}
-        className="mt-4 inline-flex w-full cursor-pointer items-center bg-green-600 px-1 py-1 text-sm hover:bg-green-500 sm:gap-2 sm:px-2 sm:text-base"
+        className="mt-1 inline-flex w-full cursor-pointer items-center bg-green-600 px-1 py-1 text-sm hover:bg-green-500 sm:gap-2 sm:px-2 sm:text-base"
       >
         <Plus />
         Add Node
