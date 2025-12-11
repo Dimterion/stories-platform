@@ -1,4 +1,4 @@
-import { Plus, Star, Trash2 } from "lucide-react";
+import { PanelLeftClose, Plus, Star, Trash2 } from "lucide-react";
 
 export default function Sidebar({
   start,
@@ -8,10 +8,20 @@ export default function Sidebar({
   onAddNode,
   onDeleteNode,
   getNodeLabel,
+  sidebarVisible,
 }) {
   return (
     <section className="w-1/3 space-y-2 bg-gray-800 p-1 sm:w-1/4 sm:p-4">
-      <h2 className="mb-6 font-bold sm:text-lg">Scenes</h2>
+      <div className="flex items-center justify-between">
+        <h2 className="text-sm font-bold sm:text-lg">Scenes</h2>
+        <button
+          onClick={sidebarVisible}
+          className="h-fit w-fit cursor-pointer bg-gray-700 p-1 hover:bg-gray-600"
+          aria-label="Toggle sidebar"
+        >
+          <PanelLeftClose className="size-3 sm:size-6" />
+        </button>
+      </div>
       {orderedNodeIds.map((id) => (
         <div key={id} className="flex items-center gap-2">
           <button

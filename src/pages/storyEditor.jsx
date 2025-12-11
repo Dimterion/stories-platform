@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { toast } from "sonner";
-import { PanelLeftClose, PanelLeftOpen } from "lucide-react";
+import { PanelLeftOpen } from "lucide-react";
 import { validateStoryJson } from "../utils/storyUtils";
 import { generateStandaloneStoryHTML } from "../utils/exportStandaloneHTML";
 import { downloadFile } from "../utils/downloadFile";
@@ -593,19 +593,6 @@ export default function StoryEditorPage() {
 
   return (
     <main className="relative flex min-h-screen">
-      {/* Sidebar toggle button */}
-      <button
-        onClick={() => setSidebarVisible(!sidebarVisible)}
-        className={`absolute ${sidebarVisible ? "top-1.5 left-19 sm:top-3.5 sm:left-26" : "top-3 left-41 sm:top-5.5 sm:left-45"} h-fit w-fit cursor-pointer bg-gray-700 p-1 hover:bg-gray-600`}
-        aria-label="Toggle sidebar"
-      >
-        {sidebarVisible ? (
-          <PanelLeftClose className="size-3 sm:size-6" />
-        ) : (
-          <PanelLeftOpen className="size-3 sm:size-6" />
-        )}
-      </button>
-
       {/* Sidebar: nodes list */}
       {sidebarVisible && (
         <Sidebar
@@ -617,13 +604,25 @@ export default function StoryEditorPage() {
           onAddNode={addNode}
           onDeleteNode={deleteNode}
           getNodeLabel={getNodeLabel}
+          sidebarVisible={() => setSidebarVisible(!sidebarVisible)}
         />
       )}
 
       {/* Main editor */}
       <div className="flex-1 space-y-4 p-2 sm:p-6">
         <div className="flex flex-col flex-wrap justify-between gap-2 sm:flex-row sm:items-center">
-          <h1 className="text-xl font-bold">Story Editor</h1>
+          <div className="flex items-center gap-2">
+            {!sidebarVisible && (
+              <button
+                onClick={() => setSidebarVisible(!sidebarVisible)}
+                className="h-fit w-fit cursor-pointer bg-gray-700 p-1 hover:bg-gray-600"
+                aria-label="Toggle sidebar"
+              >
+                <PanelLeftOpen className="size-3 sm:size-6" />
+              </button>
+            )}
+            <h1 className="text-xl font-bold">Story Editor</h1>
+          </div>
           {totalScenes > 0 && currentSceneIndex >= 0 && (
             <p className="text-sm text-gray-400">
               Scene {currentSceneIndex + 1} of {totalScenes}
