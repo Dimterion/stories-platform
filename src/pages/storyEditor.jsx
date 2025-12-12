@@ -9,7 +9,7 @@ import Sidebar from "../upd/SidebarUpd";
 import MetadataForm from "../upd/MetadataFormUpd";
 import NodeEditor from "../upd/NodeEditorUpd";
 import Toolbar from "../upd/ToolbarUpd";
-import StoryDiagram from "../components/StoryDiagram/StoryDiagram";
+import StoryDiagram from "../upd/StoryDiagramUpd";
 
 export default function StoryEditorPage() {
   const STORAGE_KEY = "storyEditorState";
