@@ -6,7 +6,7 @@ import { validateStoryJson } from "../utils/storyUtils";
 import { generateStandaloneStoryHTML } from "../utils/exportStandaloneHTML";
 import { downloadFile } from "../utils/downloadFile";
 import Sidebar from "../upd/SidebarUpd";
-import MetadataForm from "../components/StoryEditor/MetadataForm";
+import MetadataForm from "../upd/MetadataFormUpd";
 import NodeEditor from "../upd/NodeEditorUpd";
 import Toolbar from "../components/StoryEditor/Toolbar";
 import StoryDiagram from "../components/StoryDiagram/StoryDiagram";
