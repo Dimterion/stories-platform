@@ -8,7 +8,7 @@ import { downloadFile } from "../utils/downloadFile";
 import Sidebar from "../upd/SidebarUpd";
 import MetadataForm from "../upd/MetadataFormUpd";
 import NodeEditor from "../upd/NodeEditorUpd";
-import Toolbar from "../components/StoryEditor/Toolbar";
+import Toolbar from "../upd/ToolbarUpd";
 import StoryDiagram from "../components/StoryDiagram/StoryDiagram";
 
 export default function StoryEditorPage() {
