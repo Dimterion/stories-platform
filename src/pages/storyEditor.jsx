@@ -5,10 +5,10 @@ import { PanelLeftOpen } from "lucide-react";
 import { validateStoryJson } from "../utils/storyUtils";
 import { generateStandaloneStoryHTML } from "../utils/exportStandaloneHTML";
 import { downloadFile } from "../utils/downloadFile";
-import Sidebar from "../upd/SidebarUpd";
-import MetadataForm from "../upd/MetadataFormUpd";
-import NodeEditor from "../upd/NodeEditorUpd";
-import Toolbar from "../upd/ToolbarUpd";
+import Sidebar from "../upd/StoryEditorUpd/SidebarUpd";
+import MetadataForm from "../upd/StoryEditorUpd/MetadataFormUpd";
+import NodeEditor from "../upd/StoryEditorUpd/NodeEditorUpd";
+import Toolbar from "../upd/StoryEditorUpd/ToolbarUpd";
 import StoryDiagram from "../upd/StoryDiagramUpd/StoryDiagramUpd";
 
 export default function StoryEditorPage() {
