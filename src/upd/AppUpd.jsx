@@ -1,12 +1,12 @@
 import { Routes, Route } from "react-router";
 import { Toaster } from "sonner";
-import Header from "./upd/HeaderUpd";
+import Header from "./upd/LayoutUpd/HeaderUpd";
 import HomePage from "./pages/home";
 import StoryPlayerPage from "./pages/storyPlayer";
 import StoryEditorPage from "./pages/storyEditor";
 import AboutPage from "./pages/about";
 import NotFoundPage from "./pages/notFound";
-import Footer from "./upd/FooterUpd";
+import Footer from "./upd/LayoutUpd/FooterUpd";
 
 export default function App() {
   return (

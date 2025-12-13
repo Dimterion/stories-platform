@@ -1,5 +1,5 @@
 import { BookOpenCheck, Pencil } from "lucide-react";
-import PageLink from "../components/Layout/PageLink";
+import PageLink from "../../components/Layout/PageLink";
 import { Link } from "react-router";
 
 export default function Header() {
