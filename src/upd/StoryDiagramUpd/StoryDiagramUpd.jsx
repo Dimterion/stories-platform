@@ -20,8 +20,8 @@ import {
   Square,
   X,
 } from "lucide-react";
-import { getLayoutElements } from "../components/StoryDiagram/useDiagramLayout";
-import { getOrderedNodeIds, getNodeLabel } from "../utils/storyUtils";
+import { getLayoutElements } from "../../components/StoryDiagram/useDiagramLayout";
+import { getOrderedNodeIds, getNodeLabel } from "../../utils/storyUtils";
 import {
   NODE_WIDTH,
   NODE_HEIGHT,
@@ -33,7 +33,7 @@ import {
   COLOR_NODE_DEFAULT,
   COLOR_OPTION,
   DEFAULT_LAYOUT_DIRECTION,
-} from "../utils/constants";
+} from "../../utils/constants";
 
 /* Main Story Node */
 function CustomNode({ data }) {
