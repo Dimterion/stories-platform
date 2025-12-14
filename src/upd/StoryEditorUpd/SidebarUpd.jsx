@@ -28,7 +28,7 @@ export default function Sidebar({
             onClick={() => onSelectNode(id)}
             className={`flex flex-1 cursor-pointer flex-col items-center justify-center border-3 border-[#0a122a] px-1 py-1 text-sm sm:flex-row sm:gap-2 sm:px-2 sm:text-base ${
               id === selectedNode
-                ? "bg-blue-600 hover:bg-blue-500"
+                ? "bg-[#669bbc] hover:opacity-90"
                 : "bg-gray-700 hover:bg-gray-600"
             }`}
             aria-label="Open node"

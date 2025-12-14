@@ -304,7 +304,7 @@ export default function StoryPlayerPage() {
 
       <button
         onClick={resetProgress}
-        className="inline-flex w-full max-w-[1024px] cursor-pointer justify-center gap-1 border-3 border-[#0a122a] bg-[#c1121f] p-1 text-[#fdf0d5] transition duration-200 hover:bg-[#780000]"
+        className="inline-flex w-full max-w-[1024px] cursor-pointer justify-center gap-1 border-3 border-[#0a122a] bg-[#c1121f] p-1 text-[#fdf0d5] transition duration-200 hover:opacity-90"
       >
         Clear Save & Reset Progress
       </button>
