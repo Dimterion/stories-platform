@@ -16,7 +16,7 @@ export default function NodeEditor({
   const node = nodes[selectedNode];
 
   return (
-    <div className="bg-gray-800 p-1 sm:p-4">
+    <div className="border-3 border-[#0a122a] bg-gray-800 p-1 sm:p-4">
       <h2 className="mb-2 inline-flex items-center gap-2 font-semibold">
         {selectedNode === start && <Star />}
         Editing {getNodeLabel(selectedNode)}{" "}
@@ -65,7 +65,7 @@ export default function NodeEditor({
             </select>
             <button
               onClick={() => onDeleteOption(selectedNode, i)}
-              className="cursor-pointer border-3 border-[#0a122a] bg-red-500 p-0.5 hover:bg-red-400 sm:p-1"
+              className="cursor-pointer border-3 border-[#0a122a] bg-[#c1121f] p-0.5 hover:opacity-90 sm:p-1"
               title="Delete Option"
               aria-label="Delete option"
             >

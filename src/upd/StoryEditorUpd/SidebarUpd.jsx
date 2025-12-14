@@ -38,7 +38,7 @@ export default function Sidebar({
           </button>
           <button
             onClick={() => onDeleteNode(id)}
-            className="cursor-pointer border-3 border-[#0a122a] bg-red-500 px-1 py-2 hover:bg-red-400 sm:p-1"
+            className="cursor-pointer border-3 border-[#0a122a] bg-[#c1121f] px-1 py-2 hover:opacity-90 sm:p-1"
             title="Delete Node"
             aria-label="Delete node"
           >

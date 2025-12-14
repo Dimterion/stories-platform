@@ -42,7 +42,7 @@ export default function Toolbar({
       </button>
       <button
         onClick={onClearSave}
-        className="inline-flex w-3xs max-w-[55vw] cursor-pointer items-center gap-2 border-3 border-[#0a122a] bg-red-600 px-4 py-2 text-center hover:bg-red-500"
+        className="inline-flex w-3xs max-w-[55vw] cursor-pointer items-center gap-2 border-3 border-[#0a122a] bg-[#c1121f] px-4 py-2 text-center hover:opacity-90"
       >
         <XCircle />
         Clear Save & Reset Editor
