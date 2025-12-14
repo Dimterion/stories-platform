@@ -65,7 +65,7 @@ export default function NodeEditor({
             </select>
             <button
               onClick={() => onDeleteOption(selectedNode, i)}
-              className="cursor-pointer bg-red-500 p-0.5 hover:bg-red-400 sm:p-1"
+              className="cursor-pointer border-3 border-[#0a122a] bg-red-500 p-0.5 hover:bg-red-400 sm:p-1"
               title="Delete Option"
               aria-label="Delete option"
             >
@@ -77,7 +77,7 @@ export default function NodeEditor({
       <div className="mt-2 flex flex-wrap items-center justify-between">
         <button
           onClick={() => onAddOption(selectedNode)}
-          className="my-2 inline-flex w-full cursor-pointer items-center gap-2 bg-blue-600 px-1 py-1 text-sm hover:bg-blue-500 sm:w-fit sm:gap-2 sm:px-2 sm:text-base"
+          className="my-2 inline-flex w-full cursor-pointer items-center gap-2 border-3 border-[#0a122a] bg-blue-600 px-1 py-1 text-sm hover:bg-blue-500 sm:w-fit sm:gap-2 sm:px-2 sm:text-base"
         >
           <Plus />
           Add Option
@@ -85,7 +85,7 @@ export default function NodeEditor({
         <button
           onClick={() => onSetAsStart(selectedNode)}
           disabled={selectedNode === start}
-          className={`my-2 inline-flex w-full items-center gap-2 px-1 py-1 text-sm sm:w-fit sm:gap-2 sm:px-2 sm:text-base ${
+          className={`my-2 inline-flex w-full items-center gap-2 border-3 border-[#0a122a] px-1 py-1 text-sm sm:w-fit sm:gap-2 sm:px-2 sm:text-base ${
             selectedNode === start
               ? "bg-yellow-800 text-gray-300"
               : "cursor-pointer bg-yellow-600 hover:bg-yellow-500"
