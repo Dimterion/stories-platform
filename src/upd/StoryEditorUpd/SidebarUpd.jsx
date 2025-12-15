@@ -13,7 +13,7 @@ export default function Sidebar({
   return (
     <section className="w-1/3 space-y-2 border-r-3 border-[#0a122a] sm:w-1/4">
       <div className="mb-3 flex items-center justify-between">
-        <h2 className="text-sm font-bold sm:text-lg">Scenes</h2>
+        <h2 className="ml-1 text-sm font-bold sm:text-lg">Nodes</h2>
         <button
           onClick={sidebarVisible}
           className="h-fit w-fit cursor-pointer border-b-3 border-l-3 border-[#0a122a] bg-gray-700 p-1 hover:bg-gray-600"
