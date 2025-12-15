@@ -18,12 +18,12 @@ export default function Toolbar({
       </button>
       <button
         onClick={onExportHTML}
-        className="inline-flex w-3xs max-w-[55vw] cursor-pointer items-center gap-2 border-3 border-[#0a122a] bg-[#2a9d8f] px-4 py-2 text-center hover:opacity-90"
+        className="inline-flex w-3xs max-w-[55vw] cursor-pointer items-center gap-2 border-3 border-[#0a122a] bg-[#2a9d8f] px-4 py-2 text-center hover:bg-[#006d77]"
       >
         <FileUp />
         Export Story (HTML file)
       </button>
-      <label className="inline-flex w-3xs max-w-[55vw] cursor-pointer items-center gap-2 border-3 border-[#0a122a] bg-[#006d77] px-4 py-2 text-center hover:opacity-90">
+      <label className="inline-flex w-3xs max-w-[55vw] cursor-pointer items-center gap-2 border-3 border-[#0a122a] bg-[#006d77] px-4 py-2 text-center hover:bg-[#2a9d8f]">
         <FileDown />
         Import Story (JSON file)
         <input
@@ -42,7 +42,7 @@ export default function Toolbar({
       </button>
       <button
         onClick={onClearSave}
-        className="inline-flex w-3xs max-w-[55vw] cursor-pointer items-center gap-2 border-3 border-[#0a122a] bg-[#c1121f] px-4 py-2 text-center hover:opacity-90"
+        className="inline-flex w-3xs max-w-[55vw] cursor-pointer items-center gap-2 border-3 border-[#0a122a] bg-[#c1121f] px-4 py-2 text-center hover:bg-[#d90429]"
       >
         <XCircle />
         Clear Save & Reset Editor

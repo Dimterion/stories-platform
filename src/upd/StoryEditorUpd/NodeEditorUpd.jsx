@@ -65,7 +65,7 @@ export default function NodeEditor({
             </select>
             <button
               onClick={() => onDeleteOption(selectedNode, i)}
-              className="cursor-pointer border-3 border-[#0a122a] bg-[#c1121f] p-0.5 hover:opacity-90 sm:p-1"
+              className="cursor-pointer border-3 border-[#0a122a] bg-[#c1121f] p-0.5 hover:bg-[#d90429] sm:p-1"
               title="Delete Option"
               aria-label="Delete option"
             >
@@ -77,7 +77,7 @@ export default function NodeEditor({
       <div className="mt-2 flex flex-wrap items-center justify-between">
         <button
           onClick={() => onAddOption(selectedNode)}
-          className="my-2 inline-flex w-full cursor-pointer items-center gap-2 border-3 border-[#0a122a] bg-[#669bbc] px-1 py-1 text-sm hover:opacity-90 sm:w-fit sm:gap-2 sm:px-2 sm:text-base"
+          className="my-2 inline-flex w-full cursor-pointer items-center gap-2 border-3 border-[#0a122a] bg-[#669bbc] px-1 py-1 text-sm hover:bg-[#003049] sm:w-fit sm:gap-2 sm:px-2 sm:text-base"
         >
           <Plus />
           Add Option
