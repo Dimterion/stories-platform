@@ -615,7 +615,7 @@ export default function StoryEditorPage() {
             {!sidebarVisible && (
               <button
                 onClick={() => setSidebarVisible(!sidebarVisible)}
-                className="h-fit w-fit cursor-pointer bg-gray-700 p-1 hover:bg-gray-600"
+                className="h-fit w-fit cursor-pointer border-3 border-[#0a122a] bg-gray-700 p-1 hover:bg-gray-600"
                 aria-label="Toggle sidebar"
               >
                 <PanelLeftOpen className="size-3 sm:size-6" />
