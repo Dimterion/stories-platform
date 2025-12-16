@@ -84,7 +84,6 @@ function CustomNode({ data }) {
         style={{
           background: data.bgColor,
           padding: 10,
-          borderRadius: 8,
           color: "white",
           border: "2px solid #333",
           cursor: "pointer",
@@ -109,7 +108,6 @@ function CustomNode({ data }) {
               background: "rgba(31,41,55,0.95)",
               color: "white",
               padding: "8px",
-              borderRadius: 6,
               zIndex: 99999,
               fontSize: 12,
               boxShadow: "0 6px 18px rgba(0,0,0,0.3)",
@@ -135,7 +133,6 @@ function OptionNode({ data }) {
         background: COLOR_OPTION,
         color: "#111",
         padding: "6px 10px",
-        borderRadius: 12,
         border: "2px solid #a16207",
         textAlign: "center",
         fontSize: 12,
@@ -480,13 +477,10 @@ export default function StoryDiagram({ story, onClose, onSelectNode }) {
       className="bg-opacity-70 fixed inset-0 z-50 flex items-center justify-center bg-black"
       onClick={handleOverlayClick}
     >
-      <div
-        className="relative h-4/5 w-4/5 rounded-lg bg-white p-4"
-        ref={diagramRef}
-      >
+      <div className="relative h-4/5 w-4/5 bg-white p-4" ref={diagramRef}>
         <button
           onClick={toggleBtnMenu}
-          className="absolute top-2 right-2 z-50 inline-flex cursor-pointer items-center rounded border border-blue-600 bg-blue-500 p-1 text-white hover:bg-blue-700"
+          className="absolute top-2 right-2 z-50 inline-flex cursor-pointer items-center border border-blue-600 bg-blue-500 p-1 text-white hover:bg-blue-700"
           aria-label="Diagram menu"
         >
           {isBtnMenuOpen ? (
@@ -500,35 +494,35 @@ export default function StoryDiagram({ story, onClose, onSelectNode }) {
           <div className="absolute top-7.5 right-2 z-50 mt-2 flex flex-col space-y-1">
             <button
               onClick={onClose}
-              className="inline-flex cursor-pointer items-center rounded border border-red-600 bg-red-500 p-1 text-xs text-white hover:bg-red-700"
+              className="inline-flex cursor-pointer items-center border border-red-600 bg-red-500 p-1 text-xs text-white hover:bg-red-700"
             >
               <X className="mr-1 size-4" />
               Close
             </button>
             <button
               onClick={resetLayout}
-              className="inline-flex cursor-pointer items-center rounded border border-gray-600 bg-gray-500 p-1 text-xs text-white hover:bg-gray-700"
+              className="inline-flex cursor-pointer items-center border border-gray-600 bg-gray-500 p-1 text-xs text-white hover:bg-gray-700"
             >
               <RefreshCcw className="mr-1 size-4" />
               Reset
             </button>
             <button
               onClick={handleDownloadSvg}
-              className="inline-flex cursor-pointer items-center rounded border border-gray-600 bg-green-500 p-1 text-xs text-white hover:bg-green-700"
+              className="inline-flex cursor-pointer items-center border border-gray-600 bg-green-500 p-1 text-xs text-white hover:bg-green-700"
             >
               <Download className="mr-1 size-4" />
               SVG
             </button>
             <button
               onClick={handleDownloadPng}
-              className="inline-flex cursor-pointer items-center rounded border border-gray-600 bg-blue-500 p-1 text-xs text-white hover:bg-blue-700"
+              className="inline-flex cursor-pointer items-center border border-gray-600 bg-blue-500 p-1 text-xs text-white hover:bg-blue-700"
             >
               <Download className="mr-1 size-4" />
               PNG
             </button>
             <button
               onClick={toggleMiniMap}
-              className="inline-flex cursor-pointer items-center rounded border border-yellow-600 bg-yellow-500 p-1 text-xs text-white hover:bg-yellow-700"
+              className="inline-flex cursor-pointer items-center border border-yellow-600 bg-yellow-500 p-1 text-xs text-white hover:bg-yellow-700"
             >
               <Map className="mr-1 size-4" />
               Map
@@ -537,19 +531,19 @@ export default function StoryDiagram({ story, onClose, onSelectNode }) {
         )}
 
         <aside className="absolute top-2 left-2 z-50 space-y-1 text-xs">
-          <p className="flex items-center justify-center rounded border border-blue-600 bg-blue-500 p-1 text-white">
+          <p className="flex items-center justify-center border border-blue-600 bg-blue-500 p-1 text-white">
             <Play className="mr-1 size-4" /> Start
           </p>
-          <p className="flex items-center justify-center rounded border border-red-600 bg-red-500 p-1 text-white">
+          <p className="flex items-center justify-center border border-red-600 bg-red-500 p-1 text-white">
             <Square className="mr-1 size-4" /> End
           </p>
-          <p className="flex items-center justify-center rounded border border-yellow-600 bg-yellow-400 p-1 text-gray-900">
+          <p className="flex items-center justify-center border border-yellow-600 bg-yellow-400 p-1 text-gray-900">
             <ChevronDown className="mr-1 size-4" /> Option
           </p>
-          <p className="flex items-center justify-center rounded border border-purple-600 bg-purple-500 p-1 text-white">
+          <p className="flex items-center justify-center border border-purple-600 bg-purple-500 p-1 text-white">
             {">"} 1 choice
           </p>
-          <p className="flex items-center justify-center rounded border border-teal-600 bg-teal-500 p-1 text-white">
+          <p className="flex items-center justify-center border border-teal-600 bg-teal-500 p-1 text-white">
             Long Text
           </p>
         </aside>
@@ -580,7 +574,7 @@ export default function StoryDiagram({ story, onClose, onSelectNode }) {
               nodeStrokeWidth={2}
               pannable
               zoomable
-              style={{ background: "#333", borderRadius: 8 }}
+              style={{ background: "#333" }}
             />
           )}
         </ReactFlow>
