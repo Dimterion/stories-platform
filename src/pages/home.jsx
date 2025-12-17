@@ -20,6 +20,12 @@ export default function HomePage() {
           Create Stories
         </Link>
       </section>
+      <Link
+        to="/about"
+        className="mx-auto w-sm max-w-[80vw] border p-2 text-center uppercase hover:bg-[#fdf0d5] hover:text-[#003049]"
+      >
+        About the platform
+      </Link>
     </main>
   );
 }

@@ -18,4 +18,13 @@
 
 @theme {
   --font-scienceGothic: "Science Gothic", sans-serif;
+  --color-softWhite: #fdf0d5;
+  --color-baseRed: #c1121f;
+  --color-lightRed: #d90429;
+  --color-darkRed: #780000;
+  --color-lightBlue: #669bbc;
+  --color-deepBlue: #003049;
+  --color-darkBlue: #0a122a;
+  --color-lightGreen: #2a9d8f;
+  --color-darkGreen: #006d77;
 }
