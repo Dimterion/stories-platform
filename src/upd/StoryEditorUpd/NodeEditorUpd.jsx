@@ -39,7 +39,7 @@ export default function NodeEditor({
           <div key={i} className="flex flex-wrap items-center gap-2 pb-1">
             <input
               name="Option text"
-              className="max-w-[140px] flex-1 border border-[#0a122a] p-0.5 py-1 text-sm text-[#0a122a] sm:max-w-full sm:p-1 sm:text-base"
+              className="max-w-[140px] flex-1 border border-[#0a122a] p-0.5 py-1 text-xs text-[#0a122a] sm:max-w-full sm:p-1 sm:text-base"
               value={opt.text}
               placeholder="New choice"
               onChange={(e) =>
@@ -48,7 +48,7 @@ export default function NodeEditor({
             />
             <select
               name="Next option"
-              className="border border-[#0a122a] p-1 text-sm text-[#0a122a] sm:text-base"
+              className="border border-[#0a122a] p-0.5 text-xs text-[#0a122a] sm:p-1 sm:text-base"
               value={opt.next ?? ""}
               onChange={(e) =>
                 onUpdateOption(selectedNode, i, "next", e.target.value || null)
@@ -73,7 +73,7 @@ export default function NodeEditor({
               title="Delete Option"
               aria-label="Delete option"
             >
-              <Trash2 />
+              <Trash2 className="size-5 sm:size-6" />
             </button>
           </div>
         ))}
