@@ -16,14 +16,14 @@ export default function NodeEditor({
   const node = nodes[selectedNode];
 
   return (
-    <div className="border-3 border-[#0a122a] bg-gray-800 p-1 sm:p-4">
+    <div className="border-3 border-[#0a122a] bg-[#fdf0d5] p-1 text-[#0a122a] sm:p-4">
       <h2 className="mb-2 inline-flex items-center gap-2 font-semibold">
         {selectedNode === start && <Star />}
         Editing {getNodeLabel(selectedNode)}{" "}
         {selectedNode === start && "(start node)"}
       </h2>
       <textarea
-        className="w-full border border-gray-500 p-2 text-white"
+        className="w-full border border-[#0a122a] p-2 text-[#0a122a]"
         rows="3"
         name="Story text"
         placeholder={
@@ -39,7 +39,7 @@ export default function NodeEditor({
           <div key={i} className="flex flex-wrap items-center gap-2 pb-1">
             <input
               name="Option text"
-              className="max-w-[140px] flex-1 border border-gray-500 p-0.5 py-1 text-sm text-white sm:max-w-full sm:p-1 sm:text-base"
+              className="max-w-[140px] flex-1 border border-[#0a122a] p-0.5 py-1 text-sm text-[#0a122a] sm:max-w-full sm:p-1 sm:text-base"
               value={opt.text}
               placeholder="New choice"
               onChange={(e) =>
@@ -48,24 +48,28 @@ export default function NodeEditor({
             />
             <select
               name="Next option"
-              className="border border-gray-500 p-1 text-sm text-white sm:text-base"
+              className="border border-[#0a122a] p-1 text-sm text-[#0a122a] sm:text-base"
               value={opt.next ?? ""}
               onChange={(e) =>
                 onUpdateOption(selectedNode, i, "next", e.target.value || null)
               }
             >
-              <option className="bg-gray-800" value="">
+              <option className="bg-gray-800 text-[#fdf0d5]" value="">
                 Select target
               </option>
               {orderedNodeIds.map((id) => (
-                <option className="bg-gray-800" key={id} value={id}>
+                <option
+                  className="bg-gray-800 text-[#fdf0d5]"
+                  key={id}
+                  value={id}
+                >
                   {getNodeLabel(id)}
                 </option>
               ))}
             </select>
             <button
               onClick={() => onDeleteOption(selectedNode, i)}
-              className="cursor-pointer border-3 border-[#0a122a] bg-[#c1121f] p-0.5 hover:bg-[#d90429] sm:p-1"
+              className="cursor-pointer border-3 border-[#0a122a] bg-[#c1121f] p-0.5 text-[#fdf0d5] hover:bg-[#d90429] sm:p-1"
               title="Delete Option"
               aria-label="Delete option"
             >
@@ -77,7 +81,7 @@ export default function NodeEditor({
       <div className="mt-2 flex flex-wrap items-center justify-between">
         <button
           onClick={() => onAddOption(selectedNode)}
-          className="my-2 inline-flex w-full cursor-pointer items-center gap-2 border-3 border-[#0a122a] bg-[#669bbc] px-1 py-1 text-sm hover:bg-[#003049] sm:w-fit sm:gap-2 sm:px-2 sm:text-base"
+          className="my-2 inline-flex w-full cursor-pointer items-center gap-2 border-3 border-[#0a122a] bg-[#669bbc] px-1 py-1 text-sm text-[#fdf0d5] hover:bg-[#003049] sm:w-fit sm:gap-2 sm:px-2 sm:text-base"
         >
           <Plus />
           Add Option
@@ -87,8 +91,8 @@ export default function NodeEditor({
           disabled={selectedNode === start}
           className={`my-2 inline-flex w-full items-center gap-2 border-3 border-[#0a122a] px-1 py-1 text-sm sm:w-fit sm:gap-2 sm:px-2 sm:text-base ${
             selectedNode === start
-              ? "bg-yellow-800 text-gray-300"
-              : "cursor-pointer bg-yellow-600 hover:bg-yellow-500"
+              ? "bg-yellow-800 text-[#fdf0d5]"
+              : "cursor-pointer bg-yellow-600 text-[#fdf0d5] hover:bg-yellow-500"
           }`}
         >
           <Star /> Set as Start Node
