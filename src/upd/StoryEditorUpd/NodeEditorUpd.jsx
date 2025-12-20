@@ -39,7 +39,7 @@ export default function NodeEditor({
           <div key={i} className="flex flex-wrap items-center gap-2 pb-1">
             <input
               name="Option text"
-              className="max-w-[140px] flex-1 border border-[#0a122a] p-0.5 py-1 text-xs text-[#0a122a] sm:max-w-full sm:p-1 sm:text-base"
+              className="max-w-[140px] flex-1 border border-[#0a122a] p-0.5 py-1.5 text-xs text-[#0a122a] sm:max-w-full sm:p-1 sm:text-base"
               value={opt.text}
               placeholder="New choice"
               onChange={(e) =>
@@ -48,18 +48,18 @@ export default function NodeEditor({
             />
             <select
               name="Next option"
-              className="border border-[#0a122a] p-0.5 text-xs text-[#0a122a] sm:p-1 sm:text-base"
+              className="cursor-pointer border border-[#0a122a] p-0.5 py-1 text-xs text-[#0a122a] sm:p-1 sm:text-base"
               value={opt.next ?? ""}
               onChange={(e) =>
                 onUpdateOption(selectedNode, i, "next", e.target.value || null)
               }
             >
-              <option className="bg-gray-800 text-[#fdf0d5]" value="">
+              <option className="bg-[#fdf0d5] text-[#0a122a]" value="">
                 Select target
               </option>
               {orderedNodeIds.map((id) => (
                 <option
-                  className="bg-gray-800 text-[#fdf0d5]"
+                  className="bg-[#fdf0d5] text-[#0a122a]"
                   key={id}
                   value={id}
                 >
@@ -91,8 +91,8 @@ export default function NodeEditor({
           disabled={selectedNode === start}
           className={`my-2 inline-flex w-full items-center gap-2 border-3 border-[#0a122a] px-1 py-1 text-sm sm:w-fit sm:gap-2 sm:px-2 sm:text-base ${
             selectedNode === start
-              ? "bg-yellow-800 text-[#fdf0d5]"
-              : "cursor-pointer bg-yellow-600 text-[#fdf0d5] hover:bg-yellow-500"
+              ? "bg-[#780000] text-[#fdf0d5]"
+              : "cursor-pointer bg-[#c1121f] text-[#fdf0d5] hover:bg-[#d90429]"
           }`}
         >
           <Star /> Set as Start Node
