@@ -81,7 +81,7 @@ export default function NodeEditor({
       <div className="mt-2 flex flex-wrap items-center justify-between">
         <button
           onClick={() => onAddOption(selectedNode)}
-          className="my-2 inline-flex w-full cursor-pointer items-center gap-2 border-3 border-[#0a122a] bg-[#669bbc] px-1 py-1 text-sm text-[#fdf0d5] hover:bg-[#003049] sm:w-fit sm:gap-2 sm:px-2 sm:text-base"
+          className="my-2 inline-flex w-full cursor-pointer items-center gap-2 border-3 border-[#0a122a] bg-[#669bbc] px-1 py-1 text-sm text-[#fdf0d5] hover:bg-[#495057] sm:w-fit sm:gap-2 sm:px-2 sm:text-base"
         >
           <Plus />
           Add Option

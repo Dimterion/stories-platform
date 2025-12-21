@@ -16,7 +16,7 @@ export default function Sidebar({
         <h2 className="ml-1 text-sm font-bold sm:text-lg">Nodes</h2>
         <button
           onClick={sidebarVisible}
-          className="h-fit w-fit cursor-pointer border-b-3 border-l-3 border-[#0a122a] bg-gray-700 p-1 hover:bg-gray-600"
+          className="h-fit w-fit cursor-pointer border-b-3 border-l-3 border-[#0a122a] bg-[#343a40] p-1 hover:bg-[#495057]"
           aria-label="Toggle sidebar"
         >
           <PanelLeftClose className="size-3 sm:size-6" />
@@ -28,8 +28,8 @@ export default function Sidebar({
             onClick={() => onSelectNode(id)}
             className={`flex flex-1 cursor-pointer flex-col items-center justify-center border-3 border-[#0a122a] px-1 py-1 text-sm sm:flex-row sm:gap-2 sm:px-2 sm:text-base ${
               id === selectedNode
-                ? "bg-[#669bbc] hover:bg-[#003049]"
-                : "bg-gray-700 hover:bg-gray-600"
+                ? "bg-[#669bbc] hover:bg-[#495057]"
+                : "bg-[#343a40] hover:bg-[#495057]"
             }`}
             aria-label="Open node"
           >
