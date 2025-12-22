@@ -85,7 +85,7 @@ export default function StoryPlayerPage() {
             },
             classNames: {
               closeButton:
-                "!bg-[#003049] !border-[#fdf0d5] !border-2 !text-[#fdf0d5] !rounded-none",
+                "!bg-deepBlue !border-softWhite !border-2 !text-softWhite !rounded-none",
             },
           });
 
@@ -120,7 +120,7 @@ export default function StoryPlayerPage() {
           },
           classNames: {
             closeButton:
-              "!bg-[#003049] !border-[#fdf0d5] !border-2 !text-[#fdf0d5] !rounded-none",
+              "!bg-deepBlue !border-softWhite !border-2 !text-softWhite !rounded-none",
           },
         });
 
@@ -137,7 +137,7 @@ export default function StoryPlayerPage() {
             },
             classNames: {
               closeButton:
-                "!bg-[#003049] !border-[#fdf0d5] !border-2 !text-[#fdf0d5] !rounded-none",
+                "!bg-deepBlue !border-softWhite !border-2 !text-softWhite !rounded-none",
             },
           },
         );
@@ -173,7 +173,7 @@ export default function StoryPlayerPage() {
       },
       classNames: {
         closeButton:
-          "!bg-[#003049] !border-[#fdf0d5] !border-2 !text-[#fdf0d5] !rounded-none",
+          "!bg-deepBlue !border-softWhite !border-2 !text-softWhite !rounded-none",
       },
     });
   };
@@ -186,11 +186,11 @@ export default function StoryPlayerPage() {
   return (
     <main className="flex flex-col items-center justify-center p-4 sm:p-6">
       {/* Title/author/description */}
-      <div className="flex w-full max-w-[1024px] flex-col items-center gap-1 border-3 border-[#0a122a] bg-[#fdf0d5] p-1 text-[#0a122a]">
-        <h2 className="w-full border-3 border-[#0a122a] bg-[#0a122a] p-1 text-center text-2xl font-bold text-[#fdf0d5]">
+      <div className="bg-softWhite border-darkBlue text-darkBlue flex w-full max-w-[1024px] flex-col items-center gap-1 border-3 p-1">
+        <h2 className="text-softWhite border-darkBlue bg-darkBlue w-full border-3 p-1 text-center text-2xl font-bold">
           {story.title || "Untitled Story"}
         </h2>
-        <div className="flex w-full flex-col items-center border-3 border-[#0a122a] px-4 py-1">
+        <div className="border-darkBlue flex w-full flex-col items-center border-3 px-4 py-1">
           <p className="font-semibold italic">
             By {story.author || "an aspiring individual"}
           </p>
@@ -198,10 +198,10 @@ export default function StoryPlayerPage() {
         </div>
       </div>
       {story.showProgress && totalScenes > 0 && currentSceneIndex >= 0 && (
-        <div className="w-full max-w-[1024px] border-3 border-[#0a122a]">
-          <div className="mx-auto h-3 w-full bg-[#fdf0d5]">
+        <div className="border-darkBlue w-full max-w-[1024px] border-3">
+          <div className="bg-softWhite mx-auto h-3 w-full">
             <div
-              className="h-3 bg-[#669bbc] transition-all duration-500"
+              className="bg-lightBlue h-3 transition-all duration-500"
               style={{
                 width: `${((currentSceneIndex + 1) / totalScenes) * 100}%`,
               }}
@@ -211,7 +211,7 @@ export default function StoryPlayerPage() {
       )}
 
       {/* Text */}
-      <div className="flex min-h-72 w-full max-w-[1024px] flex-col items-center justify-center border-3 border-[#0a122a] bg-[#fdf0d5] p-4 text-[#0a122a]">
+      <div className="bg-softWhite border-darkBlue text-darkBlue flex min-h-72 w-full max-w-[1024px] flex-col items-center justify-center border-3 p-4">
         <div className="max-w-prose">
           {currentNode.text.split(/\n{2,}/).map((paragraph, pIndex) => (
             <p key={pIndex}>
@@ -227,7 +227,7 @@ export default function StoryPlayerPage() {
       </div>
 
       {/* Options */}
-      <div className="w-full max-w-[1024px] space-y-2 border-3 border-[#0a122a] bg-[#fdf0d5] p-2 text-[#0a122a]">
+      <div className="bg-softWhite border-darkBlue text-darkBlue w-full max-w-[1024px] space-y-2 border-3 p-2">
         {currentNode.options.length > 0 ? (
           currentNode.options.map((option, index) => (
             <button
@@ -237,19 +237,19 @@ export default function StoryPlayerPage() {
                 setCurrentNodeId(option.next);
               }}
               aria-label="Option"
-              className="w-full cursor-pointer border-3 border-[#0a122a] bg-[#669bbc] p-1 text-[#fdf0d5] transition duration-200 hover:bg-[#003049]"
+              className="text-softWhite bg-lightBlue hover:bg-deepBlue border-darkBlue w-full cursor-pointer border-3 p-1 transition duration-200"
             >
               {option.text}
             </button>
           ))
         ) : (
           <>
-            <h3 className="w-full border-3 border-[#0a122a] bg-[#0a122a] p-1 text-center text-xl font-bold text-[#fdf0d5]">
+            <h3 className="text-softWhite border-darkBlue bg-darkBlue w-full border-3 p-1 text-center text-xl font-bold">
               The End
             </h3>
             <button
               onClick={restart}
-              className="inline-flex w-full cursor-pointer justify-center gap-1 border-3 border-[#0a122a] bg-[#669bbc] p-1 text-[#fdf0d5] transition duration-200 hover:bg-[#003049]"
+              className="text-softWhite bg-lightBlue hover:bg-deepBlue border-darkBlue inline-flex w-full cursor-pointer justify-center gap-1 border-3 p-1 transition duration-200"
             >
               <RotateCcw />
               Restart
@@ -267,7 +267,7 @@ export default function StoryPlayerPage() {
                 return newHistory;
               });
             }}
-            className="inline-flex w-full cursor-pointer justify-center gap-1 border-3 border-[#0a122a] bg-[#2a9d8f] p-1 text-[#fdf0d5] transition duration-200 hover:bg-[#006d77]"
+            className="text-softWhite border-darkBlue bg-lightGreen hover:bg-darkGreen inline-flex w-full cursor-pointer justify-center gap-1 border-3 p-1 transition duration-200"
           >
             <ArrowBigLeft />
             Back
@@ -276,7 +276,7 @@ export default function StoryPlayerPage() {
       </div>
 
       {/* Upload new story */}
-      <div className="flex w-full max-w-[1024px] flex-col items-center space-y-2 border-3 border-[#0a122a] bg-[#fdf0d5] p-2 text-center text-[#0a122a]">
+      <div className="bg-softWhite border-darkBlue text-darkBlue flex w-full max-w-[1024px] flex-col items-center space-y-2 border-3 p-2 text-center">
         <label>File Upload (JSON format):</label>
 
         <div>
@@ -292,7 +292,7 @@ export default function StoryPlayerPage() {
           {/* Custom upload button */}
           <button
             onClick={() => fileInputRef.current?.click()}
-            className="w-full cursor-pointer border-3 border-[#0a122a] bg-[#669bbc] p-1 text-[#fdf0d5] transition duration-200 hover:bg-[#003049]"
+            className="text-softWhite bg-lightBlue hover:bg-deepBlue border-darkBlue w-full cursor-pointer border-3 p-1 transition duration-200"
           >
             Choose File
           </button>
@@ -304,7 +304,7 @@ export default function StoryPlayerPage() {
 
       <button
         onClick={resetProgress}
-        className="inline-flex w-full max-w-[1024px] cursor-pointer justify-center gap-1 border-3 border-[#0a122a] bg-[#c1121f] p-1 text-[#fdf0d5] transition duration-200 hover:bg-[#d90429]"
+        className="text-softWhite bg-baseRed hover:bg-lightRed border-darkBlue inline-flex w-full max-w-[1024px] cursor-pointer justify-center gap-1 border-3 p-1 transition duration-200"
       >
         Clear Save & Reset Progress
       </button>
