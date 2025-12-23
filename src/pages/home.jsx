@@ -9,20 +9,20 @@ export default function HomePage() {
       <section className="flex flex-wrap gap-4">
         <Link
           to="/story-player"
-          className="mx-auto w-sm max-w-[80vw] border p-2 text-center uppercase hover:bg-[#fdf0d5] hover:text-[#003049]"
+          className="hover:bg-softWhite hover:text-deepBlue mx-auto w-sm max-w-[80vw] border p-2 text-center uppercase"
         >
           Play Stories
         </Link>
         <Link
           to="/story-editor"
-          className="mx-auto w-sm max-w-[80vw] border p-2 text-center uppercase hover:bg-[#fdf0d5] hover:text-[#003049]"
+          className="hover:bg-softWhite hover:text-deepBlue mx-auto w-sm max-w-[80vw] border p-2 text-center uppercase"
         >
           Create Stories
         </Link>
       </section>
       <Link
         to="/about"
-        className="mx-auto w-sm max-w-[80vw] border p-2 text-center uppercase hover:bg-[#fdf0d5] hover:text-[#003049]"
+        className="hover:bg-softWhite hover:text-deepBlue mx-auto w-sm max-w-[80vw] border p-2 text-center uppercase"
       >
         About the platform
       </Link>

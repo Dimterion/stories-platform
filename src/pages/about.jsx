@@ -12,7 +12,7 @@ export default function AboutPage() {
       </p>
       <Link
         to="/"
-        className="border-3 px-6 py-2 text-lg transition-all hover:bg-[#fdf0d5] hover:text-[#003049]"
+        className="hover:bg-softWhite hover:text-deepBlue border-3 px-6 py-2 text-lg transition-all"
       >
         Home page
       </Link>
