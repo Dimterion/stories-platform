@@ -9,21 +9,21 @@ export default function MetadataForm({
   return (
     <div className="grid grid-cols-2 gap-4">
       <input
-        className="border border-[#0a122a] bg-[#fdf0d5] p-2 text-[#0a122a]"
+        className="border-darkBlue text-darkBlue bg-softWhite border p-2"
         placeholder="Story Title"
         name="Title"
         value={title}
         onChange={(e) => onChange.setTitle(e.target.value)}
       />
       <input
-        className="border border-[#0a122a] bg-[#fdf0d5] p-2 text-[#0a122a]"
+        className="border-darkBlue text-darkBlue bg-softWhite border p-2"
         placeholder="Author"
         name="Author"
         value={author}
         onChange={(e) => onChange.setAuthor(e.target.value)}
       />
       <textarea
-        className="col-span-2 border border-[#0a122a] bg-[#fdf0d5] p-2 text-[#0a122a]"
+        className="border-darkBlue text-darkBlue bg-softWhite col-span-2 border p-2"
         placeholder="Description"
         name="Description"
         value={description}
@@ -39,7 +39,7 @@ export default function MetadataForm({
         />
         <label
           htmlFor="showProgress"
-          className="cursor-pointer text-sm text-[#fdf0d5]"
+          className="text-softWhite cursor-pointer text-sm"
         >
           Show progress indicator in Story Player
         </label>
@@ -54,7 +54,7 @@ export default function MetadataForm({
         />
         <label
           htmlFor="allowBackNavigation"
-          className="cursor-pointer text-sm text-[#fdf0d5]"
+          className="text-softWhite cursor-pointer text-sm"
         >
           Allow back button in Story Player
         </label>

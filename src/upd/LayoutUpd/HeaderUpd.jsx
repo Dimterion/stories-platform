@@ -4,7 +4,7 @@ import { Link } from "react-router";
 
 export default function Header() {
   return (
-    <header className="flex flex-wrap justify-between bg-[#0a122a] p-2">
+    <header className="bg-darkBlue flex flex-wrap justify-between p-2">
       <Link to="/">
         <h1 className="font-bold italic sm:text-lg">ISP</h1>
       </Link>
@@ -13,13 +13,13 @@ export default function Header() {
           tab="story-player"
           icon={<BookOpenCheck className="size-4" />}
           label="Play"
-          activeColor="text-[#669bbc]"
+          activeColor="text-lightBlue"
         />
         <PageLink
           tab="story-editor"
           icon={<Pencil className="size-4" />}
           label="Create"
-          activeColor="text-[#669bbc]"
+          activeColor="text-lightBlue"
         />
       </nav>
     </header>
