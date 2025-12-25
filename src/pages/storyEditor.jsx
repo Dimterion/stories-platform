@@ -119,7 +119,7 @@ export default function StoryEditorPage() {
       },
       classNames: {
         closeButton:
-          "!bg-[#003049] !border-[#fdf0d5] !border-2 !text-[#fdf0d5] !rounded-none",
+          "!bg-deepBlue !border-softWhite !border-2 !text-softWhite !rounded-none",
       },
     });
   };
@@ -209,9 +209,9 @@ export default function StoryEditorPage() {
       },
       classNames: {
         actionButton:
-          "!bg-[#fdf0d5] !text-[#0a122a] px-4 py-1 !rounded-none hover:!bg-[#0a122a] hover:!text-[#fdf0d5] transition-colors",
+          "!bg-softWhite !text-darkBlue px-4 py-1 !rounded-none hover:!bg-darkBlue hover:!text-softWhite transition-colors",
         closeButton:
-          "!bg-[#003049] !border-[#fdf0d5] !border-2 !text-[#fdf0d5] !rounded-none",
+          "!bg-deepBlue !border-softWhite !border-2 !text-softWhite !rounded-none",
       },
     });
   };
@@ -228,7 +228,7 @@ export default function StoryEditorPage() {
         },
         classNames: {
           closeButton:
-            "!bg-[#003049] !border-[#fdf0d5] !border-2 !text-[#fdf0d5] !rounded-none",
+            "!bg-deepBlue !border-softWhite !border-2 !text-softWhite !rounded-none",
         },
       });
 
@@ -273,9 +273,9 @@ export default function StoryEditorPage() {
       },
       classNames: {
         actionButton:
-          "!bg-[#fdf0d5] !text-[#0a122a] px-4 py-1 !rounded-none hover:!bg-[#0a122a] hover:!text-[#fdf0d5] transition-colors",
+          "!bg-softWhite !text-darkBlue px-4 py-1 !rounded-none hover:!bg-darkBlue hover:!text-softWhite transition-colors",
         closeButton:
-          "!bg-[#003049] !border-[#fdf0d5] !border-2 !text-[#fdf0d5] !rounded-none",
+          "!bg-deepBlue !border-softWhite !border-2 !text-softWhite !rounded-none",
       },
     });
   };
@@ -291,7 +291,7 @@ export default function StoryEditorPage() {
       },
       classNames: {
         closeButton:
-          "!bg-[#003049] !border-[#fdf0d5] !border-2 !text-[#fdf0d5] !rounded-none",
+          "!bg-deepBlue !border-softWhite !border-2 !text-softWhite !rounded-none",
       },
     });
   };
@@ -342,7 +342,7 @@ export default function StoryEditorPage() {
           },
           classNames: {
             closeButton:
-              "!bg-[#003049] !border-[#fdf0d5] !border-2 !text-[#fdf0d5] !rounded-none",
+              "!bg-deepBlue !border-softWhite !border-2 !text-softWhite !rounded-none",
           },
         },
       );
@@ -373,7 +373,7 @@ export default function StoryEditorPage() {
       },
       classNames: {
         closeButton:
-          "!bg-[#003049] !border-[#fdf0d5] !border-2 !text-[#fdf0d5] !rounded-none",
+          "!bg-deepBlue !border-softWhite !border-2 !text-softWhite !rounded-none",
       },
     });
   };
@@ -424,7 +424,7 @@ export default function StoryEditorPage() {
           },
           classNames: {
             closeButton:
-              "!bg-[#003049] !border-[#fdf0d5] !border-2 !text-[#fdf0d5] !rounded-none",
+              "!bg-deepBlue !border-softWhite !border-2 !text-softWhite !rounded-none",
           },
         },
       );
@@ -449,7 +449,7 @@ export default function StoryEditorPage() {
       },
       classNames: {
         closeButton:
-          "!bg-[#003049] !border-[#fdf0d5] !border-2 !text-[#fdf0d5] !rounded-none",
+          "!bg-deepBlue !border-softWhite !border-2 !text-softWhite !rounded-none",
       },
     });
   };
@@ -469,7 +469,7 @@ export default function StoryEditorPage() {
         },
         classNames: {
           closeButton:
-            "!bg-[#003049] !border-[#fdf0d5] !border-2 !text-[#fdf0d5] !rounded-none",
+            "!bg-deepBlue !border-softWhite !border-2 !text-softWhite !rounded-none",
         },
       });
 
@@ -493,7 +493,7 @@ export default function StoryEditorPage() {
             },
             classNames: {
               closeButton:
-                "!bg-[#003049] !border-[#fdf0d5] !border-2 !text-[#fdf0d5] !rounded-none",
+                "!bg-deepBlue !border-softWhite !border-2 !text-softWhite !rounded-none",
             },
           });
 
@@ -542,7 +542,7 @@ export default function StoryEditorPage() {
           },
           classNames: {
             closeButton:
-              "!bg-[#003049] !border-[#fdf0d5] !border-2 !text-[#fdf0d5] !rounded-none",
+              "!bg-deepBlue !border-softWhite !border-2 !text-softWhite !rounded-none",
           },
         });
       } catch (err) {
@@ -557,7 +557,7 @@ export default function StoryEditorPage() {
           },
           classNames: {
             closeButton:
-              "!bg-[#003049] !border-[#fdf0d5] !border-2 !text-[#fdf0d5] !rounded-none",
+              "!bg-deepBlue !border-softWhite !border-2 !text-softWhite !rounded-none",
           },
         });
       } finally {
@@ -615,7 +615,7 @@ export default function StoryEditorPage() {
             {!sidebarVisible && (
               <button
                 onClick={() => setSidebarVisible(!sidebarVisible)}
-                className="h-fit w-fit cursor-pointer border-3 border-[#0a122a] bg-[#343a40] p-1 hover:bg-[#495057]"
+                className="border-darkBlue bg-darkGray hover:bg-lightGray h-fit w-fit cursor-pointer border-3 p-1"
                 aria-label="Toggle sidebar"
               >
                 <PanelLeftOpen className="size-3 sm:size-6" />
@@ -624,12 +624,12 @@ export default function StoryEditorPage() {
             <h1 className="text-xl font-bold">Story Editor</h1>
           </div>
           {totalScenes > 0 && currentSceneIndex >= 0 && (
-            <p className="text-sm text-gray-400">
+            <p className="text-softGray text-sm">
               Scene {currentSceneIndex + 1} of {totalScenes}
             </p>
           )}
           {lastSaved && (
-            <p className="text-sm text-gray-400 italic">
+            <p className="text-softGray text-sm italic">
               Saved to browser local storage {formatTimeAgo(lastSaved)}.
             </p>
           )}
