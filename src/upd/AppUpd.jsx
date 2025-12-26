@@ -12,7 +12,7 @@ export default function App() {
   return (
     <>
       <Toaster position="top-right" richColors closeButton />
-      <div className="font-scienceGothic flex min-h-screen flex-col justify-between border-x-4 border-[#0a122a] bg-[#003049] text-[#fdf0d5]">
+      <div className="font-scienceGothic border-darkBlue bg-deepBlue text-softWhite flex min-h-screen flex-col justify-between border-x-4">
         <Header />
         <Routes>
           <Route path="/" element={<HomePage />} />

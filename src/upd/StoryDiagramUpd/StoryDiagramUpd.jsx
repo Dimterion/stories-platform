@@ -494,7 +494,7 @@ export default function StoryDiagram({ story, onClose, onSelectNode }) {
           <div className="absolute top-7.5 right-2 z-50 mt-2 flex flex-col space-y-1">
             <button
               onClick={onClose}
-              className="inline-flex cursor-pointer items-center border border-red-600 bg-red-500 p-1 text-xs text-white hover:bg-red-700"
+              className="inline-flex cursor-pointer items-center border border-darkRed bg-baseRed p-1 text-xs text-white hover:bg-lightRed"
             >
               <X className="mr-1 size-4" />
               Close
@@ -534,7 +534,7 @@ export default function StoryDiagram({ story, onClose, onSelectNode }) {
           <p className="flex items-center justify-center border border-blue-600 bg-blue-500 p-1 text-white">
             <Play className="mr-1 size-4" /> Start
           </p>
-          <p className="flex items-center justify-center border border-red-600 bg-red-500 p-1 text-white">
+          <p className="flex items-center justify-center border border-darkRed bg-baseRed p-1 text-white">
             <Square className="mr-1 size-4" /> End
           </p>
           <p className="flex items-center justify-center border border-yellow-600 bg-yellow-400 p-1 text-gray-900">
