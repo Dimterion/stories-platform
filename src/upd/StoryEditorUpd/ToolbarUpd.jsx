@@ -11,19 +11,19 @@ export default function Toolbar({
     <section className="flex flex-wrap justify-center gap-4 pb-2 md:justify-start">
       <button
         onClick={onExportStory}
-        className="inline-flex w-3xs max-w-[55vw] cursor-pointer items-center gap-2 border-3 border-[#0a122a] bg-yellow-600 px-4 py-2 text-center hover:bg-yellow-500"
+        className="border-darkBlue bg-baseOrange hover:bg-lightOrange inline-flex w-3xs max-w-[55vw] cursor-pointer items-center gap-2 border-3 px-4 py-2 text-center"
       >
         <FileUp />
         Export Story (JSON file)
       </button>
       <button
         onClick={onExportHTML}
-        className="inline-flex w-3xs max-w-[55vw] cursor-pointer items-center gap-2 border-3 border-[#0a122a] bg-[#2a9d8f] px-4 py-2 text-center hover:bg-[#006d77]"
+        className="border-darkBlue bg-lightGreen hover:bg-darkGreen inline-flex w-3xs max-w-[55vw] cursor-pointer items-center gap-2 border-3 px-4 py-2 text-center"
       >
         <FileUp />
         Export Story (HTML file)
       </button>
-      <label className="inline-flex w-3xs max-w-[55vw] cursor-pointer items-center gap-2 border-3 border-[#0a122a] bg-[#006d77] px-4 py-2 text-center hover:bg-[#2a9d8f]">
+      <label className="border-darkBlue bg-darkGreen hover:bg-lightGreen inline-flex w-3xs max-w-[55vw] cursor-pointer items-center gap-2 border-3 px-4 py-2 text-center">
         <FileDown />
         Import Story (JSON file)
         <input
@@ -35,14 +35,14 @@ export default function Toolbar({
       </label>
       <button
         onClick={onShowDiagram}
-        className="inline-flex w-3xs max-w-[55vw] cursor-pointer items-center gap-2 border-3 border-[#0a122a] bg-purple-600 px-4 py-2 text-center hover:bg-purple-500"
+        className="border-darkBlue bg-basePurple hover:bg-lightPurple inline-flex w-3xs max-w-[55vw] cursor-pointer items-center gap-2 border-3 px-4 py-2 text-center"
       >
         <Map />
         View Story Diagram
       </button>
       <button
         onClick={onClearSave}
-        className="inline-flex w-3xs max-w-[55vw] cursor-pointer items-center gap-2 border-3 border-[#0a122a] bg-[#c1121f] px-4 py-2 text-center hover:bg-[#d90429]"
+        className="border-darkBlue bg-baseRed hover:bg-lightRed inline-flex w-3xs max-w-[55vw] cursor-pointer items-center gap-2 border-3 px-4 py-2 text-center"
       >
         <XCircle />
         Clear Save & Reset Editor
