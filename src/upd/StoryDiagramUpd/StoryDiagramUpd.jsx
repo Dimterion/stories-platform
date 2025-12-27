@@ -494,7 +494,7 @@ export default function StoryDiagram({ story, onClose, onSelectNode }) {
           <div className="absolute top-7.5 right-2 z-50 mt-2 flex flex-col space-y-1">
             <button
               onClick={onClose}
-              className="inline-flex cursor-pointer items-center border border-darkRed bg-baseRed p-1 text-xs text-white hover:bg-lightRed"
+              className="border-darkRed bg-baseRed hover:bg-lightRed inline-flex cursor-pointer items-center border p-1 text-xs text-white"
             >
               <X className="mr-1 size-4" />
               Close
@@ -508,7 +508,7 @@ export default function StoryDiagram({ story, onClose, onSelectNode }) {
             </button>
             <button
               onClick={handleDownloadSvg}
-              className="inline-flex cursor-pointer items-center border border-gray-600 bg-green-500 p-1 text-xs text-white hover:bg-green-700"
+              className="bg-baseGreen hover:bg-lightGreen inline-flex cursor-pointer items-center border border-gray-600 p-1 text-xs text-white"
             >
               <Download className="mr-1 size-4" />
               SVG
@@ -534,7 +534,7 @@ export default function StoryDiagram({ story, onClose, onSelectNode }) {
           <p className="flex items-center justify-center border border-blue-600 bg-blue-500 p-1 text-white">
             <Play className="mr-1 size-4" /> Start
           </p>
-          <p className="flex items-center justify-center border border-darkRed bg-baseRed p-1 text-white">
+          <p className="border-darkRed bg-baseRed flex items-center justify-center border p-1 text-white">
             <Square className="mr-1 size-4" /> End
           </p>
           <p className="flex items-center justify-center border border-yellow-600 bg-yellow-400 p-1 text-gray-900">
