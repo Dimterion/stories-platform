@@ -33,7 +33,7 @@ import {
   COLOR_NODE_DEFAULT,
   COLOR_OPTION,
   DEFAULT_LAYOUT_DIRECTION,
-} from "../../utils/constants";
+} from "../utilsUpd/constantsUpd";
 
 /* Main Story Node */
 function CustomNode({ data }) {
@@ -480,7 +480,7 @@ export default function StoryDiagram({ story, onClose, onSelectNode }) {
       <div className="relative h-4/5 w-4/5 bg-white p-4" ref={diagramRef}>
         <button
           onClick={toggleBtnMenu}
-          className="absolute top-2 right-2 z-50 inline-flex cursor-pointer items-center border border-blue-600 bg-blue-500 p-1 text-white hover:bg-blue-700"
+          className="border-darkBlue bg-lightBlue hover:bg-deepBlue absolute top-2 right-2 z-50 inline-flex cursor-pointer items-center border p-1 text-white"
           aria-label="Diagram menu"
         >
           {isBtnMenuOpen ? (
