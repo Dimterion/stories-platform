@@ -105,7 +105,7 @@ function CustomNode({ data }) {
               top: coords.y - 10,
               left: coords.x,
               transform: "translate(-50%, -100%)",
-              background: "rgba(31,41,55,0.95)",
+              background: "#495057",
               color: "white",
               padding: "8px",
               zIndex: 99999,
@@ -133,7 +133,7 @@ function OptionNode({ data }) {
         background: COLOR_OPTION,
         color: "#111",
         padding: "6px 10px",
-        border: "2px solid #a16207",
+        border: "2px solid #0a122a",
         textAlign: "center",
         fontSize: 12,
         fontWeight: 600,
@@ -149,12 +149,12 @@ function OptionNode({ data }) {
       <Handle
         type="target"
         position="top"
-        style={{ background: "#a16207", borderRadius: 0 }}
+        style={{ background: "#f35b04", borderRadius: 0 }}
       />
       <Handle
         type="source"
         position="bottom"
-        style={{ background: "#a16207", borderRadius: 0 }}
+        style={{ background: "#f35b04", borderRadius: 0 }}
       />
     </div>
   );
@@ -474,7 +474,7 @@ export default function StoryDiagram({ story, onClose, onSelectNode }) {
 
   return (
     <div
-      className="bg-opacity-70 fixed inset-0 z-50 flex items-center justify-center bg-black"
+      className="bg-opacity-70 fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm"
       onClick={handleOverlayClick}
     >
       <div className="relative h-4/5 w-4/5 bg-white p-4" ref={diagramRef}>
@@ -501,21 +501,21 @@ export default function StoryDiagram({ story, onClose, onSelectNode }) {
             </button>
             <button
               onClick={resetLayout}
-              className="inline-flex cursor-pointer items-center border border-gray-600 bg-gray-500 p-1 text-xs text-white hover:bg-gray-700"
+              className="border-darkGray inline-flex cursor-pointer items-center border bg-gray-500 p-1 text-xs text-white hover:bg-gray-700"
             >
               <RefreshCcw className="mr-1 size-4" />
               Reset
             </button>
             <button
               onClick={handleDownloadSvg}
-              className="bg-baseGreen hover:bg-lightGreen inline-flex cursor-pointer items-center border border-gray-600 p-1 text-xs text-white"
+              className="bg-baseGreen hover:bg-lightGreen border-darkGray inline-flex cursor-pointer items-center border p-1 text-xs text-white"
             >
               <Download className="mr-1 size-4" />
               SVG
             </button>
             <button
               onClick={handleDownloadPng}
-              className="inline-flex cursor-pointer items-center border border-gray-600 bg-blue-500 p-1 text-xs text-white hover:bg-blue-700"
+              className="border-darkGray inline-flex cursor-pointer items-center border bg-blue-500 p-1 text-xs text-white hover:bg-blue-700"
             >
               <Download className="mr-1 size-4" />
               PNG
