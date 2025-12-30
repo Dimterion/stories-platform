@@ -480,7 +480,7 @@ export default function StoryDiagram({ story, onClose, onSelectNode }) {
       <div className="relative h-4/5 w-4/5 bg-white p-4" ref={diagramRef}>
         <button
           onClick={toggleBtnMenu}
-          className="border-darkBlue bg-lightBlue hover:bg-deepBlue absolute top-2 right-2 z-50 inline-flex cursor-pointer items-center border p-1 text-white"
+          className="border-darkBlue bg-lightBlue hover:bg-deepBlue text-softWhite absolute top-2 right-2 z-50 inline-flex cursor-pointer items-center border p-1"
           aria-label="Diagram menu"
         >
           {isBtnMenuOpen ? (
@@ -501,28 +501,28 @@ export default function StoryDiagram({ story, onClose, onSelectNode }) {
             </button>
             <button
               onClick={resetLayout}
-              className="border-darkGray inline-flex cursor-pointer items-center border bg-gray-500 p-1 text-xs text-white hover:bg-gray-700"
+              className="border-darkGray text-softWhite bg-darkGray hover:bg-lightGray inline-flex cursor-pointer items-center border p-1 text-xs"
             >
               <RefreshCcw className="mr-1 size-4" />
               Reset
             </button>
             <button
               onClick={handleDownloadSvg}
-              className="bg-baseGreen hover:bg-lightGreen border-darkGray inline-flex cursor-pointer items-center border p-1 text-xs text-white"
+              className="bg-baseGreen hover:bg-lightGreen border-darkGray text-softWhite inline-flex cursor-pointer items-center border p-1 text-xs"
             >
               <Download className="mr-1 size-4" />
               SVG
             </button>
             <button
               onClick={handleDownloadPng}
-              className="border-darkGray inline-flex cursor-pointer items-center border bg-blue-500 p-1 text-xs text-white hover:bg-blue-700"
+              className="border-darkGray bg-lightBlue text-softWhite hover:bg-deepBlue inline-flex cursor-pointer items-center border p-1 text-xs"
             >
               <Download className="mr-1 size-4" />
               PNG
             </button>
             <button
               onClick={toggleMiniMap}
-              className="inline-flex cursor-pointer items-center border border-yellow-600 bg-yellow-500 p-1 text-xs text-white hover:bg-yellow-700"
+              className="border-baseOrange bg-lightOrange hover:bg-baseOrange text-softWhite inline-flex cursor-pointer items-center border p-1 text-xs"
             >
               <Map className="mr-1 size-4" />
               Map
