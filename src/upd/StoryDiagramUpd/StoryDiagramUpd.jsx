@@ -531,19 +531,19 @@ export default function StoryDiagram({ story, onClose, onSelectNode }) {
         )}
 
         <aside className="absolute top-2 left-2 z-50 space-y-1 text-xs">
-          <p className="flex items-center justify-center border border-blue-600 bg-blue-500 p-1 text-white">
+          <p className="border-darkBlue bg-lightBlue flex items-center justify-center border p-1 text-white">
             <Play className="mr-1 size-4" /> Start
           </p>
           <p className="border-darkRed bg-baseRed flex items-center justify-center border p-1 text-white">
             <Square className="mr-1 size-4" /> End
           </p>
-          <p className="flex items-center justify-center border border-yellow-600 bg-yellow-400 p-1 text-gray-900">
+          <p className="border-baseOrange bg-lightOrange text-softWhite flex items-center justify-center border p-1">
             <ChevronDown className="mr-1 size-4" /> Option
           </p>
-          <p className="flex items-center justify-center border border-purple-600 bg-purple-500 p-1 text-white">
+          <p className="border-darkBlue bg-basePurple text-softWhite flex items-center justify-center border p-1">
             {">"} 1 choice
           </p>
-          <p className="flex items-center justify-center border border-teal-600 bg-teal-500 p-1 text-white">
+          <p className="border-darkGreen bg-baseGreen text-softWhite flex items-center justify-center border p-1">
             Long Text
           </p>
         </aside>
@@ -574,7 +574,7 @@ export default function StoryDiagram({ story, onClose, onSelectNode }) {
               nodeStrokeWidth={2}
               pannable
               zoomable
-              style={{ background: "#333" }}
+              style={{ background: "#343a40" }}
             />
           )}
         </ReactFlow>
