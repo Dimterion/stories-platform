@@ -85,7 +85,7 @@ function CustomNode({ data }) {
           background: data.bgColor,
           padding: 10,
           color: "white",
-          border: "2px solid #333",
+          border: "2px solid #0a122a",
           cursor: "pointer",
           textAlign: "center",
         }}
@@ -106,7 +106,7 @@ function CustomNode({ data }) {
               left: coords.x,
               transform: "translate(-50%, -100%)",
               background: "#495057",
-              color: "white",
+              color: "#fdf0d5",
               padding: "8px",
               zIndex: 99999,
               fontSize: 12,
@@ -131,7 +131,7 @@ function OptionNode({ data }) {
     <div
       style={{
         background: COLOR_OPTION,
-        color: "#111",
+        color: "#0a122a",
         padding: "6px 10px",
         border: "2px solid #0a122a",
         textAlign: "center",
@@ -474,10 +474,10 @@ export default function StoryDiagram({ story, onClose, onSelectNode }) {
 
   return (
     <div
-      className="bg-opacity-70 fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm"
+      className="bg-opacity-70 bg-darkBlue/80 fixed inset-0 z-50 flex items-center justify-center backdrop-blur-sm"
       onClick={handleOverlayClick}
     >
-      <div className="relative h-4/5 w-4/5 bg-white p-4" ref={diagramRef}>
+      <div className="bg-softWhite relative h-4/5 w-4/5 p-4" ref={diagramRef}>
         <button
           onClick={toggleBtnMenu}
           className="border-darkBlue bg-lightBlue hover:bg-deepBlue text-softWhite absolute top-2 right-2 z-50 inline-flex cursor-pointer items-center border p-1"
@@ -570,7 +570,7 @@ export default function StoryDiagram({ story, onClose, onSelectNode }) {
           <Controls />
           {miniMap && (
             <MiniMap
-              nodeColor={(node) => node.data.bgColor || "rgb(250, 204, 21)"}
+              nodeColor={(node) => node.data.bgColor || "#f18701"}
               nodeStrokeWidth={2}
               pannable
               zoomable
