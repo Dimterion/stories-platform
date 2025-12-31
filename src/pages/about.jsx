@@ -10,6 +10,39 @@ export default function AboutPage() {
         A platform to create interactive stories with multiple choices and
         outcomes.
       </p>
+      <p>
+        Learn more about the project{" "}
+        <a
+          href="https://medium.com/@dimterion/text-adventure-games-creation-tool-385667ac8904"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hover:text-softWhite underline"
+        >
+          here
+        </a>{" "}
+        and{" "}
+        <a
+          href="https://medium.com/@dimterion/text-adventure-games-creation-tool-progress-update-4e2bd0524d03"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hover:text-softWhite underline"
+        >
+          here
+        </a>
+        .
+      </p>
+      <p>
+        Check the{" "}
+        <a
+          href="https://github.com/Dimterion/stories-platform"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hover:text-softWhite underline"
+        >
+          project's GitHub repository
+        </a>{" "}
+        for more information and updates.
+      </p>
       <Link
         to="/"
         className="hover:bg-softWhite hover:text-deepBlue w-md max-w-full border-3 px-6 py-2 text-center text-lg transition-all"
