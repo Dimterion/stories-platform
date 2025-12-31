@@ -6,17 +6,17 @@ export default function AboutPage() {
       <h2 className="text-center text-4xl font-bold">
         Interactive Stories Platform
       </h2>
-      <p className="text-lg">
+      <p className="text-xl">
         A platform to create interactive stories with multiple choices and
         outcomes.
       </p>
-      <p>
+      <p className="text-lg">
         Learn more about the project{" "}
         <a
           href="https://medium.com/@dimterion/text-adventure-games-creation-tool-385667ac8904"
           target="_blank"
           rel="noopener noreferrer"
-          className="hover:text-softWhite underline"
+          className="hover:text-lightBlue underline"
         >
           here
         </a>{" "}
@@ -25,23 +25,11 @@ export default function AboutPage() {
           href="https://medium.com/@dimterion/text-adventure-games-creation-tool-progress-update-4e2bd0524d03"
           target="_blank"
           rel="noopener noreferrer"
-          className="hover:text-softWhite underline"
+          className="hover:text-lightBlue underline"
         >
           here
         </a>
         .
-      </p>
-      <p>
-        Check the{" "}
-        <a
-          href="https://github.com/Dimterion/stories-platform"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="hover:text-softWhite underline"
-        >
-          project's GitHub repository
-        </a>{" "}
-        for more information and updates.
       </p>
       <Link
         to="/"
@@ -61,6 +49,18 @@ export default function AboutPage() {
       >
         Start playing
       </Link>
+      <p className="text-lg">
+        Check the{" "}
+        <a
+          href="https://github.com/Dimterion/stories-platform"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hover:text-lightBlue underline"
+        >
+          project's GitHub repository
+        </a>{" "}
+        for more information and updates.
+      </p>
     </main>
   );
 }
