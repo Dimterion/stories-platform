@@ -6,7 +6,7 @@ export default function Header() {
   return (
     <header className="bg-darkBlue flex flex-wrap justify-between p-2">
       <Link to="/">
-        <h1 className="font-bold italic sm:text-lg">ISP</h1>
+        <h1 className="text-lg font-bold italic sm:text-xl">ISP</h1>
       </Link>
       <nav className="flex flex-wrap gap-3">
         <PageLink

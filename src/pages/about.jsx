@@ -33,19 +33,19 @@ export default function AboutPage() {
       </p>
       <Link
         to="/"
-        className="hover:bg-softWhite hover:text-deepBlue w-md max-w-full border-3 px-6 py-2 text-center text-lg transition-all"
+        className="hover:bg-softWhite hover:text-deepBlue w-md max-w-full border-3 px-6 py-2 text-center text-lg uppercase transition-all"
       >
         Home page
       </Link>
       <Link
         to="/story-editor"
-        className="hover:bg-softWhite hover:text-deepBlue w-md max-w-full border-3 px-6 py-2 text-center text-lg transition-all"
+        className="hover:bg-softWhite hover:text-deepBlue w-md max-w-full border-3 px-6 py-2 text-center text-lg uppercase transition-all"
       >
         Start creating
       </Link>
       <Link
         to="/story-player"
-        className="hover:bg-softWhite hover:text-deepBlue w-md max-w-full border-3 px-6 py-2 text-center text-lg transition-all"
+        className="hover:bg-softWhite hover:text-deepBlue w-md max-w-full border-3 px-6 py-2 text-center text-lg uppercase transition-all"
       >
         Start playing
       </Link>
