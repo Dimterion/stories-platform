@@ -50,7 +50,7 @@ export default function AboutPage() {
         Start playing
       </Link>
       <p className="text-lg">
-        Check the{" "}
+        Visit the{" "}
         <a
           href="https://github.com/Dimterion/stories-platform"
           target="_blank"
@@ -60,6 +60,28 @@ export default function AboutPage() {
           project's GitHub repository
         </a>{" "}
         for more information and updates.
+      </p>
+      <p className="text-lg">
+        P.S.: I have also made a couple of Interactive text adventure gams which
+        you can check{" "}
+        <a
+          href="https://poets-of-tomorrows-world.vercel.app/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hover:text-lightBlue underline"
+        >
+          here
+        </a>{" "}
+        and{" "}
+        <a
+          href="https://profound-cat-a609de.netlify.app/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hover:text-lightBlue underline"
+        >
+          here
+        </a>
+        .
       </p>
     </main>
   );
