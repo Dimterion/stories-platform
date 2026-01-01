@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from "uuid";
 import { toast } from "sonner";
 import { PanelLeftOpen } from "lucide-react";
 import { validateStoryJson } from "../utils/storyUtils";
-import { generateStandaloneStoryHTML } from "../utils/exportStandaloneHTML";
+import { generateStandaloneStoryHTML } from "../upd/utilsUpd/exportStandaloneHTMLUpd";
 import { downloadFile } from "../utils/downloadFile";
 import Sidebar from "../upd/StoryEditorUpd/SidebarUpd";
 import MetadataForm from "../upd/StoryEditorUpd/MetadataFormUpd";
