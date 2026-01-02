@@ -45,42 +45,40 @@ export function generateStandaloneStoryHTML(story) {
           .options button {
             display: block;
             width: 100%;
-            margin: 0.4rem 0;
-            padding: 0.7rem;
-            background: #2563eb;
-            color: white;
-            border: none;
-            border-radius: 8px;
+            margin: 0.5rem 0;
+            padding: 0.5rem;
+            background: #669bbc;
+            color: #fdf0d5;
+            border: 3px solid #0a122a;
             cursor: pointer;
             font-size: 1rem;
+            transition-duration: 200ms;
           }
           .options button:hover {
-            background: #1d4ed8;
+            background: #003049;
           }
           .progress-bar {
             width: 100%;
-            height: 8px;
-            background: #333;
-            border-radius: 4px;
+            height: 0.75rem;
+            background: #fdf0d5;
             overflow: hidden;
-            margin-top: 12px;
+            margin-top: 0.75rem;
             display: none;
           }
           .progress-bar-inner {
             height: 100%;
-            background: #22c55e;
+            background: #669bbc;
             width: 0%;
-            transition: width 0.3s ease;
+            transition: width 200ms ease-in-out;
           }
           .back-button, .restart-button {
-            background: #6b7280;
-            color: white;
-            border: none;
-            border-radius: 6px;
-            padding: 8px 12px;
-            margin-top: 8px;
+            background: #669bbc ;
+            color: #fdf0d5;
+            border: 3px solid #0a122a ;
+            padding: 0.25rem;
+            margin-top: 0.25rem;
             cursor: pointer;
-            font-size: 0.9rem;
+            font-size: 1rem;
             display: none;
           }
           .back-button:hover, .restart-button:hover {
