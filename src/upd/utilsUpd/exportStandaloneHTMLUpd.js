@@ -17,6 +17,10 @@ export function generateStandaloneStoryHTML(story) {
       <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta
+          name="description"
+          content="Interactive story with multiple choices and outcomes."
+        />
         <title>${title || "Interactive Story"}</title>
         <style>
           body {
@@ -39,6 +43,10 @@ export function generateStandaloneStoryHTML(story) {
           }
           h1 { font-size: 1.5rem; margin-top: 1rem; }
           p { line-height: 1.6; }
+          .author {
+            font-style: italic;
+            font-weight: 600;
+          }
           .description {
             font-style: italic;
           }
@@ -116,6 +124,7 @@ export function generateStandaloneStoryHTML(story) {
       <body>
         <main>
           <h1>${title || "Untitled Story"}</h1>
+          <p class="author">By ${author || "an aspiring individual"}</p>
           <p class="description">${description || ""}</p>
           <div id="scene"></div>
           <div class="options"></div>
