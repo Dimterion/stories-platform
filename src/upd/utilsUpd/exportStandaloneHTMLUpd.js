@@ -80,17 +80,20 @@ export function generateStandaloneStoryHTML(story) {
             transition: width 200ms ease-in-out;
           }
           .back-button, .restart-button {
-            background: #669bbc ;
+            display: block;
+            background: #2a9d8f ;
             color: #fdf0d5;
             border: 3px solid #0a122a ;
-            padding: 0.25rem;
-            margin-top: 0.25rem;
+            padding: 0.5rem;
+            margin: 0.5rem 0;
             cursor: pointer;
             font-size: 1rem;
             display: none;
+            width: 100%;
+            transition-duration: 200ms;
           }
           .back-button:hover, .restart-button:hover {
-            background: #4b5563;
+            background: #008000;
           }
           .resume-dialog {
             background: rgba(0,0,0,0.85);
@@ -103,21 +106,20 @@ export function generateStandaloneStoryHTML(story) {
           .resume-dialog-content {
             background: #222;
             padding: 1.5rem;
-            border-radius: 12px;
+            margin: 0.25rem;
             text-align: center;
             max-width: 320px;
           }
           .resume-dialog button {
-            background: #2563eb;
+            background: #669bbc;
+            color: #fdf0d5;
             border: none;
-            color: white;
-            border-radius: 6px;
             padding: 0.5rem 1rem;
             margin: 0.5rem;
             cursor: pointer;
           }
           .resume-dialog button:hover {
-            background: #1d4ed8;
+            background: #003049;
           }
         </style>
       </head>
