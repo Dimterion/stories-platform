@@ -22,11 +22,14 @@ export function generateStandaloneStoryHTML(story) {
           content="Interactive story with multiple choices and outcomes."
         />
         <title>${title || "Interactive Story"}</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Science+Gothic:wght@100..900&display=swap" rel="stylesheet">
         <style>
           body {
             background-color: #003049;
-            color: #f0f0f0;
-            font-family: system-ui, sans-serif;
+            color: #fdf0d5;
+            font-family: "Science Gothic", sans-serif;
             margin: 0;
             padding: 0;
             display: flex;
@@ -38,11 +41,16 @@ export function generateStandaloneStoryHTML(story) {
           main {
             max-width: 600px;
             width: 80%;
-            padding: 20px;
+            padding: 1.5rem;
             text-align: center;
           }
-          h1 { font-size: 1.5rem; margin-top: 1rem; }
-          p { line-height: 1.6; }
+          h1 { 
+            font-size: 1.5rem;
+            margin-top: 1rem; 
+          }
+          p { 
+            line-height: 1.6;
+          }
           .author {
             font-style: italic;
             font-weight: 600;
