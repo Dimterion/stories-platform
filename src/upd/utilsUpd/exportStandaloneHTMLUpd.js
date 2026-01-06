@@ -129,6 +129,11 @@ export function generateStandaloneStoryHTML(story) {
           .resume-dialog button:hover {
             background: #003049;
           }
+          .endText {
+            border-top: 3px solid #fdf0d5;
+            font-style: italic;
+            padding: 0.5rem;
+          }
         </style>
       </head>
       <body>
@@ -138,8 +143,8 @@ export function generateStandaloneStoryHTML(story) {
           <p class="description">${description || ""}</p>
           <div id="scene"></div>
           <div class="options"></div>
-          <button class="back-button" id="backBtn">⬅ Back</button>
-          <button class="restart-button" id="restartBtn">🔁 Restart Story</button>
+          <button class="back-button" id="backBtn">&#8592; Back</button>
+          <button class="restart-button" id="restartBtn">&#8634; Restart Story</button>
           <div class="progress-bar" id="progressBar">
             <div class="progress-bar-inner" id="progressBarInner"></div>
           </div>
@@ -188,7 +193,7 @@ export function generateStandaloneStoryHTML(story) {
           optionsEl.innerHTML = '';
 
           if (!node.options || node.options.length === 0) {
-            optionsEl.innerHTML = '<p><em>The End.</em></p>';
+            optionsEl.innerHTML = '<p class="endText">The End.</p>';
             restartBtn.style.display = 'inline-block';
           } else {
             restartBtn.style.display = 'none';
