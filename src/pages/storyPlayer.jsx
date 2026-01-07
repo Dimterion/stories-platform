@@ -271,13 +271,14 @@ export default function StoryPlayerPage() {
             </button>
           </>
         )}
-        {story.allowBackNavigation && history.length > 1 && (
+        {story.allowBackNavigation && (
           <button
             onClick={goBack}
-            className="text-softWhite border-darkBlue bg-lightGreen hover:bg-darkGreen inline-flex w-full cursor-pointer justify-center gap-1 border-3 p-1 transition duration-200"
+            disabled={history.length <= 1}
+            className={`text-softWhite border-darkBlue bg-lightGreen inline-flex w-full justify-center gap-1 border-3 p-1 transition duration-200 ${history.length <= 1 ? "opacity-70" : "hover:bg-darkGreen cursor-pointer"}`}
           >
             <ArrowBigLeft />
-            Back
+            Back{history.length > 1 ? "" : " (Start)"}
           </button>
         )}
       </div>
