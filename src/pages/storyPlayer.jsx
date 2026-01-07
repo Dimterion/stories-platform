@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { toast } from "sonner";
 import { ArrowBigLeft, RotateCcw } from "lucide-react";
 import { validateStoryJson } from "../utils/storyUtils";
@@ -58,7 +58,7 @@ export default function StoryPlayerPage() {
         STORAGE_KEY,
         JSON.stringify({ story, currentNodeId, history }),
       );
-    }, 300);
+    }, 800);
 
     return () => clearTimeout(timeout);
   }, [story, currentNodeId, history, isReadyToSave]);
@@ -179,8 +179,11 @@ export default function StoryPlayerPage() {
   };
 
   const currentNode = story.nodes[currentNodeId] || { text: "", options: [] };
-  const orderedNodeIds = Object.keys(story.nodes);
-  const currentSceneIndex = orderedNodeIds.indexOf(currentNodeId);
+  const orderedNodeIds = useMemo(() => Object.keys(story.nodes), [story.nodes]);
+  const currentSceneIndex = useMemo(
+    () => orderedNodeIds.indexOf(currentNodeId),
+    [orderedNodeIds, currentNodeId],
+  );
   const totalScenes = orderedNodeIds.length;
 
   return (
