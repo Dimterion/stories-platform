@@ -186,6 +186,18 @@ export default function StoryPlayerPage() {
   );
   const totalScenes = orderedNodeIds.length;
 
+  const goBack = () => {
+    setHistory((prev) => {
+      if (prev.length <= 1) return prev;
+
+      const newHistory = prev.slice(0, -1);
+
+      setCurrentNodeId(newHistory[newHistory.length - 1]);
+
+      return newHistory;
+    });
+  };
+
   return (
     <main className="flex flex-col items-center justify-center p-4 sm:p-6">
       {/* Title/author/description */}
@@ -261,15 +273,7 @@ export default function StoryPlayerPage() {
         )}
         {story.allowBackNavigation && history.length > 1 && (
           <button
-            onClick={() => {
-              setHistory((prev) => {
-                const newHistory = [...prev];
-                newHistory.pop();
-                const previousNode = newHistory[newHistory.length - 1];
-                setCurrentNodeId(previousNode);
-                return newHistory;
-              });
-            }}
+            onClick={goBack}
             className="text-softWhite border-darkBlue bg-lightGreen hover:bg-darkGreen inline-flex w-full cursor-pointer justify-center gap-1 border-3 p-1 transition duration-200"
           >
             <ArrowBigLeft />
