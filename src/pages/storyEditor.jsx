@@ -4,7 +4,7 @@ import { toast } from "sonner";
 import { PanelLeftOpen } from "lucide-react";
 import { validateStoryJson } from "../upd/utilsUpd/storyUtilsUpd";
 import { generateStandaloneStoryHTML } from "../upd/utilsUpd/exportStandaloneHTMLUpd";
-import { downloadFile } from "../utils/downloadFile";
+import { downloadFile } from "../upd/utilsUpd/downloadFileUpd";
 import Sidebar from "../upd/StoryEditorUpd/SidebarUpd";
 import MetadataForm from "../upd/StoryEditorUpd/MetadataFormUpd";
 import NodeEditor from "../upd/StoryEditorUpd/NodeEditorUpd";
@@ -438,7 +438,7 @@ export default function StoryEditorPage() {
       .replace(/\s+/g, "_")
       .slice(0, 50);
 
-    downloadFile(html, `${safeTitle}.html`);
+    downloadFile(html, `${safeTitle}.html`, "application/json;charset=utf-8");
 
     toast.success("HTML file exported successfully.", {
       style: {
