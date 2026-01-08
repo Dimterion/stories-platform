@@ -21,7 +21,7 @@ import {
   X,
 } from "lucide-react";
 import { getLayoutElements } from "../../components/StoryDiagram/useDiagramLayout";
-import { getOrderedNodeIds, getNodeLabel } from "../../utils/storyUtils";
+import { getOrderedNodeIds, getNodeLabel } from "../utilsUpd/storyUtilsUpd";
 import {
   NODE_WIDTH,
   NODE_HEIGHT,

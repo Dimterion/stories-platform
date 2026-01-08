@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { toast } from "sonner";
 import { PanelLeftOpen } from "lucide-react";
-import { validateStoryJson } from "../utils/storyUtils";
+import { validateStoryJson } from "../upd/utilsUpd/storyUtilsUpd";
 import { generateStandaloneStoryHTML } from "../upd/utilsUpd/exportStandaloneHTMLUpd";
 import { downloadFile } from "../utils/downloadFile";
 import Sidebar from "../upd/StoryEditorUpd/SidebarUpd";

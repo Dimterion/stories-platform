@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { toast } from "sonner";
 import { ArrowBigLeft, RotateCcw } from "lucide-react";
-import { validateStoryJson } from "../utils/storyUtils";
+import { validateStoryJson } from "../upd/utilsUpd/storyUtilsUpd";
 import sampleStory from "../assets/sampleStory";
 
 const STORAGE_KEY = "storyPlayerState";
