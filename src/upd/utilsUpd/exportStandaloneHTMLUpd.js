@@ -180,6 +180,7 @@ export function generateStandaloneStoryHTML(story) {
           .btn-back {
             background-color: var(--lightGreen);
             color: var(--softWhite);
+            margin-top: 0.5rem;
           }
 
           .btn-back:hover {
