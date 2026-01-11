@@ -16,6 +16,27 @@ export default function Instructions() {
         <strong>Story diagram</strong> functionality (download your stories
         diagrams in SVG or PNG format).
       </p>
+      <h3 className="text-center text-lg font-semibold">
+        Questions or feedback?
+      </h3>
+      <article className="mx-2 flex flex-wrap justify-around">
+        <a
+          href="https://linktr.ee/dimterion"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hover:text-lightBlue underline"
+        >
+          Profile links
+        </a>
+        <a
+          href="https://www.dimterion.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hover:text-lightBlue underline"
+        >
+          My main site
+        </a>
+      </article>
     </section>
   );
 }
