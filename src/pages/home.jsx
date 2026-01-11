@@ -61,13 +61,13 @@ export default function HomePage() {
           onClick={() => setShowModal(false)}
         >
           <div
-            className="bg-softWhite text-deepBlue relative w-full max-w-lg p-4 sm:p-6"
+            className="bg-softWhite text-deepBlue relative m-2 w-full max-w-lg p-4 sm:p-6"
             onClick={(e) => e.stopPropagation()}
           >
             <button
               type="button"
               onClick={() => setShowModal(false)}
-              className="border-darkBlue hover:bg-deepBlue hover:text-softWhite absolute top-0.5 right-0.5 cursor-pointer border p-1 transition-colors"
+              className="border-darkBlue hover:bg-deepBlue hover:text-softWhite absolute top-0.5 right-0.5 z-10 cursor-pointer border p-1 transition-colors"
               aria-label="Close instructions"
             >
               <X className="size-5" />
