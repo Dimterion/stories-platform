@@ -1,3 +1,5 @@
+import { ExternalLink } from "lucide-react";
+
 export default function Instructions() {
   return (
     <section className="space-y-4">
@@ -33,22 +35,22 @@ export default function Instructions() {
       <h3 className="text-center text-lg font-semibold">
         Questions or feedback?
       </h3>
-      <article className="mx-2 flex flex-wrap justify-around">
+      <article className="mx-2 flex flex-wrap justify-around gap-2">
         <a
           href="https://linktr.ee/dimterion"
           target="_blank"
           rel="noopener noreferrer"
-          className="hover:text-lightBlue underline"
+          className="hover:text-lightBlue flex items-center gap-1 underline"
         >
-          Profile links
+          Profile links <ExternalLink className="size-4" />
         </a>
         <a
           href="https://www.dimterion.com"
           target="_blank"
           rel="noopener noreferrer"
-          className="hover:text-lightBlue underline"
+          className="hover:text-lightBlue flex items-center gap-1 underline"
         >
-          My main site
+          My main site <ExternalLink className="size-4" />
         </a>
       </article>
     </section>
