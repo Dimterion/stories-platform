@@ -2,20 +2,34 @@ export default function Instructions() {
   return (
     <section className="space-y-4">
       <h3 className="text-center text-xl font-bold">Instructions</h3>
-      <p>
-        Use <strong>Story Player</strong> to read/play through the interactive
-        stories (upload your own stories in JSON format).
-      </p>
-      <p>
-        Use <strong>Story Editor</strong> to create interactive stories (upload
-        your own stories in JSON format, or download created stories in HTML or
-        JSON format).
-      </p>
-      <p>
-        Review your stories structure in <strong>Story Editor</strong> by using{" "}
-        <strong>Story diagram</strong> functionality (download your stories
-        diagrams in SVG or PNG format).
-      </p>
+      <article>
+        <p>
+          Use <strong>Story Player</strong> to read/play through the interactive
+          stories.
+        </p>
+        <ul className="list-disc space-y-1 pt-2 pl-5">
+          <li>Upload your own stories in JSON format.</li>
+          <li>Navigate through the stories by choosing various options.</li>
+          <li>Progress is saved locally in your current browser.</li>
+          <li>Clear and reset progress to start over.</li>
+        </ul>
+      </article>
+      <article>
+        <p>
+          Use <strong>Story Editor</strong> to create interactive stories.
+        </p>
+        <ul className="list-disc space-y-1 pt-2 pl-5">
+          <li>Upload your own stories in JSON format.</li>
+          <li>Download created stories in HTML or JSON format.</li>
+          <li>Progress is saved locally in your current browser.</li>
+          <li>Clear and reset progress to start over.</li>
+          <li>
+            Review your stories structure by using{" "}
+            <strong>Story diagram</strong> functionality.
+          </li>
+          <li>Download your stories diagrams in SVG or PNG format.</li>
+        </ul>
+      </article>
       <h3 className="text-center text-lg font-semibold">
         Questions or feedback?
       </h3>
