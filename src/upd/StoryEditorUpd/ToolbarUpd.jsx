@@ -1,4 +1,10 @@
-import { FileDown, FileUp, Map, XCircle } from "lucide-react";
+import {
+  CircleQuestionMark,
+  FileDown,
+  FileUp,
+  Map,
+  XCircle,
+} from "lucide-react";
 
 export default function Toolbar({
   onExportStory,
@@ -6,6 +12,7 @@ export default function Toolbar({
   onImportStory,
   onShowDiagram,
   onClearSave,
+  onShowModal,
 }) {
   return (
     <section className="flex flex-wrap justify-center gap-4 pb-2 md:justify-start">
@@ -46,6 +53,13 @@ export default function Toolbar({
       >
         <XCircle />
         Clear Save & Reset Editor
+      </button>
+      <button
+        onClick={onShowModal}
+        className="border-darkBlue bg-baseGreen hover:bg-softGreen inline-flex w-3xs max-w-[55vw] cursor-pointer items-center gap-2 border-3 px-4 py-2 text-center"
+      >
+        <CircleQuestionMark />
+        Instructions
       </button>
     </section>
   );
