@@ -1,6 +1,13 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { toast } from "sonner";
-import { ArrowBigLeft, CircleQuestionMark, RotateCcw, X } from "lucide-react";
+import {
+  ArrowBigLeft,
+  CircleQuestionMark,
+  FileDown,
+  RotateCcw,
+  X,
+  XCircle,
+} from "lucide-react";
 import { validateStoryJson } from "../upd/utilsUpd/storyUtilsUpd";
 import Instructions from "../components/Instructions";
 import sampleStory from "../assets/sampleStory";
@@ -331,9 +338,9 @@ export default function StoryPlayerPage() {
           {/* Custom upload button */}
           <button
             onClick={() => fileInputRef.current?.click()}
-            className="text-softWhite bg-lightBlue hover:bg-deepBlue border-darkBlue w-full cursor-pointer border-3 p-1 transition duration-200"
+            className="text-softWhite bg-lightBlue hover:bg-deepBlue border-darkBlue inline-flex w-full cursor-pointer items-center justify-center gap-2 border-3 p-1 transition duration-200"
           >
-            Choose File
+            <FileDown className="size-8 sm:size-6" /> Choose File
           </button>
 
           {/* File name display */}
@@ -343,14 +350,15 @@ export default function StoryPlayerPage() {
 
       <button
         onClick={resetProgress}
-        className="text-softWhite bg-baseRed hover:bg-lightRed border-darkBlue inline-flex w-full max-w-[1024px] cursor-pointer justify-center gap-1 border-3 p-1 transition duration-200"
+        className="text-softWhite bg-baseRed hover:bg-lightRed border-darkBlue inline-flex min-h-16 w-full max-w-[1024px] cursor-pointer items-center justify-center gap-2 border-3 p-1 transition duration-200 sm:min-h-10"
       >
+        <XCircle className="size-8 sm:size-6" />
         Clear Save & Reset Progress
       </button>
 
       <button
         onClick={() => setShowModal(true)}
-        className="text-softWhite bg-baseGreen hover:bg-softGreen border-darkBlue inline-flex w-full max-w-[1024px] cursor-pointer justify-center gap-1 border-3 p-1 transition duration-200"
+        className="text-softWhite bg-baseGreen hover:bg-softGreen border-darkBlue inline-flex min-h-16 w-full max-w-[1024px] cursor-pointer items-center justify-center gap-2 border-3 p-1 transition duration-200 sm:min-h-10"
       >
         <CircleQuestionMark className="size-8 sm:size-6" />
         Instructions
