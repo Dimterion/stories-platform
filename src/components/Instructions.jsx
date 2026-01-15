@@ -1,3 +1,4 @@
+import { Link } from "react-router";
 import { ExternalLink } from "lucide-react";
 
 export default function Instructions() {
@@ -6,8 +7,14 @@ export default function Instructions() {
       <h3 className="text-center text-xl font-bold">Instructions</h3>
       <article>
         <p>
-          Use <strong>Story Player</strong> to read/play through the interactive
-          stories.
+          Use{" "}
+          <Link
+            to="/story-player"
+            className="hover:text-lightBlue font-bold underline"
+          >
+            Story Player
+          </Link>{" "}
+          to read/play through the interactive stories.
         </p>
         <ul className="list-disc space-y-1 pt-2 pl-5">
           <li>Upload your own stories in JSON format.</li>
@@ -18,7 +25,14 @@ export default function Instructions() {
       </article>
       <article>
         <p>
-          Use <strong>Story Editor</strong> to create interactive stories.
+          Use{" "}
+          <Link
+            to="/story-editor"
+            className="hover:text-lightBlue font-bold underline"
+          >
+            Story Editor
+          </Link>{" "}
+          to create interactive stories.
         </p>
         <ul className="list-disc space-y-1 pt-2 pl-5">
           <li>Upload your own stories in JSON format.</li>
