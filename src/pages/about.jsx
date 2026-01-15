@@ -1,4 +1,5 @@
 import { Link } from "react-router";
+import { ExternalLink } from "lucide-react";
 
 export default function AboutPage() {
   return (
@@ -61,7 +62,28 @@ export default function AboutPage() {
         </a>{" "}
         for more information and updates.
       </p>
-      <p className="text-lg">
+      <h3 className="text-center text-lg font-semibold">
+        Questions or feedback?
+      </h3>
+      <article className="mx-2 flex flex-wrap justify-around gap-2">
+        <a
+          href="https://linktr.ee/dimterion"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hover:text-lightBlue flex items-center gap-1 underline"
+        >
+          Profile links <ExternalLink className="size-4" />
+        </a>
+        <a
+          href="https://www.dimterion.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hover:text-lightBlue flex items-center gap-1 underline"
+        >
+          My main site <ExternalLink className="size-4" />
+        </a>
+      </article>
+      <p className="border-t pt-2 text-lg">
         P.S.: I have also made a couple of Interactive text adventure gams which
         you can check{" "}
         <a
