@@ -1,6 +1,7 @@
 import { Routes, Route } from "react-router";
 import { Toaster } from "sonner";
 import ScrollToTop from "./components/scrollToTop";
+import ScrollToTopBtn from "./components/ScrollToTopBtn";
 import Header from "./upd/LayoutUpd/HeaderUpd";
 import HomePage from "./pages/home";
 import StoryPlayerPage from "./pages/storyPlayer";
@@ -13,6 +14,7 @@ export default function App() {
   return (
     <>
       <ScrollToTop />
+      <ScrollToTopBtn />
       <Toaster position="top-right" richColors closeButton />
       <div className="font-scienceGothic border-darkBlue bg-deepBlue text-softWhite flex min-h-screen flex-col justify-between border-x-4">
         <Header />
