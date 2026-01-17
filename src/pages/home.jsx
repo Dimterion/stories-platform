@@ -1,38 +1,10 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router";
-import { X } from "lucide-react";
+import Modal from "../components/Modal";
 import Instructions from "../components/Instructions";
 
 export default function HomePage() {
   const [showModal, setShowModal] = useState(false);
-
-  // Prevent background scroll when modal opens
-  useEffect(() => {
-    if (showModal) {
-      // Save scroll position and prevent scroll
-      const scrollY = window.scrollY;
-      document.body.style.position = "fixed";
-      document.body.style.top = `-${scrollY}px`;
-      document.body.style.width = "100%";
-      document.body.style.overflow = "hidden";
-    } else {
-      // Restore scroll position when modal closes
-      const scrollY = document.body.style.top;
-      document.body.style.position = "";
-      document.body.style.top = "";
-      document.body.style.width = "";
-      document.body.style.overflow = "";
-      window.scrollTo(0, parseInt(scrollY || "0") * -1);
-    }
-
-    // Cleanup on unmount
-    return () => {
-      document.body.style.position = "";
-      document.body.style.top = "";
-      document.body.style.width = "";
-      document.body.style.overflow = "";
-    };
-  }, [showModal]);
 
   return (
     <main className="flex flex-col items-center gap-10 p-4">
@@ -78,32 +50,13 @@ export default function HomePage() {
           </Link>
         </article>
       </section>
-
-      {/* Modal */}
-      {showModal && (
-        <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4 sm:p-8"
-          role="dialog"
-          aria-modal="true"
-          aria-labelledby="instructions-title"
-          onClick={() => setShowModal(false)}
-        >
-          <div
-            className="bg-softWhite text-deepBlue relative max-h-[90vh] w-full max-w-lg overflow-y-auto p-4 sm:p-6"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <button
-              type="button"
-              onClick={() => setShowModal(false)}
-              className="border-darkBlue hover:bg-deepBlue hover:text-softWhite absolute top-0.5 right-0.5 z-10 cursor-pointer border p-1 transition-colors"
-              aria-label="Close instructions"
-            >
-              <X className="size-5" />
-            </button>
-            <Instructions />
-          </div>
-        </div>
-      )}
+      <Modal
+        isOpen={showModal}
+        onClose={() => setShowModal(false)}
+        ariaLabelledBy="instructions-title"
+      >
+        <Instructions />
+      </Modal>
     </main>
   );
 }
