@@ -1,5 +1,5 @@
 import { Link } from "react-router";
-import { ExternalLink } from "lucide-react";
+import { BookOpenCheck, ExternalLink, House, Pencil } from "lucide-react";
 
 export default function AboutPage() {
   return (
@@ -34,21 +34,23 @@ export default function AboutPage() {
       </p>
       <Link
         to="/"
-        className="hover:bg-softWhite hover:text-deepBlue w-md max-w-full border px-6 py-2 text-center uppercase transition-all"
+        className="hover:bg-softWhite hover:text-deepBlue mx-auto flex w-sm max-w-[80vw] cursor-pointer flex-nowrap items-center justify-center gap-2 border p-2 text-center text-xs uppercase sm:text-base"
       >
+        <House />
         Home page
       </Link>
       <Link
         to="/story-editor"
-        className="hover:bg-softWhite hover:text-deepBlue w-md max-w-full border px-6 py-2 text-center uppercase transition-all"
+        className="hover:bg-softWhite hover:text-deepBlue mx-auto flex w-sm max-w-[80vw] cursor-pointer flex-nowrap items-center justify-center gap-2 border p-2 text-center text-xs uppercase sm:text-base"
       >
+        <Pencil />
         Start creating
       </Link>
       <Link
         to="/story-player"
-        className="hover:bg-softWhite hover:text-deepBlue w-md max-w-full border px-6 py-2 text-center uppercase transition-all"
+        className="hover:bg-softWhite hover:text-deepBlue mx-auto flex w-sm max-w-[80vw] cursor-pointer flex-nowrap items-center justify-center gap-2 border p-2 text-center text-xs uppercase sm:text-base"
       >
-        Start playing
+        <BookOpenCheck /> Start playing
       </Link>
       <p className="text-lg">
         Visit the{" "}
