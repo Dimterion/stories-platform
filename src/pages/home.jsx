@@ -15,13 +15,13 @@ export default function HomePage() {
       <button
         type="button"
         onClick={() => setShowModal(true)}
-        className="hover:bg-softWhite hover:text-deepBlue mx-auto flex w-sm max-w-[80vw] cursor-pointer flex-nowrap items-center justify-center gap-2 border p-2 text-center text-xs uppercase sm:text-base"
+        className="hover:bg-softWhite hover:text-deepBlue bg-darkBlue mx-auto flex w-sm max-w-[80vw] cursor-pointer flex-nowrap items-center justify-center gap-2 border p-2 text-center text-xs uppercase sm:text-base"
       >
         <CircleQuestionMark /> Instructions
       </button>
       <section className="flex flex-col gap-10 text-center">
         <div className="flex flex-wrap gap-4">
-          <article className="m-auto flex w-sm max-w-[80vw] flex-col gap-4 border p-2">
+          <article className="bg-darkBlue m-auto flex w-sm max-w-[80vw] flex-col gap-4 border p-2">
             <Link
               to="/story-player"
               className="hover:bg-softWhite hover:text-deepBlue mx-auto flex w-full flex-nowrap items-center justify-center gap-2 border p-2 text-center text-xs uppercase sm:text-base"
@@ -31,7 +31,7 @@ export default function HomePage() {
             </Link>
             <p className="text-sm">Read / play through interactive stories.</p>
           </article>
-          <article className="m-auto flex w-sm max-w-[80vw] flex-col gap-4 border p-2">
+          <article className="bg-darkBlue m-auto flex w-sm max-w-[80vw] flex-col gap-4 border p-2">
             <Link
               to="/story-editor"
               className="hover:bg-softWhite hover:text-deepBlue mx-auto flex w-full flex-nowrap items-center justify-center gap-2 border p-2 text-center text-xs uppercase sm:text-base"
@@ -44,7 +44,7 @@ export default function HomePage() {
         </div>
         <Link
           to="/about"
-          className="hover:bg-softWhite hover:text-deepBlue mx-auto flex w-sm max-w-[80vw] flex-nowrap items-center justify-center gap-2 border p-2 text-center text-xs uppercase sm:text-base"
+          className="hover:bg-softWhite hover:text-deepBlue bg-darkBlue mx-auto flex w-sm max-w-[80vw] flex-nowrap items-center justify-center gap-2 border p-2 text-center text-xs uppercase sm:text-base"
         >
           <Info />
           About the platform

@@ -3,10 +3,8 @@ import { BookOpenCheck, ExternalLink, House, Pencil } from "lucide-react";
 
 export default function AboutPage() {
   return (
-    <main className="relative flex flex-col items-center justify-center gap-10 p-10">
-      <h2 className="text-center text-4xl font-bold">
-        Interactive Stories Platform
-      </h2>
+    <main className="relative flex flex-col items-center justify-center gap-10 p-10 text-center">
+      <h2 className="text-4xl font-bold">Interactive Stories Platform</h2>
       <p className="text-xl">
         A platform to create interactive stories with multiple choices and
         outcomes.
@@ -32,26 +30,28 @@ export default function AboutPage() {
         </a>
         .
       </p>
-      <Link
-        to="/"
-        className="hover:bg-softWhite hover:text-deepBlue mx-auto flex w-sm max-w-[80vw] cursor-pointer flex-nowrap items-center justify-center gap-2 border p-2 text-center text-xs uppercase sm:text-base"
-      >
-        <House />
-        Home page
-      </Link>
-      <Link
-        to="/story-editor"
-        className="hover:bg-softWhite hover:text-deepBlue mx-auto flex w-sm max-w-[80vw] cursor-pointer flex-nowrap items-center justify-center gap-2 border p-2 text-center text-xs uppercase sm:text-base"
-      >
-        <Pencil />
-        Start creating
-      </Link>
-      <Link
-        to="/story-player"
-        className="hover:bg-softWhite hover:text-deepBlue mx-auto flex w-sm max-w-[80vw] cursor-pointer flex-nowrap items-center justify-center gap-2 border p-2 text-center text-xs uppercase sm:text-base"
-      >
-        <BookOpenCheck /> Start playing
-      </Link>
+      <section className="space-y-6">
+        <Link
+          to="/"
+          className="hover:bg-softWhite hover:text-deepBlue bg-darkBlue mx-auto flex w-sm max-w-[80vw] cursor-pointer flex-nowrap items-center justify-center gap-2 border p-2 text-xs uppercase sm:text-base"
+        >
+          <House />
+          Home page
+        </Link>
+        <Link
+          to="/story-editor"
+          className="hover:bg-softWhite hover:text-deepBlue bg-darkBlue mx-auto flex w-sm max-w-[80vw] cursor-pointer flex-nowrap items-center justify-center gap-2 border p-2 text-xs uppercase sm:text-base"
+        >
+          <Pencil />
+          Start creating
+        </Link>
+        <Link
+          to="/story-player"
+          className="hover:bg-softWhite hover:text-deepBlue bg-darkBlue mx-auto flex w-sm max-w-[80vw] cursor-pointer flex-nowrap items-center justify-center gap-2 border p-2 text-xs uppercase sm:text-base"
+        >
+          <BookOpenCheck /> Start playing
+        </Link>
+      </section>
       <p className="text-lg">
         Visit the{" "}
         <a
@@ -64,9 +64,7 @@ export default function AboutPage() {
         </a>{" "}
         for more information and updates.
       </p>
-      <h3 className="text-center text-lg font-semibold">
-        Questions or feedback?
-      </h3>
+      <h3 className="text-lg font-semibold">Questions or feedback?</h3>
       <article className="mx-2 flex flex-wrap justify-around gap-2">
         <a
           href="https://linktr.ee/dimterion"
