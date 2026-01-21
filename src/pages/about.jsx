@@ -9,27 +9,6 @@ export default function AboutPage() {
         A platform to create interactive stories with multiple choices and
         outcomes.
       </p>
-      <p className="text-lg">
-        Learn more about the project{" "}
-        <a
-          href="https://medium.com/@dimterion/text-adventure-games-creation-tool-385667ac8904"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="hover:text-lightBlue underline"
-        >
-          here
-        </a>{" "}
-        and{" "}
-        <a
-          href="https://medium.com/@dimterion/text-adventure-games-creation-tool-progress-update-4e2bd0524d03"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="hover:text-lightBlue underline"
-        >
-          here
-        </a>
-        .
-      </p>
       <section className="space-y-6">
         <Link
           to="/"
@@ -51,6 +30,33 @@ export default function AboutPage() {
         >
           <BookOpenCheck /> Start playing
         </Link>
+      </section>
+      <section>
+        <p className="mb-4 text-xl font-bold">Learn more about the project:</p>
+        <ul className="list-disc space-y-1 text-left">
+          <li>
+            <a
+              href="https://medium.com/@dimterion/text-adventure-games-creation-tool-385667ac8904"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-lightBlue inline-flex items-center gap-1 underline"
+            >
+              Text adventure games creation tool
+              <ExternalLink className="size-4 shrink-0" />
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://medium.com/@dimterion/text-adventure-games-creation-tool-progress-update-4e2bd0524d03"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-lightBlue inline-flex items-center gap-1 underline"
+            >
+              Text adventure games creation tool (progress update)
+              <ExternalLink className="size-4 shrink-0" />
+            </a>
+          </li>
+        </ul>
       </section>
       <p className="text-lg">
         Visit the{" "}
