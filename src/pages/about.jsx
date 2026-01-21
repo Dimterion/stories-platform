@@ -58,18 +58,20 @@ export default function AboutPage() {
           </li>
         </ul>
       </section>
-      <p className="text-lg">
-        Visit the{" "}
-        <a
-          href="https://github.com/Dimterion/stories-platform"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="hover:text-lightBlue underline"
-        >
-          project's GitHub repository
-        </a>{" "}
-        for more information and updates.
-      </p>
+      <section>
+        <p className="text-lg">
+          Visit the{" "}
+          <a
+            href="https://github.com/Dimterion/stories-platform"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-lightBlue underline"
+          >
+            project's GitHub repository
+          </a>{" "}
+          for more information and updates.
+        </p>
+      </section>
       <h3 className="text-lg font-semibold">Questions or feedback?</h3>
       <article className="mx-2 flex flex-wrap justify-around gap-2">
         <a
@@ -89,28 +91,31 @@ export default function AboutPage() {
           My main site <ExternalLink className="size-4" />
         </a>
       </article>
-      <p className="border-t pt-2 text-lg">
-        P.S.: I have also made a couple of Interactive text adventure gams which
-        you can check{" "}
-        <a
-          href="https://poets-of-tomorrows-world.vercel.app/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="hover:text-lightBlue underline"
-        >
-          here
-        </a>{" "}
-        and{" "}
-        <a
-          href="https://profound-cat-a609de.netlify.app/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="hover:text-lightBlue underline"
-        >
-          here
-        </a>
-        .
-      </p>
+      <section className="border-t pt-2 text-lg">
+        <p>I have also made a couple of interactive text adventure games:</p>
+        <ul>
+          <li>
+            <a
+              href="https://poets-of-tomorrows-world.vercel.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-lightBlue underline"
+            >
+              Poets of Tomorrow’s World
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://profound-cat-a609de.netlify.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-lightBlue underline"
+            >
+              Poets of Tomorrow’s World: gameOn(e)
+            </a>
+          </li>
+        </ul>
+      </section>
     </main>
   );
 }
