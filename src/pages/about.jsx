@@ -3,8 +3,10 @@ import { BookOpenCheck, ExternalLink, House, Pencil } from "lucide-react";
 
 export default function AboutPage() {
   return (
-    <main className="relative flex flex-col items-center justify-center gap-10 p-10 text-center">
-      <h2 className="text-4xl font-bold">Interactive Stories Platform</h2>
+    <main className="relative flex flex-col items-center justify-center gap-8 p-10 text-center sm:gap-10">
+      <h2 className="text-2xl italic sm:text-4xl">
+        Interactive Stories Platform
+      </h2>
       <p className="text-xl">
         A platform to create interactive stories with multiple choices and
         outcomes.
@@ -32,7 +34,9 @@ export default function AboutPage() {
         </Link>
       </section>
       <section>
-        <p className="mb-4 text-xl font-bold">Learn more about the project:</p>
+        <h3 className="mb-4 text-xl font-bold">
+          Learn more about the project:
+        </h3>
         <ul className="list-disc space-y-1 text-left">
           <li>
             <a
@@ -72,8 +76,8 @@ export default function AboutPage() {
           for more information and updates.
         </p>
       </section>
-      <h3 className="text-lg font-semibold">Questions or feedback?</h3>
-      <article className="mx-2 flex flex-wrap justify-around gap-2">
+      <section className="mx-2 flex flex-col items-center gap-2">
+        <h3 className="mb-4 text-xl font-bold">Questions or feedback?</h3>
         <a
           href="https://linktr.ee/dimterion"
           target="_blank"
@@ -90,10 +94,10 @@ export default function AboutPage() {
         >
           My main site <ExternalLink className="size-4" />
         </a>
-      </article>
-      <section className="border-t pt-2 text-lg">
+      </section>
+      <section className="border-t pt-2">
         <p>I have also made a couple of interactive text adventure games:</p>
-        <ul>
+        <ul className="mx-auto mt-4 max-w-fit list-disc space-y-1 text-left">
           <li>
             <a
               href="https://poets-of-tomorrows-world.vercel.app/"
