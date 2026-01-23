@@ -63,18 +63,19 @@ export default function AboutPage() {
         </ul>
       </section>
       <section>
-        <p className="text-lg">
-          Visit the{" "}
-          <a
-            href="https://github.com/Dimterion/stories-platform"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:text-lightBlue underline"
-          >
-            project's GitHub repository
-          </a>{" "}
-          for more information and updates.
-        </p>
+        <h3 className="mb-4 text-xl font-bold">
+          Visit the project's GitHub repository for more information and
+          updates.
+        </h3>
+        <a
+          href="https://github.com/Dimterion/stories-platform"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hover:text-lightBlue flex items-center justify-center gap-1 underline"
+        >
+          Interactive Stories Platform (GitHub repo){" "}
+          <ExternalLink className="size-4" />
+        </a>
       </section>
       <section className="mx-2 flex flex-col items-center gap-2">
         <h3 className="mb-4 text-xl font-bold">Questions or feedback?</h3>
@@ -95,7 +96,8 @@ export default function AboutPage() {
           My main site <ExternalLink className="size-4" />
         </a>
       </section>
-      <section className="border-t pt-2">
+      <section>
+        <h3 className="mb-4 text-xl font-bold">Other related projects</h3>
         <p>I have also made a couple of interactive text adventure games:</p>
         <ul className="mx-auto mt-4 max-w-fit list-disc space-y-1 text-left">
           <li>
@@ -103,9 +105,9 @@ export default function AboutPage() {
               href="https://poets-of-tomorrows-world.vercel.app/"
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-lightBlue underline"
+              className="hover:text-lightBlue flex items-center gap-1 underline"
             >
-              Poets of Tomorrow’s World
+              Poets of Tomorrow’s World <ExternalLink className="size-4" />
             </a>
           </li>
           <li>
@@ -113,9 +115,10 @@ export default function AboutPage() {
               href="https://profound-cat-a609de.netlify.app/"
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-lightBlue underline"
+              className="hover:text-lightBlue flex items-center gap-1 underline"
             >
-              Poets of Tomorrow’s World: gameOn(e)
+              Poets of Tomorrow’s World: gameOn(e){" "}
+              <ExternalLink className="size-4" />
             </a>
           </li>
         </ul>
