@@ -1,7 +1,12 @@
 import { Link } from "react-router";
 import { BookOpenCheck, ExternalLink, House, Pencil } from "lucide-react";
+import { useMetadata } from "../utils/hooks";
 
 export default function AboutPage() {
+  useMetadata({
+    title: "Stories Platform | About",
+  });
+
   return (
     <main className="relative flex flex-col items-center justify-center gap-8 p-10 text-center sm:gap-10">
       <h2 className="text-2xl italic sm:text-4xl">
