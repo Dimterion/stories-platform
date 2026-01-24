@@ -7,6 +7,7 @@ import {
   RotateCcw,
   XCircle,
 } from "lucide-react";
+import { useMetadata } from "../utils/hooks";
 import { validateStoryJson } from "../upd/utilsUpd/storyUtilsUpd";
 import Modal from "../components/Modal";
 import Instructions from "../components/Instructions";
@@ -16,6 +17,12 @@ const STORAGE_KEY = "storyPlayerState";
 
 export default function StoryPlayerPage() {
   const fileInputRef = useRef(null);
+
+  useMetadata({
+    title: "Stories Platform | Story Player",
+    description:
+      "Experience interactive stories with multiple choices and outcomes.",
+  });
 
   const loadInitialState = () => {
     try {

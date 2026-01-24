@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { toast } from "sonner";
 import { PanelLeftOpen } from "lucide-react";
+import { useMetadata } from "../utils/hooks";
 import { validateStoryJson } from "../upd/utilsUpd/storyUtilsUpd";
 import { generateStandaloneStoryHTML } from "../upd/utilsUpd/exportStandaloneHTMLUpd";
 import { downloadFile } from "../upd/utilsUpd/downloadFileUpd";
@@ -28,6 +29,12 @@ export default function StoryEditorPage() {
   const [showProgress, setShowProgress] = useState(true);
   const [allowBackNavigation, setAllowBackNavigation] = useState(false);
   const [showModal, setShowModal] = useState(false);
+
+  useMetadata({
+    title: "Stories Platform | Story Editor",
+    description:
+      "Create your own interactive stories with multiple choices and outcomes.",
+  });
 
   useEffect(() => {
     try {
