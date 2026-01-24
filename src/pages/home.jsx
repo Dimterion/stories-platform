@@ -9,7 +9,7 @@ export default function HomePage() {
 
   return (
     <main className="mb-4 flex flex-col items-center gap-6 p-4 sm:mb-0 sm:gap-12">
-      <h2 className="my-2 text-center font-bold text-2xl italic sm:text-4xl">
+      <h2 className="my-2 text-center text-2xl font-bold italic sm:text-4xl">
         Interactive Stories Platform
       </h2>
       <button
