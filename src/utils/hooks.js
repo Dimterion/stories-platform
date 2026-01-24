@@ -1,4 +1,5 @@
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
+import { MetadataContext } from "./MetadataContext";
 
 export function useBodyScrollLock(locked) {
   useEffect(() => {
@@ -21,4 +22,15 @@ export function useBodyScrollLock(locked) {
       window.scrollTo(0, parseInt(y || "0", 10) * -1);
     };
   }, [locked]);
+}
+
+export function useMetadata({ title, description }) {
+  const setMetadata = useContext(MetadataContext);
+
+  useEffect(() => {
+    setMetadata({ title, description });
+    return () => {
+      setMetadata({});
+    };
+  }, [title, description, setMetadata]);
 }
