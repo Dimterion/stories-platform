@@ -1,7 +1,12 @@
 import { Link } from "react-router";
 import { House } from "lucide-react";
+import { useMetadata } from "../utils/hooks";
 
 export default function NotFoundPage() {
+  useMetadata({
+    title: "Stories Platform | Page not found",
+  });
+
   return (
     <main className="relative flex flex-col items-center justify-center gap-10 p-2">
       <h2 className="text-center text-4xl font-bold">Page not found</h2>

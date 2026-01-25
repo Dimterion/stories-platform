@@ -46,10 +46,22 @@ export default function Instructions() {
           <li>Download your stories diagrams in SVG or PNG format.</li>
         </ul>
       </article>
-      <h3 className="text-center text-lg font-semibold">
+      <article>
+        <p>
+          Visit the{" "}
+          <Link
+            to="/about"
+            className="hover:text-lightBlue font-bold underline"
+          >
+            About page
+          </Link>{" "}
+          for additional information and links.
+        </p>
+      </article>
+      <h3 className="border-t pt-4 text-center text-lg font-semibold">
         Questions or feedback?
       </h3>
-      <article className="mx-2 flex flex-wrap justify-around gap-2">
+      <article className="mx-2 flex flex-wrap justify-around gap-2 border-b pb-6">
         <a
           href="https://linktr.ee/dimterion"
           target="_blank"
