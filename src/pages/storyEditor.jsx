@@ -36,6 +36,19 @@ export default function StoryEditorPage() {
       "Create your own interactive stories with multiple choices and outcomes.",
   });
 
+  // Prevent page scroll when diagram modal is opened
+  useEffect(() => {
+    if (showDiagram) {
+      const originalStyle = window.getComputedStyle(document.body).overflow;
+
+      document.body.style.overflow = "hidden";
+
+      return () => {
+        document.body.style.overflow = originalStyle;
+      };
+    }
+  }, [showDiagram]);
+
   useEffect(() => {
     try {
       const saved = localStorage.getItem(STORAGE_KEY);
