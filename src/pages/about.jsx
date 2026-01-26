@@ -8,7 +8,7 @@ export default function AboutPage() {
   });
 
   return (
-    <main className="relative flex flex-col items-center justify-center gap-8 p-10 text-center sm:gap-10">
+    <main className="flex flex-col items-center justify-center gap-8 p-10 text-center sm:gap-10">
       <h2 className="text-2xl italic sm:text-4xl">
         Interactive Stories Platform
       </h2>
@@ -79,7 +79,7 @@ export default function AboutPage() {
           className="hover:text-lightBlue flex items-center justify-center gap-1 underline"
         >
           Interactive Stories Platform (GitHub repo){" "}
-          <ExternalLink className="size-4" />
+          <ExternalLink className="size-4 shrink-0" />
         </a>
       </section>
       <section className="mx-2 flex flex-col items-center gap-2">
@@ -90,7 +90,7 @@ export default function AboutPage() {
           rel="noopener noreferrer"
           className="hover:text-lightBlue flex items-center gap-1 underline"
         >
-          Profile links <ExternalLink className="size-4" />
+          Profile links <ExternalLink className="size-4 shrink-0" />
         </a>
         <a
           href="https://www.dimterion.com"
@@ -98,7 +98,7 @@ export default function AboutPage() {
           rel="noopener noreferrer"
           className="hover:text-lightBlue flex items-center gap-1 underline"
         >
-          My main site <ExternalLink className="size-4" />
+          My main site <ExternalLink className="size-4 shrink-0" />
         </a>
       </section>
       <section>
@@ -112,7 +112,8 @@ export default function AboutPage() {
               rel="noopener noreferrer"
               className="hover:text-lightBlue flex items-center gap-1 underline"
             >
-              Poets of Tomorrow’s World <ExternalLink className="size-4" />
+              Poets of Tomorrow’s World{" "}
+              <ExternalLink className="size-4 shrink-0" />
             </a>
           </li>
           <li>
@@ -123,7 +124,7 @@ export default function AboutPage() {
               className="hover:text-lightBlue flex items-center gap-1 underline"
             >
               Poets of Tomorrow’s World: gameOn(e){" "}
-              <ExternalLink className="size-4" />
+              <ExternalLink className="size-4 shrink-0" />
             </a>
           </li>
         </ul>
