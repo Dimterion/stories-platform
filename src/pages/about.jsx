@@ -40,7 +40,7 @@ export default function AboutPage() {
       </section>
       <h3 className="text-xl font-bold">Learn more about the project</h3>
       <section className="flex flex-wrap gap-10">
-        <article className="flex w-full max-w-[300px] flex-col items-center justify-center gap-2 border p-4">
+        <article className="border-darkBlue bg-softWhite text-deepBlue flex w-full max-w-[300px] flex-col items-center justify-center gap-2 border p-4">
           <p>
             I've described the project, its main purpose, features, and
             functionality in the following article:
@@ -49,13 +49,13 @@ export default function AboutPage() {
             href="https://medium.com/@dimterion/text-adventure-games-creation-tool-385667ac8904"
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:text-lightBlue inline-flex items-center gap-1 underline"
+            className="hover:bg-softWhite hover:text-deepBlue bg-darkBlue text-softWhite inline-flex w-full items-center justify-around gap-1 border p-2"
           >
             Creating the platform
             <ExternalLink className="size-4 shrink-0" />
           </a>
         </article>
-        <article className="flex w-full max-w-[300px] flex-col items-center justify-center gap-2 border p-4">
+        <article className="border-darkBlue bg-softWhite text-deepBlue flex w-full max-w-[300px] flex-col items-center justify-center gap-2 border p-4">
           <p>
             In this article I've talked about my approach to developing the
             project and adding new features:
@@ -64,7 +64,7 @@ export default function AboutPage() {
             href="https://medium.com/@dimterion/text-adventure-games-creation-tool-progress-update-4e2bd0524d03"
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:text-lightBlue inline-flex items-center gap-1 underline"
+            className="hover:bg-softWhite hover:text-deepBlue bg-darkBlue text-softWhite inline-flex w-full items-center justify-around gap-1 border p-2"
           >
             Progress update
             <ExternalLink className="size-4 shrink-0" />
