@@ -38,34 +38,38 @@ export default function AboutPage() {
           <BookOpenCheck /> Start playing
         </Link>
       </section>
-      <section>
-        <h3 className="mb-4 text-xl font-bold">
-          Learn more about the project:
-        </h3>
-        <ul className="list-disc space-y-1 text-left">
-          <li>
-            <a
-              href="https://medium.com/@dimterion/text-adventure-games-creation-tool-385667ac8904"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-lightBlue inline-flex items-center gap-1 underline"
-            >
-              Text adventure games creation tool
-              <ExternalLink className="size-4 shrink-0" />
-            </a>
-          </li>
-          <li>
-            <a
-              href="https://medium.com/@dimterion/text-adventure-games-creation-tool-progress-update-4e2bd0524d03"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-lightBlue inline-flex items-center gap-1 underline"
-            >
-              Text adventure games creation tool (progress update)
-              <ExternalLink className="size-4 shrink-0" />
-            </a>
-          </li>
-        </ul>
+      <h3 className="text-xl font-bold">Learn more about the project</h3>
+      <section className="flex flex-wrap gap-10">
+        <article className="flex w-full max-w-[300px] flex-col items-center justify-center gap-2 border p-4">
+          <p>
+            I've described the project, its main purpose, features, and
+            functionality in the following article:
+          </p>
+          <a
+            href="https://medium.com/@dimterion/text-adventure-games-creation-tool-385667ac8904"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-lightBlue inline-flex items-center gap-1 underline"
+          >
+            Creating the platform
+            <ExternalLink className="size-4 shrink-0" />
+          </a>
+        </article>
+        <article className="flex w-full max-w-[300px] flex-col items-center justify-center gap-2 border p-4">
+          <p>
+            In this article I've talked about my approach to developing the
+            project and adding new features:
+          </p>
+          <a
+            href="https://medium.com/@dimterion/text-adventure-games-creation-tool-progress-update-4e2bd0524d03"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-lightBlue inline-flex items-center gap-1 underline"
+          >
+            Progress update
+            <ExternalLink className="size-4 shrink-0" />
+          </a>
+        </article>
       </section>
       <section>
         <h3 className="mb-4 text-xl font-bold">
