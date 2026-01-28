@@ -71,18 +71,18 @@ export default function AboutPage() {
           </a>
         </article>
       </section>
-      <section>
-        <h3 className="mb-4 text-xl font-bold">
+      <section className="border-darkBlue bg-softWhite text-deepBlue flex w-full max-w-[300px] flex-col items-center justify-center gap-2 border p-4">
+        <p>
           Visit the project's GitHub repository for more information and
-          updates.
-        </h3>
+          updates:
+        </p>
         <a
           href="https://github.com/Dimterion/stories-platform"
           target="_blank"
           rel="noopener noreferrer"
-          className="hover:text-lightBlue flex items-center justify-center gap-1 underline"
+          className="hover:bg-softWhite hover:text-deepBlue bg-darkBlue text-softWhite inline-flex w-full items-center justify-around gap-1 border p-2"
         >
-          Interactive Stories Platform (GitHub repo){" "}
+          GitHub repo
           <ExternalLink className="size-4 shrink-0" />
         </a>
       </section>
@@ -116,7 +116,7 @@ export default function AboutPage() {
               rel="noopener noreferrer"
               className="hover:text-lightBlue flex items-center gap-1 underline"
             >
-              Poets of Tomorrow’s World{" "}
+              Poets of Tomorrow’s World
               <ExternalLink className="size-4 shrink-0" />
             </a>
           </li>
@@ -127,7 +127,7 @@ export default function AboutPage() {
               rel="noopener noreferrer"
               className="hover:text-lightBlue flex items-center gap-1 underline"
             >
-              Poets of Tomorrow’s World: gameOn(e){" "}
+              Poets of Tomorrow’s World: gameOn(e)
               <ExternalLink className="size-4 shrink-0" />
             </a>
           </li>
