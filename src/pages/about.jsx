@@ -49,7 +49,7 @@ export default function AboutPage() {
             href="https://medium.com/@dimterion/text-adventure-games-creation-tool-385667ac8904"
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:bg-softWhite hover:text-deepBlue bg-darkBlue text-softWhite inline-flex w-full items-center justify-around gap-1 border p-2"
+            className="hover:bg-softWhite hover:text-deepBlue bg-darkBlue text-softWhite inline-flex w-full items-center justify-center gap-1 border p-2"
           >
             Creating the platform
             <ExternalLink className="size-4 shrink-0" />
@@ -64,7 +64,7 @@ export default function AboutPage() {
             href="https://medium.com/@dimterion/text-adventure-games-creation-tool-progress-update-4e2bd0524d03"
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:bg-softWhite hover:text-deepBlue bg-darkBlue text-softWhite inline-flex w-full items-center justify-around gap-1 border p-2"
+            className="hover:bg-softWhite hover:text-deepBlue bg-darkBlue text-softWhite inline-flex w-full items-center justify-center gap-1 border p-2"
           >
             Progress update
             <ExternalLink className="size-4 shrink-0" />
@@ -80,19 +80,19 @@ export default function AboutPage() {
           href="https://github.com/Dimterion/stories-platform"
           target="_blank"
           rel="noopener noreferrer"
-          className="hover:bg-softWhite hover:text-deepBlue bg-darkBlue text-softWhite inline-flex w-full items-center justify-around gap-1 border p-2"
+          className="hover:bg-softWhite hover:text-deepBlue bg-darkBlue text-softWhite inline-flex w-full items-center justify-center gap-1 border p-2"
         >
           GitHub repo
           <ExternalLink className="size-4 shrink-0" />
         </a>
       </section>
-      <section className="mx-2 flex flex-col items-center gap-2">
-        <h3 className="mb-4 text-xl font-bold">Questions or feedback?</h3>
+      <h3 className="text-xl font-bold">Questions or feedback?</h3>
+      <section className="mx-2 flex flex-wrap items-center gap-2">
         <a
           href="https://linktr.ee/dimterion"
           target="_blank"
           rel="noopener noreferrer"
-          className="hover:text-lightBlue flex items-center gap-1 underline"
+          className="hover:bg-softWhite hover:text-deepBlue bg-darkBlue text-softWhite inline-flex w-full items-center justify-center gap-1 border p-2"
         >
           Profile links <ExternalLink className="size-4 shrink-0" />
         </a>
@@ -100,7 +100,7 @@ export default function AboutPage() {
           href="https://www.dimterion.com"
           target="_blank"
           rel="noopener noreferrer"
-          className="hover:text-lightBlue flex items-center gap-1 underline"
+          className="hover:bg-softWhite hover:text-deepBlue bg-darkBlue text-softWhite inline-flex w-full items-center justify-center gap-1 border p-2"
         >
           My main site <ExternalLink className="size-4 shrink-0" />
         </a>
