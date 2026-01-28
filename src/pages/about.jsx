@@ -105,33 +105,27 @@ export default function AboutPage() {
           My main site <ExternalLink className="size-4 shrink-0" />
         </a>
       </section>
-      <section>
-        <h3 className="mb-4 text-xl font-bold">Other related projects</h3>
+      <h3 className="text-xl font-bold">Other related projects</h3>
+      <section className="flex flex-col gap-2">
         <p>I have also made a couple of interactive text adventure games:</p>
-        <ul className="mx-auto mt-4 max-w-fit list-disc space-y-1 text-left">
-          <li>
-            <a
-              href="https://poets-of-tomorrows-world.vercel.app/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-lightBlue flex items-center gap-1 underline"
-            >
-              Poets of Tomorrow’s World
-              <ExternalLink className="size-4 shrink-0" />
-            </a>
-          </li>
-          <li>
-            <a
-              href="https://profound-cat-a609de.netlify.app/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-lightBlue flex items-center gap-1 underline"
-            >
-              Poets of Tomorrow’s World: gameOn(e)
-              <ExternalLink className="size-4 shrink-0" />
-            </a>
-          </li>
-        </ul>
+        <a
+          href="https://poets-of-tomorrows-world.vercel.app/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hover:bg-softWhite hover:text-deepBlue bg-darkBlue text-softWhite inline-flex w-full items-center justify-center gap-1 border p-2"
+        >
+          Poets of Tomorrow’s World
+          <ExternalLink className="size-4 shrink-0" />
+        </a>
+        <a
+          href="https://profound-cat-a609de.netlify.app/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hover:bg-softWhite hover:text-deepBlue bg-darkBlue text-softWhite inline-flex w-full items-center justify-center gap-1 border p-2"
+        >
+          Poets of Tomorrow’s World: gameOn(e)
+          <ExternalLink className="size-4 shrink-0" />
+        </a>
       </section>
     </main>
   );
