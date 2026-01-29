@@ -222,7 +222,7 @@ export default function StoryPlayerPage() {
         <button
           onClick={() => setShowHints((prev) => !prev)}
           aria-pressed={showHints}
-          className="bg-lightBlue text-softWhite border-darkBlue hover:bg-deepBlue z-50 min-w-26 cursor-pointer border-3 p-1 text-xs uppercase transition"
+          className="bg-lightBlue text-softWhite border-darkBlue hover:bg-softWhite hover:text-darkBlue z-50 min-w-26 cursor-pointer border-3 p-1 text-xs uppercase transition"
         >
           {showHints ? "Hide hints" : "Show hints"}
         </button>
@@ -254,7 +254,7 @@ export default function StoryPlayerPage() {
 
       {/* Text */}
       <div className="bg-softWhite border-darkBlue text-darkBlue relative flex min-h-72 w-full max-w-[1024px] flex-col items-center justify-center border-3 p-4">
-        {showHints && <Hint text="Main story text is displayed here" />}
+        {showHints && <Hint text="Main story text is displayed here." />}
 
         <div className="max-w-prose">
           {currentNode.text.split(/\n{2,}/).map((paragraph, pIndex) => (
@@ -272,7 +272,7 @@ export default function StoryPlayerPage() {
 
       {/* Options */}
       <div className="bg-softWhite border-darkBlue text-darkBlue relative w-full max-w-[1024px] space-y-2 border-3 p-2">
-        {showHints && <Hint text="Choose one of the options to continue" />}
+        {showHints && <Hint text="Choose one of the options to continue." />}
 
         {currentNode.options.length > 0 ? (
           currentNode.options.map((option, index) => (
@@ -318,7 +318,7 @@ export default function StoryPlayerPage() {
       <div className="bg-softWhite border-darkBlue text-darkBlue relative flex w-full max-w-[1024px] flex-col items-center space-y-2 border-3 p-2 text-center">
         <label>File Upload (JSON format):</label>
         {showHints && (
-          <Hint text="If you created your story in Story Editor, you can upload it here" />
+          <Hint text="If you created your story in Story Editor, you can upload it here." />
         )}
 
         <div>
@@ -344,8 +344,8 @@ export default function StoryPlayerPage() {
         </div>
       </div>
 
-      <section className="relative flex w-full flex-wrap">
-        {showHints && <Hint text="Start over" />}
+      <section className="relative flex w-full max-w-[1024px] flex-wrap">
+        {showHints && <Hint text="Start over." />}
         <button
           onClick={resetProgress}
           className="text-softWhite bg-baseRed hover:bg-lightRed border-darkBlue inline-flex min-h-16 w-full cursor-pointer items-center justify-center gap-2 border-3 p-1 transition duration-200 sm:min-h-10"
@@ -371,6 +371,7 @@ export default function StoryPlayerPage() {
       </Modal>
       {showHints && (
         <div
+          onClick={() => setShowHints(false)}
           className="pointer-events-auto fixed inset-0 z-40 bg-black/40"
           aria-hidden="true"
         />

@@ -21,6 +21,7 @@ export default function Instructions() {
           <li>Navigate through the stories by choosing various options.</li>
           <li>Progress is saved locally in your current browser.</li>
           <li>Clear and reset progress to start over.</li>
+          <li>Use "Show Hints" button to view additional instructions.</li>
         </ul>
       </article>
       <article>
