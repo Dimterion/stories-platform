@@ -54,6 +54,7 @@ export default function StoryPlayerPage() {
   };
 
   const initialState = loadInitialState();
+  const [showHints, setShowHints] = useState(false);
   const [story, setStory] = useState(initialState.story);
   const [currentNodeId, setCurrentNodeId] = useState(
     initialState.currentNodeId,
@@ -216,6 +217,15 @@ export default function StoryPlayerPage() {
 
   return (
     <main className="flex flex-col items-center justify-center p-4 sm:p-6">
+      <div className="flex w-full justify-end">
+        <button
+          onClick={() => setShowHints((prev) => !prev)}
+          aria-pressed={showHints}
+          className="bg-lightBlue text-softWhite border-darkBlue hover:bg-deepBlue z-50 min-w-26 cursor-pointer border-3 p-1 text-xs uppercase transition"
+        >
+          {showHints ? "Hide hints" : "Show hints"}
+        </button>
+      </div>
       {/* Title/author/description */}
       <div className="bg-softWhite border-darkBlue text-darkBlue flex w-full max-w-[1024px] flex-col items-center gap-1 border-3 p-1">
         <h2 className="text-softWhite border-darkBlue bg-darkBlue w-full border-3 p-1 text-center text-2xl font-bold">
@@ -242,7 +252,15 @@ export default function StoryPlayerPage() {
       )}
 
       {/* Text */}
-      <div className="bg-softWhite border-darkBlue text-darkBlue flex min-h-72 w-full max-w-[1024px] flex-col items-center justify-center border-3 p-4">
+      <div className="bg-softWhite border-darkBlue text-darkBlue relative flex min-h-72 w-full max-w-[1024px] flex-col items-center justify-center border-3 p-4">
+        {showHints && (
+          <aside className="absolute -top-10 z-50 w-full max-w-[200px] text-center">
+            <p className="bg-softWhite text-darkBlue border-darkBlue border-3 px-2 py-1 text-sm shadow-lg">
+              Main story text is displayed here
+            </p>
+            <div className="border-t-darkBlue mx-auto h-0 w-0 border-t-10 border-r-10 border-l-10 border-r-transparent border-l-transparent" />
+          </aside>
+        )}
         <div className="max-w-prose">
           {currentNode.text.split(/\n{2,}/).map((paragraph, pIndex) => (
             <p key={pIndex}>
@@ -258,7 +276,15 @@ export default function StoryPlayerPage() {
       </div>
 
       {/* Options */}
-      <div className="bg-softWhite border-darkBlue text-darkBlue w-full max-w-[1024px] space-y-2 border-3 p-2">
+      <div className="bg-softWhite border-darkBlue text-darkBlue relative w-full max-w-[1024px] space-y-2 border-3 p-2">
+        {showHints && (
+          <aside className="absolute -top-10 z-50 w-full max-w-[200px] text-center">
+            <p className="bg-softWhite text-darkBlue border-darkBlue border-3 px-2 py-1 text-sm shadow-lg">
+              Choose one of the options to continue
+            </p>
+            <div className="border-t-darkBlue mx-auto h-0 w-0 border-t-10 border-r-10 border-l-10 border-r-transparent border-l-transparent" />
+          </aside>
+        )}
         {currentNode.options.length > 0 ? (
           currentNode.options.map((option, index) => (
             <button
@@ -348,6 +374,12 @@ export default function StoryPlayerPage() {
       >
         <Instructions />
       </Modal>
+      {showHints && (
+        <div
+          className="pointer-events-auto fixed inset-0 z-40 bg-black/40"
+          aria-hidden="true"
+        />
+      )}
     </main>
   );
 }
