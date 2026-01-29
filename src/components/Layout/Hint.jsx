@@ -1,0 +1,10 @@
+export default function Hint({ text }) {
+  return (
+    <aside className="absolute -top-10 z-50 w-full max-w-[200px] text-center">
+      <p className="bg-softWhite text-darkBlue border-darkBlue border-3 px-2 py-1 text-sm shadow-lg">
+        {text}
+      </p>
+      <div className="border-t-darkBlue mx-auto h-0 w-0 border-t-10 border-r-10 border-l-10 border-r-transparent border-l-transparent" />
+    </aside>
+  );
+}

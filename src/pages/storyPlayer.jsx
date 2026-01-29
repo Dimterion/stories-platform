@@ -9,6 +9,7 @@ import {
 } from "lucide-react";
 import { useMetadata } from "../utils/hooks";
 import { validateStoryJson } from "../upd/utilsUpd/storyUtilsUpd";
+import Hint from "../components/Layout/Hint";
 import Modal from "../components/Modal";
 import Instructions from "../components/Instructions";
 import sampleStory from "../assets/sampleStory";
@@ -217,7 +218,7 @@ export default function StoryPlayerPage() {
 
   return (
     <main className="flex flex-col items-center justify-center p-4 sm:p-6">
-      <div className="flex w-full justify-end">
+      <div className="flex w-full max-w-[1024px] justify-end">
         <button
           onClick={() => setShowHints((prev) => !prev)}
           aria-pressed={showHints}
@@ -253,14 +254,7 @@ export default function StoryPlayerPage() {
 
       {/* Text */}
       <div className="bg-softWhite border-darkBlue text-darkBlue relative flex min-h-72 w-full max-w-[1024px] flex-col items-center justify-center border-3 p-4">
-        {showHints && (
-          <aside className="absolute -top-10 z-50 w-full max-w-[200px] text-center">
-            <p className="bg-softWhite text-darkBlue border-darkBlue border-3 px-2 py-1 text-sm shadow-lg">
-              Main story text is displayed here
-            </p>
-            <div className="border-t-darkBlue mx-auto h-0 w-0 border-t-10 border-r-10 border-l-10 border-r-transparent border-l-transparent" />
-          </aside>
-        )}
+        {showHints && <Hint text="Main story text is displayed here" />}
         <div className="max-w-prose">
           {currentNode.text.split(/\n{2,}/).map((paragraph, pIndex) => (
             <p key={pIndex}>
@@ -277,14 +271,7 @@ export default function StoryPlayerPage() {
 
       {/* Options */}
       <div className="bg-softWhite border-darkBlue text-darkBlue relative w-full max-w-[1024px] space-y-2 border-3 p-2">
-        {showHints && (
-          <aside className="absolute -top-10 z-50 w-full max-w-[200px] text-center">
-            <p className="bg-softWhite text-darkBlue border-darkBlue border-3 px-2 py-1 text-sm shadow-lg">
-              Choose one of the options to continue
-            </p>
-            <div className="border-t-darkBlue mx-auto h-0 w-0 border-t-10 border-r-10 border-l-10 border-r-transparent border-l-transparent" />
-          </aside>
-        )}
+        {showHints && <Hint text="Choose one of the options to continue" />}
         {currentNode.options.length > 0 ? (
           currentNode.options.map((option, index) => (
             <button
