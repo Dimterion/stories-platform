@@ -255,6 +255,7 @@ export default function StoryPlayerPage() {
       {/* Text */}
       <div className="bg-softWhite border-darkBlue text-darkBlue relative flex min-h-72 w-full max-w-[1024px] flex-col items-center justify-center border-3 p-4">
         {showHints && <Hint text="Main story text is displayed here" />}
+
         <div className="max-w-prose">
           {currentNode.text.split(/\n{2,}/).map((paragraph, pIndex) => (
             <p key={pIndex}>
@@ -272,6 +273,7 @@ export default function StoryPlayerPage() {
       {/* Options */}
       <div className="bg-softWhite border-darkBlue text-darkBlue relative w-full max-w-[1024px] space-y-2 border-3 p-2">
         {showHints && <Hint text="Choose one of the options to continue" />}
+
         {currentNode.options.length > 0 ? (
           currentNode.options.map((option, index) => (
             <button
@@ -288,7 +290,7 @@ export default function StoryPlayerPage() {
           ))
         ) : (
           <>
-            <h3 className="text-softWhite border-darkBlue bg-darkBlue w-full border-3 p-1 text-center text-xl font-bold">
+            <h3 className="text-softWhite border-darkBlue bg-darkBlue/70 w-full border-3 p-1 text-center text-xl font-bold">
               The End
             </h3>
             <button
@@ -313,8 +315,11 @@ export default function StoryPlayerPage() {
       </div>
 
       {/* Upload new story */}
-      <div className="bg-softWhite border-darkBlue text-darkBlue flex w-full max-w-[1024px] flex-col items-center space-y-2 border-3 p-2 text-center">
+      <div className="bg-softWhite border-darkBlue text-darkBlue relative flex w-full max-w-[1024px] flex-col items-center space-y-2 border-3 p-2 text-center">
         <label>File Upload (JSON format):</label>
+        {showHints && (
+          <Hint text="If you created your story in Story Editor, you can upload it here" />
+        )}
 
         <div>
           {/* Hidden file input */}
