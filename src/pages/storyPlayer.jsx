@@ -344,21 +344,24 @@ export default function StoryPlayerPage() {
         </div>
       </div>
 
-      <button
-        onClick={resetProgress}
-        className="text-softWhite bg-baseRed hover:bg-lightRed border-darkBlue inline-flex min-h-16 w-full max-w-[1024px] cursor-pointer items-center justify-center gap-2 border-3 p-1 transition duration-200 sm:min-h-10"
-      >
-        <XCircle className="size-8 sm:size-6" />
-        Clear Save & Reset Progress
-      </button>
+      <section className="relative flex w-full flex-wrap">
+        {showHints && <Hint text="Start over" />}
+        <button
+          onClick={resetProgress}
+          className="text-softWhite bg-baseRed hover:bg-lightRed border-darkBlue inline-flex min-h-16 w-full cursor-pointer items-center justify-center gap-2 border-3 p-1 transition duration-200 sm:min-h-10"
+        >
+          <XCircle className="size-8 sm:size-6" />
+          Clear Save & Reset Progress
+        </button>
 
-      <button
-        onClick={() => setShowModal(true)}
-        className="text-softWhite bg-baseGreen hover:bg-softGreen border-darkBlue inline-flex min-h-16 w-full max-w-[1024px] cursor-pointer items-center justify-center gap-2 border-3 p-1 transition duration-200 sm:min-h-10"
-      >
-        <CircleQuestionMark className="size-8 sm:size-6" />
-        Instructions
-      </button>
+        <button
+          onClick={() => setShowModal(true)}
+          className="text-softWhite bg-baseGreen hover:bg-softGreen border-darkBlue inline-flex min-h-16 w-full cursor-pointer items-center justify-center gap-2 border-3 p-1 transition duration-200 sm:min-h-10"
+        >
+          <CircleQuestionMark className="size-8 sm:size-6" />
+          Instructions
+        </button>
+      </section>
       <Modal
         isOpen={showModal}
         onClose={() => setShowModal(false)}
