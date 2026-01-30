@@ -39,7 +39,7 @@ export default function AboutPage() {
         </Link>
       </section>
       <h3 className="text-xl font-bold">Learn more about the project</h3>
-      <section className="flex flex-wrap gap-10">
+      <section className="flex flex-wrap justify-center gap-10">
         <article className="border-darkBlue bg-softWhite text-deepBlue flex w-full max-w-[300px] flex-col items-center justify-center gap-2 border p-4">
           <p>
             I've described the project, its main purpose, features, and
@@ -66,7 +66,22 @@ export default function AboutPage() {
             rel="noopener noreferrer"
             className="hover:bg-softWhite hover:text-deepBlue bg-darkBlue text-softWhite inline-flex w-full items-center justify-center gap-1 border p-2"
           >
-            Progress update
+            Progress update (1)
+            <ExternalLink className="size-4 shrink-0" />
+          </a>
+        </article>
+        <article className="border-darkBlue bg-softWhite text-deepBlue flex w-full max-w-[300px] flex-col items-center justify-center gap-2 border p-4">
+          <p>
+            After creating a new design for the project I've described the
+            process of implementing it in this article:
+          </p>
+          <a
+            href="https://medium.com/@dimterion/text-adventure-games-creation-tool-new-progress-update-01f7561a7cd4"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:bg-softWhite hover:text-deepBlue bg-darkBlue text-softWhite inline-flex w-full items-center justify-center gap-1 border p-2"
+          >
+            Progress update (2)
             <ExternalLink className="size-4 shrink-0" />
           </a>
         </article>
