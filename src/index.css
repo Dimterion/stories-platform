@@ -2,7 +2,10 @@
 @import "tailwindcss";
 
 @theme {
+  /* Custom font */
   --font-scienceGothic: "Science Gothic", sans-serif;
+
+  /* Colors */
   --color-softWhite: #fdf0d5;
   --color-baseRed: #c1121f;
   --color-lightRed: #d90429;
@@ -21,4 +24,10 @@
   --color-lightOrange: #f18701;
   --color-basePurple: #3d348b;
   --color-lightPurple: #7678ed;
+}
+
+/* Custom scrollbar for modal */
+.modal-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-darkBlue) transparent;
 }

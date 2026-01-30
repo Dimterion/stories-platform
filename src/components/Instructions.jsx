@@ -11,7 +11,7 @@ export default function Instructions() {
     <section className="space-y-4">
       <h3 className="text-center text-xl font-bold">Instructions</h3>
       {!isStoryEditor && (
-        <article>
+        <article className="border-b pb-4">
           <p>
             Use{" "}
             <Link
@@ -32,7 +32,7 @@ export default function Instructions() {
         </article>
       )}
       {!isStoryPlayer && (
-        <article>
+        <article className="border-b pb-4">
           <p>
             Use{" "}
             <Link
@@ -58,7 +58,7 @@ export default function Instructions() {
       )}
       <article>
         <p>
-          Visit the{" "}
+          Visit{" "}
           <Link
             to="/about"
             className="hover:text-lightBlue font-bold underline"
