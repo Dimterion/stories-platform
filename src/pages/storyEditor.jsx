@@ -17,6 +17,7 @@ import Instructions from "../components/Instructions";
 export default function StoryEditorPage() {
   const STORAGE_KEY = "storyEditorState";
 
+  const [showHints, setShowHints] = useState(false);
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState("");
   const [description, setDescription] = useState("");
@@ -632,8 +633,15 @@ export default function StoryEditorPage() {
       )}
 
       {/* Main editor */}
-      <div className="flex-1 space-y-4 p-2 sm:p-6">
-        <div className="flex flex-col flex-wrap justify-between gap-2 sm:flex-row sm:items-center">
+      <div className="relative flex-1 space-y-4 p-2 sm:p-6">
+        <button
+          onClick={() => setShowHints((prev) => !prev)}
+          aria-pressed={showHints}
+          className="bg-lightBlue text-softWhite border-darkBlue hover:bg-softWhite hover:text-darkBlue absolute top-0 right-0 z-50 mb-0 min-w-26 cursor-pointer border-3 p-1 text-xs uppercase transition"
+        >
+          {showHints ? "Hide hints" : "Show hints"}
+        </button>
+        <div className="mt-6 flex flex-col flex-wrap justify-between gap-2 sm:mt-2 sm:flex-row sm:items-center">
           <div className="flex items-center gap-2">
             {!sidebarVisible && (
               <button
@@ -676,6 +684,7 @@ export default function StoryEditorPage() {
 
         {/* Node editor */}
         <NodeEditor
+          showHints={showHints}
           selectedNode={selectedNode}
           start={start}
           nodes={nodes}
@@ -715,6 +724,13 @@ export default function StoryEditorPage() {
           />
         )}
       </div>
+      {showHints && (
+        <div
+          onClick={() => setShowHints(false)}
+          className="pointer-events-auto fixed inset-0 z-40 bg-black/40"
+          aria-hidden="true"
+        />
+      )}
     </main>
   );
 }

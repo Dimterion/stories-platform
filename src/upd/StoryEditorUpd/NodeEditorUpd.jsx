@@ -1,6 +1,8 @@
 import { Plus, Star, Trash2 } from "lucide-react";
+import Hint from "../../components/Layout/Hint";
 
 export default function NodeEditor({
+  showHints,
   selectedNode,
   start,
   nodes,
@@ -16,12 +18,13 @@ export default function NodeEditor({
   const node = nodes[selectedNode];
 
   return (
-    <div className="border-darkBlue text-darkBlue bg-softWhite border-3 p-1 sm:p-4">
+    <div className="border-darkBlue text-darkBlue bg-softWhite relative border-3 p-1 sm:p-4">
       <h2 className="mb-2 inline-flex items-center gap-2 font-semibold">
         {selectedNode === start && <Star />}
         Editing {getNodeLabel(selectedNode)}{" "}
         {selectedNode === start && "(start node)"}
       </h2>
+      {showHints && <Hint text="Main story text is written here." />}
       <textarea
         className="border-darkBlue text-darkBlue w-full border p-2"
         rows="3"
