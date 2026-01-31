@@ -5,8 +5,10 @@ import {
   Map,
   XCircle,
 } from "lucide-react";
+import Hint from "../../components/Layout/Hint";
 
 export default function Toolbar({
+  showHints,
   onExportStory,
   onExportHTML,
   onImportStory,
@@ -15,7 +17,8 @@ export default function Toolbar({
   onShowModal,
 }) {
   return (
-    <section className="flex flex-wrap justify-center gap-4 pb-2 md:justify-start">
+    <section className="relative flex flex-wrap justify-center gap-4 pb-2 md:justify-start">
+      {showHints && <Hint text="Choose what you want to do with your story." />}
       <button
         onClick={onExportStory}
         className="border-darkBlue bg-baseOrange hover:bg-lightOrange inline-flex min-h-20 w-3xs max-w-[55vw] cursor-pointer items-center gap-2 border-3 px-4 py-2 text-center text-sm sm:text-base"

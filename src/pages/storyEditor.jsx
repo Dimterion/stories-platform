@@ -652,7 +652,7 @@ export default function StoryEditorPage() {
                 <PanelLeftOpen className="size-3 sm:size-6" />
               </button>
             )}
-            <h1 className="text-xl font-bold">Story Editor</h1>
+            <h2 className="text-xl font-bold">Story Editor</h2>
           </div>
           {totalScenes > 0 && currentSceneIndex >= 0 && (
             <p className="text-softGray text-sm">
@@ -698,7 +698,10 @@ export default function StoryEditorPage() {
           onSetAsStart={setAsStartNode}
         />
 
+        <h2 className="text-xl font-bold">Actions</h2>
+
         <Toolbar
+          showHints={showHints}
           onExportStory={exportStory}
           onExportHTML={exportStandaloneHTML}
           onImportStory={importStory}
