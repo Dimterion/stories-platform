@@ -668,6 +668,7 @@ export default function StoryEditorPage() {
 
         {/* Story metadata */}
         <MetadataForm
+          showHints={showHints}
           title={title}
           author={author}
           description={description}

@@ -37,7 +37,10 @@ export default function NodeEditor({
       />
 
       <h3 className="mt-3 mb-2 font-semibold">Options</h3>
-      <div className="space-y-2">
+      <div className="relative space-y-2">
+        {showHints && (
+          <Hint text="Add/delete options for the next part of the text here." />
+        )}
         {node.options.map((opt, i) => (
           <div key={i} className="flex flex-wrap items-center gap-2 pb-1">
             <input

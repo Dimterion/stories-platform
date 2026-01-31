@@ -1,4 +1,7 @@
+import Hint from "../../components/Layout/Hint";
+
 export default function MetadataForm({
+  showHints,
   title,
   author,
   description,
@@ -7,7 +10,10 @@ export default function MetadataForm({
   onChange,
 }) {
   return (
-    <div className="grid grid-cols-2 gap-4">
+    <div className="relative grid grid-cols-2 gap-4">
+      {showHints && (
+        <Hint text="Add general information about the story here." />
+      )}
       <input
         className="border-darkBlue text-darkBlue bg-softWhite border p-2"
         placeholder="Story Title"
