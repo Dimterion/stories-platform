@@ -39,7 +39,22 @@ export default function AboutPage() {
         </Link>
       </section>
       <h3 className="text-xl font-bold">Learn more about the project</h3>
-      <p>
+      <section className="border-darkBlue bg-softWhite text-deepBlue flex w-full max-w-[300px] flex-col items-center justify-center gap-2 border p-4">
+        <p>
+          Visit the project's GitHub repository for more information and
+          updates:
+        </p>
+        <a
+          href="https://github.com/Dimterion/stories-platform"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hover:bg-softWhite hover:text-deepBlue bg-darkBlue text-softWhite inline-flex w-full items-center justify-center gap-1 border p-2"
+        >
+          GitHub repo
+          <ExternalLink className="size-4 shrink-0" />
+        </a>
+      </section>
+      {/* <p>
         I've written a series of articles about working on this project and
         developing its design and main features:
       </p>
@@ -89,7 +104,7 @@ export default function AboutPage() {
             <ExternalLink className="size-4 shrink-0" />
           </a>
         </article>
-      </section>
+      </section> */}
       <h3 className="text-xl font-bold">Questions or feedback?</h3>
       <section className="mx-2 flex flex-wrap items-center gap-2">
         <a
@@ -109,24 +124,9 @@ export default function AboutPage() {
           My main site <ExternalLink className="size-4 shrink-0" />
         </a>
       </section>
-      <section className="border-darkBlue bg-softWhite text-deepBlue flex w-full max-w-[300px] flex-col items-center justify-center gap-2 border p-4">
-        <p>
-          Visit the project's GitHub repository for more information and
-          updates:
-        </p>
-        <a
-          href="https://github.com/Dimterion/stories-platform"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="hover:bg-softWhite hover:text-deepBlue bg-darkBlue text-softWhite inline-flex w-full items-center justify-center gap-1 border p-2"
-        >
-          GitHub repo
-          <ExternalLink className="size-4 shrink-0" />
-        </a>
-      </section>
       <h3 className="text-xl font-bold">Other related projects</h3>
       <section className="flex flex-col gap-2">
-        <p>I have also made a couple of interactive text adventure games:</p>
+        <p>I have also made a couple of interactive text adventure games.</p>
         <a
           href="https://poets-of-tomorrows-world.vercel.app/"
           target="_blank"
