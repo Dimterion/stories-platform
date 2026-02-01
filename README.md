@@ -36,14 +36,16 @@ App runs at: http://localhost:5173
 
 Once the project is running:
 
-- Story Player interface can be seen (Play Stories tab)
+- Navigate to the appropriate page from the Home page or Header (Story Player / Story Editor; Play / Create tabs)
+- Check Instructions or About page for additional information
+- Story Player interface can be accessed through the Story Player page (Play tab)
 - Users can view a simple example of an interactive story
 - Users can upload other stories in JSON format
-- Create Stories tab switches interface to Story Editor
+- Create tab switches page to Story Editor
 - Users can fill in the fields to create their own interactive stories
 - Users can add/delete/edit stories nodes and stories choices
 - Users can view story diagram with nodes and choices
-- Users can import existing stories into the editor or export the ones they create in JSON format
+- Users can import existing stories into the editor or export the ones they create in JSON or HTML format
 
 ## <a id="screenshots"></a>📷 Screenshots/Video
 
@@ -51,13 +53,13 @@ Once the project is running:
 
 <img src="./public/screenshots/story-player-view.jpg" alt="Story player interface" width="300" />
 
-**Caption:** Story player to read interactive stories.
+**Caption:** Story player interface to read interactive stories.
 
 ### Story Editor
 
 <img src="./public/screenshots/story-editor-view.jpg" alt="Story editor interface" width="300" />
 
-**Caption:** Story editor to create interactive stories.
+**Caption:** Story editor interface to create interactive stories.
 
 ### Story Diagram
 
@@ -75,14 +77,17 @@ Once the project is running:
 
 - JavaScript
 - React
+- React Router
 - Tailwind CSS
 - React Flow
 - Dagre
 - uuid
+- Lucide (icons)
+- Netlify (deployment)
 
 ## <a id="current-version"></a>🔗 Current version
 
-MVP with basic functionality and simple interface.
+Initial version with basic functionality and simple interface.
 
 [Live version](https://stories-platform.dimterion.com/)
 
