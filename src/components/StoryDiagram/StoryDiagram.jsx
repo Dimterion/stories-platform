@@ -84,9 +84,8 @@ function CustomNode({ data }) {
         style={{
           background: data.bgColor,
           padding: 10,
-          borderRadius: 8,
           color: "white",
-          border: "2px solid #333",
+          border: "2px solid #0a122a",
           cursor: "pointer",
           textAlign: "center",
         }}
@@ -106,10 +105,9 @@ function CustomNode({ data }) {
               top: coords.y - 10,
               left: coords.x,
               transform: "translate(-50%, -100%)",
-              background: "rgba(31,41,55,0.95)",
-              color: "white",
+              background: "#495057",
+              color: "#fdf0d5",
               padding: "8px",
-              borderRadius: 6,
               zIndex: 99999,
               fontSize: 12,
               boxShadow: "0 6px 18px rgba(0,0,0,0.3)",
@@ -133,10 +131,9 @@ function OptionNode({ data }) {
     <div
       style={{
         background: COLOR_OPTION,
-        color: "#111",
+        color: "#0a122a",
         padding: "6px 10px",
-        borderRadius: 12,
-        border: "2px solid #a16207",
+        border: "2px solid #0a122a",
         textAlign: "center",
         fontSize: 12,
         fontWeight: 600,
@@ -152,12 +149,12 @@ function OptionNode({ data }) {
       <Handle
         type="target"
         position="top"
-        style={{ background: "#a16207", borderRadius: 0 }}
+        style={{ background: "#f35b04", borderRadius: 0 }}
       />
       <Handle
         type="source"
         position="bottom"
-        style={{ background: "#a16207", borderRadius: 0 }}
+        style={{ background: "#f35b04", borderRadius: 0 }}
       />
     </div>
   );
@@ -477,16 +474,13 @@ export default function StoryDiagram({ story, onClose, onSelectNode }) {
 
   return (
     <div
-      className="bg-opacity-70 fixed inset-0 z-50 flex items-center justify-center bg-black"
+      className="bg-opacity-70 bg-darkBlue/80 fixed inset-0 z-50 flex items-center justify-center backdrop-blur-sm"
       onClick={handleOverlayClick}
     >
-      <div
-        className="relative h-4/5 w-4/5 rounded-lg bg-white p-4"
-        ref={diagramRef}
-      >
+      <div className="bg-softWhite relative h-4/5 w-4/5 p-4" ref={diagramRef}>
         <button
           onClick={toggleBtnMenu}
-          className="absolute top-2 right-2 z-50 inline-flex cursor-pointer items-center rounded border border-blue-600 bg-blue-500 p-1 text-white hover:bg-blue-700"
+          className="border-darkBlue bg-lightBlue hover:bg-deepBlue text-softWhite absolute top-2 right-2 z-50 inline-flex cursor-pointer items-center border p-1"
           aria-label="Diagram menu"
         >
           {isBtnMenuOpen ? (
@@ -500,35 +494,35 @@ export default function StoryDiagram({ story, onClose, onSelectNode }) {
           <div className="absolute top-7.5 right-2 z-50 mt-2 flex flex-col space-y-1">
             <button
               onClick={onClose}
-              className="inline-flex cursor-pointer items-center rounded border border-red-600 bg-red-500 p-1 text-xs text-white hover:bg-red-700"
+              className="border-darkRed bg-baseRed hover:bg-lightRed inline-flex cursor-pointer items-center border p-1 text-xs text-white"
             >
               <X className="mr-1 size-4" />
               Close
             </button>
             <button
               onClick={resetLayout}
-              className="inline-flex cursor-pointer items-center rounded border border-gray-600 bg-gray-500 p-1 text-xs text-white hover:bg-gray-700"
+              className="border-darkGray text-softWhite bg-darkGray hover:bg-lightGray inline-flex cursor-pointer items-center border p-1 text-xs"
             >
               <RefreshCcw className="mr-1 size-4" />
               Reset
             </button>
             <button
               onClick={handleDownloadSvg}
-              className="inline-flex cursor-pointer items-center rounded border border-gray-600 bg-green-500 p-1 text-xs text-white hover:bg-green-700"
+              className="bg-baseGreen hover:bg-lightGreen border-darkGray text-softWhite inline-flex cursor-pointer items-center border p-1 text-xs"
             >
               <Download className="mr-1 size-4" />
               SVG
             </button>
             <button
               onClick={handleDownloadPng}
-              className="inline-flex cursor-pointer items-center rounded border border-gray-600 bg-blue-500 p-1 text-xs text-white hover:bg-blue-700"
+              className="border-darkGray bg-lightBlue text-softWhite hover:bg-deepBlue inline-flex cursor-pointer items-center border p-1 text-xs"
             >
               <Download className="mr-1 size-4" />
               PNG
             </button>
             <button
               onClick={toggleMiniMap}
-              className="inline-flex cursor-pointer items-center rounded border border-yellow-600 bg-yellow-500 p-1 text-xs text-white hover:bg-yellow-700"
+              className="border-baseOrange bg-lightOrange hover:bg-baseOrange text-softWhite inline-flex cursor-pointer items-center border p-1 text-xs"
             >
               <Map className="mr-1 size-4" />
               Map
@@ -537,19 +531,19 @@ export default function StoryDiagram({ story, onClose, onSelectNode }) {
         )}
 
         <aside className="absolute top-2 left-2 z-50 space-y-1 text-xs">
-          <p className="flex items-center justify-center rounded border border-blue-600 bg-blue-500 p-1 text-white">
+          <p className="border-darkBlue bg-lightBlue flex items-center justify-center border p-1 text-white">
             <Play className="mr-1 size-4" /> Start
           </p>
-          <p className="flex items-center justify-center rounded border border-red-600 bg-red-500 p-1 text-white">
+          <p className="border-darkRed bg-baseRed flex items-center justify-center border p-1 text-white">
             <Square className="mr-1 size-4" /> End
           </p>
-          <p className="flex items-center justify-center rounded border border-yellow-600 bg-yellow-400 p-1 text-gray-900">
+          <p className="border-baseOrange bg-lightOrange text-softWhite flex items-center justify-center border p-1">
             <ChevronDown className="mr-1 size-4" /> Option
           </p>
-          <p className="flex items-center justify-center rounded border border-purple-600 bg-purple-500 p-1 text-white">
+          <p className="border-darkBlue bg-basePurple text-softWhite flex items-center justify-center border p-1">
             {">"} 1 choice
           </p>
-          <p className="flex items-center justify-center rounded border border-teal-600 bg-teal-500 p-1 text-white">
+          <p className="border-darkGreen bg-baseGreen text-softWhite flex items-center justify-center border p-1">
             Long Text
           </p>
         </aside>
@@ -576,11 +570,11 @@ export default function StoryDiagram({ story, onClose, onSelectNode }) {
           <Controls />
           {miniMap && (
             <MiniMap
-              nodeColor={(node) => node.data.bgColor || "rgb(250, 204, 21)"}
+              nodeColor={(node) => node.data.bgColor || "#f18701"}
               nodeStrokeWidth={2}
               pannable
               zoomable
-              style={{ background: "#333", borderRadius: 8 }}
+              style={{ background: "#343a40" }}
             />
           )}
         </ReactFlow>

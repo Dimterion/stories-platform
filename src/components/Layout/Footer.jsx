@@ -1,12 +1,12 @@
 export default function Footer() {
   return (
-    <footer className="flex items-center justify-center gap-1 bg-gray-800 py-1 text-sm">
+    <footer className="bg-darkBlue text-lightBlue flex flex-wrap justify-center gap-2 p-1 text-sm italic">
       <p>&copy; {new Date().getFullYear()}</p>
       <a
         href="https://www.dimterion.com/"
         target="_blank"
         rel="noopener noreferrer"
-        className="hover:underline"
+        className="hover:text-softWhite underline"
       >
         Dimterion
       </a>

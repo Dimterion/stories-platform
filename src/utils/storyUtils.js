@@ -53,6 +53,22 @@ export function validateStoryJson(json) {
     if (typeof node.createdAt !== "number") {
       return { valid: false, error: `Node ${id} is missing createdAt value.` };
     }
+
+    // Extra validation for all nodes options
+    for (const opt of node.options) {
+      if (!opt || typeof opt !== "object")
+        return { valid: false, error: `Node ${id} has an invalid option.` };
+
+      if (typeof opt.text !== "string")
+        return { valid: false, error: `Node ${id} option is missing text.` };
+
+      if (typeof opt.next !== "string" || !json.nodes[opt.next]) {
+        return {
+          valid: false,
+          error: `Node ${id} has an option with invalid "next" reference.`,
+        };
+      }
+    }
   }
 
   return { valid: true };

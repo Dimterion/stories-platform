@@ -1,26 +1,25 @@
 import { BookOpenCheck, Pencil } from "lucide-react";
-import NavBtn from "./NavBtn";
+import PageLink from "../../components/Layout/PageLink";
+import { Link } from "react-router";
 
-export default function Header({ activeTab, setActiveTab }) {
+export default function Header() {
   return (
-    <header className="flex items-center justify-between bg-gray-800 p-4">
-      <h1 className="font-bold sm:text-xl">Interactive Story Platform</h1>
-      <nav className="flex flex-wrap justify-end gap-4">
-        <NavBtn
-          activeTab={activeTab}
-          setActiveTab={setActiveTab}
-          tab="play"
-          icon={<BookOpenCheck />}
-          label="Play Stories"
-          activeColor="bg-blue-600"
+    <header className="bg-darkBlue flex flex-wrap justify-between p-2">
+      <Link to="/">
+        <h1 className="text-lg font-bold italic sm:text-xl">ISP</h1>
+      </Link>
+      <nav className="flex flex-wrap gap-3">
+        <PageLink
+          tab="story-player"
+          icon={<BookOpenCheck className="size-4" />}
+          label="Play"
+          activeColor="text-lightBlue"
         />
-        <NavBtn
-          activeTab={activeTab}
-          setActiveTab={setActiveTab}
-          tab="create"
-          icon={<Pencil />}
-          label="Create Stories"
-          activeColor="bg-green-600"
+        <PageLink
+          tab="story-editor"
+          icon={<Pencil className="size-4" />}
+          label="Create"
+          activeColor="text-lightBlue"
         />
       </nav>
     </header>

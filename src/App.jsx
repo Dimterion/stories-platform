@@ -1,40 +1,32 @@
-import { useState } from "react";
+import { Routes, Route } from "react-router";
 import { Toaster } from "sonner";
+import ScrollToTop from "./components/scrollToTop";
+import ScrollToTopBtn from "./components/ScrollToTopBtn";
 import Header from "./components/Layout/Header";
-import MetaUpdater from "./components/MetaUpdater";
-import StoryPlayer from "./components/StoryPlayer";
-import StoryEditor from "./components/StoryEditor/StoryEditor";
+import HomePage from "./pages/home";
+import StoryPlayerPage from "./pages/storyPlayer";
+import StoryEditorPage from "./pages/storyEditor";
+import AboutPage from "./pages/about";
+import NotFoundPage from "./pages/notFound";
 import Footer from "./components/Layout/Footer";
 
 export default function App() {
-  const [activeTab, setActiveTab] = useState("play");
-
   return (
-    <div className="flex min-h-screen flex-col bg-gray-900 text-white">
+    <>
+      <ScrollToTop />
+      <ScrollToTopBtn />
       <Toaster position="top-right" richColors closeButton />
-      <Header activeTab={activeTab} setActiveTab={setActiveTab} />
-      {/* Main Content */}
-      <main className="flex-1">
-        {activeTab === "play" && (
-          <>
-            <MetaUpdater
-              title="Play Stories | Interactive Story Platform"
-              description="Experience interactive stories with multiple choices and outcomes."
-            />
-            <StoryPlayer />
-          </>
-        )}
-        {activeTab === "create" && (
-          <>
-            <MetaUpdater
-              title="Create Stories | Interactive Story Platform"
-              description="Create your own interactive stories with multiple choices and outcomes."
-            />
-            <StoryEditor />
-          </>
-        )}
-      </main>
-      <Footer />
-    </div>
+      <div className="font-scienceGothic border-darkBlue from-deepBlue to-darkBlue text-softWhite flex min-h-screen flex-col justify-between border-x-4 bg-radial from-40%">
+        <Header />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/story-player" element={<StoryPlayerPage />} />
+          <Route path="/story-editor" element={<StoryEditorPage />} />
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="*" element={<NotFoundPage />} />
+        </Routes>
+        <Footer />
+      </div>
+    </>
   );
 }

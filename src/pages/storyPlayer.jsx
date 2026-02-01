@@ -8,7 +8,7 @@ import {
   XCircle,
 } from "lucide-react";
 import { useMetadata } from "../utils/hooks";
-import { validateStoryJson } from "../upd/utilsUpd/storyUtilsUpd";
+import { validateStoryJson } from "../utils/storyUtils";
 import Hint from "../components/Layout/Hint";
 import Modal from "../components/Modal";
 import Instructions from "../components/Instructions";

@@ -1,30 +1,40 @@
-import { FileDown, FileUp, Map, XCircle } from "lucide-react";
+import {
+  CircleQuestionMark,
+  FileDown,
+  FileUp,
+  Map,
+  XCircle,
+} from "lucide-react";
+import Hint from "../../components/Layout/Hint";
 
 export default function Toolbar({
+  showHints,
   onExportStory,
   onExportHTML,
   onImportStory,
   onShowDiagram,
   onClearSave,
+  onShowModal,
 }) {
   return (
-    <section className="flex flex-wrap justify-center gap-4 pb-2 md:justify-start">
+    <section className="relative flex flex-wrap justify-center gap-4 pb-2 md:justify-start">
+      {showHints && <Hint text="Choose what you want to do with your story." />}
       <button
         onClick={onExportStory}
-        className="inline-flex w-3xs max-w-[55vw] cursor-pointer items-center gap-2 rounded bg-yellow-600 px-4 py-2 text-center hover:bg-yellow-500"
+        className="border-darkBlue bg-baseOrange hover:bg-lightOrange inline-flex min-h-20 w-3xs max-w-[55vw] cursor-pointer items-center gap-2 border-3 px-4 py-2 text-center text-sm sm:text-base"
       >
-        <FileUp />
+        <FileUp className="size-8 sm:size-6" />
         Export Story (JSON file)
       </button>
       <button
         onClick={onExportHTML}
-        className="inline-flex w-3xs max-w-[55vw] cursor-pointer items-center gap-2 rounded bg-teal-600 px-4 py-2 text-center hover:bg-teal-500"
+        className="border-darkBlue bg-lightGreen hover:bg-darkGreen inline-flex min-h-20 w-3xs max-w-[55vw] cursor-pointer items-center gap-2 border-3 px-4 py-2 text-center text-sm sm:text-base"
       >
-        <FileUp />
+        <FileUp className="size-8 sm:size-6" />
         Export Story (HTML file)
       </button>
-      <label className="inline-flex w-3xs max-w-[55vw] cursor-pointer items-center gap-2 rounded bg-green-600 px-4 py-2 text-center hover:bg-green-500">
-        <FileDown />
+      <label className="border-darkBlue bg-darkGreen hover:bg-lightGreen inline-flex min-h-20 w-3xs max-w-[55vw] cursor-pointer items-center gap-2 border-3 px-4 py-2 text-center text-sm sm:text-base">
+        <FileDown className="size-8 sm:size-6" />
         Import Story (JSON file)
         <input
           type="file"
@@ -35,17 +45,24 @@ export default function Toolbar({
       </label>
       <button
         onClick={onShowDiagram}
-        className="inline-flex w-3xs max-w-[55vw] cursor-pointer items-center gap-2 rounded bg-purple-600 px-4 py-2 text-center hover:bg-purple-500"
+        className="border-darkBlue bg-basePurple hover:bg-lightPurple inline-flex min-h-20 w-3xs max-w-[55vw] cursor-pointer items-center gap-2 border-3 px-4 py-2 text-center text-sm sm:text-base"
       >
-        <Map />
+        <Map className="size-8 sm:size-6" />
         View Story Diagram
       </button>
       <button
         onClick={onClearSave}
-        className="inline-flex w-3xs max-w-[55vw] cursor-pointer items-center gap-2 rounded bg-red-600 px-4 py-2 text-center hover:bg-red-500"
+        className="border-darkBlue bg-baseRed hover:bg-lightRed inline-flex min-h-20 w-3xs max-w-[55vw] cursor-pointer items-center gap-2 border-3 px-4 py-2 text-center text-sm sm:text-base"
       >
-        <XCircle />
+        <XCircle className="size-8 sm:size-6" />
         Clear Save & Reset Editor
+      </button>
+      <button
+        onClick={onShowModal}
+        className="border-darkBlue bg-baseGreen hover:bg-softGreen inline-flex min-h-20 w-3xs max-w-[55vw] cursor-pointer items-center gap-2 border-3 px-4 py-2 text-center text-sm sm:text-base"
+      >
+        <CircleQuestionMark className="size-8 sm:size-6" />
+        Instructions
       </button>
     </section>
   );
