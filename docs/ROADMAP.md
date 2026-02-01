@@ -66,10 +66,21 @@
 
 ### Code Organization
 
-- [ ] Splitting Code Editor into smaller components: NodeSidebar, NodeEditor, StoryMetaForm, Toolbar.
-- [ ] StoryDiagram mixes layouting, UI, and export logic. Could split into: DiagramRenderer (React Flow config), DiagramControls (buttons), useDiagramLayout (dagre layout logic).
-- [ ] Constants: could move NODE_WIDTH, NODE_HEIGHT, etc. into a separate constants.js.
-- [ ] Helpers: Repeated logic (orderedNodeIds, getNodeLabel, story export/import schema) should be in a storyUtils.js.
+- [x] Splitting Code Editor into smaller components: NodeSidebar, NodeEditor, StoryMetaForm, Toolbar.
+
+  `NOTE`: requires further work and refinement (currently - at its initial phase).
+
+- [x] StoryDiagram mixes layouting, UI, and export logic. Could split into: DiagramRenderer (React Flow config), DiagramControls (buttons), useDiagramLayout (dagre layout logic).
+
+  `NOTE`: requires further work and refinement (currently - at its initial phase).
+
+- [x] Constants: could move NODE_WIDTH, NODE_HEIGHT, etc. into a separate constants.js.
+
+  `NOTE`: requires further work and refinement (currently - at its initial phase).
+
+- [x] Helpers: Repeated logic (orderedNodeIds, getNodeLabel, story export/import schema) should be in a storyUtils.js.
+
+  `NOTE`: requires further work and refinement (currently - at its initial phase).
 
 ### Performance
 
@@ -96,7 +107,10 @@
 ### SEO
 
 - [x] Add `<title>`, `<meta description>` per view (e.g., StoryPlayer vs Editor).
-- [ ] Use semantic `<main>`, `<aside>`, `<section>` more consistently.
+- [x] Use semantic `<main>`, `<aside>`, `<section>` more consistently.
+
+  `NOTE`: requires further work and refinement (currently - at its initial phase).
+
 - [x] For shareability: Open Graph tags (title, description).
 
 ### Style / UX

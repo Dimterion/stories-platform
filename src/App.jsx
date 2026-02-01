@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router";
 import { Toaster } from "sonner";
-import ScrollToTop from "./components/scrollToTop";
+import ScrollToTop from "./components/ScrollToTop";
 import ScrollToTopBtn from "./components/ScrollToTopBtn";
 import Header from "./components/Layout/Header";
 import HomePage from "./pages/home";

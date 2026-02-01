@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.2.0] - 2026-02-01
+
+### Added
+
+- Routing (React Router).
+- Individual pages (Home, Story Player, Story Editor, About, Error page).
+- Guided tour (hints) for Story Player and Story Editor.
+- Instructions modal.
+- Detailed description of the project.
+
+### Changed
+
+- Overall design and navigation.
+- Import HTML file functionality (adjusted design and mechanic of the feature).
+
+### Fixed
+
+- Various typing/naming adjustments throughout all pages.
+
 ## [0.1.6] - 2025-11-02
 
 ### Added
