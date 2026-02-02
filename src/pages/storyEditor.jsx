@@ -620,6 +620,7 @@ export default function StoryEditorPage() {
       {/* Sidebar: nodes list */}
       {sidebarVisible && (
         <Sidebar
+          showHints={showHints}
           nodes={nodes}
           start={start}
           selectedNode={selectedNode}

@@ -1,6 +1,8 @@
 import { PanelLeftClose, Plus, Star, Trash2 } from "lucide-react";
+import Hint from "../../components/Layout/Hint";
 
 export default function Sidebar({
+  showHints,
   start,
   selectedNode,
   orderedNodeIds,
@@ -11,7 +13,8 @@ export default function Sidebar({
   sidebarVisible,
 }) {
   return (
-    <section className="border-darkBlue w-1/3 space-y-2 border-r-3 sm:w-1/4">
+    <section className="border-darkBlue relative w-1/3 space-y-2 border-r-3 sm:w-1/4">
+      {showHints && <Hint text="Add more texts for your story here." />}
       <div className="mb-3 flex items-center justify-between">
         <h2 className="ml-1 text-sm font-bold sm:text-lg">Nodes</h2>
         <button
