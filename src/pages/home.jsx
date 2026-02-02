@@ -8,7 +8,7 @@ export default function HomePage() {
   const [showModal, setShowModal] = useState(false);
 
   return (
-    <main className="mb-4 flex flex-col items-center gap-6 p-4 sm:mb-0 sm:gap-12">
+    <main className="mb-4 flex flex-col items-center gap-6 p-4 sm:mb-0 sm:gap-12 max-w-[1024px] mx-auto">
       <h2 className="my-2 text-center text-2xl font-bold italic sm:text-4xl">
         Interactive Stories Platform
       </h2>

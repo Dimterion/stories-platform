@@ -634,7 +634,7 @@ export default function StoryEditorPage() {
       )}
 
       {/* Main editor */}
-      <div className="relative flex-1 space-y-4 p-2 sm:p-6">
+      <div className="relative mx-auto max-w-[1024px] flex-1 space-y-4 p-2 sm:p-6">
         <button
           onClick={() => setShowHints((prev) => !prev)}
           aria-pressed={showHints}
