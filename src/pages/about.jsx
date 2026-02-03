@@ -8,7 +8,7 @@ export default function AboutPage() {
   });
 
   return (
-    <main className="mx-auto flex max-w-[1024px] flex-col items-center justify-center gap-8 text-center sm:gap-10">
+    <main className="mx-auto my-10 flex max-w-[1024px] flex-col items-center justify-center gap-8 text-center sm:gap-10">
       <h2 className="text-2xl italic sm:text-4xl">
         Interactive Stories Platform
       </h2>

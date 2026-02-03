@@ -16,7 +16,7 @@ export default function App() {
       <ScrollToTop />
       <ScrollToTopBtn />
       <Toaster position="top-right" richColors closeButton />
-      <div className="font-scienceGothic border-darkBlue from-deepBlue to-darkBlue text-softWhite flex min-h-screen flex-col justify-between border-x-4 bg-radial from-40%">
+      <div className="font-scienceGothic border-darkBlue from-deepBlue to-darkBlue text-softWhite flex min-h-screen flex-col justify-between border-x-4 bg-radial from-40% px-1">
         <Header />
         <Routes>
           <Route path="/" element={<HomePage />} />
