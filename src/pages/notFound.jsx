@@ -8,7 +8,7 @@ export default function NotFoundPage() {
   });
 
   return (
-    <main className="relative flex flex-col items-center justify-center gap-10 p-2">
+    <section className="relative flex flex-1 flex-col items-center justify-center gap-10 p-2">
       <h2 className="text-center text-4xl font-bold">Page not found</h2>
       <p className="text-center text-lg">
         Please check the link to the page or try refreshing it.
@@ -19,6 +19,6 @@ export default function NotFoundPage() {
       >
         <House /> Home page
       </Link>
-    </main>
+    </section>
   );
 }

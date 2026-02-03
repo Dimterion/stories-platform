@@ -616,7 +616,7 @@ export default function StoryEditorPage() {
   };
 
   return (
-    <main className="relative flex min-h-screen">
+    <section className="relative flex flex-1">
       {/* Sidebar: nodes list */}
       {sidebarVisible && (
         <Sidebar
@@ -736,6 +736,6 @@ export default function StoryEditorPage() {
           aria-hidden="true"
         />
       )}
-    </main>
+    </section>
   );
 }

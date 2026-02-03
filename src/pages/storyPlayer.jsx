@@ -217,7 +217,7 @@ export default function StoryPlayerPage() {
   };
 
   return (
-    <main className="flex flex-col items-center justify-center p-4 sm:p-6">
+    <section className="flex flex-1 flex-col items-center justify-center p-4 sm:p-6">
       <div className="flex w-full max-w-[1024px] justify-end">
         <button
           onClick={() => setShowHints((prev) => !prev)}
@@ -376,6 +376,6 @@ export default function StoryPlayerPage() {
           aria-hidden="true"
         />
       )}
-    </main>
+    </section>
   );
 }
