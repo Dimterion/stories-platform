@@ -75,6 +75,22 @@
   }
 }
 
+/* Animations (modal) */
+@keyframes modalSlideDown {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.modal-contentWrapper {
+  animation: modalSlideDown 0.5s ease-in-out forwards;
+}
+
 /* Animations (Home page) */
 .homePage-h2 {
   animation: slideDown 0.5s ease-in-out forwards;

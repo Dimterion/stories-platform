@@ -20,7 +20,7 @@ export default function Modal({ isOpen, onClose, ariaLabelledBy, children }) {
       onClick={handleOverlayClick}
     >
       <div
-        className="bg-softWhite text-deepBlue border-lightBlue modal-scrollbar relative max-h-[90vh] w-full max-w-lg overflow-y-auto border-2 p-4 sm:p-6"
+        className="modal-contentWrapper bg-softWhite text-deepBlue border-lightBlue modal-scrollbar relative max-h-[90vh] w-full max-w-lg overflow-y-auto border-2 p-4 opacity-0 sm:p-6"
         onClick={handleContentClick}
       >
         <button
