@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { Link } from "react-router";
 import { BookOpenCheck, CircleQuestionMark, Info, Pencil } from "lucide-react";
-import Modal from "../components/Modal";
-import Instructions from "../components/Instructions";
+import Modal from "../components/ui/Modal";
+import Instructions from "../components/ui/Instructions";
 
 export default function HomePage() {
   const [showModal, setShowModal] = useState(false);

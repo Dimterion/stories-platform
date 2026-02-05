@@ -1,4 +1,4 @@
-import Hint from "../../components/Layout/Hint";
+import Hint from "../ui/Hint";
 
 export default function MetadataForm({
   showHints,

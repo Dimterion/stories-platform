@@ -1,5 +1,5 @@
 import { Plus, Star, Trash2 } from "lucide-react";
-import Hint from "../../components/Layout/Hint";
+import Hint from "../ui/Hint";
 
 export default function NodeEditor({
   showHints,

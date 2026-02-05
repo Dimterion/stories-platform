@@ -11,8 +11,8 @@ import MetadataForm from "../components/StoryEditor/MetadataForm";
 import NodeEditor from "../components/StoryEditor/NodeEditor";
 import Toolbar from "../components/StoryEditor/Toolbar";
 import StoryDiagram from "../components/StoryDiagram/StoryDiagram";
-import Modal from "../components/Modal";
-import Instructions from "../components/Instructions";
+import Modal from "../components/ui/Modal";
+import Instructions from "../components/ui/Instructions";
 
 export default function StoryEditorPage() {
   const STORAGE_KEY = "storyEditorState";

@@ -1,5 +1,5 @@
 import { X } from "lucide-react";
-import { useBodyScrollLock } from "../utils/hooks";
+import { useBodyScrollLock } from "../../utils/hooks";
 
 export default function Modal({ isOpen, onClose, ariaLabelledBy, children }) {
   useBodyScrollLock(isOpen);

@@ -9,9 +9,9 @@ import {
 } from "lucide-react";
 import { useMetadata } from "../utils/hooks";
 import { validateStoryJson } from "../utils/storyUtils";
-import Hint from "../components/Layout/Hint";
-import Modal from "../components/Modal";
-import Instructions from "../components/Instructions";
+import Hint from "../components/ui/Hint";
+import Modal from "../components/ui/Modal";
+import Instructions from "../components/ui/Instructions";
 import sampleStory from "../assets/sampleStory";
 
 const STORAGE_KEY = "storyPlayerState";
