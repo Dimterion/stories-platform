@@ -126,3 +126,8 @@
 .storyEditorPage-contentWrapper {
   animation: fadeIn 0.5s ease-in-out forwards;
 }
+
+/* Animations (About page) */
+.aboutPage-contentWrapper {
+  animation: slideDown 0.5s ease-in-out forwards;
+}
