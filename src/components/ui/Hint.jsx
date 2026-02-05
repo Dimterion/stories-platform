@@ -1,6 +1,6 @@
 export default function Hint({ text }) {
   return (
-    <aside className="absolute -top-5 z-50 mx-2 w-full max-w-[200px] text-center">
+    <aside className="hint-contentWrapper absolute -top-5 z-50 mx-2 w-full max-w-[200px] text-center">
       <p className="bg-softWhite text-darkBlue border-darkBlue border-3 px-2 py-1 text-xs shadow-lg sm:text-sm">
         {text}
       </p>
