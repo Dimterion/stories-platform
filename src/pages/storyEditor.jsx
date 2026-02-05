@@ -600,7 +600,7 @@ export default function StoryEditorPage() {
 
   if (!selectedNode || Object.keys(nodes).length === 0) {
     return (
-      <section className="flex min-h-screen items-center justify-center text-gray-400">
+      <section className="mx-auto flex min-h-screen items-center justify-center text-gray-400">
         Loading story editor...
       </section>
     );
@@ -616,7 +616,7 @@ export default function StoryEditorPage() {
   };
 
   return (
-    <section className="relative flex flex-1">
+    <section className="storyEditorPage-contentWrapper relative flex flex-1">
       {/* Sidebar: nodes list */}
       {sidebarVisible && (
         <Sidebar

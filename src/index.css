@@ -121,3 +121,8 @@
 .storyPlayerPage-contentWrapper {
   animation: slideDown 0.5s ease-in-out forwards;
 }
+
+/* Animations (Story Editor page) */
+.storyEditorPage-contentWrapper {
+  animation: fadeIn 0.5s ease-in-out forwards;
+}
