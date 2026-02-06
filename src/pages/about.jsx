@@ -1,6 +1,6 @@
-import { Link } from "react-router";
 import { BookOpenCheck, ExternalLink, House, Pencil } from "lucide-react";
 import { useMetadata } from "../utils/hooks";
+import PageLink from "../components/ui/PageLink";
 
 export default function AboutPage() {
   useMetadata({
@@ -17,26 +17,13 @@ export default function AboutPage() {
         outcomes.
       </p>
       <section className="space-y-6">
-        <Link
-          to="/"
-          className="hover:bg-softWhite hover:text-deepBlue bg-darkBlue mx-auto flex w-sm max-w-[80vw] cursor-pointer flex-nowrap items-center justify-center gap-2 border p-2 text-xs uppercase sm:text-base"
-        >
-          <House />
-          Home page
-        </Link>
-        <Link
-          to="/story-editor"
-          className="hover:bg-softWhite hover:text-deepBlue bg-darkBlue mx-auto flex w-sm max-w-[80vw] cursor-pointer flex-nowrap items-center justify-center gap-2 border p-2 text-xs uppercase sm:text-base"
-        >
-          <Pencil />
-          Start creating
-        </Link>
-        <Link
-          to="/story-player"
-          className="hover:bg-softWhite hover:text-deepBlue bg-darkBlue mx-auto flex w-sm max-w-[80vw] cursor-pointer flex-nowrap items-center justify-center gap-2 border p-2 text-xs uppercase sm:text-base"
-        >
-          <BookOpenCheck /> Start playing
-        </Link>
+        <PageLink link="" icon={<House />} text="Home page" />
+        <PageLink link="story-editor" icon={<Pencil />} text="Start creating" />
+        <PageLink
+          link="story-player"
+          icon={<BookOpenCheck />}
+          text="Start playing"
+        />
       </section>
       <h3 className="text-xl font-bold">Learn more about the project</h3>
       <section className="border-darkBlue bg-softWhite text-deepBlue flex w-full max-w-[300px] flex-col items-center justify-center gap-2 border p-4">

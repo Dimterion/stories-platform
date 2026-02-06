@@ -1,18 +1,12 @@
-import { NavLink } from "react-router";
+import { Link } from "react-router";
 
-export default function PageLink({ tab, icon, label, activeColor }) {
-  const base =
-    "flex cursor-pointer flex-nowrap items-center gap-1 text-xs sm:text-sm uppercase text-[#fdf0d5] hover:text-lightBlue transition-all duration-300";
-  const active = `flex cursor-pointer flex-nowrap items-center gap-1 text-sm uppercase ${activeColor}`;
-
+export default function PageLink({ link, animation, icon, text }) {
   return (
-    <NavLink
-      to={`/${tab}`}
-      aria-label={`${label} tab`}
-      className={({ isActive }) => (isActive ? active : base)}
+    <Link
+      to={`/${link}`}
+      className={`${animation} hover:bg-softWhite hover:text-deepBlue bg-darkBlue mx-auto flex w-sm max-w-[80vw] flex-nowrap items-center justify-center gap-2 border p-2 text-center text-xs uppercase ${animation && "opacity-0"} transition-all duration-300 active:scale-95 sm:text-base`}
     >
-      {icon}
-      {label}
-    </NavLink>
+      {icon} {text}
+    </Link>
   );
 }

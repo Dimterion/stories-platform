@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router";
 import { BookOpenCheck, CircleQuestionMark, Info, Pencil } from "lucide-react";
+import PageLink from "../components/ui/PageLink";
 import Modal from "../components/ui/Modal";
 import Instructions from "../components/ui/Instructions";
 
@@ -43,12 +44,12 @@ export default function HomePage() {
           </p>
         </article>
       </section>
-      <Link
-        to="/about"
-        className="homePage-bottomLink hover:bg-softWhite hover:text-deepBlue bg-darkBlue mx-auto flex w-sm max-w-[80vw] flex-nowrap items-center justify-center gap-2 border p-2 text-center text-xs uppercase opacity-0 transition-all duration-300 active:scale-95 sm:text-base"
-      >
-        <Info /> About the platform
-      </Link>
+      <PageLink
+        link="about"
+        animation="homePage-bottomLink"
+        icon={<Info />}
+        text="About the platform"
+      />
       <Modal
         isOpen={showModal}
         onClose={() => setShowModal(false)}
