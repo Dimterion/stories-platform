@@ -16,7 +16,7 @@ export default function AboutPage() {
         A platform to create interactive stories with multiple choices and
         outcomes.
       </p>
-      <section className="space-y-6">
+      <section className="w-sm max-w-[80vw] space-y-6">
         <PageLink link="" icon={<House />} text="Home page" />
         <PageLink link="story-editor" icon={<Pencil />} text="Start creating" />
         <PageLink
