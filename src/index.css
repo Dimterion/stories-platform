@@ -131,3 +131,8 @@
 .aboutPage-contentWrapper {
   animation: slideDown 0.5s ease-in-out forwards;
 }
+
+/* Animations (Story diagram) */
+.storyDiagram-contentWrapper {
+  animation: modalSlideDown 0.5s ease-in-out forwards;
+}

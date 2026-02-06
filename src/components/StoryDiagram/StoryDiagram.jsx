@@ -474,7 +474,7 @@ export default function StoryDiagram({ story, onClose, onSelectNode }) {
 
   return (
     <div
-      className="bg-opacity-70 bg-darkBlue/80 fixed inset-0 z-50 flex items-center justify-center backdrop-blur-sm"
+      className="storyDiagram-contentWrapper bg-opacity-70 bg-darkBlue/80 fixed inset-0 z-50 flex items-center justify-center backdrop-blur-sm"
       onClick={handleOverlayClick}
     >
       <div className="bg-softWhite relative h-4/5 w-4/5 p-4" ref={diagramRef}>
