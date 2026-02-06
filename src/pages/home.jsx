@@ -15,7 +15,7 @@ export default function HomePage() {
       <button
         type="button"
         onClick={() => setShowModal(true)}
-        className="homePage-btn hover:bg-softWhite hover:text-deepBlue bg-darkBlue mx-auto flex w-sm max-w-[80vw] cursor-pointer flex-nowrap items-center justify-center gap-2 border p-2 text-center text-xs uppercase opacity-0 active:scale-95 sm:text-base"
+        className="homePage-btn hover:bg-softWhite hover:text-deepBlue bg-darkBlue mx-auto flex w-sm max-w-[80vw] cursor-pointer flex-nowrap items-center justify-center gap-2 border p-2 text-center text-xs uppercase opacity-0 transition-all duration-300 active:scale-95 sm:text-base"
       >
         <CircleQuestionMark /> Instructions
       </button>
@@ -23,7 +23,7 @@ export default function HomePage() {
         <article className="homePage-leftLink bg-darkBlue m-auto flex w-sm max-w-[80vw] flex-col gap-4 border p-4 opacity-0">
           <Link
             to="/story-player"
-            className="hover:bg-softWhite hover:text-deepBlue mx-auto flex w-full flex-nowrap items-center justify-center gap-2 border p-2 text-center text-xs uppercase active:scale-95 sm:text-base"
+            className="hover:bg-softWhite hover:text-deepBlue mx-auto flex w-full flex-nowrap items-center justify-center gap-2 border p-2 text-center text-xs uppercase transition-all duration-300 active:scale-95 sm:text-base"
           >
             <BookOpenCheck /> Story Player
           </Link>
@@ -34,7 +34,7 @@ export default function HomePage() {
         <article className="homePage-rightLink bg-darkBlue m-auto flex w-sm max-w-[80vw] flex-col gap-4 border p-4 opacity-0">
           <Link
             to="/story-editor"
-            className="hover:bg-softWhite hover:text-deepBlue mx-auto flex w-full flex-nowrap items-center justify-center gap-2 border p-2 text-center text-xs uppercase active:scale-95 sm:text-base"
+            className="hover:bg-softWhite hover:text-deepBlue mx-auto flex w-full flex-nowrap items-center justify-center gap-2 border p-2 text-center text-xs uppercase transition-all duration-300 active:scale-95 sm:text-base"
           >
             <Pencil /> Story Editor
           </Link>
@@ -45,7 +45,7 @@ export default function HomePage() {
       </section>
       <Link
         to="/about"
-        className="homePage-bottomLink hover:bg-softWhite hover:text-deepBlue bg-darkBlue mx-auto flex w-sm max-w-[80vw] flex-nowrap items-center justify-center gap-2 border p-2 text-center text-xs uppercase opacity-0 active:scale-95 sm:text-base"
+        className="homePage-bottomLink hover:bg-softWhite hover:text-deepBlue bg-darkBlue mx-auto flex w-sm max-w-[80vw] flex-nowrap items-center justify-center gap-2 border p-2 text-center text-xs uppercase opacity-0 transition-all duration-300 active:scale-95 sm:text-base"
       >
         <Info /> About the platform
       </Link>
