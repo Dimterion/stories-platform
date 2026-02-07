@@ -1,6 +1,7 @@
 import { BookOpenCheck, ExternalLink, House, Pencil } from "lucide-react";
 import { useMetadata } from "../utils/hooks";
 import PageLink from "../components/ui/PageLink";
+import ExternalPageLink from "../components/ui/ExternalPageLink";
 
 export default function AboutPage() {
   useMetadata({
@@ -94,44 +95,30 @@ export default function AboutPage() {
       </section> */}
       <h3 className="text-xl font-bold">Questions or feedback?</h3>
       <section className="mx-2 flex flex-wrap items-center gap-2">
-        <a
-          href="https://linktr.ee/dimterion"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="hover:bg-softWhite hover:text-deepBlue bg-darkBlue text-softWhite inline-flex w-full items-center justify-center gap-1 border p-2"
-        >
-          Profile links <ExternalLink className="size-4 shrink-0" />
-        </a>
-        <a
-          href="https://www.dimterion.com"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="hover:bg-softWhite hover:text-deepBlue bg-darkBlue text-softWhite inline-flex w-full items-center justify-center gap-1 border p-2"
-        >
-          My main site <ExternalLink className="size-4 shrink-0" />
-        </a>
+        <ExternalPageLink
+          link="https://linktr.ee/dimterion"
+          icon={<ExternalLink className="size-4 shrink-0" />}
+          text="Profile links"
+        />
+        <ExternalPageLink
+          link="https://www.dimterion.com"
+          icon={<ExternalLink className="size-4 shrink-0" />}
+          text="My main site"
+        />
       </section>
       <h3 className="text-xl font-bold">Other related projects</h3>
       <section className="flex flex-col gap-2">
         <p>I have also made a couple of interactive text adventure games.</p>
-        <a
-          href="https://poets-of-tomorrows-world.vercel.app/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="hover:bg-softWhite hover:text-deepBlue bg-darkBlue text-softWhite inline-flex w-full items-center justify-center gap-1 border p-2"
-        >
-          Poets of Tomorrow’s World
-          <ExternalLink className="size-4 shrink-0" />
-        </a>
-        <a
-          href="https://profound-cat-a609de.netlify.app/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="hover:bg-softWhite hover:text-deepBlue bg-darkBlue text-softWhite inline-flex w-full items-center justify-center gap-1 border p-2"
-        >
-          Poets of Tomorrow’s World: gameOn(e)
-          <ExternalLink className="size-4 shrink-0" />
-        </a>
+        <ExternalPageLink
+          link="https://poets-of-tomorrows-world.vercel.app"
+          icon={<ExternalLink className="size-4 shrink-0" />}
+          text="Poets of Tomorrow’s World"
+        />
+        <ExternalPageLink
+          link="https://profound-cat-a609de.netlify.app"
+          icon={<ExternalLink className="size-4 shrink-0" />}
+          text="Poets of Tomorrow’s World: gameOn(e)"
+        />
       </section>
     </section>
   );

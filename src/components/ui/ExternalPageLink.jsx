@@ -1,4 +1,4 @@
-export default function ExternalLink({ link, icon, text }) {
+export default function ExternalPageLink({ link, icon, text }) {
   return (
     <a
       href={link}
@@ -6,7 +6,7 @@ export default function ExternalLink({ link, icon, text }) {
       rel="noopener noreferrer"
       className="hover:bg-softWhite hover:text-deepBlue bg-darkBlue text-softWhite inline-flex w-full items-center justify-center gap-1 border p-2"
     >
-      {icon} {text}
+      {text} {icon}
     </a>
   );
 }
