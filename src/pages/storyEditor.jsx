@@ -638,7 +638,7 @@ export default function StoryEditorPage() {
         <button
           onClick={() => setShowHints((prev) => !prev)}
           aria-pressed={showHints}
-          className="bg-lightBlue text-softWhite border-darkBlue hover:bg-softWhite hover:text-darkBlue absolute top-0 right-0 z-50 mb-0 min-w-26 cursor-pointer border-3 p-1 text-xs uppercase transition"
+          className="bg-lightBlue text-softWhite border-darkBlue hover:bg-softWhite hover:text-darkBlue absolute top-0 right-0 z-50 mb-0 min-w-26 cursor-pointer border-3 p-1 text-xs uppercase transition-all duration-300 active:scale-95"
         >
           {showHints ? "Hide hints" : "Show hints"}
         </button>
@@ -647,7 +647,7 @@ export default function StoryEditorPage() {
             {!sidebarVisible && (
               <button
                 onClick={() => setSidebarVisible(!sidebarVisible)}
-                className="border-darkBlue bg-darkGray hover:bg-lightGray h-fit w-fit cursor-pointer border-3 p-1"
+                className="border-darkBlue bg-darkGray hover:bg-lightGray h-fit w-fit cursor-pointer border-3 p-1 transition-all duration-300 active:scale-95 "
                 aria-label="Toggle sidebar"
               >
                 <PanelLeftOpen className="size-3 sm:size-6" />

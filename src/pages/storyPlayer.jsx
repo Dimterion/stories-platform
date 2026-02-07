@@ -222,7 +222,7 @@ export default function StoryPlayerPage() {
         <button
           onClick={() => setShowHints((prev) => !prev)}
           aria-pressed={showHints}
-          className="bg-lightBlue text-softWhite border-darkBlue hover:bg-softWhite hover:text-darkBlue z-50 min-w-26 cursor-pointer border-3 p-1 text-xs uppercase transition"
+          className="bg-lightBlue text-softWhite border-darkBlue hover:bg-softWhite hover:text-darkBlue z-50 min-w-26 cursor-pointer border-3 p-1 text-xs uppercase transition-all duration-300 active:scale-95"
         >
           {showHints ? "Hide hints" : "Show hints"}
         </button>
@@ -283,7 +283,7 @@ export default function StoryPlayerPage() {
                 setCurrentNodeId(option.next);
               }}
               aria-label="Option"
-              className="text-softWhite bg-lightBlue hover:bg-deepBlue border-darkBlue w-full cursor-pointer border-3 p-1 transition duration-200"
+              className="text-softWhite bg-lightBlue hover:bg-deepBlue border-darkBlue w-full cursor-pointer border-3 p-1 transition-all duration-300"
             >
               {option.text}
             </button>
@@ -295,7 +295,7 @@ export default function StoryPlayerPage() {
             </h3>
             <button
               onClick={restart}
-              className="text-softWhite bg-lightBlue hover:bg-deepBlue border-darkBlue inline-flex w-full cursor-pointer justify-center gap-1 border-3 p-1 transition duration-200"
+              className="text-softWhite bg-lightBlue hover:bg-deepBlue border-darkBlue inline-flex w-full cursor-pointer justify-center gap-1 border-3 p-1 transition-all duration-300"
             >
               <RotateCcw />
               Restart
@@ -306,7 +306,7 @@ export default function StoryPlayerPage() {
           <button
             onClick={goBack}
             disabled={history.length <= 1}
-            className={`text-softWhite border-darkBlue bg-lightGreen inline-flex w-full justify-center gap-1 border-3 p-1 transition duration-200 ${history.length <= 1 ? "opacity-70" : "hover:bg-darkGreen cursor-pointer"}`}
+            className={`text-softWhite border-darkBlue bg-lightGreen inline-flex w-full justify-center gap-1 border-3 p-1 transition-all duration-300 ${history.length <= 1 ? "opacity-70" : "hover:bg-darkGreen cursor-pointer"}`}
           >
             <ArrowBigLeft />
             Back{history.length > 1 ? "" : " (Start)"}
@@ -334,7 +334,7 @@ export default function StoryPlayerPage() {
           {/* Custom upload button */}
           <button
             onClick={() => fileInputRef.current?.click()}
-            className="text-softWhite bg-lightBlue hover:bg-deepBlue border-darkBlue inline-flex w-full cursor-pointer items-center justify-center gap-2 border-3 p-1 transition duration-200"
+            className="text-softWhite bg-lightBlue hover:bg-deepBlue border-darkBlue inline-flex w-full cursor-pointer items-center justify-center gap-2 border-3 p-1 transition-all duration-300"
           >
             <FileDown className="size-8 sm:size-6" /> Choose File
           </button>
@@ -348,7 +348,7 @@ export default function StoryPlayerPage() {
         {showHints && <Hint text="Start over." />}
         <button
           onClick={resetProgress}
-          className="text-softWhite bg-baseRed hover:bg-lightRed border-darkBlue inline-flex min-h-16 w-full cursor-pointer items-center justify-center gap-2 border-3 p-1 transition duration-200 sm:min-h-10"
+          className="text-softWhite bg-baseRed hover:bg-lightRed border-darkBlue inline-flex min-h-16 w-full cursor-pointer items-center justify-center gap-2 border-3 p-1 transition-all duration-300 sm:min-h-10"
         >
           <XCircle className="size-8 sm:size-6" />
           Clear Save & Reset Progress
@@ -356,7 +356,7 @@ export default function StoryPlayerPage() {
 
         <button
           onClick={() => setShowModal(true)}
-          className="text-softWhite bg-baseGreen hover:bg-softGreen border-darkBlue inline-flex min-h-16 w-full cursor-pointer items-center justify-center gap-2 border-3 p-1 transition duration-200 sm:min-h-10"
+          className="text-softWhite bg-baseGreen hover:bg-softGreen border-darkBlue inline-flex min-h-16 w-full cursor-pointer items-center justify-center gap-2 border-3 p-1 transition-all duration-300 sm:min-h-10"
         >
           <CircleQuestionMark className="size-8 sm:size-6" />
           Instructions

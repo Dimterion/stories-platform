@@ -19,7 +19,7 @@ export default function Sidebar({
         <h2 className="ml-1 text-sm font-bold sm:text-lg">Nodes</h2>
         <button
           onClick={sidebarVisible}
-          className="border-darkBlue hover:bg-lightGray bg-darkGray h-fit w-fit cursor-pointer border-b-3 border-l-3 p-1"
+          className="border-darkBlue hover:bg-lightGray bg-darkGray h-fit w-fit cursor-pointer border-b-3 border-l-3 p-1 transition-all duration-300 active:scale-95"
           aria-label="Toggle sidebar"
         >
           <PanelLeftClose className="size-3 sm:size-6" />
