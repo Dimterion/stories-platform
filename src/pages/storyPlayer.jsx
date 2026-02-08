@@ -12,9 +12,11 @@ import { validateStoryJson } from "../utils/storyUtils";
 import Hint from "../components/ui/Hint";
 import Modal from "../components/ui/Modal";
 import Instructions from "../components/ui/Instructions";
+import StoriesGallery from "../components/StoriesGallery";
 import sampleStory from "../assets/sampleStory";
 
 const STORAGE_KEY = "storyPlayerState";
+const SAMPLE_STORIES_MANIFEST_URL = "/sampleStories.json";
 
 export default function StoryPlayerPage() {
   const fileInputRef = useRef(null);
@@ -196,6 +198,62 @@ export default function StoryPlayerPage() {
     });
   };
 
+  // const loadStoryIntoPlayer = (json, sourceName = null) => {
+  //   const validation = validateStoryJson(json);
+  //   if (!validation.valid) {
+  //     toast.error(validation.error, {
+  //       style: {
+  //         background: "#003049",
+  //         border: "2px solid #fdf0d5",
+  //         borderRadius: "0",
+  //         color: "#fdf0d5",
+  //       },
+  //       classNames: {
+  //         closeButton:
+  //           "!bg-deepBlue !border-softWhite !border-2 !text-softWhite !rounded-none",
+  //       },
+  //     });
+  //     return;
+  //   }
+
+  //   const startNode =
+  //     json.start && json.nodes[json.start]
+  //       ? json.start
+  //       : Object.keys(json.nodes)[0];
+
+  //   setStory(json);
+  //   setCurrentNodeId(startNode);
+  //   setHistory([startNode]);
+  //   setFileName(sourceName);
+
+  //   localStorage.setItem(
+  //     STORAGE_KEY,
+  //     JSON.stringify({
+  //       story: json,
+  //       currentNodeId: startNode,
+  //       history: [startNode],
+  //     }),
+  //   );
+
+  //   toast.success("Sample story loaded.", {
+  //     style: {
+  //       background: "#003049",
+  //       border: "2px solid #fdf0d5",
+  //       borderRadius: "0",
+  //       color: "#fdf0d5",
+  //     },
+  //     classNames: {
+  //       closeButton:
+  //         "!bg-deepBlue !border-softWhite !border-2 !text-softWhite !rounded-none",
+  //     },
+  //   });
+  // };
+
+  // const handlePickSampleStory = (pickedStoryJson) => {
+  //   if (fileInputRef.current) fileInputRef.current.value = "";
+  //   loadStoryIntoPlayer(pickedStoryJson, null);
+  // };
+
   const currentNode = story.nodes[currentNodeId] || { text: "", options: [] };
   const orderedNodeIds = useMemo(() => Object.keys(story.nodes), [story.nodes]);
   const currentSceneIndex = useMemo(
@@ -361,6 +419,10 @@ export default function StoryPlayerPage() {
           <CircleQuestionMark className="size-8 sm:size-6" />
           Instructions
         </button>
+        {/* <StoriesGallery
+          manifestUrl={SAMPLE_STORIES_MANIFEST_URL}
+          onPickStory={handlePickSampleStory}
+        /> */}
       </section>
       <Modal
         isOpen={showModal}
