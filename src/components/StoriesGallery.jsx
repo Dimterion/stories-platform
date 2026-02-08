@@ -74,7 +74,7 @@ export default function StoryGallery({ manifestUrl, onPickStory }) {
       )}
 
       {status === "ready" && items.length > 0 && (
-        <div className="flex gap-2 overflow-x-auto p-2">
+        <div className="flex flex-wrap justify-center gap-2 p-2">
           {items.map(({ id, story }) => (
             <button
               key={id}
