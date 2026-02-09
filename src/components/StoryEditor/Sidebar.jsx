@@ -31,8 +31,8 @@ export default function Sidebar({
             onClick={() => onSelectNode(id)}
             className={`border-darkBlue flex flex-1 cursor-pointer flex-col items-center justify-center border-3 px-1 py-1 text-sm sm:flex-row sm:gap-2 sm:px-2 sm:text-base ${
               id === selectedNode
-                ? "hover:bg-lightGray bg-lightBlue"
-                : "hover:bg-lightGray bg-darkGray"
+                ? "bg-lightBlue"
+                : "hover:bg-lightGray bg-darkGray transition-all duration-300 active:scale-95"
             }`}
             aria-label="Open node"
           >
@@ -41,7 +41,7 @@ export default function Sidebar({
           </button>
           <button
             onClick={() => onDeleteNode(id)}
-            className="border-darkBlue bg-baseRed hover:bg-lightRed cursor-pointer border-3 px-1 py-2 sm:p-1"
+            className="border-darkBlue bg-baseRed hover:bg-lightRed cursor-pointer border-3 px-1 py-2 transition-all duration-300 active:scale-95 sm:p-1"
             title="Delete Node"
             aria-label="Delete node"
           >
@@ -52,7 +52,7 @@ export default function Sidebar({
       <div className="p-1">
         <button
           onClick={onAddNode}
-          className="border-darkBlue bg-baseGreen hover:bg-softGreen mt-1 inline-flex w-full cursor-pointer items-center border-3 px-1 py-1 text-sm sm:gap-2 sm:px-2 sm:text-base"
+          className="border-darkBlue bg-baseGreen hover:bg-softGreen mt-1 inline-flex w-full cursor-pointer items-center border-3 px-1 py-1 text-sm transition-all duration-300 active:scale-95 sm:gap-2 sm:px-2 sm:text-base"
         >
           <Plus />
           Add Node

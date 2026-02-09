@@ -480,7 +480,7 @@ export default function StoryDiagram({ story, onClose, onSelectNode }) {
       <div className="bg-softWhite relative h-4/5 w-4/5 p-4" ref={diagramRef}>
         <button
           onClick={toggleBtnMenu}
-          className="border-darkBlue bg-lightBlue hover:bg-deepBlue text-softWhite absolute top-2 right-2 z-50 inline-flex cursor-pointer items-center border p-1"
+          className="border-darkBlue bg-lightBlue hover:bg-deepBlue text-softWhite absolute top-2 right-2 z-50 inline-flex cursor-pointer items-center border p-1 transition-all duration-300 active:scale-95"
           aria-label="Diagram menu"
         >
           {isBtnMenuOpen ? (
@@ -494,35 +494,35 @@ export default function StoryDiagram({ story, onClose, onSelectNode }) {
           <div className="absolute top-7.5 right-2 z-50 mt-2 flex flex-col space-y-1">
             <button
               onClick={onClose}
-              className="border-darkRed bg-baseRed hover:bg-lightRed inline-flex cursor-pointer items-center border p-1 text-xs text-white"
+              className="border-darkRed bg-baseRed hover:bg-lightRed inline-flex cursor-pointer items-center border p-1 text-xs text-white transition-all duration-300 active:scale-95"
             >
               <X className="mr-1 size-4" />
               Close
             </button>
             <button
               onClick={resetLayout}
-              className="border-darkGray text-softWhite bg-darkGray hover:bg-lightGray inline-flex cursor-pointer items-center border p-1 text-xs"
+              className="border-darkGray text-softWhite bg-darkGray hover:bg-lightGray inline-flex cursor-pointer items-center border p-1 text-xs transition-all duration-300 active:scale-95"
             >
               <RefreshCcw className="mr-1 size-4" />
               Reset
             </button>
             <button
               onClick={handleDownloadSvg}
-              className="bg-baseGreen hover:bg-lightGreen border-darkGray text-softWhite inline-flex cursor-pointer items-center border p-1 text-xs"
+              className="bg-baseGreen hover:bg-lightGreen border-darkGray text-softWhite inline-flex cursor-pointer items-center border p-1 text-xs transition-all duration-300 active:scale-95"
             >
               <Download className="mr-1 size-4" />
               SVG
             </button>
             <button
               onClick={handleDownloadPng}
-              className="border-darkGray bg-lightBlue text-softWhite hover:bg-deepBlue inline-flex cursor-pointer items-center border p-1 text-xs"
+              className="border-darkGray bg-lightBlue text-softWhite hover:bg-deepBlue inline-flex cursor-pointer items-center border p-1 text-xs transition-all duration-300 active:scale-95"
             >
               <Download className="mr-1 size-4" />
               PNG
             </button>
             <button
               onClick={toggleMiniMap}
-              className="border-baseOrange bg-lightOrange hover:bg-baseOrange text-softWhite inline-flex cursor-pointer items-center border p-1 text-xs"
+              className="border-baseOrange bg-lightOrange hover:bg-baseOrange text-softWhite inline-flex cursor-pointer items-center border p-1 text-xs transition-all duration-300 active:scale-95"
             >
               <Map className="mr-1 size-4" />
               Map

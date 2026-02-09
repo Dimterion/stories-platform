@@ -75,7 +75,7 @@ export default function NodeEditor({
             </select>
             <button
               onClick={() => onDeleteOption(selectedNode, i)}
-              className="border-darkBlue bg-baseRed text-softWhite hover:bg-lightRed cursor-pointer border-3 p-0.5 sm:p-1"
+              className="border-darkBlue bg-baseRed text-softWhite hover:bg-lightRed cursor-pointer border-3 p-0.5 transition-all duration-300 active:scale-95 sm:p-1"
               title="Delete Option"
               aria-label="Delete option"
             >
@@ -87,7 +87,7 @@ export default function NodeEditor({
       <div className="mt-2 flex flex-wrap items-center justify-between">
         <button
           onClick={() => onAddOption(selectedNode)}
-          className="border-darkBlue text-softWhite bg-lightBlue hover:bg-lightGray my-2 inline-flex w-full cursor-pointer items-center gap-2 border-3 px-1 py-1 text-sm sm:w-fit sm:gap-2 sm:px-2 sm:text-base"
+          className="border-darkBlue text-softWhite bg-lightBlue hover:bg-lightGray my-2 inline-flex w-full cursor-pointer items-center gap-2 border-3 px-1 py-1 text-sm transition-all duration-300 active:scale-95 sm:w-fit sm:gap-2 sm:px-2 sm:text-base"
         >
           <Plus />
           Add Option
@@ -98,7 +98,7 @@ export default function NodeEditor({
           className={`border-darkBlue my-2 inline-flex w-full items-center gap-2 border-3 px-1 py-1 text-sm sm:w-fit sm:gap-2 sm:px-2 sm:text-base ${
             selectedNode === start
               ? "text-softWhite bg-darkRed"
-              : "bg-baseRed text-softWhite hover:bg-lightRed cursor-pointer"
+              : "bg-baseRed text-softWhite hover:bg-lightRed cursor-pointer transition-all duration-300 active:scale-95"
           }`}
         >
           <Star /> Set as Start Node
