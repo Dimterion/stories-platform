@@ -32,15 +32,11 @@ export default function AboutPage() {
           Visit the project's GitHub repository for more information and
           updates:
         </p>
-        <a
-          href="https://github.com/Dimterion/stories-platform"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="hover:bg-softWhite hover:text-deepBlue bg-darkBlue text-softWhite inline-flex w-full items-center justify-center gap-1 border p-2"
-        >
-          GitHub repo
-          <ExternalLink className="size-4 shrink-0" />
-        </a>
+        <ExternalPageLink
+          link="https://github.com/Dimterion/stories-platform"
+          icon={<ExternalLink className="size-4 shrink-0" />}
+          text="GitHub repo"
+        />
       </section>
       {/* <p>
         I've written a series of articles about working on this project and
@@ -94,7 +90,7 @@ export default function AboutPage() {
         </article>
       </section> */}
       <h3 className="text-xl font-bold">Questions or feedback?</h3>
-      <section className="mx-2 flex flex-wrap items-center gap-2">
+      <section className="mx-2 flex flex-wrap items-center gap-4">
         <ExternalPageLink
           link="https://linktr.ee/dimterion"
           icon={<ExternalLink className="size-4 shrink-0" />}
@@ -107,8 +103,8 @@ export default function AboutPage() {
         />
       </section>
       <h3 className="text-xl font-bold">Other related projects</h3>
-      <section className="flex flex-col gap-2">
-        <p>I have also made a couple of interactive text adventure games.</p>
+      <p>I have also made a couple of interactive text adventure games:</p>
+      <section className="flex flex-col gap-4">
         <ExternalPageLink
           link="https://poets-of-tomorrows-world.vercel.app"
           icon={<ExternalLink className="size-4 shrink-0" />}

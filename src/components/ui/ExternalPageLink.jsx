@@ -4,7 +4,7 @@ export default function ExternalPageLink({ link, icon, text }) {
       href={link}
       target="_blank"
       rel="noopener noreferrer"
-      className="hover:bg-softWhite hover:text-deepBlue bg-darkBlue text-softWhite inline-flex w-full items-center justify-center gap-1 border p-2"
+      className="hover:bg-softWhite hover:text-deepBlue bg-darkBlue text-softWhite inline-flex w-full items-center justify-center gap-1 border p-2 text-xs transition-all duration-300 active:scale-95 sm:text-base"
     >
       {text} {icon}
     </a>
