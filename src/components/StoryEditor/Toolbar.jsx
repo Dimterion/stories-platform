@@ -6,6 +6,7 @@ import {
   XCircle,
 } from "lucide-react";
 import Hint from "../ui/Hint";
+import ToolbarBtn from "../ui/ToolbarBtn";
 
 export default function Toolbar({
   showHints,
@@ -19,13 +20,12 @@ export default function Toolbar({
   return (
     <section className="relative flex flex-wrap justify-center gap-4 pb-2 md:justify-start">
       {showHints && <Hint text="Choose what you want to do with your story." />}
-      <button
+      <ToolbarBtn
         onClick={onExportStory}
-        className="border-darkBlue bg-baseOrange hover:bg-lightOrange inline-flex min-h-20 w-3xs max-w-[55vw] cursor-pointer items-center gap-2 border-3 px-4 py-2 text-center text-sm sm:text-base"
-      >
-        <FileUp className="size-8 sm:size-6" />
-        Export Story (JSON file)
-      </button>
+        color="bg-baseOrange hover:bg-lightOrange"
+        icon={<FileUp className="size-8 sm:size-6" />}
+        text="Export Story (JSON file)"
+      />
       <button
         onClick={onExportHTML}
         className="border-darkBlue bg-lightGreen hover:bg-darkGreen inline-flex min-h-20 w-3xs max-w-[55vw] cursor-pointer items-center gap-2 border-3 px-4 py-2 text-center text-sm sm:text-base"

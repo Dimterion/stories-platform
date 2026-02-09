@@ -26,7 +26,7 @@ export default function ScrollBtn() {
 
   return (
     <button
-      className={`bg-softWhite fixed right-3 bottom-3 z-10 cursor-pointer opacity-70 hover:opacity-100 ${
+      className={`bg-softWhite fixed right-3 bottom-3 z-10 cursor-pointer opacity-70 transition-all duration-300 hover:opacity-100 active:scale-95 ${
         showScrollBtn ? "block" : "hidden"
       }`}
       onClick={() => scrollToTop()}
