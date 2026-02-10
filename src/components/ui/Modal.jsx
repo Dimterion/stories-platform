@@ -26,7 +26,7 @@ export default function Modal({ isOpen, onClose, ariaLabelledBy, children }) {
         <button
           type="button"
           onClick={onClose}
-          className="border-darkBlue hover:bg-deepBlue hover:text-softWhite absolute top-0.5 right-0.5 z-10 cursor-pointer border p-1 transition-colors"
+          className="border-darkBlue hover:bg-deepBlue hover:text-softWhite absolute top-0.5 right-0.5 z-10 cursor-pointer border p-1 transition-all duration-300 active:scale-95"
           aria-label="Close modal"
         >
           <X className="size-5" />

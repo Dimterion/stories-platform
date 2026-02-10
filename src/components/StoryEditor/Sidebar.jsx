@@ -29,10 +29,10 @@ export default function Sidebar({
         <div key={id} className="flex items-center gap-0.5 px-1">
           <button
             onClick={() => onSelectNode(id)}
-            className={`border-darkBlue flex flex-1 cursor-pointer flex-col items-center justify-center border-3 px-1 py-1 text-sm sm:flex-row sm:gap-2 sm:px-2 sm:text-base ${
+            className={`border-darkBlue flex flex-1 flex-col items-center justify-center border-3 px-1 py-1 text-sm sm:flex-row sm:gap-2 sm:px-2 sm:text-base ${
               id === selectedNode
                 ? "bg-lightBlue"
-                : "hover:bg-lightGray bg-darkGray transition-all duration-300 active:scale-95"
+                : "hover:bg-lightGray bg-darkGray cursor-pointer transition-all duration-300 active:scale-95"
             }`}
             aria-label="Open node"
           >
