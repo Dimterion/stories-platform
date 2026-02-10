@@ -58,10 +58,17 @@ export default function StoryGallery({ manifestUrl, onPickStory }) {
   }, [manifestUrl]);
 
   return (
-    <section className="bg-softWhite border-darkBlue text-darkBlue w-full max-w-[1024px] border-3 p-2">
-      <h3 className="text-softWhite border-darkBlue bg-darkBlue w-full border-3 p-1 text-center text-xl font-bold">
-        Sample stories
-      </h3>
+    <section className="bg-softWhite border-darkBlue text-darkBlue mx-auto w-full max-w-[512px] border-3 p-2">
+      <div className="flex flex-col gap-1">
+        <h3 className="text-softWhite border-darkBlue bg-darkBlue w-full border-3 p-1 text-center text-xl font-bold">
+          Sample stories
+        </h3>
+        <div className="border-darkBlue flex w-full flex-col items-center border-3 px-4 py-1">
+          <p className="max-w-prose text-center">
+            Pick a story to read/play through.
+          </p>
+        </div>
+      </div>
 
       {status === "loading" && <p className="p-2 text-center">Loading…</p>}
 
@@ -74,12 +81,12 @@ export default function StoryGallery({ manifestUrl, onPickStory }) {
       )}
 
       {status === "ready" && items.length > 0 && (
-        <div className="flex flex-wrap justify-center gap-2 p-2">
+        <div className="flex flex-col items-center justify-center gap-2 p-2">
           {items.map(({ id, story }) => (
             <button
               key={id}
               onClick={() => onPickStory(story)}
-              className="text-softWhite bg-lightBlue hover:bg-deepBlue border-darkBlue flex h-28 w-28 shrink-0 cursor-pointer items-center justify-center border-3 p-2 text-center text-sm uppercase transition-all duration-300 active:scale-95"
+              className="text-softWhite bg-lightBlue hover:bg-deepBlue border-darkBlue w-full max-w-[300px] cursor-pointer border-3 p-2 text-center text-sm uppercase transition-all duration-300 active:scale-95"
               title={story.description || story.title}
             >
               {story.title || "Untitled"}
