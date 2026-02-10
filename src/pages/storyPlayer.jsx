@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { toast } from "sonner";
 import {
   ArrowBigLeft,
+  BookOpen,
   CircleQuestionMark,
   FileDown,
   RotateCcw,
@@ -66,6 +67,7 @@ export default function StoryPlayerPage() {
   const [fileName, setFileName] = useState(null);
   const [isReadyToSave, setIsReadyToSave] = useState(false);
   const [showModal, setShowModal] = useState(false);
+  // const [showStoriesGallery, setShowStoriesGallery] = useState(false);
 
   useEffect(() => {
     if (!isReadyToSave) {
@@ -419,10 +421,19 @@ export default function StoryPlayerPage() {
           <CircleQuestionMark className="size-8 sm:size-6" />
           Instructions
         </button>
-        {/* <StoriesGallery
-          manifestUrl={SAMPLE_STORIES_MANIFEST_URL}
-          onPickStory={handlePickSampleStory}
-        /> */}
+        {/* <button
+          onClick={() => setShowStoriesGallery(!showStoriesGallery)}
+          className="text-softWhite bg-lightGray hover:bg-darkGray border-darkBlue inline-flex min-h-16 w-full cursor-pointer items-center justify-center gap-2 border-3 p-1 transition-all duration-300 sm:min-h-10"
+        >
+          <BookOpen className="size-8 sm:size-6" />
+          {showStoriesGallery ? "Hide" : "Show"} Sample Stories
+        </button>
+        {showStoriesGallery && (
+          <StoriesGallery
+            manifestUrl={SAMPLE_STORIES_MANIFEST_URL}
+            onPickStory={handlePickSampleStory}
+          />
+        )} */}
       </section>
       <Modal
         isOpen={showModal}
