@@ -647,7 +647,7 @@ export default function StoryEditorPage() {
             {!sidebarVisible && (
               <button
                 onClick={() => setSidebarVisible(!sidebarVisible)}
-                className="border-darkBlue bg-darkGray hover:bg-lightGray h-fit w-fit cursor-pointer border-3 p-1 transition-all duration-300 active:scale-95 "
+                className="border-darkBlue bg-darkGray hover:bg-lightGray h-fit w-fit cursor-pointer border-3 p-1 transition-all duration-300 active:scale-95"
                 aria-label="Toggle sidebar"
               >
                 <PanelLeftOpen className="size-3 sm:size-6" />
@@ -699,7 +699,7 @@ export default function StoryEditorPage() {
           onSetAsStart={setAsStartNode}
         />
 
-        <h2 className="text-xl font-bold">Actions</h2>
+        <h2 className="text-center text-xl font-bold">Actions</h2>
 
         <Toolbar
           showHints={showHints}

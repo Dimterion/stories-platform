@@ -18,7 +18,7 @@ export default function Toolbar({
   onShowModal,
 }) {
   return (
-    <section className="relative flex flex-wrap justify-center gap-4 pb-2 md:justify-start">
+    <section className="relative flex flex-wrap justify-center gap-4 pb-2">
       {showHints && <Hint text="Choose what you want to do with your story." />}
       <ToolbarBtn
         onClick={onExportStory}

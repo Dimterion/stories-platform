@@ -282,7 +282,7 @@ export default function StoryPlayerPage() {
         <button
           onClick={() => setShowHints((prev) => !prev)}
           aria-pressed={showHints}
-          className="bg-lightBlue text-softWhite border-darkBlue hover:bg-softWhite hover:text-darkBlue z-50 min-w-26 cursor-pointer border-3 p-1 text-xs uppercase transition-all duration-300 active:scale-95"
+          className="bg-lightBlue text-softWhite border-darkBlue hover:bg-softWhite hover:text-darkBlue z-50 mb-0 min-w-26 cursor-pointer border-3 p-1 text-xs uppercase transition-all duration-300 active:scale-95"
         >
           {showHints ? "Hide hints" : "Show hints"}
         </button>
