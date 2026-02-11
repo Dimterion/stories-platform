@@ -59,16 +59,14 @@ export default function StoryGallery({ manifestUrl, onPickStory }) {
 
   return (
     <section className="bg-softWhite border-darkBlue text-darkBlue mx-auto w-full max-w-[512px] border-3 p-2">
-      <div className="flex flex-col gap-1">
+      <article className="flex flex-col gap-1">
         <h3 className="text-softWhite border-darkBlue bg-darkBlue w-full border-3 p-1 text-center text-xl font-bold">
           Sample stories
         </h3>
-        <div className="border-darkBlue flex w-full flex-col items-center border-3 px-4 py-1">
-          <p className="max-w-prose text-center">
-            Pick a story to read/play through.
-          </p>
-        </div>
-      </div>
+        <p className="border-darkBlue flex w-full max-w-prose flex-col items-center border-3 px-4 py-1 text-center">
+          Pick a story to read/play through.
+        </p>
+      </article>
 
       {status === "loading" && <p className="p-2 text-center">Loading…</p>}
 
@@ -77,11 +75,13 @@ export default function StoryGallery({ manifestUrl, onPickStory }) {
       )}
 
       {status === "ready" && items.length === 0 && (
-        <p className="p-2 text-center">No valid sample stories found.</p>
+        <p className="p-2 text-center">
+          No sample stories found at the moment. Check back later.
+        </p>
       )}
 
       {status === "ready" && items.length > 0 && (
-        <div className="flex flex-col items-center justify-center gap-2 p-2">
+        <section className="flex flex-col items-center justify-center gap-2 p-2">
           {items.map(({ id, story }) => (
             <button
               key={id}
@@ -92,7 +92,7 @@ export default function StoryGallery({ manifestUrl, onPickStory }) {
               {story.title || "Untitled"}
             </button>
           ))}
-        </div>
+        </section>
       )}
     </section>
   );

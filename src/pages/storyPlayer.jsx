@@ -394,7 +394,7 @@ export default function StoryPlayerPage() {
           {/* Custom upload button */}
           <button
             onClick={() => fileInputRef.current?.click()}
-            className="text-softWhite bg-lightBlue hover:bg-deepBlue border-darkBlue inline-flex w-full cursor-pointer items-center justify-center gap-2 border-3 p-1 transition-all duration-300"
+            className="text-softWhite bg-lightBlue hover:bg-deepBlue border-darkBlue inline-flex w-full cursor-pointer items-center justify-center gap-2 border-3 p-1 transition-all duration-300 active:scale-95"
           >
             <FileDown className="size-8 sm:size-6" /> Choose File
           </button>
