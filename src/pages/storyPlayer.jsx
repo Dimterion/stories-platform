@@ -13,7 +13,7 @@ import { validateStoryJson } from "../utils/storyUtils";
 import Hint from "../components/ui/Hint";
 import Modal from "../components/ui/Modal";
 import Instructions from "../components/ui/Instructions";
-import StoriesGallery from "../components/StoriesGallery";
+import StoriesGallery from "../components/ui/StoriesGallery";
 import sampleStory from "../assets/sampleStory";
 
 const STORAGE_KEY = "storyPlayerState";

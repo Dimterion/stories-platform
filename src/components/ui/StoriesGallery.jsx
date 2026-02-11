@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
-import { validateStoryJson } from "../utils/storyUtils";
+import { validateStoryJson } from "../../utils/storyUtils";
 
 export default function StoryGallery({ manifestUrl, onPickStory }) {
   const [items, setItems] = useState([]);
