@@ -491,7 +491,7 @@ export default function StoryDiagram({ story, onClose, onSelectNode }) {
         </button>
 
         {isBtnMenuOpen && (
-          <div className="absolute top-7.5 right-2 z-50 mt-2 flex flex-col space-y-1">
+          <div className="storyDiagram-btnMenu absolute top-7.5 right-2 z-50 mt-2 flex flex-col space-y-1">
             <button
               onClick={onClose}
               className="border-darkRed bg-baseRed hover:bg-lightRed inline-flex cursor-pointer items-center border p-1 text-xs text-white transition-all duration-300 active:scale-95"

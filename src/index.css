@@ -136,3 +136,7 @@
 .storyDiagram-contentWrapper {
   animation: modalSlideDown 0.5s ease-in-out forwards;
 }
+
+.storyDiagram-btnMenu {
+  animation: fadeIn 0.5s ease-in-out forwards;
+}
