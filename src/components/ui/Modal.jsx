@@ -13,14 +13,15 @@ export default function Modal({ isOpen, onClose, ariaLabelledBy, children }) {
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4 sm:p-8"
+      className="fixed inset-0 z-50 flex items-start justify-center overflow-y-auto bg-black/80 p-4 sm:p-8"
       role="dialog"
       aria-modal="true"
       aria-labelledby={ariaLabelledBy}
       onClick={handleOverlayClick}
     >
       <div
-        className="modal-contentWrapper bg-softWhite text-deepBlue border-lightBlue modal-scrollbar relative max-h-[90vh] w-full max-w-lg overflow-y-auto border-2 p-4 opacity-0 sm:p-6"
+        className="modal-contentWrapper bg-softWhite text-deepBlue border-lightBlue modal-scrollbar relative my-0 w-full max-w-lg overflow-y-auto border-2 p-4 sm:my-8 sm:p-6"
+        style={{ maxHeight: "90dvh" }}
         onClick={handleContentClick}
       >
         <button

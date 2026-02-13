@@ -118,8 +118,20 @@
 }
 
 /* Animations (Story Player page) */
+@keyframes storyPlayerPageSlideDown {
+  from {
+    top: -2rem;
+    opacity: 0;
+  }
+  to {
+    top: 0;
+    opacity: 1;
+  }
+}
+
 .storyPlayerPage-contentWrapper {
-  animation: slideDown 0.5s ease-in-out forwards;
+  animation: storyPlayerPageSlideDown 0.5s ease-in-out forwards;
+  position: relative;
 }
 
 /* Animations (Story Editor page) */
