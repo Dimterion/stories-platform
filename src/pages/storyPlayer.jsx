@@ -66,6 +66,7 @@ export default function StoryPlayerPage() {
   const [history, setHistory] = useState(initialState.history);
   const [fileName, setFileName] = useState(null);
   const [isReadyToSave, setIsReadyToSave] = useState(false);
+  const [showResetConfirm, setShowResetConfirm] = useState(false);
   const [showModal, setShowModal] = useState(false);
   // const [showStoriesGallery, setShowStoriesGallery] = useState(false);
 
@@ -407,7 +408,7 @@ export default function StoryPlayerPage() {
       <section className="relative flex w-full max-w-[1024px] flex-wrap">
         {showHints && <Hint text="Start over." />}
         <button
-          onClick={resetProgress}
+          onClick={() => setShowResetConfirm(true)}
           className="text-softWhite bg-baseRed hover:bg-lightRed border-darkBlue inline-flex min-h-16 w-full cursor-pointer items-center justify-center gap-2 border-3 p-1 transition-all duration-300 sm:min-h-10"
         >
           <XCircle className="size-8 sm:size-6" />
@@ -435,6 +436,45 @@ export default function StoryPlayerPage() {
           />
         )} */}
       </section>
+      {/* Reset confirmation modal */}
+      <Modal
+        isOpen={showResetConfirm}
+        onClose={() => setShowResetConfirm(false)}
+        ariaLabelledBy="reset-confirm-title"
+      >
+        <h2
+          id="reset-confirm-title"
+          className="mt-6 mb-4 text-center text-xl font-bold"
+        >
+          Reset progress?
+        </h2>
+        <p className="mb-6">
+          This will delete your saved state and reload the sample story. The
+          action can’t be undone.
+        </p>
+
+        <section className="flex gap-2">
+          <button
+            type="button"
+            onClick={() => setShowResetConfirm(false)}
+            className="border-darkBlue bg-lightGray hover:bg-darkGray text-softWhite w-full cursor-pointer border-3 p-1 transition-all duration-300"
+          >
+            Cancel
+          </button>
+          <button
+            type="button"
+            onClick={() => {
+              setShowResetConfirm(false);
+              resetProgress();
+            }}
+            className="border-darkBlue bg-baseRed hover:bg-lightRed text-softWhite w-full cursor-pointer border-3 p-1 transition-all duration-300"
+          >
+            Yes, reset
+          </button>
+        </section>
+      </Modal>
+
+      {/* Instructions modal */}
       <Modal
         isOpen={showModal}
         onClose={() => setShowModal(false)}
