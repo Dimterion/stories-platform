@@ -12,6 +12,7 @@ import NodeEditor from "../components/StoryEditor/NodeEditor";
 import Toolbar from "../components/StoryEditor/Toolbar";
 import StoryDiagram from "../components/StoryDiagram/StoryDiagram";
 import Modal from "../components/ui/Modal";
+import ResetConfirmation from "../components/ui/ResetConfirmation";
 import Instructions from "../components/ui/Instructions";
 
 export default function StoryEditorPage() {
@@ -29,6 +30,7 @@ export default function StoryEditorPage() {
   const [sidebarVisible, setSidebarVisible] = useState(true);
   const [showProgress, setShowProgress] = useState(true);
   const [allowBackNavigation, setAllowBackNavigation] = useState(false);
+  const [showResetConfirm, setShowResetConfirm] = useState(false);
   const [showModal, setShowModal] = useState(false);
 
   useMetadata({
@@ -707,9 +709,25 @@ export default function StoryEditorPage() {
           onExportHTML={exportStandaloneHTML}
           onImportStory={importStory}
           onShowDiagram={() => setShowDiagram(true)}
-          onClearSave={clearLocalSave}
+          onClearSave={() => setShowResetConfirm(true)}
           onShowModal={() => setShowModal(true)}
         />
+
+        {/* Reset confirmation modal */}
+        <Modal
+          isOpen={showResetConfirm}
+          onClose={() => setShowResetConfirm(false)}
+          ariaLabelledBy="reset-confirm-title"
+        >
+          <ResetConfirmation
+            text="This will delete your saved state and reset all progress. The action can’t be undone."
+            cancelReset={() => setShowResetConfirm(false)}
+            confirmReset={() => {
+              setShowResetConfirm(false);
+              clearLocalSave();
+            }}
+          />
+        </Modal>
 
         {/* Instructions modal */}
         <Modal

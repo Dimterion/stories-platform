@@ -7,10 +7,7 @@ export default function ResetConfirmation({ text, cancelReset, confirmReset }) {
       >
         Reset progress?
       </h2>
-      <p className="mb-6">
-        {text}
-      </p>
-
+      <p className="mb-6">{text}</p>
       <div className="flex gap-2">
         <button
           type="button"
