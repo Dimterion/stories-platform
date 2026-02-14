@@ -444,6 +444,7 @@ export default function StoryPlayerPage() {
         ariaLabelledBy="reset-confirm-title"
       >
         <ResetConfirmation
+          text="This will delete your saved state and reload the sample story. The action can’t be undone."
           cancelReset={() => setShowResetConfirm(false)}
           confirmReset={() => {
             setShowResetConfirm(false);

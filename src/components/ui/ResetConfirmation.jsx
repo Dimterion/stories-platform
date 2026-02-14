@@ -1,4 +1,4 @@
-export default function ResetConfirmation({ cancelReset, confirmReset }) {
+export default function ResetConfirmation({ text, cancelReset, confirmReset }) {
   return (
     <section>
       <h2
@@ -8,11 +8,10 @@ export default function ResetConfirmation({ cancelReset, confirmReset }) {
         Reset progress?
       </h2>
       <p className="mb-6">
-        This will delete your saved state and reload the sample story. The
-        action can’t be undone.
+        {text}
       </p>
 
-      <section className="flex gap-2">
+      <div className="flex gap-2">
         <button
           type="button"
           onClick={cancelReset}
@@ -27,7 +26,7 @@ export default function ResetConfirmation({ cancelReset, confirmReset }) {
         >
           Yes, reset
         </button>
-      </section>
+      </div>
     </section>
   );
 }

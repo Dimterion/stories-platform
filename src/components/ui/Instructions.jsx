@@ -9,7 +9,9 @@ export default function Instructions() {
 
   return (
     <section className="space-y-4">
-      <h3 className="text-center text-xl font-bold">Instructions</h3>
+      <h2 id="instructions-title" className="text-center text-xl font-bold">
+        Instructions
+      </h2>
       {!isStoryEditor && (
         <article className="border-b pb-4">
           <p>
