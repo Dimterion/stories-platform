@@ -41,11 +41,11 @@ export default function MetadataForm({
           id="showProgress"
           checked={showProgress}
           onChange={(e) => onChange.setShowProgress(e.target.checked)}
-          className="size-5 cursor-pointer"
+          className="size-5 cursor-pointer hover:opacity-70"
         />
         <label
           htmlFor="showProgress"
-          className="text-softWhite cursor-pointer text-sm"
+          className="text-softWhite cursor-pointer text-sm hover:opacity-70"
         >
           Show progress indicator in Story Player
         </label>
@@ -56,11 +56,11 @@ export default function MetadataForm({
           id="allowBackNavigation"
           checked={allowBackNavigation}
           onChange={(e) => onChange.setAllowBackNavigation(e.target.checked)}
-          className="size-5 cursor-pointer"
+          className="size-5 cursor-pointer hover:opacity-70"
         />
         <label
           htmlFor="allowBackNavigation"
-          className="text-softWhite cursor-pointer text-sm"
+          className="text-softWhite cursor-pointer text-sm hover:opacity-70"
         >
           Allow back button in Story Player
         </label>

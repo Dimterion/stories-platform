@@ -95,10 +95,10 @@ export default function NodeEditor({
         <button
           onClick={() => onSetAsStart(selectedNode)}
           disabled={selectedNode === start}
-          className={`border-darkBlue my-2 inline-flex w-full items-center gap-2 border-3 px-1 py-1 text-sm sm:w-fit sm:gap-2 sm:px-2 sm:text-base ${
+          className={`border-darkBlue text-softWhite bg-baseRed my-2 inline-flex w-full items-center gap-2 border-3 px-1 py-1 text-sm sm:w-fit sm:gap-2 sm:px-2 sm:text-base ${
             selectedNode === start
-              ? "text-softWhite bg-darkRed"
-              : "bg-baseRed text-softWhite hover:bg-lightRed cursor-pointer transition-all duration-300 active:scale-95"
+              ? "opacity-70"
+              : "hover:bg-lightRed cursor-pointer transition-all duration-300 active:scale-95"
           }`}
         >
           <Star /> Set as Start Node
