@@ -419,6 +419,9 @@ export default function StoryPlayerPage() {
           <CircleQuestionMark className="size-8 sm:size-6" />
           Instructions
         </button>
+        {showHints && (
+          <Hint text="View additional stories examples." position="top-10" />
+        )}
         <button
           onClick={() => setShowStoriesGallery(!showStoriesGallery)}
           className="text-softWhite bg-lightGray hover:bg-darkGray border-darkBlue inline-flex min-h-16 w-full cursor-pointer items-center justify-center gap-2 border-3 p-1 transition-all duration-300 sm:min-h-10"
