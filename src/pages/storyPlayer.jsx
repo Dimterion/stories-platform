@@ -18,7 +18,8 @@ import StoriesGallery from "../components/ui/StoriesGallery";
 import sampleStory from "../assets/sampleStory";
 
 const STORAGE_KEY = "storyPlayerState";
-const SAMPLE_STORIES_MANIFEST_URL = import.meta.env.VITE_STORIES_SAMPLES_API_URL;
+const SAMPLE_STORIES_MANIFEST_URL = import.meta.env
+  .VITE_STORIES_SAMPLES_API_URL;
 
 export default function StoryPlayerPage() {
   const fileInputRef = useRef(null);
@@ -318,15 +319,10 @@ export default function StoryPlayerPage() {
       <div className="bg-softWhite border-darkBlue text-darkBlue relative flex min-h-72 w-full max-w-[1024px] flex-col items-center justify-center border-3 p-4">
         {showHints && <Hint text="Main story text is displayed here." />}
 
-        <div className="max-w-prose">
+        <div className="max-w-prose space-y-4 leading-relaxed">
           {currentNode.text.split(/\n{2,}/).map((paragraph, pIndex) => (
-            <p key={pIndex}>
-              {paragraph.split(/\n/).map((line, lIndex) => (
-                <span key={lIndex}>
-                  {line}
-                  {lIndex < paragraph.split(/\n/).length - 1 && <br />}
-                </span>
-              ))}
+            <p key={pIndex} className="whitespace-pre-wrap">
+              {paragraph}
             </p>
           ))}
         </div>
