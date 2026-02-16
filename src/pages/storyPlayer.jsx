@@ -18,7 +18,7 @@ import StoriesGallery from "../components/ui/StoriesGallery";
 import sampleStory from "../assets/sampleStory";
 
 const STORAGE_KEY = "storyPlayerState";
-const SAMPLE_STORIES_MANIFEST_URL = "/sampleStories.json";
+const SAMPLE_STORIES_MANIFEST_URL = import.meta.env.VITE_STORIES_SAMPLES_API_URL;
 
 export default function StoryPlayerPage() {
   const fileInputRef = useRef(null);
@@ -69,7 +69,7 @@ export default function StoryPlayerPage() {
   const [isReadyToSave, setIsReadyToSave] = useState(false);
   const [showResetConfirm, setShowResetConfirm] = useState(false);
   const [showModal, setShowModal] = useState(false);
-  // const [showStoriesGallery, setShowStoriesGallery] = useState(false);
+  const [showStoriesGallery, setShowStoriesGallery] = useState(false);
 
   useEffect(() => {
     if (!isReadyToSave) {
@@ -202,61 +202,61 @@ export default function StoryPlayerPage() {
     });
   };
 
-  // const loadStoryIntoPlayer = (json, sourceName = null) => {
-  //   const validation = validateStoryJson(json);
-  //   if (!validation.valid) {
-  //     toast.error(validation.error, {
-  //       style: {
-  //         background: "#003049",
-  //         border: "2px solid #fdf0d5",
-  //         borderRadius: "0",
-  //         color: "#fdf0d5",
-  //       },
-  //       classNames: {
-  //         closeButton:
-  //           "!bg-deepBlue !border-softWhite !border-2 !text-softWhite !rounded-none",
-  //       },
-  //     });
-  //     return;
-  //   }
+  const loadStoryIntoPlayer = (json, sourceName = null) => {
+    const validation = validateStoryJson(json);
+    if (!validation.valid) {
+      toast.error(validation.error, {
+        style: {
+          background: "#003049",
+          border: "2px solid #fdf0d5",
+          borderRadius: "0",
+          color: "#fdf0d5",
+        },
+        classNames: {
+          closeButton:
+            "!bg-deepBlue !border-softWhite !border-2 !text-softWhite !rounded-none",
+        },
+      });
+      return;
+    }
 
-  //   const startNode =
-  //     json.start && json.nodes[json.start]
-  //       ? json.start
-  //       : Object.keys(json.nodes)[0];
+    const startNode =
+      json.start && json.nodes[json.start]
+        ? json.start
+        : Object.keys(json.nodes)[0];
 
-  //   setStory(json);
-  //   setCurrentNodeId(startNode);
-  //   setHistory([startNode]);
-  //   setFileName(sourceName);
+    setStory(json);
+    setCurrentNodeId(startNode);
+    setHistory([startNode]);
+    setFileName(sourceName);
 
-  //   localStorage.setItem(
-  //     STORAGE_KEY,
-  //     JSON.stringify({
-  //       story: json,
-  //       currentNodeId: startNode,
-  //       history: [startNode],
-  //     }),
-  //   );
+    localStorage.setItem(
+      STORAGE_KEY,
+      JSON.stringify({
+        story: json,
+        currentNodeId: startNode,
+        history: [startNode],
+      }),
+    );
 
-  //   toast.success("Sample story loaded.", {
-  //     style: {
-  //       background: "#003049",
-  //       border: "2px solid #fdf0d5",
-  //       borderRadius: "0",
-  //       color: "#fdf0d5",
-  //     },
-  //     classNames: {
-  //       closeButton:
-  //         "!bg-deepBlue !border-softWhite !border-2 !text-softWhite !rounded-none",
-  //     },
-  //   });
-  // };
+    toast.success("Sample story loaded.", {
+      style: {
+        background: "#003049",
+        border: "2px solid #fdf0d5",
+        borderRadius: "0",
+        color: "#fdf0d5",
+      },
+      classNames: {
+        closeButton:
+          "!bg-deepBlue !border-softWhite !border-2 !text-softWhite !rounded-none",
+      },
+    });
+  };
 
-  // const handlePickSampleStory = (pickedStoryJson) => {
-  //   if (fileInputRef.current) fileInputRef.current.value = "";
-  //   loadStoryIntoPlayer(pickedStoryJson, null);
-  // };
+  const handlePickSampleStory = (pickedStoryJson) => {
+    if (fileInputRef.current) fileInputRef.current.value = "";
+    loadStoryIntoPlayer(pickedStoryJson, null);
+  };
 
   const currentNode = story.nodes[currentNodeId] || { text: "", options: [] };
   const orderedNodeIds = useMemo(() => Object.keys(story.nodes), [story.nodes]);
@@ -423,7 +423,7 @@ export default function StoryPlayerPage() {
           <CircleQuestionMark className="size-8 sm:size-6" />
           Instructions
         </button>
-        {/* <button
+        <button
           onClick={() => setShowStoriesGallery(!showStoriesGallery)}
           className="text-softWhite bg-lightGray hover:bg-darkGray border-darkBlue inline-flex min-h-16 w-full cursor-pointer items-center justify-center gap-2 border-3 p-1 transition-all duration-300 sm:min-h-10"
         >
@@ -435,7 +435,7 @@ export default function StoryPlayerPage() {
             manifestUrl={SAMPLE_STORIES_MANIFEST_URL}
             onPickStory={handlePickSampleStory}
           />
-        )} */}
+        )}
       </section>
       {/* Reset confirmation modal */}
       <Modal
