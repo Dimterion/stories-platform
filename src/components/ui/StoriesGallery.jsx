@@ -58,7 +58,7 @@ export default function StoryGallery({ manifestUrl, onPickStory }) {
   }, [manifestUrl]);
 
   return (
-    <section className="bg-softWhite border-darkBlue text-darkBlue mx-auto w-full max-w-[512px] border-3 p-2">
+    <section className="storyGallery-contentWrapper bg-softWhite border-darkBlue text-darkBlue mx-auto w-full max-w-[512px] border-3 p-2">
       <article className="flex flex-col gap-1">
         <h3 className="text-softWhite border-darkBlue bg-darkBlue w-full border-3 p-1 text-center text-xl font-bold">
           Sample stories
