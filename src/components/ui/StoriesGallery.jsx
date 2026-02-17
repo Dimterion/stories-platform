@@ -81,12 +81,12 @@ export default function StoryGallery({ manifestUrl, onPickStory }) {
       )}
 
       {status === "ready" && items.length > 0 && (
-        <section className="flex flex-col items-center justify-center gap-2 p-2">
+        <section className="flex flex-col items-center justify-center gap-2 p-2 pb-0">
           {items.map(({ id, story }) => (
             <button
               key={id}
               onClick={() => onPickStory(story)}
-              className="text-softWhite bg-lightBlue hover:bg-deepBlue border-darkBlue w-full max-w-[300px] cursor-pointer border-3 p-2 text-center text-sm uppercase transition-all duration-300 active:scale-95"
+              className="sampleStory-button text-softWhite bg-lightBlue hover:bg-deepBlue border-darkBlue w-full max-w-[300px] cursor-pointer border-3 p-2 text-center text-sm uppercase transition-all duration-300 active:scale-95"
               title={story.description || story.title}
             >
               {story.title || "Untitled"}
