@@ -22,6 +22,7 @@ const SAMPLE_STORIES_MANIFEST_URL = import.meta.env
   .VITE_STORIES_SAMPLES_API_URL;
 
 export default function StoryPlayerPage() {
+  const storyTextRef = useRef(null);
   const fileInputRef = useRef(null);
 
   useMetadata({
@@ -71,6 +72,17 @@ export default function StoryPlayerPage() {
   const [showResetConfirm, setShowResetConfirm] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [showStoriesGallery, setShowStoriesGallery] = useState(false);
+
+  useEffect(() => {
+    if (!storyTextRef.current) return;
+
+    requestAnimationFrame(() => {
+      storyTextRef.current.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    });
+  }, [currentNodeId]);
 
   useEffect(() => {
     if (!isReadyToSave) {
@@ -316,7 +328,10 @@ export default function StoryPlayerPage() {
       )}
 
       {/* Text */}
-      <div className="bg-softWhite border-darkBlue text-darkBlue relative flex min-h-72 w-full max-w-[1024px] flex-col items-center justify-center border-3 p-4">
+      <div
+        ref={storyTextRef}
+        className="bg-softWhite border-darkBlue text-darkBlue relative flex min-h-72 w-full max-w-[1024px] flex-col items-center justify-center border-3 p-4"
+      >
         {showHints && <Hint text="Main story text is displayed here." />}
 
         <div className="max-w-prose space-y-4 leading-relaxed">
