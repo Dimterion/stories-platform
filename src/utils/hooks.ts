@@ -1,7 +1,7 @@
 import { useContext, useEffect } from "react";
-import { MetadataContext } from "./MetadataContext";
+import { MetadataContext, type Metadata } from "./MetadataContext";
 
-export function useBodyScrollLock(locked) {
+export function useBodyScrollLock(locked: boolean): void {
   useEffect(() => {
     if (!locked) return;
 
@@ -24,8 +24,14 @@ export function useBodyScrollLock(locked) {
   }, [locked]);
 }
 
-export function useMetadata({ title, description }) {
+export function useMetadata({ title, description }: Metadata): void {
   const setMetadata = useContext(MetadataContext);
+
+  if (!setMetadata) {
+    throw new Error(
+      "useMetadata must be used within a MetadataContext.Provider",
+    );
+  }
 
   useEffect(() => {
     setMetadata({ title, description });
