@@ -1,4 +1,14 @@
-export function generateStandaloneStoryHTML(story) {
+type MinimalStory = {
+  title?: string;
+  author?: string;
+  description?: string;
+  start: string;
+  nodes: Record<string, unknown>;
+  showProgress?: boolean;
+  allowBackNavigation?: boolean;
+};
+
+export function generateStandaloneStoryHTML(story: MinimalStory): string {
   const {
     title,
     author,
@@ -344,7 +354,10 @@ export function generateStandaloneStoryHTML(story) {
             const node = story.nodes[currentId];
             if (!node) return;
 
-            sceneEl.innerHTML = '<p>' + (node.text || '') + '</p>';
+            sceneEl.innerHTML = "";
+            const p = document.createElement("p");
+            p.textContent = node.text || "";
+            sceneEl.appendChild(p);
             optionsEl.innerHTML = '';
 
             if (!node.options || node.options.length === 0) {
