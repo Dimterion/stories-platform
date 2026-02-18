@@ -13,4 +13,4 @@ export const COLOR_NODE_DEFAULT = "#343a40"; // gray
 export const COLOR_OPTION = "#f18701"; // orange
 
 // --- Diagram Layout ---
-export const DEFAULT_LAYOUT_DIRECTION = "TB"; // "TB" (top-bottom), "LR" for horizontal
+export const DEFAULT_LAYOUT_DIRECTION = "TB" as const; // "TB" (top-bottom), "LR" for horizontal

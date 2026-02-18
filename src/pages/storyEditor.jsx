@@ -464,7 +464,7 @@ export default function StoryEditorPage() {
       .replace(/\s+/g, "_")
       .slice(0, 50);
 
-    downloadFile(html, `${safeTitle}.html`, "application/json;charset=utf-8");
+    downloadFile(html, `${safeTitle}.html`, "text/html;charset=utf-8");
 
     toast.success("HTML file exported successfully.", {
       style: {
