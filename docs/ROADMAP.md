@@ -13,7 +13,10 @@
   `NOTE`: currently showing toast messages with "Undo" button (might swap to confirmation dialog in the future).
 
 - [x] Default metadata for new stories (Untitled, Anonymous) to reduce empty fields.
-- [ ] Option reordering (drag-and-drop instead of static list).
+- [x] Option reordering (drag-and-drop instead of static list).
+
+  `NOTE`: considered and remained unchanged at the moment — this may add complexity for the editor which is aimed to be as simple as possible currently.
+
 - [x] “Set as start node” option in editor sidebar.
 
   `NOTE`: “Set as start node” button is added in the editor itself (+ icon in the sidebar to indicate the start node).

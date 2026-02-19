@@ -2,6 +2,29 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.2.1] - 2026-02-19
+
+### Added
+
+- Additional hints for pages elements.
+- Pages and elements animations.
+- Sample Stories section on the Story Player page.
+- Initial TypeScript setup.
+
+### Changed
+
+- Buttons style and effects.
+- Components and pages structure (files/folders).
+- Unused files/folders removal.
+- Progress reset now has confirmation window (in Story Player and Story Editor).
+- Converted utils files to TypeScript.
+
+### Fixed
+
+- Minor style fixes and improvements.
+- Text paragraphs display in Story Player.
+- Scroll behavior on text change in Story Player.
+
 ## [0.2.0] - 2026-02-01
 
 ### Added
