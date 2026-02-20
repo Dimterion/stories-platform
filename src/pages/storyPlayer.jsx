@@ -421,17 +421,17 @@ export default function StoryPlayerPage() {
         {showHints && <Hint text="Start over." />}
         <button
           onClick={() => setShowResetConfirm(true)}
-          className="text-softWhite bg-baseRed hover:bg-lightRed border-darkBlue inline-flex min-h-16 w-full cursor-pointer items-center justify-center gap-2 border-3 p-1 transition-all duration-300 sm:min-h-10"
+          className="text-softWhite bg-baseRed hover:bg-lightRed border-darkBlue inline-flex min-h-16 w-full cursor-pointer items-center justify-center gap-2 border-3 p-1 text-sm transition-all duration-300 sm:min-h-10 sm:text-base"
         >
-          <XCircle className="size-8 sm:size-6" />
-          Clear Save & Reset Progress
+          <XCircle className="size-5 sm:size-6" />
+          Reset File & Progress
         </button>
 
         <button
           onClick={() => setShowModal(true)}
-          className="text-softWhite bg-baseGreen hover:bg-softGreen border-darkBlue inline-flex min-h-16 w-full cursor-pointer items-center justify-center gap-2 border-3 p-1 transition-all duration-300 sm:min-h-10"
+          className="text-softWhite bg-baseGreen hover:bg-softGreen border-darkBlue inline-flex min-h-16 w-full cursor-pointer items-center justify-center gap-2 border-3 p-1 text-sm transition-all duration-300 sm:min-h-10 sm:text-base"
         >
-          <CircleQuestionMark className="size-8 sm:size-6" />
+          <CircleQuestionMark className="size-5 sm:size-6" />
           Instructions
         </button>
         {showHints && (
@@ -439,9 +439,9 @@ export default function StoryPlayerPage() {
         )}
         <button
           onClick={() => setShowStoriesGallery(!showStoriesGallery)}
-          className="text-softWhite bg-lightGray hover:bg-darkGray border-darkBlue inline-flex min-h-16 w-full cursor-pointer items-center justify-center gap-2 border-3 p-1 transition-all duration-300 sm:min-h-10"
+          className="text-softWhite bg-lightGray hover:bg-darkGray border-darkBlue inline-flex min-h-16 w-full cursor-pointer items-center justify-center gap-2 border-3 p-1 text-sm transition-all duration-300 sm:min-h-10 sm:text-base"
         >
-          <BookOpen className="size-8 sm:size-6" />
+          <BookOpen className="size-5 sm:size-6" />
           {showStoriesGallery ? "Hide" : "Show"} Sample Stories
         </button>
         {showStoriesGallery && (

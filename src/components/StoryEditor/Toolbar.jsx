@@ -52,7 +52,7 @@ export default function Toolbar({
         onClick={onClearSave}
         color="bg-baseRed hover:bg-lightRed"
         icon={<XCircle className="size-8 sm:size-6" />}
-        text="Clear Save & Reset Editor"
+        text="Reset Editor"
       />
       <ToolbarBtn
         onClick={onShowModal}
