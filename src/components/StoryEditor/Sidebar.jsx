@@ -18,20 +18,20 @@ export default function Sidebar({
         <Hint text="Add more texts for your story here." position="-top-1" />
       )}
       <div className="mb-3 flex items-center justify-between">
-        <h2 className="ml-1 text-sm font-bold sm:text-lg">Nodes</h2>
+        <h2 className="ml-1 text-xs font-bold sm:text-lg">Nodes</h2>
         <button
           onClick={sidebarVisible}
           className="border-darkBlue hover:bg-lightGray bg-darkGray h-fit w-fit cursor-pointer border-b-3 border-l-3 p-1 transition-all duration-300 active:scale-95"
           aria-label="Toggle sidebar"
         >
-          <PanelLeftClose className="size-3 sm:size-6" />
+          <PanelLeftClose className="size-5 sm:size-6" />
         </button>
       </div>
       {orderedNodeIds.map((id) => (
         <div key={id} className="flex items-center gap-0.5 px-1">
           <button
             onClick={() => onSelectNode(id)}
-            className={`border-darkBlue flex flex-1 flex-col items-center justify-center border-3 px-1 py-1 text-sm sm:flex-row sm:gap-2 sm:px-2 sm:text-base ${
+            className={`border-darkBlue flex flex-1 flex-col items-center justify-center border-3 px-1 py-1 text-xs sm:flex-row sm:gap-2 sm:px-2 sm:text-base ${
               id === selectedNode
                 ? "bg-lightBlue"
                 : "hover:bg-lightGray bg-darkGray cursor-pointer transition-all duration-300 active:scale-95"
@@ -54,9 +54,9 @@ export default function Sidebar({
       <div className="p-1">
         <button
           onClick={onAddNode}
-          className="border-darkBlue bg-baseGreen hover:bg-softGreen mt-1 inline-flex w-full cursor-pointer items-center border-3 px-1 py-1 text-sm transition-all duration-300 active:scale-95 sm:gap-2 sm:px-2 sm:text-base"
+          className="border-darkBlue bg-baseGreen hover:bg-softGreen mt-1 inline-flex w-full cursor-pointer items-center border-3 px-1 py-1 text-xs transition-all duration-300 active:scale-95 sm:gap-2 sm:px-2 sm:text-base"
         >
-          <Plus />
+          <Plus className="size-3 sm:size-6" />
           Add Node
         </button>
       </div>

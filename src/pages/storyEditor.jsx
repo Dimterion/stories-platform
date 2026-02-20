@@ -652,7 +652,7 @@ export default function StoryEditorPage() {
                 className="border-darkBlue bg-darkGray hover:bg-lightGray h-fit w-fit cursor-pointer border-3 p-1 transition-all duration-300 active:scale-95"
                 aria-label="Toggle sidebar"
               >
-                <PanelLeftOpen className="size-3 sm:size-6" />
+                <PanelLeftOpen className="size-5 sm:size-6" />
               </button>
             )}
             <h2 className="text-xl font-bold">Story Editor</h2>
