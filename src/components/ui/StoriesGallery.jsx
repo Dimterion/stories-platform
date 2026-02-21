@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { validateStoryJson } from "../../utils/storyUtils";
+import Loader from "./Loader";
 
 export default function StoryGallery({ manifestUrl, onPickStory }) {
   const [items, setItems] = useState([]);
@@ -68,7 +69,7 @@ export default function StoryGallery({ manifestUrl, onPickStory }) {
         </p>
       </article>
 
-      {status === "loading" && <p className="p-2 text-center">Loading…</p>}
+      {status === "loading" && <Loader />}
 
       {status === "error" && (
         <p className="p-2 text-center">Could not load stories.</p>

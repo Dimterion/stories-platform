@@ -28,8 +28,25 @@
 
 /* Custom scrollbar for modal */
 .modal-scrollbar {
-  scrollbar-width: thin;
   scrollbar-color: var(--color-darkBlue) transparent;
+  scrollbar-width: thin;
+}
+
+/* Custom loader */
+.loader {
+  animation: loader 1s infinite linear;
+  background: linear-gradient(90deg, #0001 33%, #0005 50%, #0001 66%)
+    var(--color-softWhite);
+  background-size: 300% 100%;
+  margin: 1rem auto;
+  height: 1rem;
+  width: 10rem;
+}
+
+@keyframes loader {
+  0% {
+    background-position: right;
+  }
 }
 
 /* Animations (general) */
