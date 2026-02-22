@@ -14,6 +14,7 @@ import StoryDiagram from "../components/StoryDiagram/StoryDiagram";
 import Modal from "../components/ui/Modal";
 import ResetConfirmation from "../components/ui/ResetConfirmation";
 import Instructions from "../components/ui/Instructions";
+import Loader from "../components/ui/Loader";
 
 export default function StoryEditorPage() {
   const STORAGE_KEY = "storyEditorState";
@@ -602,8 +603,8 @@ export default function StoryEditorPage() {
 
   if (!selectedNode || Object.keys(nodes).length === 0) {
     return (
-      <section className="mx-auto flex min-h-screen items-center justify-center text-gray-400">
-        Loading story editor...
+      <section className="mx-auto flex items-center">
+        <Loader />
       </section>
     );
   }

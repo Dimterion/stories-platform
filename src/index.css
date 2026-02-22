@@ -35,7 +35,12 @@
 /* Custom loader */
 .loader {
   animation: loader 1s infinite linear;
-  background: linear-gradient(90deg, #0001 33%, #0005 50%, #0001 66%)
+  background: linear-gradient(
+      90deg,
+      var(--color-lightBlue) 33%,
+      var(--color-deepBlue) 50%,
+      var(--color-lightBlue) 66%
+    )
     var(--color-softWhite);
   background-size: 300% 100%;
   margin: 1rem auto;
