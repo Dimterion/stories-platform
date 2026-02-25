@@ -1,4 +1,16 @@
-export default function ResetConfirmation({ text, cancelReset, confirmReset }) {
+import type { MouseEventHandler } from "react";
+
+type ResetConfirmationProps = {
+  text: string;
+  cancelReset: MouseEventHandler<HTMLButtonElement>;
+  confirmReset: MouseEventHandler<HTMLButtonElement>;
+};
+
+export default function ResetConfirmation({
+  text,
+  cancelReset,
+  confirmReset,
+}: ResetConfirmationProps) {
   return (
     <section>
       <h2

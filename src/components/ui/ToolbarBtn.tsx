@@ -3,7 +3,7 @@ import type { MouseEventHandler, ReactNode } from "react";
 type ToolbarBtnProps = {
   onClick: MouseEventHandler<HTMLButtonElement>;
   color: string;
-  icon: ReactNode;
+  icon?: ReactNode;
   text: string;
 };
 
