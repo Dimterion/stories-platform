@@ -1,4 +1,9 @@
-export default function Hint({ text, position = "-top-5" }) {
+type HintProps = {
+  text: string;
+  position?: string;
+};
+
+export default function Hint({ text, position = "-top-5" }: HintProps) {
   return (
     <aside
       className={`hint-contentWrapper absolute z-50 mx-2 w-full max-w-[200px] text-center ${position}`}

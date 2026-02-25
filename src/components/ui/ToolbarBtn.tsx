@@ -1,4 +1,18 @@
-export default function ToolbarBtn({ onClick, color, icon, text }) {
+import type { MouseEventHandler, ReactNode } from "react";
+
+type ToolbarBtnProps = {
+  onClick: MouseEventHandler<HTMLButtonElement>;
+  color: string;
+  icon: ReactNode;
+  text: string;
+};
+
+export default function ToolbarBtn({
+  onClick,
+  color,
+  icon,
+  text,
+}: ToolbarBtnProps) {
   return (
     <button
       onClick={onClick}
