@@ -3,9 +3,23 @@ import { toast } from "sonner";
 import { validateStoryJson } from "../../utils/storyUtils";
 import Loader from "./Loader";
 
-export default function StoryGallery({ manifestUrl, onPickStory }) {
-  const [items, setItems] = useState([]);
-  const [status, setStatus] = useState("idle"); // idle | loading | ready | error
+type Story = { title?: string; description?: string };
+type GalleryItem = { id: string; story: Story };
+type StoryGalleryProps = {
+  manifestUrl: string;
+  onPickStory: (story: Story) => void;
+};
+
+const notNull = <T,>(x: T | null): x is T => x !== null;
+
+export default function StoryGallery({
+  manifestUrl,
+  onPickStory,
+}: StoryGalleryProps) {
+  const [items, setItems] = useState<GalleryItem[]>([]);
+  const [status, setStatus] = useState<"idle" | "loading" | "ready" | "error">(
+    "idle",
+  );
 
   useEffect(() => {
     let cancelled = false;
@@ -29,7 +43,7 @@ export default function StoryGallery({ manifestUrl, onPickStory }) {
               ? { id: entry?.id ?? story?.title ?? crypto.randomUUID(), story }
               : null;
           })
-          .filter(Boolean);
+          .filter(notNull);
 
         if (!cancelled) {
           setItems(validItems);
@@ -88,9 +102,9 @@ export default function StoryGallery({ manifestUrl, onPickStory }) {
               key={id}
               onClick={() => onPickStory(story)}
               className="sampleStory-button text-softWhite bg-lightBlue hover:bg-deepBlue border-darkBlue w-full max-w-[300px] cursor-pointer border-3 p-2 text-center text-sm uppercase transition-all duration-300 active:scale-95"
-              title={story.description || story.title}
+              title={story.description ?? story.title ?? ""}
             >
-              {story.title || "Untitled"}
+              {story.title ?? "Untitled"}
             </button>
           ))}
         </section>

@@ -1,13 +1,26 @@
+import type { MouseEventHandler, ReactNode } from "react";
 import { X } from "lucide-react";
 import { useBodyScrollLock } from "../../utils/hooks";
 
-export default function Modal({ isOpen, onClose, ariaLabelledBy, children }) {
+type ModalProps = {
+  isOpen: boolean;
+  onClose: () => void;
+  ariaLabelledBy: string;
+  children?: ReactNode;
+};
+
+export default function Modal({
+  isOpen,
+  onClose,
+  ariaLabelledBy,
+  children,
+}: ModalProps) {
   useBodyScrollLock(isOpen);
 
   if (!isOpen) return null;
 
   const handleOverlayClick = () => onClose();
-  const handleContentClick = (e) => {
+  const handleContentClick: MouseEventHandler<HTMLDivElement> = (e) => {
     e.stopPropagation();
   };
 

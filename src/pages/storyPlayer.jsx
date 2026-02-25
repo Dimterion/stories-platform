@@ -14,7 +14,7 @@ import Hint from "../components/ui/Hint";
 import Modal from "../components/ui/Modal";
 import ResetConfirmation from "../components/ui/ResetConfirmation";
 import Instructions from "../components/ui/Instructions";
-import StoriesGallery from "../components/ui/StoriesGallery";
+import StoryGallery from "../components/ui/StoryGallery";
 import sampleStory from "../assets/sampleStory";
 
 const STORAGE_KEY = "storyPlayerState";
@@ -71,7 +71,7 @@ export default function StoryPlayerPage() {
   const [isReadyToSave, setIsReadyToSave] = useState(false);
   const [showResetConfirm, setShowResetConfirm] = useState(false);
   const [showModal, setShowModal] = useState(false);
-  const [showStoriesGallery, setShowStoriesGallery] = useState(false);
+  const [showStoryGallery, setShowStoryGallery] = useState(false);
 
   useEffect(() => {
     if (!storyTextRef.current) return;
@@ -438,14 +438,14 @@ export default function StoryPlayerPage() {
           <Hint text="View additional stories examples." position="top-10" />
         )}
         <button
-          onClick={() => setShowStoriesGallery(!showStoriesGallery)}
+          onClick={() => setShowStoryGallery(!showStoryGallery)}
           className="text-softWhite bg-lightGray hover:bg-darkGray border-darkBlue inline-flex min-h-16 w-full cursor-pointer items-center justify-center gap-2 border-3 p-1 text-sm transition-all duration-300 sm:min-h-10 sm:text-base"
         >
           <BookOpen className="size-5 sm:size-6" />
-          {showStoriesGallery ? "Hide" : "Show"} Sample Stories
+          {showStoryGallery ? "Hide" : "Show"} Sample Stories
         </button>
-        {showStoriesGallery && (
-          <StoriesGallery
+        {showStoryGallery && (
+          <StoryGallery
             manifestUrl={SAMPLE_STORIES_MANIFEST_URL}
             onPickStory={handlePickSampleStory}
           />
