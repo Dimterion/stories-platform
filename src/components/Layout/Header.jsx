@@ -10,13 +10,13 @@ export default function Header() {
       </Link>
       <nav className="flex flex-wrap gap-3">
         <NavbarLink
-          tab="story-player"
+          to="/story-player"
           icon={<BookOpenCheck className="size-4" />}
           label="Play"
           activeColor="text-lightBlue"
         />
         <NavbarLink
-          tab="story-editor"
+          to="/story-editor"
           icon={<Pencil className="size-4" />}
           label="Create"
           activeColor="text-lightBlue"
