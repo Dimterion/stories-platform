@@ -22,7 +22,7 @@ export default function HomePage() {
       <section className="flex flex-wrap gap-4 text-center">
         <article className="homePage-leftLink bg-darkBlue m-auto flex w-sm max-w-[80vw] flex-col gap-4 border p-4 opacity-0">
           <PageLink
-            link="story-player"
+            to="/story-player"
             icon={<BookOpenCheck />}
             text="Story Player"
           />
@@ -31,14 +31,14 @@ export default function HomePage() {
           </p>
         </article>
         <article className="homePage-rightLink bg-darkBlue m-auto flex w-sm max-w-[80vw] flex-col gap-4 border p-4 opacity-0">
-          <PageLink link="story-editor" icon={<Pencil />} text="Story Editor" />
+          <PageLink to="/story-editor" icon={<Pencil />} text="Story Editor" />
           <p className="text-sm sm:text-base">
             Create your own interactive stories.
           </p>
         </article>
       </section>
       <PageLink
-        link="about"
+        to="/about"
         animation="homePage-bottomLink"
         icon={<Info />}
         text="About the platform"

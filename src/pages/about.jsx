@@ -18,10 +18,10 @@ export default function AboutPage() {
         outcomes.
       </p>
       <section className="w-sm max-w-[80vw] space-y-6">
-        <PageLink link="" icon={<House />} text="Home page" />
-        <PageLink link="story-editor" icon={<Pencil />} text="Start creating" />
+        <PageLink to="/" icon={<House />} text="Home page" />
+        <PageLink to="/story-editor" icon={<Pencil />} text="Start creating" />
         <PageLink
-          link="story-player"
+          to="/story-player"
           icon={<BookOpenCheck />}
           text="Start playing"
         />
@@ -33,7 +33,7 @@ export default function AboutPage() {
           updates:
         </p>
         <ExternalPageLink
-          link="https://github.com/Dimterion/stories-platform"
+          href="https://github.com/Dimterion/stories-platform"
           icon={<ExternalLink className="size-4 shrink-0" />}
           text="GitHub repo"
         />
@@ -92,12 +92,12 @@ export default function AboutPage() {
       <h3 className="text-xl font-bold">Questions or feedback?</h3>
       <section className="mx-2 flex flex-wrap items-center gap-4">
         <ExternalPageLink
-          link="https://linktr.ee/dimterion"
+          href="https://linktr.ee/dimterion"
           icon={<ExternalLink className="size-4 shrink-0" />}
           text="Profile links"
         />
         <ExternalPageLink
-          link="https://www.dimterion.com"
+          href="https://www.dimterion.com"
           icon={<ExternalLink className="size-4 shrink-0" />}
           text="My main site"
         />
@@ -106,12 +106,12 @@ export default function AboutPage() {
       <p>I have also made a couple of interactive text adventure games:</p>
       <section className="flex flex-col gap-4">
         <ExternalPageLink
-          link="https://poets-of-tomorrows-world.vercel.app"
+          href="https://poets-of-tomorrows-world.vercel.app"
           icon={<ExternalLink className="size-4 shrink-0" />}
           text="Poets of Tomorrow’s World"
         />
         <ExternalPageLink
-          link="https://profound-cat-a609de.netlify.app"
+          href="https://profound-cat-a609de.netlify.app"
           icon={<ExternalLink className="size-4 shrink-0" />}
           text="Poets of Tomorrow’s World: gameOn(e)"
         />
