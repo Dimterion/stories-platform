@@ -1,4 +1,21 @@
+import type { Dispatch, SetStateAction } from "react";
 import Hint from "../ui/Hint";
+
+type MetadataFormProps = {
+  showHints: boolean;
+  title: string;
+  author: string;
+  description: string;
+  showProgress: boolean;
+  allowBackNavigation: boolean;
+  onChange: {
+    setTitle: Dispatch<SetStateAction<string>>;
+    setAuthor: Dispatch<SetStateAction<string>>;
+    setDescription: Dispatch<SetStateAction<string>>;
+    setShowProgress: Dispatch<SetStateAction<boolean>>;
+    setAllowBackNavigation: Dispatch<SetStateAction<boolean>>;
+  };
+};
 
 export default function MetadataForm({
   showHints,
@@ -8,7 +25,7 @@ export default function MetadataForm({
   showProgress,
   allowBackNavigation,
   onChange,
-}) {
+}: MetadataFormProps) {
   return (
     <div className="relative grid grid-cols-2 gap-4">
       {showHints && (
