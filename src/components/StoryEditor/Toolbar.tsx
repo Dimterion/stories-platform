@@ -1,3 +1,4 @@
+import type { ChangeEventHandler } from "react";
 import {
   CircleQuestionMark,
   FileDown,
@@ -8,6 +9,16 @@ import {
 import Hint from "../ui/Hint";
 import ToolbarBtn from "../ui/ToolbarBtn";
 
+type ToolbarProps = {
+  showHints: boolean;
+  onExportStory: () => void;
+  onExportHTML: () => void;
+  onImportStory: ChangeEventHandler<HTMLInputElement>;
+  onShowDiagram: () => void;
+  onClearSave: () => void;
+  onShowModal: () => void;
+};
+
 export default function Toolbar({
   showHints,
   onExportStory,
@@ -16,7 +27,7 @@ export default function Toolbar({
   onShowDiagram,
   onClearSave,
   onShowModal,
-}) {
+}: ToolbarProps) {
   return (
     <section className="relative flex flex-wrap justify-center gap-4 pb-2">
       {showHints && <Hint text="Choose what you want to do with your story." />}
