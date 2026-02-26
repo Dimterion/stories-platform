@@ -1,6 +1,39 @@
 import { Plus, Star, Trash2 } from "lucide-react";
 import Hint from "../ui/Hint";
 
+type Option = {
+  text: string;
+  next: string | null;
+};
+
+type Node = {
+  text: string;
+  options: Option[];
+  createdAt?: number;
+};
+
+type NodesMap = Record<string, Node>;
+
+type NodeEditorProps = {
+  showHints: boolean;
+  selectedNode: string | null;
+  start: string | null;
+  nodes: NodesMap;
+  orderedNodeIds: string[];
+  getNodeLabel: (id: string) => string;
+
+  onUpdateText: (id: string, newText: string) => void;
+  onAddOption: (nodeId: string) => void;
+  onUpdateOption: (
+    nodeId: string,
+    index: number,
+    field: "text" | "next",
+    value: string | null,
+  ) => void;
+  onDeleteOption: (nodeId: string, optionIndex: number) => void;
+  onSetAsStart: (nodeId: string) => void;
+};
+
 export default function NodeEditor({
   showHints,
   selectedNode,
@@ -13,9 +46,12 @@ export default function NodeEditor({
   onUpdateOption,
   onDeleteOption,
   onSetAsStart,
-}) {
+}: NodeEditorProps) {
   if (!selectedNode) return null;
+
   const node = nodes[selectedNode];
+
+  if (!node) return null;
 
   return (
     <div className="border-darkBlue text-darkBlue bg-softWhite relative border-3 p-1 sm:p-4">
@@ -27,7 +63,7 @@ export default function NodeEditor({
       {showHints && <Hint text="Main story text is written here." />}
       <textarea
         className="border-darkBlue text-darkBlue w-full border p-2"
-        rows="3"
+        rows={3}
         name="Story text"
         placeholder={
           selectedNode === start ? "Start your story here..." : "New scene..."
@@ -80,6 +116,7 @@ export default function NodeEditor({
               onClick={() => onDeleteOption(selectedNode, i)}
               className="border-darkBlue bg-baseRed text-softWhite hover:bg-lightRed cursor-pointer border-3 p-0.5 transition-all duration-300 active:scale-95 sm:p-1"
               title="Delete Option"
+              type="button"
               aria-label="Delete option"
             >
               <Trash2 className="size-5 sm:size-6" />
@@ -91,6 +128,7 @@ export default function NodeEditor({
         <button
           onClick={() => onAddOption(selectedNode)}
           className="border-darkBlue text-softWhite bg-lightBlue hover:bg-lightGray my-2 inline-flex w-full cursor-pointer items-center gap-2 border-3 px-1 py-1 text-sm transition-all duration-300 active:scale-95 sm:w-fit sm:gap-2 sm:px-2 sm:text-base"
+          type="button"
         >
           <Plus />
           Add Option
@@ -103,6 +141,7 @@ export default function NodeEditor({
               ? "opacity-70"
               : "hover:bg-lightRed cursor-pointer transition-all duration-300 active:scale-95"
           }`}
+          type="button"
         >
           <Star /> Set as Start Node
         </button>
