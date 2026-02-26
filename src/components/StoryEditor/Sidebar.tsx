@@ -1,5 +1,18 @@
+import type { Dispatch, SetStateAction } from "react";
 import { PanelLeftClose, Plus, Star, Trash2 } from "lucide-react";
 import Hint from "../ui/Hint";
+
+type SidebarProps = {
+  showHints: boolean;
+  start: string | null;
+  selectedNode: string | null;
+  orderedNodeIds: string[];
+  onSelectNode: Dispatch<SetStateAction<string | null>>;
+  onAddNode: () => void;
+  onDeleteNode: (nodeId: string) => void;
+  getNodeLabel: (id: string) => string;
+  sidebarVisible: () => void;
+};
 
 export default function Sidebar({
   showHints,
@@ -11,7 +24,7 @@ export default function Sidebar({
   onDeleteNode,
   getNodeLabel,
   sidebarVisible,
-}) {
+}: SidebarProps) {
   return (
     <section className="border-darkBlue relative w-1/3 max-w-[300px] space-y-2 border-r-3 sm:w-1/4">
       {showHints && (
@@ -23,6 +36,7 @@ export default function Sidebar({
           onClick={sidebarVisible}
           className="border-darkBlue hover:bg-lightGray bg-darkGray h-fit w-fit cursor-pointer border-b-3 border-l-3 p-1 transition-all duration-300 active:scale-95"
           aria-label="Toggle sidebar"
+          type="button"
         >
           <PanelLeftClose className="size-5 sm:size-6" />
         </button>
@@ -36,6 +50,7 @@ export default function Sidebar({
                 ? "bg-lightBlue"
                 : "hover:bg-lightGray bg-darkGray cursor-pointer transition-all duration-300 active:scale-95"
             }`}
+            type="button"
             aria-label="Open node"
           >
             {getNodeLabel(id)}
@@ -45,6 +60,7 @@ export default function Sidebar({
             onClick={() => onDeleteNode(id)}
             className="border-darkBlue bg-baseRed hover:bg-lightRed cursor-pointer border-3 px-1 py-2 transition-all duration-300 active:scale-95 sm:p-1"
             title="Delete Node"
+            type="button"
             aria-label="Delete node"
           >
             <Trash2 className="size-3 sm:size-6" />
@@ -55,6 +71,7 @@ export default function Sidebar({
         <button
           onClick={onAddNode}
           className="border-darkBlue bg-baseGreen hover:bg-softGreen mt-1 inline-flex w-full cursor-pointer items-center border-3 px-1 py-1 text-xs transition-all duration-300 active:scale-95 sm:gap-2 sm:px-2 sm:text-base"
+          type="button"
         >
           <Plus className="size-3 sm:size-6" />
           Add Node

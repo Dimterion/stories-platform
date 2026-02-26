@@ -624,7 +624,6 @@ export default function StoryEditorPage() {
       {sidebarVisible && (
         <Sidebar
           showHints={showHints}
-          nodes={nodes}
           start={start}
           selectedNode={selectedNode}
           orderedNodeIds={orderedNodeIds}
