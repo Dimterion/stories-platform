@@ -15,15 +15,27 @@ import Modal from "../components/ui/Modal";
 import ResetConfirmation from "../components/ui/ResetConfirmation";
 import Instructions from "../components/ui/Instructions";
 import StoryGallery from "../components/ui/StoryGallery";
-import sampleStory from "../assets/sampleStory";
+import sampleStory from "../assets/sampleStory.json";
+
+type StoryOption = { text: string; next: string };
+type StoryNode = { text: string; options: StoryOption[] };
+type Story = {
+  title?: string;
+  author?: string;
+  description?: string;
+  start: string;
+  nodes: Record<string, StoryNode>;
+  showProgress?: boolean;
+  allowBackNavigation?: boolean;
+};
 
 const STORAGE_KEY = "storyPlayerState";
 const SAMPLE_STORIES_MANIFEST_URL = import.meta.env
   .VITE_STORIES_SAMPLES_API_URL;
 
 export default function StoryPlayerPage() {
-  const storyTextRef = useRef(null);
-  const fileInputRef = useRef(null);
+  const storyTextRef = useRef<HTMLDivElement | null>(null);
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
 
   useMetadata({
     title: "Stories Platform | Story Player",
@@ -62,12 +74,12 @@ export default function StoryPlayerPage() {
 
   const initialState = loadInitialState();
   const [showHints, setShowHints] = useState(false);
-  const [story, setStory] = useState(initialState.story);
-  const [currentNodeId, setCurrentNodeId] = useState(
+  const [story, setStory] = useState<Story>(initialState.story);
+  const [currentNodeId, setCurrentNodeId] = useState<string>(
     initialState.currentNodeId,
   );
-  const [history, setHistory] = useState(initialState.history);
-  const [fileName, setFileName] = useState(null);
+  const [history, setHistory] = useState<string[]>(initialState.history);
+  const [fileName, setFileName] = useState<string | null>(null);
   const [isReadyToSave, setIsReadyToSave] = useState(false);
   const [showResetConfirm, setShowResetConfirm] = useState(false);
   const [showModal, setShowModal] = useState(false);
@@ -77,7 +89,7 @@ export default function StoryPlayerPage() {
     if (!storyTextRef.current) return;
 
     requestAnimationFrame(() => {
-      storyTextRef.current.scrollIntoView({
+      storyTextRef.current?.scrollIntoView({
         behavior: "smooth",
         block: "start",
       });
@@ -100,16 +112,20 @@ export default function StoryPlayerPage() {
     return () => clearTimeout(timeout);
   }, [story, currentNodeId, history, isReadyToSave]);
 
-  const handleFileUpload = (event) => {
-    const file = event.target.files[0];
+  const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
 
     if (!file) return;
 
     const reader = new FileReader();
 
-    reader.onload = (e) => {
+    reader.onload = (e: ProgressEvent<FileReader>) => {
       try {
-        const json = JSON.parse(e.target.result);
+        const text = e.target?.result;
+
+        if (typeof text !== "string") throw new Error("Could not read file.");
+
+        const json: unknown = JSON.parse(text);
         const validation = validateStoryJson(json);
 
         if (!validation.valid) {
@@ -129,12 +145,13 @@ export default function StoryPlayerPage() {
           return;
         }
 
+        const storyJson = json as Story;
         const startNode =
-          json.start && json.nodes[json.start]
-            ? json.start
-            : Object.keys(json.nodes)[0];
+          storyJson.start && storyJson.nodes[storyJson.start]
+            ? storyJson.start
+            : Object.keys(storyJson.nodes)[0];
 
-        setStory(json);
+        setStory(storyJson);
         setCurrentNodeId(startNode);
         setHistory([startNode]);
         setFileName(file.name);
@@ -164,7 +181,7 @@ export default function StoryPlayerPage() {
         if (fileInputRef.current) fileInputRef.current.value = "";
       } catch (err) {
         toast.error(
-          `Error: invalid story file. Please choose a JSON-file. More info: ${err}`,
+          `Error: invalid story file. Please choose a JSON-file. More info: ${String(err)}`,
           {
             style: {
               background: "#003049",
@@ -215,7 +232,10 @@ export default function StoryPlayerPage() {
     });
   };
 
-  const loadStoryIntoPlayer = (json, sourceName = null) => {
+  const loadStoryIntoPlayer = (
+    json: unknown,
+    sourceName: string | null = null,
+  ) => {
     const validation = validateStoryJson(json);
     if (!validation.valid) {
       toast.error(validation.error, {
@@ -233,12 +253,13 @@ export default function StoryPlayerPage() {
       return;
     }
 
+    const storyJson = json as Story;
     const startNode =
-      json.start && json.nodes[json.start]
-        ? json.start
-        : Object.keys(json.nodes)[0];
+      storyJson.start && storyJson.nodes[storyJson.start]
+        ? storyJson.start
+        : Object.keys(storyJson.nodes)[0];
 
-    setStory(json);
+    setStory(storyJson);
     setCurrentNodeId(startNode);
     setHistory([startNode]);
     setFileName(sourceName);
@@ -266,12 +287,15 @@ export default function StoryPlayerPage() {
     });
   };
 
-  const handlePickSampleStory = (pickedStoryJson) => {
+  const handlePickSampleStory = (pickedStoryJson: unknown) => {
     if (fileInputRef.current) fileInputRef.current.value = "";
     loadStoryIntoPlayer(pickedStoryJson, null);
   };
 
-  const currentNode = story.nodes[currentNodeId] || { text: "", options: [] };
+  const currentNode: StoryNode = story.nodes[currentNodeId] ?? {
+    text: "",
+    options: [],
+  };
   const orderedNodeIds = useMemo(() => Object.keys(story.nodes), [story.nodes]);
   const currentSceneIndex = useMemo(
     () => orderedNodeIds.indexOf(currentNodeId),
