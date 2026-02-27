@@ -1,3 +1,4 @@
+// Temporary examples to replace later on
 export type StoryOption = {
   text: string;
   next: string;
