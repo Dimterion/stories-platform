@@ -86,8 +86,6 @@ export default function StoryPlayerPage() {
   const [showStoryGallery, setShowStoryGallery] = useState(false);
 
   useEffect(() => {
-    if (!storyTextRef.current) return;
-
     requestAnimationFrame(() => {
       storyTextRef.current?.scrollIntoView({
         behavior: "smooth",
@@ -159,7 +157,7 @@ export default function StoryPlayerPage() {
         localStorage.setItem(
           STORAGE_KEY,
           JSON.stringify({
-            story: json,
+            story: storyJson,
             currentNodeId: startNode,
             history: [startNode],
           }),
@@ -267,7 +265,7 @@ export default function StoryPlayerPage() {
     localStorage.setItem(
       STORAGE_KEY,
       JSON.stringify({
-        story: json,
+        story: storyJson,
         currentNodeId: startNode,
         history: [startNode],
       }),
