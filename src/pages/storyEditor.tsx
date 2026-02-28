@@ -16,6 +16,36 @@ import ResetConfirmation from "../components/ui/ResetConfirmation";
 import Instructions from "../components/ui/Instructions";
 import Loader from "../components/ui/Loader";
 
+type Option = {
+  text: string;
+  next: string | null;
+};
+
+type Node = {
+  text: string;
+  options: Option[];
+  createdAt: number;
+};
+
+type NodesMap = Record<string, Node>;
+
+type EditorSaveData = {
+  title: string;
+  author: string;
+  description: string;
+  nodes: NodesMap;
+  start: string;
+  showProgress: boolean;
+  allowBackNavigation: boolean;
+  selectedNode: string | null;
+};
+
+type ExportedOption = Option & { nextLabel: string };
+
+type ExportedNode = Node & { label: string; options: ExportedOption[] };
+
+type ExportedNodesMap = Record<string, ExportedNode>;
+
 export default function StoryEditorPage() {
   const STORAGE_KEY = "storyEditorState";
 
@@ -23,11 +53,11 @@ export default function StoryEditorPage() {
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState("");
   const [description, setDescription] = useState("");
-  const [nodes, setNodes] = useState({});
-  const [start, setStart] = useState(null);
-  const [selectedNode, setSelectedNode] = useState(null);
+  const [nodes, setNodes] = useState<NodesMap>({});
+  const [start, setStart] = useState<string | null>(null);
+  const [selectedNode, setSelectedNode] = useState<string | null>(null);
   const [showDiagram, setShowDiagram] = useState(false);
-  const [lastSaved, setLastSaved] = useState(null);
+  const [lastSaved, setLastSaved] = useState<number | null>(null);
   const [sidebarVisible, setSidebarVisible] = useState(true);
   const [showProgress, setShowProgress] = useState(true);
   const [allowBackNavigation, setAllowBackNavigation] = useState(false);
@@ -57,10 +87,12 @@ export default function StoryEditorPage() {
     try {
       const saved = localStorage.getItem(STORAGE_KEY);
       if (saved) {
-        const data = JSON.parse(saved);
+        const parsed: unknown = JSON.parse(saved);
 
         // Validate structure
-        if (data && typeof data === "object" && data.nodes) {
+        if (parsed && typeof parsed === "object" && "nodes" in parsed) {
+          const data = parsed as Partial<EditorSaveData> & { nodes: NodesMap };
+
           setTitle(data.title || "");
           setAuthor(data.author || "");
           setDescription(data.description || "");
@@ -151,23 +183,25 @@ export default function StoryEditorPage() {
     });
   };
 
-  const orderedNodeIds = useMemo(() => {
+  const orderedNodeIds = useMemo<string[]>(() => {
     return Object.entries(nodes)
       .sort((a, b) => a[1].createdAt - b[1].createdAt)
       .map(([id]) => id);
   }, [nodes]);
-  const currentSceneIndex = orderedNodeIds.indexOf(selectedNode);
+  const currentSceneIndex = selectedNode
+    ? orderedNodeIds.indexOf(selectedNode)
+    : -1;
   const totalScenes = orderedNodeIds.length;
 
   // Find display label for a node
-  const getNodeLabel = (id) => {
+  const getNodeLabel = (id: string): string => {
     const index = orderedNodeIds.indexOf(id);
 
     return index >= 0 ? `Node ${index + 1}` : "Unknown Node";
   };
 
   // Handle text changes for current node
-  const updateNodeText = (id, newText) => {
+  const updateNodeText = (id: string, newText: string) => {
     setNodes((prev) => ({
       ...prev,
       [id]: { ...prev[id], text: newText },
@@ -184,7 +218,7 @@ export default function StoryEditorPage() {
   };
 
   // Add option (choice) to current node
-  const addOption = (nodeId) => {
+  const addOption = (nodeId: string) => {
     const newOption = { text: "", next: null };
 
     setNodes((prev) => ({
@@ -196,7 +230,12 @@ export default function StoryEditorPage() {
     }));
   };
 
-  const updateOption = (nodeId, index, field, value) => {
+  const updateOption = (
+    nodeId: string,
+    index: number,
+    field: "text" | "next",
+    value: string | null,
+  ) => {
     setNodes((prev) => {
       const updatedOptions = [...prev[nodeId].options];
 
@@ -210,7 +249,7 @@ export default function StoryEditorPage() {
   };
 
   // Delete option from a node
-  const deleteOption = (nodeId, optionIndex) => {
+  const deleteOption = (nodeId: string, optionIndex: number) => {
     const oldNodes = { ...nodes };
 
     setNodes((prev) => {
@@ -244,7 +283,7 @@ export default function StoryEditorPage() {
   };
 
   // Delete a whole node
-  const deleteNode = (nodeId) => {
+  const deleteNode = (nodeId: string) => {
     if (nodeId === start) {
       toast.error("You can’t delete the start node.", {
         style: {
@@ -307,7 +346,7 @@ export default function StoryEditorPage() {
     });
   };
 
-  const setAsStartNode = (nodeId) => {
+  const setAsStartNode = (nodeId: string) => {
     setStart(nodeId);
     toast.success(`${getNodeLabel(nodeId)} set as start node.`, {
       style: {
@@ -324,7 +363,7 @@ export default function StoryEditorPage() {
   };
 
   const exportStory = () => {
-    const enrichedNodes = {};
+    const enrichedNodes: ExportedNodesMap = {};
 
     orderedNodeIds.forEach((id, index) => {
       const node = nodes[id];
@@ -335,13 +374,19 @@ export default function StoryEditorPage() {
         text: node.text,
         options: node.options.map((opt) => ({
           ...opt,
-          nextLabel: nodes[opt.next]
-            ? `Node ${orderedNodeIds.indexOf(opt.next) + 1}`
-            : "Unknown Node",
+          nextLabel:
+            opt.next && nodes[opt.next]
+              ? `Node ${orderedNodeIds.indexOf(opt.next) + 1}`
+              : "Unknown Node",
         })),
         createdAt: node.createdAt,
       };
     });
+
+    if (!start) {
+      toast.error("Start node is missing.");
+      return;
+    }
 
     const story = {
       title: title.trim() || "Untitled Story",
@@ -406,7 +451,7 @@ export default function StoryEditorPage() {
   };
 
   const exportStandaloneHTML = () => {
-    const enrichedNodes = {};
+    const enrichedNodes: ExportedNodesMap = {};
 
     orderedNodeIds.forEach((id, index) => {
       const node = nodes[id];
@@ -417,13 +462,19 @@ export default function StoryEditorPage() {
         text: node.text,
         options: node.options.map((opt) => ({
           ...opt,
-          nextLabel: nodes[opt.next]
-            ? `Node ${orderedNodeIds.indexOf(opt.next) + 1}`
-            : "Unknown Node",
+          nextLabel:
+            opt.next && nodes[opt.next]
+              ? `Node ${orderedNodeIds.indexOf(opt.next) + 1}`
+              : "Unknown Node",
         })),
         createdAt: node.createdAt,
       };
     });
+
+    if (!start) {
+      toast.error("Start node is missing.");
+      return;
+    }
 
     const story = {
       title: title.trim() || "Untitled Story",
@@ -481,8 +532,8 @@ export default function StoryEditorPage() {
     });
   };
 
-  const importStory = (event) => {
-    const file = event.target.files[0];
+  const importStory = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
 
     if (!file) return;
 
@@ -505,10 +556,14 @@ export default function StoryEditorPage() {
 
     const reader = new FileReader();
 
-    reader.onload = (e) => {
+    reader.onload = (e: ProgressEvent<FileReader>) => {
+      const text = e.target?.result;
+
+      if (typeof text !== "string") return;
+
       try {
-        const data = JSON.parse(e.target.result);
-        const validation = validateStoryJson(data);
+        const parsed: unknown = JSON.parse(text);
+        const validation = validateStoryJson(parsed);
 
         if (!validation.valid) {
           toast.error(validation.error, {
@@ -527,24 +582,39 @@ export default function StoryEditorPage() {
           return;
         }
 
+        const data = parsed as {
+          title?: string;
+          author?: string;
+          description?: string;
+          start: string;
+          showProgress?: boolean;
+          allowBackNavigation?: boolean;
+          nodes: Record<
+            string,
+            {
+              text: string;
+              options?: Array<{ text: string; next: string | null }>;
+              createdAt?: number;
+            }
+          >;
+        };
+
         // Recompute labels on import (ignores saved ones to stay consistent)
         const orderedIds = Object.entries(data.nodes)
           .sort((a, b) => (a[1].createdAt || 0) - (b[1].createdAt || 0))
           .map(([id]) => id);
 
-        const rebuiltNodes = {};
+        const rebuiltNodes: NodesMap = {};
 
-        orderedIds.forEach((id, index) => {
+        orderedIds.forEach((id) => {
           const node = data.nodes[id];
 
           rebuiltNodes[id] = {
-            ...node,
-            label: `Node ${index + 1}`,
-            options: (node.options || []).map((opt) => ({
-              ...opt,
-              nextLabel: data.nodes[opt.next]
-                ? `Node ${orderedIds.indexOf(opt.next) + 1}`
-                : "Unknown Node",
+            text: node.text ?? "",
+            createdAt: node.createdAt ?? Date.now(),
+            options: (node.options ?? []).map((opt) => ({
+              text: opt.text ?? "",
+              next: opt.next ?? null,
             })),
           };
         });
@@ -596,7 +666,7 @@ export default function StoryEditorPage() {
   };
 
   // Called by StoryDiagram after centering animation
-  const handleSelectNodeFromDiagram = (id) => {
+  const handleSelectNodeFromDiagram = (id: string) => {
     setSelectedNode(id); // Jump editor to this node
     setShowDiagram(false); // Close the diagram modal
   };
@@ -609,7 +679,7 @@ export default function StoryEditorPage() {
     );
   }
 
-  const formatTimeAgo = (timestamp) => {
+  const formatTimeAgo = (timestamp: number | null): string => {
     if (!timestamp) return "";
     const seconds = Math.floor((Date.now() - timestamp) / 1000);
     if (seconds < 5) return "just now";
