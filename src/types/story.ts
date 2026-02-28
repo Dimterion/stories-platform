@@ -1,23 +1,12 @@
-// Temporary examples to replace later on
-export type StoryOption = {
+export type Option = {
   text: string;
-  next: string;
-  nextLabel?: string;
+  next: string | null;
 };
 
-export type StoryNode = {
-  label: string;
+export type Node = {
   text: string;
-  options: StoryOption[];
+  options: Option[];
   createdAt: number;
 };
 
-export type Story = {
-  title?: string;
-  author?: string;
-  description?: string;
-  start: string;
-  nodes: Record<string, StoryNode>;
-  showProgress?: boolean;
-  allowBackNavigation?: boolean;
-};
+export type NodesMap = Record<string, Node>;

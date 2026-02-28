@@ -1,18 +1,6 @@
 import { Plus, Star, Trash2 } from "lucide-react";
+import { NodesMap } from "../../types/story";
 import Hint from "../ui/Hint";
-
-type Option = {
-  text: string;
-  next: string | null;
-};
-
-type Node = {
-  text: string;
-  options: Option[];
-  createdAt?: number;
-};
-
-type NodesMap = Record<string, Node>;
 
 type NodeEditorProps = {
   showHints: boolean;

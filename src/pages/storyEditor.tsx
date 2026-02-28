@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { toast } from "sonner";
 import { PanelLeftOpen } from "lucide-react";
+import { Node, NodesMap, Option } from "../types/story";
 import { useMetadata } from "../utils/hooks";
 import { validateStoryJson } from "../utils/storyUtils";
 import { generateStandaloneStoryHTML } from "../utils/exportStandaloneHTML";
@@ -15,19 +16,6 @@ import Modal from "../components/ui/Modal";
 import ResetConfirmation from "../components/ui/ResetConfirmation";
 import Instructions from "../components/ui/Instructions";
 import Loader from "../components/ui/Loader";
-
-type Option = {
-  text: string;
-  next: string | null;
-};
-
-type Node = {
-  text: string;
-  options: Option[];
-  createdAt: number;
-};
-
-type NodesMap = Record<string, Node>;
 
 type EditorSaveData = {
   title: string;
