@@ -384,7 +384,18 @@ export default function StoryEditorPage() {
     });
 
     if (!start) {
-      toast.error("Start node is missing.");
+      toast.error("Start node is missing.", {
+        style: {
+          background: "#003049",
+          border: "2px solid #fdf0d5",
+          borderRadius: "0",
+          color: "#fdf0d5",
+        },
+        classNames: {
+          closeButton:
+            "!bg-deepBlue !border-softWhite !border-2 !text-softWhite !rounded-none",
+        },
+      });
       return;
     }
 
@@ -472,7 +483,18 @@ export default function StoryEditorPage() {
     });
 
     if (!start) {
-      toast.error("Start node is missing.");
+      toast.error("Start node is missing.", {
+        style: {
+          background: "#003049",
+          border: "2px solid #fdf0d5",
+          borderRadius: "0",
+          color: "#fdf0d5",
+        },
+        classNames: {
+          closeButton:
+            "!bg-deepBlue !border-softWhite !border-2 !text-softWhite !rounded-none",
+        },
+      });
       return;
     }
 
