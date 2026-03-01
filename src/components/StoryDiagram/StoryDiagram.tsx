@@ -7,6 +7,11 @@ import ReactFlow, {
   getNodesBounds,
   getViewportForBounds,
   Handle,
+  Position,
+  type Edge,
+  type Node as RFNode,
+  type NodeProps,
+  type ReactFlowInstance,
 } from "reactflow";
 import "reactflow/dist/style.css";
 import * as htmlToImage from "html-to-image";
@@ -20,6 +25,7 @@ import {
   Square,
   X,
 } from "lucide-react";
+import type { Node as StoryNode } from "../../types/story";
 import { getLayoutElements } from "./useDiagramLayout";
 import { getOrderedNodeIds, getNodeLabel } from "../../utils/storyUtils";
 import {
@@ -35,10 +41,38 @@ import {
   DEFAULT_LAYOUT_DIRECTION,
 } from "../../utils/constants";
 
+type Story = {
+  title?: string;
+  author?: string;
+  description?: string;
+  start: string;
+  nodes: Record<string, StoryNode>;
+};
+
+type MainNodeData = {
+  label: string;
+  fullText?: string;
+  bgColor: string;
+  isStart: boolean;
+  isEnding: boolean;
+};
+
+type OptionNodeData = { label: string };
+
+type DiagramNode = RFNode<MainNodeData | OptionNodeData>;
+
+type DiagramEdge = Edge;
+
+type StoryDiagramProps = {
+  story: Story;
+  onClose: () => void;
+  onSelectNode?: (id: string) => void;
+};
+
 /* Main Story Node */
-function CustomNode({ data }) {
+function CustomNode({ data }: NodeProps<MainNodeData>) {
   const [showTooltip, setShowTooltip] = useState(false);
-  const nodeRef = useRef(null);
+  const nodeRef = useRef<HTMLDivElement | null>(null);
   const [coords, setCoords] = useState({ x: 0, y: 0 });
 
   const updateTooltipPosition = useCallback(() => {
@@ -120,13 +154,21 @@ function CustomNode({ data }) {
           document.body,
         )}
 
-      <Handle type="target" position="top" style={{ borderRadius: 0 }} />
-      <Handle type="source" position="bottom" style={{ borderRadius: 0 }} />
+      <Handle
+        type="target"
+        position={Position.Top}
+        style={{ borderRadius: 0 }}
+      />
+      <Handle
+        type="source"
+        position={Position.Bottom}
+        style={{ borderRadius: 0 }}
+      />
     </div>
   );
 }
 
-function OptionNode({ data }) {
+function OptionNode({ data }: NodeProps<OptionNodeData>) {
   return (
     <div
       style={{
@@ -148,12 +190,12 @@ function OptionNode({ data }) {
 
       <Handle
         type="target"
-        position="top"
+        position={Position.Top}
         style={{ background: "#f35b04", borderRadius: 0 }}
       />
       <Handle
         type="source"
-        position="bottom"
+        position={Position.Bottom}
         style={{ background: "#f35b04", borderRadius: 0 }}
       />
     </div>
@@ -162,19 +204,32 @@ function OptionNode({ data }) {
 
 const nodeTypes = { custom: CustomNode, optionNode: OptionNode };
 
-export default function StoryDiagram({ story, onClose, onSelectNode }) {
-  const diagramRef = useRef(null);
-  const timeoutRef = useRef(null);
+export default function StoryDiagram({
+  story,
+  onClose,
+  onSelectNode,
+}: StoryDiagramProps) {
+  const diagramRef = useRef<HTMLDivElement | null>(null);
+  const timeoutRef = useRef<number | null>(null);
   const dragState = useRef({ isDragging: false, moved: false });
 
-  const [rfInstance, setRfInstance] = useState(null);
-  const [userPositions, setUserPositions] = useState({});
+  const [rfInstance, setRfInstance] = useState<ReactFlowInstance | null>(null);
+  const [userPositions, setUserPositions] = useState<
+    Record<string, { x: number; y: number }>
+  >({});
   const [isBtnMenuOpen, setIsBtnMenuOpen] = useState(false);
   const [miniMap, setMiniMap] = useState(false);
 
-  const handleOverlayClick = (e) => {
+  const handleOverlayClick = (e: React.MouseEvent<HTMLDivElement>) => {
     if (dragState.current.isDragging) return;
-    if (diagramRef.current && !diagramRef.current.contains(e.target)) {
+
+    const wrapper = diagramRef.current;
+
+    if (!wrapper) return;
+
+    const target = e.target;
+
+    if (target instanceof globalThis.Node && !wrapper.contains(target)) {
       onClose();
     }
   };
@@ -185,8 +240,11 @@ export default function StoryDiagram({ story, onClose, onSelectNode }) {
 
   const orderedNodeIds = getOrderedNodeIds(story.nodes);
 
-  const { nodes, edges } = useMemo(() => {
-    const nodeList = Object.keys(story.nodes).map((id) => {
+  const { nodes, edges } = useMemo<{
+    nodes: DiagramNode[];
+    edges: DiagramEdge[];
+  }>(() => {
+    const nodeList: DiagramNode[] = Object.keys(story.nodes).map((id) => {
       const nodeData = story.nodes[id];
       const isStart = story.start === id;
       const isEnding = nodeData.options.length === 0;
@@ -220,8 +278,8 @@ export default function StoryDiagram({ story, onClose, onSelectNode }) {
       };
     });
 
-    const edgeList = [];
-    const optionNodes = [];
+    const edgeList: DiagramEdge[] = [];
+    const optionNodes: DiagramNode[] = [];
 
     Object.keys(story.nodes).forEach((id) => {
       story.nodes[id].options.forEach((opt, idx) => {
@@ -269,16 +327,16 @@ export default function StoryDiagram({ story, onClose, onSelectNode }) {
     return { nodes: finalNodes, edges: edgeList };
   }, [story, orderedNodeIds, userPositions]);
 
-  const onNodeDragStart = useCallback(() => {
+  const onNodeDragStart = useCallback((_event: unknown, _node: DiagramNode) => {
     dragState.current.isDragging = true;
     dragState.current.moved = false;
   }, []);
 
-  const onNodeDrag = useCallback(() => {
+  const onNodeDrag = useCallback((_event: unknown, _node: DiagramNode) => {
     dragState.current.moved = true;
   }, []);
 
-  const onNodeDragStop = useCallback((_event, node) => {
+  const onNodeDragStop = useCallback((_event: unknown, node: DiagramNode) => {
     if (dragState.current.moved) {
       setUserPositions((prev) => ({
         ...prev,
@@ -290,7 +348,7 @@ export default function StoryDiagram({ story, onClose, onSelectNode }) {
   }, []);
 
   const handleNodeClick = useCallback(
-    (_event, node) => {
+    (_event: unknown, node: DiagramNode) => {
       if (dragState.current.moved) return;
       if (node.type === "optionNode") return;
       if (!rfInstance) {
@@ -304,7 +362,7 @@ export default function StoryDiagram({ story, onClose, onSelectNode }) {
 
       rfInstance.setCenter(centerX, centerY, { duration });
 
-      timeoutRef.current = setTimeout(() => {
+      timeoutRef.current = window.setTimeout(() => {
         onSelectNode?.(node.id);
       }, duration + 50);
     },
@@ -313,10 +371,7 @@ export default function StoryDiagram({ story, onClose, onSelectNode }) {
 
   const resetLayout = () => setUserPositions({});
 
-  const captureElement = (el) => {
-    if (!el) return null;
-    return el;
-  };
+  const captureElement = (el: HTMLElement | null) => el;
 
   const delayNextFrame = () =>
     new Promise((resolve) => {
@@ -335,8 +390,9 @@ export default function StoryDiagram({ story, onClose, onSelectNode }) {
 
       const bounds = getNodesBounds(nodes);
       const viewportElCandidate =
-        diagramRef.current.querySelector(".react-flow__viewport") ||
-        diagramRef.current.querySelector(".react-flow");
+        diagramRef.current.querySelector<HTMLElement>(
+          ".react-flow__viewport",
+        ) || diagramRef.current.querySelector<HTMLElement>(".react-flow");
 
       let width = Math.round(bounds.width + 100);
       let height = Math.round(bounds.height + 100);
@@ -353,7 +409,7 @@ export default function StoryDiagram({ story, onClose, onSelectNode }) {
 
       const viewportEl =
         viewportElCandidate ||
-        diagramRef.current.querySelector(".react-flow") ||
+        diagramRef.current.querySelector<HTMLElement>(".react-flow") ||
         diagramRef.current;
 
       if (!viewportEl) {
@@ -361,7 +417,7 @@ export default function StoryDiagram({ story, onClose, onSelectNode }) {
         return;
       }
 
-      const svgDataUrl = await htmlToImage.toSvg(captureElement(viewportEl), {
+      const svgDataUrl = await htmlToImage.toSvg(viewportEl, {
         width,
         height,
         style: {
@@ -409,8 +465,9 @@ export default function StoryDiagram({ story, onClose, onSelectNode }) {
       let height = Math.round(bounds.height + 100);
 
       const viewportElCandidate =
-        diagramRef.current.querySelector(".react-flow__viewport") ||
-        diagramRef.current.querySelector(".react-flow");
+        diagramRef.current.querySelector<HTMLElement>(
+          ".react-flow__viewport",
+        ) || diagramRef.current.querySelector<HTMLElement>(".react-flow");
 
       if (!width || !height) {
         const rect = (
@@ -432,7 +489,7 @@ export default function StoryDiagram({ story, onClose, onSelectNode }) {
         return;
       }
 
-      const pngDataUrl = await htmlToImage.toPng(captureElement(viewportEl), {
+      const pngDataUrl = await htmlToImage.toPng(viewportEl, {
         width,
         height,
         backgroundColor: "#ffffff",
@@ -468,7 +525,7 @@ export default function StoryDiagram({ story, onClose, onSelectNode }) {
 
   useEffect(() => {
     return () => {
-      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+      if (timeoutRef.current !== null) window.clearTimeout(timeoutRef.current);
     };
   }, []);
 
@@ -570,7 +627,9 @@ export default function StoryDiagram({ story, onClose, onSelectNode }) {
           <Controls />
           {miniMap && (
             <MiniMap
-              nodeColor={(node) => node.data.bgColor || "#f18701"}
+              nodeColor={(node: DiagramNode) =>
+                "bgColor" in node.data ? node.data.bgColor : COLOR_OPTION
+              }
               nodeStrokeWidth={2}
               pannable
               zoomable

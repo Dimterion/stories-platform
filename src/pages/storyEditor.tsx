@@ -819,7 +819,7 @@ export default function StoryEditorPage() {
         </Modal>
 
         {/* Diagram modal */}
-        {showDiagram && (
+        {showDiagram && start && (
           <StoryDiagram
             story={{ title, author, description, start, nodes }}
             onClose={() => setShowDiagram(false)}
