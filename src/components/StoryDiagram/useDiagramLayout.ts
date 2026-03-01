@@ -1,10 +1,13 @@
 import dagre from "dagre";
+import type { Edge, Node, Position } from "reactflow";
 import {
   NODE_WIDTH,
   NODE_HEIGHT,
   OPTION_WIDTH,
   OPTION_HEIGHT,
 } from "../../utils/constants";
+
+type LayoutDirection = "TB" | "LR";
 
 const dagreGraph = new dagre.graphlib.Graph();
 dagreGraph.setDefaultEdgeLabel(() => ({}));
@@ -16,7 +19,11 @@ dagreGraph.setDefaultEdgeLabel(() => ({}));
  * @param {string} direction - "TB" | "LR".
  * @returns {Array} layoutedNodes - nodes with computed positions.
  */
-export function getLayoutElements(nodes, edges, direction = "LR") {
+export function getLayoutElements<TData = unknown>(
+  nodes: Array<Node<TData>>,
+  edges: Array<Edge>,
+  direction: LayoutDirection = "LR",
+): Array<Node<TData>> {
   const isHorizontal = direction === "LR";
   dagreGraph.setGraph({ rankdir: direction });
 
@@ -33,13 +40,16 @@ export function getLayoutElements(nodes, edges, direction = "LR") {
   dagre.layout(dagreGraph);
 
   return nodes.map((node) => {
-    const nodeWithPosition = dagreGraph.node(node.id);
+    const nodeWithPosition = dagreGraph.node(node.id) as {
+      x: number;
+      y: number;
+    };
     const isOption = node.type === "optionNode";
 
     return {
       ...node,
-      targetPosition: isHorizontal ? "left" : "top",
-      sourcePosition: isHorizontal ? "right" : "bottom",
+      targetPosition: (isHorizontal ? "left" : "top") as Position,
+      sourcePosition: (isHorizontal ? "right" : "bottom") as Position,
       position: {
         x: nodeWithPosition.x - (isOption ? OPTION_WIDTH : NODE_WIDTH) / 2,
         y: nodeWithPosition.y - (isOption ? OPTION_HEIGHT : NODE_HEIGHT) / 2,
