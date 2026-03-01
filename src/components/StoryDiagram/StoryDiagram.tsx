@@ -371,8 +371,6 @@ export default function StoryDiagram({
 
   const resetLayout = () => setUserPositions({});
 
-  const captureElement = (el: HTMLElement | null) => el;
-
   const delayNextFrame = () =>
     new Promise((resolve) => {
       requestAnimationFrame(() => requestAnimationFrame(resolve));
@@ -481,7 +479,7 @@ export default function StoryDiagram({
 
       const viewportEl =
         viewportElCandidate ||
-        diagramRef.current.querySelector(".react-flow") ||
+        diagramRef.current.querySelector<HTMLElement>(".react-flow") ||
         diagramRef.current;
 
       if (!viewportEl) {
