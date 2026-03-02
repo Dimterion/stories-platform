@@ -61,8 +61,6 @@ type OptionNodeData = { label: string };
 
 type DiagramNode = RFNode<MainNodeData | OptionNodeData>;
 
-type DiagramEdge = Edge;
-
 type StoryDiagramProps = {
   story: Story;
   onClose: () => void;
@@ -242,7 +240,7 @@ export default function StoryDiagram({
 
   const { nodes, edges } = useMemo<{
     nodes: DiagramNode[];
-    edges: DiagramEdge[];
+    edges: Edge[];
   }>(() => {
     const nodeList: DiagramNode[] = Object.keys(story.nodes).map((id) => {
       const nodeData = story.nodes[id];
@@ -278,7 +276,7 @@ export default function StoryDiagram({
       };
     });
 
-    const edgeList: DiagramEdge[] = [];
+    const edgeList: Edge[] = [];
     const optionNodes: DiagramNode[] = [];
 
     Object.keys(story.nodes).forEach((id) => {
@@ -410,11 +408,6 @@ export default function StoryDiagram({
         diagramRef.current.querySelector<HTMLElement>(".react-flow") ||
         diagramRef.current;
 
-      if (!viewportEl) {
-        console.error("No viewport element to export.");
-        return;
-      }
-
       const svgDataUrl = await htmlToImage.toSvg(viewportEl, {
         width,
         height,
@@ -481,11 +474,6 @@ export default function StoryDiagram({
         viewportElCandidate ||
         diagramRef.current.querySelector<HTMLElement>(".react-flow") ||
         diagramRef.current;
-
-      if (!viewportEl) {
-        console.error("No viewport element to export.");
-        return;
-      }
 
       const pngDataUrl = await htmlToImage.toPng(viewportEl, {
         width,

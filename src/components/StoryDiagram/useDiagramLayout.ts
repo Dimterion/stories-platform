@@ -28,8 +28,9 @@ export function getLayoutElements<TData = unknown>(
   dagreGraph.setGraph({ rankdir: direction });
 
   nodes.forEach((node) => {
-    const width = node.type === "optionNode" ? OPTION_WIDTH : NODE_WIDTH;
-    const height = node.type === "optionNode" ? OPTION_HEIGHT : NODE_HEIGHT;
+    const isOption = node.type === "optionNode";
+    const width = isOption ? OPTION_WIDTH : NODE_WIDTH;
+    const height = isOption ? OPTION_HEIGHT : NODE_HEIGHT;
     dagreGraph.setNode(node.id, { width, height });
   });
 
