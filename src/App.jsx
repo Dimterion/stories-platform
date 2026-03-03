@@ -6,7 +6,7 @@ import Header from "./components/Layout/Header";
 import HomePage from "./pages/home";
 import StoryPlayerPage from "./pages/storyPlayer";
 import StoryEditorPage from "./pages/storyEditor";
-// import DocsPage from "./pages/docs";
+// import AdventureGamePlayerPage from "./pages/adventureGamePlayer";
 import AboutPage from "./pages/about";
 import NotFoundPage from "./pages/notFound";
 import Footer from "./components/Layout/Footer";
@@ -24,7 +24,10 @@ export default function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/story-player" element={<StoryPlayerPage />} />
             <Route path="/story-editor" element={<StoryEditorPage />} />
-            {/* <Route path="/docs" element={<DocsPage />} /> */}
+            {/* <Route
+              path="/adventure-game-player"
+              element={<AdventureGamePlayerPage />}
+            /> */}
             <Route path="/about" element={<AboutPage />} />
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
