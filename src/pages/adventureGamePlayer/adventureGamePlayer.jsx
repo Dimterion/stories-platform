@@ -22,6 +22,7 @@ export default function AdventureGamePlayerPage() {
 
   const dragRef = useRef({ dragging: false, startClientX: 0, startX: 0 });
 
+  const xRef = useRef(0);
   const node = story.nodes[currentNodeId];
   const nodeText = node?.text ?? "";
 
@@ -68,17 +69,21 @@ export default function AdventureGamePlayerPage() {
     const clamped = Math.max(-MAX_DRAG, Math.min(MAX_DRAG, unclamped));
 
     setX(clamped);
+    xRef.current = clamped;
   }
 
   function endDrag() {
     dragRef.current.dragging = false;
     setIsDragging(false);
 
+    const finalX = xRef.current;
+
     // Decide on release (mouse up / pointer up)
-    if (x <= -COMMIT_THRESHOLD) commitChoice("left");
-    else if (x >= COMMIT_THRESHOLD) commitChoice("right");
+    if (finalX <= -COMMIT_THRESHOLD) commitChoice("left");
+    else if (finalX >= COMMIT_THRESHOLD) commitChoice("right");
     // else: Not far enough => do nothing
 
+    xRef.current = 0;
     // Snap back
     setX(0);
   }
