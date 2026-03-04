@@ -8,26 +8,28 @@ export default function AdventureGamePlayerPage() {
     title: "Stories Platform | Adventure Game Player",
   });
 
-  const diamonds = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-
-  const MAX_DRAG = 50;
-  const MAX_ROT = 6;
-  const COMMIT_THRESHOLD = 15; // px: require a meaningful drag to commit
+  const MAX_DRAG = 70;
+  const MAX_ROT = 10;
+  // Require a meaningful drag to commit
+  const COMMIT_THRESHOLD = 35;
   const PLACEHOLDER = "Only one option for this part.";
 
+  const diamonds = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+
   const [currentNodeId, setCurrentNodeId] = useState(story.start);
+  const [x, setX] = useState(0);
+  const [isDragging, setIsDragging] = useState(false);
+
+  const dragRef = useRef({ dragging: false, startClientX: 0, startX: 0 });
 
   const node = story.nodes[currentNodeId];
   const nodeText = node?.text ?? "";
 
   const options = (node?.options ?? []).slice(0, 2);
-  const leftOption = options[0] ?? null; // swipe left
-  const rightOption = options[1] ?? null; // swipe right
-
-  const [x, setX] = useState(0);
-  const [isDragging, setIsDragging] = useState(false);
-
-  const dragRef = useRef({ dragging: false, startClientX: 0, startX: 0 });
+  // Swipe left
+  const leftOption = options[0] ?? null;
+  // Swipe right
+  const rightOption = options[1] ?? null;
 
   const direction = x === 0 ? "none" : x < 0 ? "left" : "right";
   const swipeStrength = Math.min(1, Math.abs(x) / MAX_DRAG);
@@ -44,12 +46,16 @@ export default function AdventureGamePlayerPage() {
 
   function commitChoice(dir) {
     const chosen = dir === "left" ? leftOption : rightOption;
-    if (!chosen?.next) return; // missing option => do nothing
+
+    // Missing option => do nothing
+    if (!chosen?.next) return;
+
     setCurrentNodeId(chosen.next);
   }
 
   function onPointerDown(e) {
-    e.currentTarget.setPointerCapture(e.pointerId); // keeps drag stable
+    // Keep drag stable
+    e.currentTarget.setPointerCapture(e.pointerId);
     setIsDragging(true);
     dragRef.current = { dragging: true, startClientX: e.clientX, startX: x };
   }
@@ -60,6 +66,7 @@ export default function AdventureGamePlayerPage() {
     const dx = e.clientX - dragRef.current.startClientX;
     const unclamped = dragRef.current.startX + dx;
     const clamped = Math.max(-MAX_DRAG, Math.min(MAX_DRAG, unclamped));
+
     setX(clamped);
   }
 
@@ -70,9 +77,10 @@ export default function AdventureGamePlayerPage() {
     // Decide on release (mouse up / pointer up)
     if (x <= -COMMIT_THRESHOLD) commitChoice("left");
     else if (x >= COMMIT_THRESHOLD) commitChoice("right");
-    // else: not far enough => do nothing
+    // else: Not far enough => do nothing
 
-    setX(0); // snap back
+    // Snap back
+    setX(0);
   }
 
   return (
