@@ -1,6 +1,7 @@
 import { useRef, useState } from "react";
-import { useMetadata } from "../utils/hooks";
-import story from "../assets/sampleStory.json";
+import { useMetadata } from "../../utils/hooks";
+import "./adventureGamePlayer.css";
+import story from "../../assets/sampleStory.json";
 
 export default function AdventureGamePlayerPage() {
   useMetadata({
