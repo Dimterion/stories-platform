@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 import { useMetadata } from "../../utils/hooks";
 import "./adventureGamePlayer.css";
-import story from "../../assets/sampleStory.json";
+import story from "../../assets/sampleAdventureGame.json";
 
 export default function AdventureGamePlayerPage() {
   useMetadata({
@@ -126,8 +126,8 @@ export default function AdventureGamePlayerPage() {
           </div>
 
           <div>
-            <h2>{node?.label ?? "—"}</h2>
-            <p>{story.title}</p>
+            <h2>{story.title}</h2>
+            <p>{story.author}</p>
           </div>
         </div>
 
