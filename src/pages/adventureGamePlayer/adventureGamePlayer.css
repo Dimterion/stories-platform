@@ -17,12 +17,11 @@
   width: 500px;
 }
 
-.agp-stage {
-  height: 400px;
-  margin: auto;
-  max-width: 80vw;
-  position: relative;
-  width: 400px;
+.agp-verticalCardHeader,
+.agp-verticalCardFooter {
+  background-color: var(--color-darkGray);
+  height: 100px;
+  width: 100%;
 }
 
 .agp-verticalCardBody {
@@ -33,6 +32,14 @@
   text-align: center;
 }
 
+.agp-stage {
+  height: 400px;
+  margin: auto;
+  max-width: 80vw;
+  position: relative;
+  width: 400px;
+}
+
 .agp-verticalCardImgBackground {
   background-color: var(--color-lightBlue);
   display: grid;
@@ -41,54 +48,6 @@
   grid-template-rows: repeat(3, 1fr);
   height: 100%;
   padding: 10px;
-  width: 100%;
-}
-
-.agp-verticalCardImgForeground {
-  background: var(--color-softWhite);
-  /* For touch dragging doesn't scroll the page */
-  cursor: grab;
-  inset: 0;
-  position: absolute;
-  /* Prevents scrolling during touch drag */
-  touch-action: none;
-  /* Rotate around slightly-lower point (card-ish feel) */
-  transform-origin: 50% 80%;
-  will-change: transform;
-  z-index: 2;
-}
-
-/* Label stays inside foreground, near the top */
-.agp-foregroundLabel {
-  background: rgba(0, 0, 0, 0.8);
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  padding: 10px 12px;
-  /* Label shouldn’t block dragging */
-  pointer-events: none;
-  position: absolute;
-  text-align: center;
-  transition: opacity 120ms linear;
-  width: 100%;
-}
-
-.agp-verticalCardImgForeground.is-dragging {
-  transition: none;
-}
-
-.agp-verticalCardImgForeground.is-settling {
-  /* Card snap-back effect */
-  transition: transform 180ms cubic-bezier(0.2, 0.9, 0.2, 1);
-}
-
-.agp-verticalCardImgForeground:active {
-  cursor: grabbing;
-}
-
-.agp-verticalCardHeader,
-.agp-verticalCardFooter {
-  background-color: var(--color-darkGray);
-  height: 100px;
   width: 100%;
 }
 
@@ -108,4 +67,45 @@
   background-color: var(--color-darkBlue);
   width: 18px;
   height: 18px;
+}
+
+.agp-verticalCardImgForeground {
+  background: var(--color-softWhite);
+  /* For touch dragging doesn't scroll the page */
+  cursor: grab;
+  inset: 0;
+  position: absolute;
+  /* Prevents scrolling during touch drag */
+  touch-action: none;
+  /* Rotate around slightly-lower point (card-ish feel) */
+  transform-origin: 50% 80%;
+  will-change: transform;
+  z-index: 2;
+}
+
+.agp-verticalCardImgForeground.is-dragging {
+  transition: none;
+}
+
+.agp-verticalCardImgForeground.is-settling {
+  /* Card snap-back effect */
+  transition: transform 180ms cubic-bezier(0.2, 0.9, 0.2, 1);
+}
+
+.agp-verticalCardImgForeground:active {
+  cursor: grabbing;
+}
+
+/* Label stays inside foreground, near the top */
+.agp-foregroundLabel {
+  background: rgba(0, 0, 0, 0.8);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  padding: 10px 12px;
+  /* Label shouldn’t block dragging */
+  pointer-events: none;
+  position: absolute;
+  text-align: center;
+  transition: opacity 120ms linear;
+  width: 100%;
 }
