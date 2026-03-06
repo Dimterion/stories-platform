@@ -32,12 +32,22 @@ export default function AdventureGamePlayerPage() {
   // Swipe right
   const rightOption = options[1] ?? null;
 
-  const direction = x === 0 ? "none" : x < 0 ? "left" : "right";
-  const swipeStrength = Math.min(1, Math.abs(x) / MAX_DRAG);
+  const hasOptions = options.length > 0;
+
+  const direction = !hasOptions
+    ? "none"
+    : x === 0
+      ? "none"
+      : x < 0
+        ? "left"
+        : "right";
+
+  const swipeStrength = hasOptions ? Math.min(1, Math.abs(x) / MAX_DRAG) : 0;
   const labelOpacity = direction === "none" ? 0 : swipeStrength;
 
-  const foregroundText =
-    direction === "left"
+  const foregroundText = !hasOptions
+    ? ""
+    : direction === "left"
       ? (leftOption?.text ?? PLACEHOLDER)
       : direction === "right"
         ? (rightOption?.text ?? PLACEHOLDER)
@@ -55,13 +65,15 @@ export default function AdventureGamePlayerPage() {
   }
 
   function onPointerDown(e) {
-    // Keep drag stable
+    if (!hasOptions) return;
+
     e.currentTarget.setPointerCapture(e.pointerId);
     setIsDragging(true);
     dragRef.current = { dragging: true, startClientX: e.clientX, startX: x };
   }
 
   function onPointerMove(e) {
+    if (!hasOptions) return;
     if (!dragRef.current.dragging) return;
 
     const dx = e.clientX - dragRef.current.startClientX;
@@ -73,19 +85,26 @@ export default function AdventureGamePlayerPage() {
   }
 
   function endDrag() {
+    if (!hasOptions) return;
+
     dragRef.current.dragging = false;
     setIsDragging(false);
 
     const finalX = xRef.current;
 
-    // Decide on release (mouse up / pointer up)
     if (finalX <= -COMMIT_THRESHOLD) commitChoice("left");
     else if (finalX >= COMMIT_THRESHOLD) commitChoice("right");
-    // else: Not far enough => do nothing
 
     xRef.current = 0;
-    // Snap back
     setX(0);
+  }
+
+  function restartGame() {
+    setCurrentNodeId(story.start);
+    setX(0);
+    xRef.current = 0;
+    setIsDragging(false);
+    dragRef.current = { dragging: false, startClientX: 0, startX: 0 };
   }
 
   return (
@@ -96,34 +115,46 @@ export default function AdventureGamePlayerPage() {
         <div className="agp-verticalCardBody">
           <p>{nodeText}</p>
 
-          <div className="agp-stage">
-            <div className="agp-verticalCardImgBackground">
-              {diamonds.map((d) => (
-                <div key={d} className="agp-diamond">
-                  <div className="agp-innerDiamond" />
-                </div>
-              ))}
-            </div>
+          {hasOptions ? (
+            <div className="agp-stage">
+              <div className="agp-verticalCardImgBackground">
+                {diamonds.map((d) => (
+                  <div key={d} className="agp-diamond">
+                    <div className="agp-innerDiamond" />
+                  </div>
+                ))}
+              </div>
 
-            <div
-              className={
-                "agp-verticalCardImgForeground " +
-                (isDragging ? "is-dragging" : "is-settling")
-              }
-              style={{ transform: `translateX(${x}px) rotate(${rot}deg)` }}
-              onPointerDown={onPointerDown}
-              onPointerMove={onPointerMove}
-              onPointerUp={endDrag}
-              onPointerCancel={endDrag}
-            >
               <div
-                className="agp-foregroundLabel"
-                style={{ opacity: labelOpacity }}
+                className={
+                  "agp-verticalCardImgForeground " +
+                  (isDragging ? "is-dragging" : "is-settling")
+                }
+                style={{ transform: `translateX(${x}px) rotate(${rot}deg)` }}
+                onPointerDown={onPointerDown}
+                onPointerMove={onPointerMove}
+                onPointerUp={endDrag}
+                onPointerCancel={endDrag}
               >
-                {foregroundText}
+                <div
+                  className="agp-foregroundLabel"
+                  style={{ opacity: labelOpacity }}
+                >
+                  {foregroundText}
+                </div>
               </div>
             </div>
-          </div>
+          ) : (
+            <div className="agp-restartBtnBackground">
+              <button
+                type="button"
+                className="agp-restartBtn"
+                onClick={restartGame}
+              >
+                Restart
+              </button>
+            </div>
+          )}
 
           <div>
             <h2>{story.title}</h2>

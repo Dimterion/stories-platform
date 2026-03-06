@@ -111,6 +111,30 @@
   width: 100%;
 }
 
+.agp-restartBtnBackground {
+  align-items: center;
+  background: var(--color-softWhite);
+  display: flex;
+  height: 400px;
+  justify-content: center;
+  margin: auto;
+  max-width: 80vw;
+  position: relative;
+  width: 400px;
+}
+
+.agp-restartBtn {
+  background: var(--color-lightBlue);
+  border: none;
+  color: var(--color-softWhite);
+  cursor: pointer;
+  padding: 10px 18px;
+}
+
+.agp-restartBtn:hover {
+  background: var(--color-darkBlue);
+}
+
 /* Mobile view */
 @media (max-width: 768px) {
   .agp-verticalCard,
