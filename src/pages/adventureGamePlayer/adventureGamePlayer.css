@@ -112,16 +112,24 @@
   width: 100%;
 }
 
-.agp-restartBtnBackground {
+.agp-endGameCard {
   align-items: center;
   background: var(--color-softWhite);
   display: flex;
+  flex-direction: column;
+  gap: 2rem;
   height: 400px;
   justify-content: center;
   margin: auto;
   max-width: 80vw;
   position: relative;
   width: 400px;
+}
+
+.agp-endGameCard p {
+  color: var(--color-darkBlue);
+  font-size: 1.25rem;
+  font-weight: bold;
 }
 
 .agp-arrowIconsContainer {
@@ -158,13 +166,13 @@
 @media (max-width: 768px) {
   .agp-verticalCard,
   .agp-stage,
-  .agp-restartBtnBackground {
+  .agp-endGameCard {
     width: 250px;
     max-width: 90vw;
   }
 
   .agp-stage,
-  .agp-restartBtnBackground {
+  .agp-endGameCard {
     height: 250px;
   }
 }

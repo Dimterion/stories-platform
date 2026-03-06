@@ -150,7 +150,8 @@ export default function AdventureGamePlayerPage() {
               </div>
             </div>
           ) : (
-            <div className="agp-restartBtnBackground">
+            <div className="agp-endGameCard">
+              <p>The End</p>
               <button
                 type="button"
                 className="agp-restartBtn"
