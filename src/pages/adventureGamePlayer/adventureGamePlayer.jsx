@@ -114,7 +114,7 @@ export default function AdventureGamePlayerPage() {
         <div className="agp-verticalCardHeader" />
 
         <div className="agp-verticalCardBody">
-          <p>{nodeText}</p>
+          <p className="agp-nodeNext">{nodeText}</p>
 
           {hasOptions ? (
             <div className="agp-stage">
@@ -161,7 +161,7 @@ export default function AdventureGamePlayerPage() {
             </div>
           )}
 
-          <div>
+          <div className="agp-metaContainer">
             <h2>{story.title}</h2>
             <p>{story.author}</p>
           </div>

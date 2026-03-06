@@ -31,7 +31,8 @@
   text-align: center;
 }
 
-.agp-verticalCardBody p {
+.agp-nodeNext {
+  font-size: 1.25rem;
   margin: 10px;
 }
 
@@ -149,15 +150,21 @@
   background: var(--color-darkBlue);
 }
 
+.agp-metaContainer {
+  margin: 10px;
+}
+
 /* Mobile view */
 @media (max-width: 768px) {
   .agp-verticalCard,
-  .agp-stage {
+  .agp-stage,
+  .agp-restartBtnBackground {
     width: 250px;
     max-width: 90vw;
   }
 
-  .agp-stage {
+  .agp-stage,
+  .agp-restartBtnBackground {
     height: 250px;
   }
 }
