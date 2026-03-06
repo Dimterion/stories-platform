@@ -123,6 +123,20 @@
   width: 400px;
 }
 
+.agp-arrowIconsContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.agp-arrowIcon {
+  color: var(--color-darkBlue);
+  height: 5rem;
+  position: relative;
+  top: 10rem;
+  width: 5rem;
+}
+
 .agp-restartBtn {
   background: var(--color-lightBlue);
   border: none;

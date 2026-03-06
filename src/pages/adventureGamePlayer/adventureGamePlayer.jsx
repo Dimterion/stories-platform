@@ -1,4 +1,5 @@
 import { useRef, useState } from "react";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 import { useMetadata } from "../../utils/hooks";
 import "./adventureGamePlayer.css";
 import story from "../../assets/sampleAdventureGame.json";
@@ -141,6 +142,10 @@ export default function AdventureGamePlayerPage() {
                   style={{ opacity: labelOpacity }}
                 >
                   {foregroundText}
+                </div>
+                <div className="agp-arrowIconsContainer">
+                  <ArrowLeft className="agp-arrowIcon" />
+                  <ArrowRight className="agp-arrowIcon" />
                 </div>
               </div>
             </div>
