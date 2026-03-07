@@ -43,6 +43,13 @@ export default function AdventureGamePlayerPage() {
         ? "left"
         : "right";
 
+  const bgTint =
+    direction === "left"
+      ? "agp-foreground--left"
+      : direction === "right"
+        ? "agp-foreground--right"
+        : "";
+
   const swipeStrength = hasOptions ? Math.min(1, Math.abs(x) / MAX_DRAG) : 0;
   const labelOpacity = direction === "none" ? 0 : swipeStrength;
 
@@ -129,7 +136,9 @@ export default function AdventureGamePlayerPage() {
               <div
                 className={
                   "agp-verticalCardImgForeground " +
-                  (isDragging ? "is-dragging" : "is-settling")
+                  (isDragging ? "is-dragging" : "is-settling") +
+                  " " +
+                  bgTint
                 }
                 style={{ transform: `translateX(${x}px) rotate(${rot}deg)` }}
                 onPointerDown={onPointerDown}

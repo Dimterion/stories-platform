@@ -124,6 +124,14 @@
   width: 100%;
 }
 
+.agp-foreground--left {
+  box-shadow: -10px 0 30px var(--color-lightBlue);
+}
+
+.agp-foreground--right {
+  box-shadow: 10px 0 30px var(--color-softWhite);
+}
+
 .agp-endGameCard {
   align-items: center;
   background: var(--color-softWhite);
