@@ -145,6 +145,7 @@ export default function AdventureGamePlayerPage() {
                 </div>
                 <div className="agp-arrowIconsContainer">
                   <ArrowLeft className="agp-arrowIcon" />
+                  <p>Swipe left or right.</p>
                   <ArrowRight className="agp-arrowIcon" />
                 </div>
               </div>

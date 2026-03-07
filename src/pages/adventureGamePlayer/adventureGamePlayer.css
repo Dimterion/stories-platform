@@ -5,8 +5,20 @@
   overflow-y: auto;
 }
 
+@keyframes slideDown {
+  from {
+    transform: translateY(-2rem);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
 .agp-verticalCard {
   align-items: center;
+  animation: slideDown 0.5s ease-in-out forwards;
   background-color: var(--color-darkBlue);
   display: flex;
   flex: 1;
@@ -136,6 +148,11 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+}
+
+.agp-arrowIconsContainer p {
+  color: var(--color-darkBlue);
+  margin-top: 11rem;
 }
 
 .agp-arrowIcon {
