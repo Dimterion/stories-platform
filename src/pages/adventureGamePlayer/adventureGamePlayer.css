@@ -160,7 +160,8 @@
 
 .agp-arrowIconsContainer p {
   color: var(--color-darkBlue);
-  margin-top: 11rem;
+  position: relative;
+  top: 11.5rem;
 }
 
 .agp-arrowIcon {
@@ -199,5 +200,14 @@
   .agp-stage,
   .agp-endGameCard {
     height: 250px;
+  }
+
+  .agp-nodeNext {
+    font-size: 1rem;
+  }
+
+  .agp-foregroundLabel,
+  .agp-arrowIconsContainer p {
+    font-size: 0.75rem;
   }
 }
