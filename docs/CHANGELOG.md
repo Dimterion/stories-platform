@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.2.5] - 2026-02-19
+
+### Added
+
+- Loaders for the parts where information is pulled from an external source.
+- Alternative Story Player (Adventure Game Player page).
+
+### Changed
+
+- TypeScript conversion for the majority of the project files.
+
+### Fixed
+
+- Visibility on smaller screens for icons and texts.
+
 ## [0.2.1] - 2026-02-19
 
 ### Added

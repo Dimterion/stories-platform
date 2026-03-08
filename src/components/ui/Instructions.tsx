@@ -30,6 +30,16 @@ export default function Instructions() {
             <li>Progress is saved locally in your current browser.</li>
             <li>Clear and reset progress to start over.</li>
             <li>Use "Show Hints" button to view additional instructions.</li>
+            <li>
+              There is also an alternative version of the Story Player -{" "}
+              <Link
+                to="/adventure-game-player"
+                className="hover:text-lightBlue underline"
+              >
+                Adventure Game Player
+              </Link>
+              .
+            </li>
           </ul>
         </article>
       )}
