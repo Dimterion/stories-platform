@@ -1,4 +1,5 @@
 import { useRef, useState } from "react";
+import { toast } from "sonner";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { useMetadata } from "../../utils/hooks";
 import "./adventureGamePlayer.css";
@@ -134,13 +135,38 @@ export default function AdventureGamePlayerPage() {
           !parsed.nodes ||
           typeof parsed.nodes !== "object"
         ) {
-          alert("Invalid story file: missing 'start' or 'nodes'.");
+          toast.error("Invalid story file: missing 'start' or 'nodes'.", {
+            style: {
+              background: "#003049",
+              border: "2px solid #fdf0d5",
+              borderRadius: "0",
+              color: "#fdf0d5",
+            },
+            classNames: {
+              closeButton:
+                "!bg-deepBlue !border-softWhite !border-2 !text-softWhite !rounded-none",
+            },
+          });
           return;
         }
 
         // Ensure the start node exists
         if (!parsed.nodes[parsed.start]) {
-          alert("Invalid story file: 'start' node not found in 'nodes'.");
+          toast.error(
+            "Invalid story file: 'start' node not found in 'nodes'.",
+            {
+              style: {
+                background: "#003049",
+                border: "2px solid #fdf0d5",
+                borderRadius: "0",
+                color: "#fdf0d5",
+              },
+              classNames: {
+                closeButton:
+                  "!bg-deepBlue !border-softWhite !border-2 !text-softWhite !rounded-none",
+              },
+            },
+          );
           return;
         }
 
@@ -152,7 +178,18 @@ export default function AdventureGamePlayerPage() {
         dragRef.current = { dragging: false, startClientX: 0, startX: 0 };
       } catch (err) {
         console.error("Could not load story", err);
-        alert("Could not read story file. Make sure it's valid JSON.");
+        toast.error("Could not read story file. Make sure it's valid JSON.", {
+          style: {
+            background: "#003049",
+            border: "2px solid #fdf0d5",
+            borderRadius: "0",
+            color: "#fdf0d5",
+          },
+          classNames: {
+            closeButton:
+              "!bg-deepBlue !border-softWhite !border-2 !text-softWhite !rounded-none",
+          },
+        });
       } finally {
         // Allow re-uploading the same file
         event.target.value = "";
