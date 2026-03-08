@@ -2,7 +2,7 @@ import { useRef, useState } from "react";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { useMetadata } from "../../utils/hooks";
 import "./adventureGamePlayer.css";
-import story from "../../assets/sampleAdventureGame.json";
+import sampleStory from "../../assets/sampleAdventureGame.json";
 
 export default function AdventureGamePlayerPage() {
   useMetadata({
@@ -17,17 +17,18 @@ export default function AdventureGamePlayerPage() {
 
   const diamonds = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
-  const [currentNodeId, setCurrentNodeId] = useState(story.start);
+  const [currentStory, setCurrentStory] = useState(sampleStory);
+  const [currentNodeId, setCurrentNodeId] = useState(sampleStory.start);
   const [x, setX] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
 
   const dragRef = useRef({ dragging: false, startClientX: 0, startX: 0 });
-
   const xRef = useRef(0);
-  const node = story.nodes[currentNodeId];
-  const nodeText = node?.text ?? "";
 
+  const node = currentStory.nodes[currentNodeId];
+  const nodeText = node?.text ?? "";
   const options = (node?.options ?? []).slice(0, 2);
+
   // Swipe left
   const leftOption = options[0] ?? null;
   // Swipe right
@@ -108,11 +109,57 @@ export default function AdventureGamePlayerPage() {
   }
 
   function restartGame() {
-    setCurrentNodeId(story.start);
+    setCurrentNodeId(currentStory.start);
     setX(0);
     xRef.current = 0;
     setIsDragging(false);
     dragRef.current = { dragging: false, startClientX: 0, startX: 0 };
+  }
+
+  function handleStoryUpload(event) {
+    const file = event.target.files?.[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      try {
+        const text = e.target?.result;
+        if (typeof text !== "string") return;
+
+        const parsed = JSON.parse(text);
+
+        // Minimal validation: must have start and nodes
+        if (
+          !parsed.start ||
+          !parsed.nodes ||
+          typeof parsed.nodes !== "object"
+        ) {
+          alert("Invalid story file: missing 'start' or 'nodes'.");
+          return;
+        }
+
+        // Ensure the start node exists
+        if (!parsed.nodes[parsed.start]) {
+          alert("Invalid story file: 'start' node not found in 'nodes'.");
+          return;
+        }
+
+        setCurrentStory(parsed);
+        setCurrentNodeId(parsed.start);
+        setX(0);
+        xRef.current = 0;
+        setIsDragging(false);
+        dragRef.current = { dragging: false, startClientX: 0, startX: 0 };
+      } catch (err) {
+        console.error("Could not load story", err);
+        alert("Could not read story file. Make sure it's valid JSON.");
+      } finally {
+        // Allow re-uploading the same file
+        event.target.value = "";
+      }
+    };
+
+    reader.readAsText(file);
   }
 
   return (
@@ -173,12 +220,22 @@ export default function AdventureGamePlayerPage() {
           )}
 
           <div className="agp-metaContainer">
-            <h2>{story.title}</h2>
-            <p>{story.author}</p>
+            <h2>{currentStory.title}</h2>
+            <p>{currentStory.author}</p>
           </div>
         </div>
 
-        <div className="agp-verticalCardFooter" />
+        <div className="agp-verticalCardFooter">
+          <label className="agp-uploadLabel">
+            <span>Upload story (JSON format)</span>
+            <input
+              type="file"
+              accept="application/json"
+              onChange={handleStoryUpload}
+              className="agp-uploadInput"
+            />
+          </label>
+        </div>
       </section>
     </div>
   );

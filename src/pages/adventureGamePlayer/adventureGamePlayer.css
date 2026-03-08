@@ -188,6 +188,33 @@
   margin: 10px;
 }
 
+.agp-verticalCardFooter {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.agp-uploadLabel {
+  align-items: center;
+  background: var(--color-lightBlue);
+  color: var(--color-softWhite);
+  cursor: pointer;
+  display: inline-flex;
+  font-size: 0.9rem;
+  gap: 0.5rem;
+  max-width: 200px;
+  padding: 5px 15px;
+  text-align: center;
+}
+
+.agp-uploadInput {
+  display: none;
+}
+
+.agp-uploadLabel:hover {
+  background: var(--color-darkBlue);
+}
+
 /* Mobile view */
 @media (max-width: 768px) {
   .agp-verticalCard,
