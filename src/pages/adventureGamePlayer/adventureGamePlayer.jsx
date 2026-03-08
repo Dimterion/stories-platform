@@ -176,6 +176,18 @@ export default function AdventureGamePlayerPage() {
         xRef.current = 0;
         setIsDragging(false);
         dragRef.current = { dragging: false, startClientX: 0, startX: 0 };
+        toast.success("Story imported successfully.", {
+          style: {
+            background: "#003049",
+            border: "2px solid #fdf0d5",
+            borderRadius: "0",
+            color: "#fdf0d5",
+          },
+          classNames: {
+            closeButton:
+              "!bg-deepBlue !border-softWhite !border-2 !text-softWhite !rounded-none",
+          },
+        });
       } catch (err) {
         console.error("Could not load story", err);
         toast.error("Could not read story file. Make sure it's valid JSON.", {
