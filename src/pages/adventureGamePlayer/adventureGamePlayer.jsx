@@ -220,7 +220,13 @@ export default function AdventureGamePlayerPage() {
     <div className="agp-background">
       <section className="agp-verticalCard">
         <div className="agp-verticalCardHeader">
-          <button onClick={() => setShowModal(true)}>Instructions</button>
+          <button
+            type="button"
+            className="agp-instructionsBtn"
+            onClick={() => setShowModal(true)}
+          >
+            Instructions
+          </button>
         </div>
 
         <div className="agp-verticalCardBody">
