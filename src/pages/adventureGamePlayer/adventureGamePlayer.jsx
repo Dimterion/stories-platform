@@ -22,6 +22,7 @@ export default function AdventureGamePlayerPage() {
   const [currentNodeId, setCurrentNodeId] = useState(sampleStory.start);
   const [x, setX] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
+  const [fileName, setFileName] = useState(null);
 
   const dragRef = useRef({ dragging: false, startClientX: 0, startX: 0 });
   const xRef = useRef(0);
@@ -176,6 +177,7 @@ export default function AdventureGamePlayerPage() {
         xRef.current = 0;
         setIsDragging(false);
         dragRef.current = { dragging: false, startClientX: 0, startX: 0 };
+        setFileName(file.name);
         toast.success("Story imported successfully.", {
           style: {
             background: "#003049",
@@ -284,6 +286,7 @@ export default function AdventureGamePlayerPage() {
               className="agp-uploadInput"
             />
           </label>
+          <span>{fileName || "No file chosen"}</span>
         </div>
       </section>
     </div>

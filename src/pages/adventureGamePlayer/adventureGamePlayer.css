@@ -191,7 +191,9 @@
 .agp-verticalCardFooter {
   align-items: center;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  font-size: 0.8rem;
+  justify-content: space-around;
 }
 
 .agp-uploadLabel {
@@ -200,7 +202,6 @@
   color: var(--color-softWhite);
   cursor: pointer;
   display: inline-flex;
-  font-size: 0.9rem;
   gap: 0.5rem;
   max-width: 200px;
   padding: 5px 15px;
