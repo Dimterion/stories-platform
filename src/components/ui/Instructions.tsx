@@ -6,13 +6,14 @@ export default function Instructions() {
   const path = location.pathname;
   const isStoryPlayer = path.startsWith("/story-player");
   const isStoryEditor = path.startsWith("/story-editor");
+  const isAdventureGamePlayer = path.startsWith("/adventure-game-player");
 
   return (
     <section className="space-y-4">
       <h2 id="instructions-title" className="text-center text-xl font-bold">
         Instructions
       </h2>
-      {!isStoryEditor && (
+      {!isStoryEditor && !isAdventureGamePlayer && (
         <article className="border-b pb-4">
           <p>
             Use{" "}
@@ -43,7 +44,7 @@ export default function Instructions() {
           </ul>
         </article>
       )}
-      {!isStoryPlayer && (
+      {!isStoryPlayer && !isAdventureGamePlayer && (
         <article className="border-b pb-4">
           <p>
             Use{" "}
@@ -67,6 +68,15 @@ export default function Instructions() {
             <li>Download your stories diagrams in SVG or PNG format.</li>
           </ul>
         </article>
+      )}
+      {isAdventureGamePlayer && (
+        <ul className="list-disc space-y-1 border-b pt-2 pb-4 pl-5">
+          <li>Upload your own stories in JSON format.</li>
+          <li>
+            Navigate through the stories by swiping left or right to choose an
+            option.
+          </li>
+        </ul>
       )}
       <article>
         <p>

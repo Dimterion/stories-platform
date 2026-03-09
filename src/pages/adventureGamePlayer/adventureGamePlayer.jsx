@@ -2,6 +2,8 @@ import { useRef, useState } from "react";
 import { toast } from "sonner";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { useMetadata } from "../../utils/hooks";
+import Modal from "../../components/ui/Modal";
+import Instructions from "../../components/ui/Instructions";
 import "./adventureGamePlayer.css";
 import sampleStory from "../../assets/sampleAdventureGame.json";
 
@@ -23,6 +25,7 @@ export default function AdventureGamePlayerPage() {
   const [x, setX] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
   const [fileName, setFileName] = useState(null);
+  const [showModal, setShowModal] = useState(false);
 
   const dragRef = useRef({ dragging: false, startClientX: 0, startX: 0 });
   const xRef = useRef(0);
@@ -216,7 +219,9 @@ export default function AdventureGamePlayerPage() {
   return (
     <div className="agp-background">
       <section className="agp-verticalCard">
-        <div className="agp-verticalCardHeader" />
+        <div className="agp-verticalCardHeader">
+          <button onClick={() => setShowModal(true)}>Instructions</button>
+        </div>
 
         <div className="agp-verticalCardBody">
           <p className="agp-nodeNext">{nodeText}</p>
@@ -289,6 +294,14 @@ export default function AdventureGamePlayerPage() {
           <span>{fileName || "No file chosen"}</span>
         </div>
       </section>
+
+      <Modal
+        isOpen={showModal}
+        onClose={() => setShowModal(false)}
+        ariaLabelledBy="instructions-title"
+      >
+        <Instructions />
+      </Modal>
     </div>
   );
 }
