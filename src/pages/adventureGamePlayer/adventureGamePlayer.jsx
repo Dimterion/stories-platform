@@ -266,6 +266,9 @@ export default function AdventureGamePlayerPage() {
                 onPointerUp={endDrag}
                 onPointerCancel={endDrag}
               >
+                {showHints && (
+                  <Hint text="Options are displayed here when swiping left or right." />
+                )}
                 <div
                   className="agp-foregroundLabel"
                   style={{ opacity: labelOpacity }}
@@ -319,6 +322,14 @@ export default function AdventureGamePlayerPage() {
       >
         <Instructions />
       </Modal>
+
+      {showHints && (
+        <div
+          onClick={() => setShowHints(false)}
+          className="pointer-events-auto fixed inset-0 z-40 bg-black/40"
+          aria-hidden="true"
+        />
+      )}
     </div>
   );
 }
