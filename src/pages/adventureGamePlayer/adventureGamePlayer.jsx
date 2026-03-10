@@ -4,6 +4,7 @@ import { ArrowLeft, ArrowRight } from "lucide-react";
 import { useMetadata } from "../../utils/hooks";
 import Modal from "../../components/ui/Modal";
 import Instructions from "../../components/ui/Instructions";
+import Hint from "../../components/ui/Hint";
 import "./adventureGamePlayer.css";
 import sampleStory from "../../assets/sampleAdventureGame.json";
 
@@ -26,6 +27,7 @@ export default function AdventureGamePlayerPage() {
   const [isDragging, setIsDragging] = useState(false);
   const [fileName, setFileName] = useState(null);
   const [showModal, setShowModal] = useState(false);
+  const [showHints, setShowHints] = useState(false);
 
   const dragRef = useRef({ dragging: false, startClientX: 0, startX: 0 });
   const xRef = useRef(0);
@@ -222,14 +224,23 @@ export default function AdventureGamePlayerPage() {
         <div className="agp-verticalCardHeader">
           <button
             type="button"
-            className="agp-instructionsBtn"
+            className="agp-headerBtn"
             onClick={() => setShowModal(true)}
           >
             Instructions
           </button>
+
+          <button
+            onClick={() => setShowHints((prev) => !prev)}
+            aria-pressed={showHints}
+            className="agp-headerBtn"
+          >
+            {showHints ? "Hide hints" : "Show hints"}
+          </button>
         </div>
 
         <div className="agp-verticalCardBody">
+          {showHints && <Hint text="Main story text is displayed here." />}
           <p className="agp-nodeNext">{nodeText}</p>
 
           {hasOptions ? (
