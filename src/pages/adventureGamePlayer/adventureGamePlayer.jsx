@@ -83,6 +83,7 @@ export default function AdventureGamePlayerPage() {
   function onPointerDown(e) {
     if (!hasOptions) return;
 
+    e.preventDefault();
     e.currentTarget.setPointerCapture(e.pointerId);
     setIsDragging(true);
     dragRef.current = { dragging: true, startClientX: e.clientX, startX: x };
@@ -90,6 +91,9 @@ export default function AdventureGamePlayerPage() {
 
   function onPointerMove(e) {
     if (!hasOptions) return;
+
+    e.preventDefault();
+
     if (!dragRef.current.dragging) return;
 
     const dx = e.clientX - dragRef.current.startClientX;

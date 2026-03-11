@@ -120,6 +120,7 @@
   touch-action: none;
   /* Rotate around slightly-lower point (card-ish feel) */
   transform-origin: 50% 80%;
+  user-select: none;
   will-change: transform;
   z-index: 2;
 }
@@ -150,11 +151,11 @@
 }
 
 .agp-foreground--left {
-  box-shadow: -10px 0 30px var(--color-lightBlue);
+  box-shadow: -10px 0 30px var(--color-lightGreen);
 }
 
 .agp-foreground--right {
-  box-shadow: 10px 0 30px var(--color-softWhite);
+  box-shadow: 10px 0 30px var(--color-lightPurple);
 }
 
 .agp-endGameCard {

@@ -194,6 +194,10 @@ export default function StoryPlayerPage() {
             },
           },
         );
+      } finally {
+        if (fileInputRef.current) {
+          fileInputRef.current.value = "";
+        }
       }
     };
 
