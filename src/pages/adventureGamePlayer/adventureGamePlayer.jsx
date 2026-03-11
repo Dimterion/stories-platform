@@ -302,6 +302,7 @@ export default function AdventureGamePlayerPage() {
         </div>
 
         <div className="agp-verticalCardFooter">
+          {showHints && <Hint text="Upload your own story here." />}
           <label className="agp-uploadLabel">
             <span>Upload story (JSON format)</span>
             <input
@@ -326,7 +327,7 @@ export default function AdventureGamePlayerPage() {
       {showHints && (
         <div
           onClick={() => setShowHints(false)}
-          className="pointer-events-auto fixed inset-0 z-40 bg-black/40"
+          className="pointer-events-auto fixed inset-0 z-40"
           aria-hidden="true"
         />
       )}
