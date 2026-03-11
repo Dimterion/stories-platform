@@ -34,7 +34,8 @@ const SAMPLE_STORIES_MANIFEST_URL = import.meta.env
   .VITE_STORIES_SAMPLES_API_URL;
 
 export default function StoryPlayerPage() {
-  const storyTextRef = useRef<HTMLDivElement | null>(null);
+  // Scroll to the top page element on option change
+  const scrollElementRef = useRef<HTMLDivElement | null>(null);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 
   useMetadata({
@@ -87,7 +88,7 @@ export default function StoryPlayerPage() {
 
   useEffect(() => {
     requestAnimationFrame(() => {
-      storyTextRef.current?.scrollIntoView({
+      scrollElementRef.current?.scrollIntoView({
         behavior: "smooth",
         block: "start",
       });
@@ -315,7 +316,10 @@ export default function StoryPlayerPage() {
 
   return (
     <section className="storyPlayerPage-contentWrapper flex flex-1 flex-col items-center justify-center p-4 sm:p-6">
-      <div className="flex w-full max-w-[1024px] justify-end">
+      <div
+        ref={scrollElementRef}
+        className="flex w-full max-w-[1024px] justify-end"
+      >
         <button
           onClick={() => setShowHints((prev) => !prev)}
           aria-pressed={showHints}
@@ -350,10 +354,7 @@ export default function StoryPlayerPage() {
       )}
 
       {/* Text */}
-      <div
-        ref={storyTextRef}
-        className="bg-softWhite border-darkBlue text-darkBlue relative flex min-h-72 w-full max-w-[1024px] flex-col items-center justify-center border-3 p-4"
-      >
+      <div className="bg-softWhite border-darkBlue text-darkBlue relative flex min-h-72 w-full max-w-[1024px] flex-col items-center justify-center border-3 p-4">
         {showHints && <Hint text="Main story text is displayed here." />}
 
         <div className="max-w-prose space-y-4 leading-relaxed">
