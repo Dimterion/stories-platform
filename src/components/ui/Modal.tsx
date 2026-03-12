@@ -26,7 +26,7 @@ export default function Modal({
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-start justify-center overflow-y-auto bg-black/80 p-4 sm:p-8"
+      className="modal-scrollbar fixed inset-0 z-50 flex items-start justify-center overflow-y-auto bg-black/80 p-4 sm:p-8"
       role="dialog"
       aria-modal="true"
       aria-labelledby={ariaLabelledBy}

@@ -55,6 +55,10 @@
   text-align: center;
 }
 
+.agp-headerBtn:active {
+  scale: 95%;
+}
+
 .agp-headerBtn:hover {
   background: var(--color-darkBlue);
 }
@@ -210,6 +214,10 @@
   background: var(--color-darkBlue);
 }
 
+.agp-restartBtn:active {
+  scale: 95%;
+}
+
 .agp-metaContainer {
   margin: 10px;
 }
@@ -241,6 +249,10 @@
 
 .agp-uploadLabel:hover {
   background: var(--color-darkBlue);
+}
+
+.agp-uploadLabel:active {
+  scale: 95%;
 }
 
 /* Mobile view */
