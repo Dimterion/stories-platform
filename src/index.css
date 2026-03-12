@@ -26,12 +26,6 @@
   --color-lightPurple: #7678ed;
 }
 
-/* Custom scrollbar for modal */
-.modal-scrollbar {
-  scrollbar-color: var(--color-darkBlue) transparent;
-  scrollbar-width: thin;
-}
-
 /* Custom loader */
 .loader {
   animation: loader 1s infinite linear;

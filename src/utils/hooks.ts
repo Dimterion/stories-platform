@@ -13,12 +13,17 @@ export function useBodyScrollLock(locked: boolean): void {
     style.width = "100%";
     style.overflow = "hidden";
 
+    document.documentElement.style.overflow = "hidden";
+
     return () => {
       const y = style.top;
+
       style.position = "";
       style.top = "";
       style.width = "";
       style.overflow = "";
+
+      document.documentElement.style.overflow = "";
       window.scrollTo(0, parseInt(y || "0", 10) * -1);
     };
   }, [locked]);

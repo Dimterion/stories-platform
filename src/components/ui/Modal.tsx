@@ -33,8 +33,7 @@ export default function Modal({
       onClick={handleOverlayClick}
     >
       <div
-        className="modal-contentWrapper bg-softWhite text-deepBlue border-lightBlue modal-scrollbar relative my-0 w-full max-w-lg overflow-y-auto border-2 p-4 sm:my-8 sm:p-6"
-        style={{ maxHeight: "90dvh" }}
+        className="modal-contentWrapper bg-softWhite text-deepBlue border-lightBlue relative my-0 w-full max-w-lg border-2 p-4 sm:my-8 sm:p-6"
         onClick={handleContentClick}
       >
         <button
