@@ -1,10 +1,3 @@
-.agp-background {
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  overflow-y: auto;
-}
-
 @keyframes slideDown {
   from {
     transform: translateY(-2rem);
@@ -17,101 +10,7 @@
 }
 
 .agp-verticalCard {
-  align-items: center;
   animation: slideDown 0.5s ease-in-out forwards;
-  background-color: var(--color-darkBlue);
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  justify-content: space-between;
-  margin: auto;
-  width: 500px;
-}
-
-.agp-verticalCardHeader,
-.agp-verticalCardFooter {
-  background-color: var(--color-darkGray);
-  height: 100px;
-  width: 100%;
-}
-
-.agp-verticalCardHeader {
-  align-items: center;
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: space-around;
-}
-
-.agp-headerBtn {
-  align-items: center;
-  background: var(--color-lightBlue);
-  color: var(--color-softWhite);
-  cursor: pointer;
-  display: inline-flex;
-  font-size: 0.8rem;
-  gap: 0.5rem;
-  max-width: 200px;
-  padding: 5px 15px;
-  text-align: center;
-}
-
-.agp-headerBtn:active {
-  scale: 95%;
-}
-
-.agp-headerBtn:hover {
-  background: var(--color-darkBlue);
-}
-
-.agp-verticalCardBody {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  justify-content: space-between;
-  position: relative;
-  text-align: center;
-}
-
-.agp-nodeNext {
-  font-size: 1.25rem;
-  margin: 10px;
-}
-
-.agp-stage {
-  height: 400px;
-  margin: auto;
-  max-width: 80vw;
-  position: relative;
-  width: 400px;
-}
-
-.agp-verticalCardImgBackground {
-  background-color: var(--color-lightBlue);
-  display: grid;
-  gap: 10px;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(3, 1fr);
-  height: 100%;
-  padding: 10px;
-  width: 100%;
-}
-
-.agp-diamond {
-  align-items: center;
-  border: 5px solid var(--color-darkBlue);
-  display: flex;
-  flex-direction: column;
-  height: 36px;
-  justify-content: center;
-  margin: auto;
-  transform: rotate(45deg);
-  width: 36px;
-}
-
-.agp-innerDiamond {
-  background-color: var(--color-darkBlue);
-  width: 18px;
-  height: 18px;
 }
 
 .agp-verticalCardImgForeground {
@@ -222,15 +121,6 @@
   margin: 10px;
 }
 
-.agp-verticalCardFooter {
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  font-size: 0.8rem;
-  justify-content: space-around;
-  position: relative;
-}
-
 .agp-uploadLabel {
   align-items: center;
   background: var(--color-lightBlue);
@@ -258,19 +148,13 @@
 /* Mobile view */
 @media (max-width: 768px) {
   .agp-verticalCard,
-  .agp-stage,
   .agp-endGameCard {
     width: 250px;
     max-width: 90vw;
   }
 
-  .agp-stage,
   .agp-endGameCard {
     height: 250px;
-  }
-
-  .agp-nodeNext {
-    font-size: 1rem;
   }
 
   .agp-foregroundLabel,

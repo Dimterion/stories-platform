@@ -223,12 +223,12 @@ export default function AdventureGamePlayerPage() {
   }
 
   return (
-    <div className="agp-background">
-      <section className="agp-verticalCard">
-        <div className="agp-verticalCardHeader">
+    <div className="flex flex-1 flex-col overflow-y-auto">
+      <section className="agp-verticalCard bg-darkBlue m-auto flex w-[500px] flex-1 flex-col items-center justify-between">
+        <div className="bg-darkGray flex h-[100px] w-full flex-row flex-wrap items-center justify-around">
           <button
             type="button"
-            className="agp-headerBtn"
+            className="bg-lightBlue text-softWhite hover:bg-darkBlue inline-flex max-w-[200px] cursor-pointer items-center gap-1 p-2 text-center text-sm active:scale-95"
             onClick={() => setShowModal(true)}
           >
             Instructions
@@ -237,22 +237,25 @@ export default function AdventureGamePlayerPage() {
           <button
             onClick={() => setShowHints((prev) => !prev)}
             aria-pressed={showHints}
-            className="agp-headerBtn"
+            className="bg-lightBlue text-softWhite hover:bg-darkBlue inline-flex max-w-[200px] cursor-pointer items-center gap-1 p-2 text-center text-sm active:scale-95"
           >
             {showHints ? "Hide hints" : "Show hints"}
           </button>
         </div>
 
-        <div className="agp-verticalCardBody">
+        <div className="relative flex h-full flex-col justify-between text-center">
           {showHints && <Hint text="Main story text is displayed here." />}
-          <p className="agp-nodeNext">{nodeText}</p>
+          <p className="m-2 sm:text-lg">{nodeText}</p>
 
           {hasOptions ? (
-            <div className="agp-stage">
-              <div className="agp-verticalCardImgBackground">
+            <div className="relative m-auto h-[250px] w-[250px] max-w-[90vw] md:h-[400px] md:w-[400px] md:max-w-[80vw]">
+              <div className="bg-lightBlue grid h-full w-full grid-cols-3 grid-rows-3 gap-2 p-2">
                 {diamonds.map((d) => (
-                  <div key={d} className="agp-diamond">
-                    <div className="agp-innerDiamond" />
+                  <div
+                    key={d}
+                    className="border-darkBlue m-auto flex h-[36px] w-[36px] rotate-45 flex-col items-center justify-center border-5"
+                  >
+                    <div className="bg-darkBlue h-[18px] w-[18px]" />
                   </div>
                 ))}
               </div>
@@ -305,7 +308,7 @@ export default function AdventureGamePlayerPage() {
           </div>
         </div>
 
-        <div className="agp-verticalCardFooter">
+        <div className="bg-darkGray relative flex h-[100px] w-full flex-col items-center justify-around text-sm">
           {showHints && <Hint text="Upload your own story here." />}
           <label className="agp-uploadLabel">
             <span>Upload story (JSON format)</span>
