@@ -224,7 +224,7 @@ export default function AdventureGamePlayerPage() {
 
   return (
     <div className="flex flex-1 flex-col overflow-y-auto">
-      <section className="agp-verticalCard bg-darkBlue m-auto flex w-[500px] flex-1 flex-col items-center justify-between">
+      <section className="agp-verticalCard bg-darkBlue m-auto flex w-[250px] max-w-[90vw] flex-1 flex-col items-center justify-between md:w-[500px]">
         <div className="bg-darkGray flex h-[100px] w-full flex-row flex-wrap items-center justify-around">
           <button
             type="button"
@@ -262,8 +262,8 @@ export default function AdventureGamePlayerPage() {
 
               <div
                 className={
-                  "agp-verticalCardImgForeground " +
-                  (isDragging ? "is-dragging" : "is-settling") +
+                  "agp-verticalCardImgForeground bg-softWhite absolute inset-0 z-20 cursor-grab touch-none will-change-transform select-none active:cursor-grabbing " +
+                  (isDragging ? "transition-none" : "is-settling") +
                   " " +
                   bgTint
                 }
@@ -277,24 +277,24 @@ export default function AdventureGamePlayerPage() {
                   <Hint text="Options are displayed here when swiping left or right." />
                 )}
                 <div
-                  className="agp-foregroundLabel"
+                  className="agp-foregroundLabel pointer-events-none absolute w-full p-2 text-center text-sm sm:text-base"
                   style={{ opacity: labelOpacity }}
                 >
                   {foregroundText}
                 </div>
-                <div className="agp-arrowIconsContainer">
-                  <ArrowLeft className="agp-arrowIcon" />
-                  <p>Swipe left or right.</p>
-                  <ArrowRight className="agp-arrowIcon" />
+                <div className="text-darkBlue flex flex-row justify-between text-sm sm:text-base">
+                  <ArrowLeft className="text-darkBlue relative top-[10rem] h-[5rem] w-[5rem]" />
+                  <p className="relative top-[11.5rem]">Swipe left or right.</p>
+                  <ArrowRight className="text-darkBlue relative top-[10rem] h-[5rem] w-[5rem]" />
                 </div>
               </div>
             </div>
           ) : (
-            <div className="agp-endGameCard">
-              <p>The End</p>
+            <div className="bg-softWhite relative m-auto flex h-[250px] w-[250px] max-w-[90vw] flex-col items-center justify-center gap-4 md:h-[400px] md:w-[400px] md:max-w-[80vw]">
+              <p className="text-darkBlue text-xl font-bold">The End</p>
               <button
                 type="button"
-                className="agp-restartBtn"
+                className="bg-lightBlue text-softWhite hover:bg-darkBlue cursor-pointer border-0 px-4 py-2 active:scale-95"
                 onClick={restartGame}
               >
                 Restart
@@ -302,7 +302,7 @@ export default function AdventureGamePlayerPage() {
             </div>
           )}
 
-          <div className="agp-metaContainer">
+          <div className="m-2">
             <h2>{currentStory.title}</h2>
             <p>{currentStory.author}</p>
           </div>
@@ -310,13 +310,13 @@ export default function AdventureGamePlayerPage() {
 
         <div className="bg-darkGray relative flex h-[100px] w-full flex-col items-center justify-around text-sm">
           {showHints && <Hint text="Upload your own story here." />}
-          <label className="agp-uploadLabel">
+          <label className="bg-lightBlue text-softWhite hover:bg-darkBlue inline-flex max-w-[200px] cursor-pointer items-center gap-2 px-2 py-1 text-center active:scale-95">
             <span>Upload story (JSON format)</span>
             <input
               type="file"
               accept="application/json"
               onChange={handleStoryUpload}
-              className="agp-uploadInput"
+              className="hidden"
             />
           </label>
           <span>{fileName || "No file chosen"}</span>

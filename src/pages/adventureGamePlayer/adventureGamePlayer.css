@@ -14,22 +14,7 @@
 }
 
 .agp-verticalCardImgForeground {
-  background: var(--color-softWhite);
-  /* For touch dragging doesn't scroll the page */
-  cursor: grab;
-  inset: 0;
-  position: absolute;
-  /* Prevents scrolling during touch drag */
-  touch-action: none;
-  /* Rotate around slightly-lower point (card-ish feel) */
   transform-origin: 50% 80%;
-  user-select: none;
-  will-change: transform;
-  z-index: 2;
-}
-
-.agp-verticalCardImgForeground.is-dragging {
-  transition: none;
 }
 
 .agp-verticalCardImgForeground.is-settling {
@@ -37,20 +22,10 @@
   transition: transform 180ms cubic-bezier(0.2, 0.9, 0.2, 1);
 }
 
-.agp-verticalCardImgForeground:active {
-  cursor: grabbing;
-}
-
 /* Label stays inside foreground, near the top */
 .agp-foregroundLabel {
   background: rgba(0, 0, 0, 0.8);
-  padding: 10px 12px;
-  /* Label shouldn’t block dragging */
-  pointer-events: none;
-  position: absolute;
-  text-align: center;
   transition: opacity 120ms linear;
-  width: 100%;
 }
 
 .agp-foreground--left {
@@ -59,106 +34,4 @@
 
 .agp-foreground--right {
   box-shadow: 10px 0 30px var(--color-lightPurple);
-}
-
-.agp-endGameCard {
-  align-items: center;
-  background: var(--color-softWhite);
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-  height: 400px;
-  justify-content: center;
-  margin: auto;
-  max-width: 80vw;
-  position: relative;
-  width: 400px;
-}
-
-.agp-endGameCard p {
-  color: var(--color-darkBlue);
-  font-size: 1.25rem;
-  font-weight: bold;
-}
-
-.agp-arrowIconsContainer {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-
-.agp-arrowIconsContainer p {
-  color: var(--color-darkBlue);
-  position: relative;
-  top: 11.5rem;
-}
-
-.agp-arrowIcon {
-  color: var(--color-darkBlue);
-  height: 5rem;
-  position: relative;
-  top: 10rem;
-  width: 5rem;
-}
-
-.agp-restartBtn {
-  background: var(--color-lightBlue);
-  border: none;
-  color: var(--color-softWhite);
-  cursor: pointer;
-  padding: 10px 18px;
-}
-
-.agp-restartBtn:hover {
-  background: var(--color-darkBlue);
-}
-
-.agp-restartBtn:active {
-  scale: 95%;
-}
-
-.agp-metaContainer {
-  margin: 10px;
-}
-
-.agp-uploadLabel {
-  align-items: center;
-  background: var(--color-lightBlue);
-  color: var(--color-softWhite);
-  cursor: pointer;
-  display: inline-flex;
-  gap: 0.5rem;
-  max-width: 200px;
-  padding: 5px 15px;
-  text-align: center;
-}
-
-.agp-uploadInput {
-  display: none;
-}
-
-.agp-uploadLabel:hover {
-  background: var(--color-darkBlue);
-}
-
-.agp-uploadLabel:active {
-  scale: 95%;
-}
-
-/* Mobile view */
-@media (max-width: 768px) {
-  .agp-verticalCard,
-  .agp-endGameCard {
-    width: 250px;
-    max-width: 90vw;
-  }
-
-  .agp-endGameCard {
-    height: 250px;
-  }
-
-  .agp-foregroundLabel,
-  .agp-arrowIconsContainer p {
-    font-size: 0.75rem;
-  }
 }
