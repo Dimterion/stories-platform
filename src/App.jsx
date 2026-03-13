@@ -6,7 +6,7 @@ import Header from "./components/Layout/Header";
 import HomePage from "./pages/home";
 import StoryPlayerPage from "./pages/storyPlayer";
 import StoryEditorPage from "./pages/storyEditor";
-import AdventureGamePlayerPage from "./pages/adventureGamePlayer/adventureGamePlayer";
+import AdventureGamePlayerPage from "./pages/adventureGamePlayer";
 import AboutPage from "./pages/about";
 import NotFoundPage from "./pages/notFound";
 import Footer from "./components/Layout/Footer";

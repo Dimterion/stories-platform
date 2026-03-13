@@ -1,12 +1,11 @@
 import { useRef, useState } from "react";
 import { toast } from "sonner";
 import { ArrowLeft, ArrowRight } from "lucide-react";
-import { useMetadata } from "../../utils/hooks";
-import Modal from "../../components/ui/Modal";
-import Instructions from "../../components/ui/Instructions";
-import Hint from "../../components/ui/Hint";
-import "./adventureGamePlayer.css";
-import sampleStory from "../../assets/sampleAdventureGame.json";
+import { useMetadata } from "../utils/hooks";
+import Modal from "../components/ui/Modal";
+import Instructions from "../components/ui/Instructions";
+import Hint from "../components/ui/Hint";
+import sampleStory from "../assets/sampleAdventureGame.json";
 
 export default function AdventureGamePlayerPage() {
   useMetadata({
