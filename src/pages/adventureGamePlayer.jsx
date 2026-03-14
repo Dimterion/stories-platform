@@ -236,7 +236,7 @@ export default function AdventureGamePlayerPage() {
           <button
             onClick={() => setShowHints((prev) => !prev)}
             aria-pressed={showHints}
-            className="bg-lightBlue text-softWhite hover:bg-darkBlue inline-flex max-w-[200px] cursor-pointer items-center gap-1 p-2 text-center text-sm active:scale-95"
+            className="bg-lightBlue text-softWhite hover:bg-darkBlue z-50 inline-flex max-w-[200px] cursor-pointer items-center gap-1 p-2 text-center text-sm active:scale-95"
           >
             {showHints ? "Hide hints" : "Show hints"}
           </button>
@@ -258,7 +258,9 @@ export default function AdventureGamePlayerPage() {
                   </div>
                 ))}
               </div>
-
+              {showHints && (
+                <Hint text="Options are displayed here when swiping left or right." />
+              )}
               <div
                 className={
                   "bg-softWhite absolute inset-0 z-20 origin-[50%_80%] cursor-grab touch-none will-change-transform select-none active:cursor-grabbing " +
@@ -274,9 +276,6 @@ export default function AdventureGamePlayerPage() {
                 onPointerUp={endDrag}
                 onPointerCancel={endDrag}
               >
-                {showHints && (
-                  <Hint text="Options are displayed here when swiping left or right." />
-                )}
                 <div
                   className="pointer-events-none absolute w-full bg-black/90 p-2 text-center text-sm transition-opacity duration-[120ms] ease-linear sm:text-base"
                   style={{ opacity: labelOpacity }}
@@ -335,7 +334,7 @@ export default function AdventureGamePlayerPage() {
       {showHints && (
         <div
           onClick={() => setShowHints(false)}
-          className="pointer-events-auto fixed inset-0 z-40"
+          className="pointer-events-auto fixed inset-0 z-40 bg-black/40"
           aria-hidden="true"
         />
       )}
