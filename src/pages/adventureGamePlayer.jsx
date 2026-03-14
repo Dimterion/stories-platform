@@ -52,9 +52,9 @@ export default function AdventureGamePlayerPage() {
 
   const bgTint =
     direction === "left"
-      ? "agp-foreground--left"
+      ? "shadow-[-10px_0_30px_0px] shadow-lightGreen"
       : direction === "right"
-        ? "agp-foreground--right"
+        ? "shadow-[10px_0_30px_0px] shadow-lightPurple"
         : "";
 
   const swipeStrength = hasOptions ? Math.min(1, Math.abs(x) / MAX_DRAG) : 0;
@@ -222,8 +222,8 @@ export default function AdventureGamePlayerPage() {
   }
 
   return (
-    <div className="flex flex-1 flex-col overflow-y-auto">
-      <section className="agp-verticalCard bg-darkBlue m-auto flex w-[250px] max-w-[90vw] flex-1 flex-col items-center justify-between md:w-[500px]">
+    <div className="adventureGamePlayerPage-contentWrapper flex flex-1 flex-col overflow-y-auto">
+      <section className="bg-darkBlue m-auto flex w-[500px] max-w-[90vw] flex-1 flex-col items-center justify-between">
         <div className="bg-darkGray flex h-[100px] w-full flex-row flex-wrap items-center justify-around">
           <button
             type="button"
@@ -247,7 +247,7 @@ export default function AdventureGamePlayerPage() {
           <p className="m-2 sm:text-lg">{nodeText}</p>
 
           {hasOptions ? (
-            <div className="relative m-auto h-[250px] w-[250px] max-w-[90vw] md:h-[400px] md:w-[400px] md:max-w-[80vw]">
+            <div className="relative m-auto h-[250px] w-[250px] max-w-[90vw] sm:h-[400px] sm:w-[400px] sm:max-w-[80vw]">
               <div className="bg-lightBlue grid h-full w-full grid-cols-3 grid-rows-3 gap-2 p-2">
                 {diamonds.map((d) => (
                   <div
@@ -261,8 +261,10 @@ export default function AdventureGamePlayerPage() {
 
               <div
                 className={
-                  "agp-verticalCardImgForeground bg-softWhite absolute inset-0 z-20 cursor-grab touch-none will-change-transform select-none active:cursor-grabbing " +
-                  (isDragging ? "transition-none" : "is-settling") +
+                  "bg-softWhite absolute inset-0 z-20 origin-[50%_80%] cursor-grab touch-none will-change-transform select-none active:cursor-grabbing " +
+                  (isDragging
+                    ? "transition-none"
+                    : "transition-transform duration-[180ms] ease-in-out") +
                   " " +
                   bgTint
                 }
@@ -276,7 +278,7 @@ export default function AdventureGamePlayerPage() {
                   <Hint text="Options are displayed here when swiping left or right." />
                 )}
                 <div
-                  className="agp-foregroundLabel pointer-events-none absolute w-full p-2 text-center text-sm sm:text-base"
+                  className="pointer-events-none absolute w-full bg-black/90 p-2 text-center text-sm transition-opacity duration-[120ms] ease-linear sm:text-base"
                   style={{ opacity: labelOpacity }}
                 >
                   {foregroundText}
@@ -289,7 +291,7 @@ export default function AdventureGamePlayerPage() {
               </div>
             </div>
           ) : (
-            <div className="bg-softWhite relative m-auto flex h-[250px] w-[250px] max-w-[90vw] flex-col items-center justify-center gap-4 md:h-[400px] md:w-[400px] md:max-w-[80vw]">
+            <div className="bg-softWhite relative m-auto flex h-[250px] w-[250px] max-w-[90vw] flex-col items-center justify-center gap-4 sm:h-[400px] sm:w-[400px] sm:max-w-[80vw]">
               <p className="text-darkBlue text-xl font-bold">The End</p>
               <button
                 type="button"
