@@ -5,7 +5,35 @@ import { useMetadata } from "../utils/hooks";
 import Modal from "../components/ui/Modal";
 import Instructions from "../components/ui/Instructions";
 import Hint from "../components/ui/Hint";
-import sampleStory from "../assets/sampleAdventureGame.json";
+import sampleStoryJson from "../assets/sampleAdventureGame.json";
+
+type StoryOption = {
+  text: string;
+  next: string;
+  nextLabel?: string;
+};
+
+type StoryNode = {
+  label: string;
+  text: string;
+  options: StoryOption[];
+  createdAt?: number;
+};
+
+type Story = {
+  title: string;
+  author: string;
+  description?: string;
+  start: string;
+  nodes: Record<string, StoryNode>;
+};
+
+type SwipeDir = "left" | "right";
+type SwipeDirection = "none" | SwipeDir;
+
+type DragRef = { dragging: boolean; startClientX: number; startX: number };
+
+const sampleStory = sampleStoryJson as Story;
 
 export default function AdventureGamePlayerPage() {
   useMetadata({
@@ -20,18 +48,22 @@ export default function AdventureGamePlayerPage() {
 
   const diamonds = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
-  const [currentStory, setCurrentStory] = useState(sampleStory);
-  const [currentNodeId, setCurrentNodeId] = useState(sampleStory.start);
+  const [currentStory, setCurrentStory] = useState<Story>(sampleStory);
+  const [currentNodeId, setCurrentNodeId] = useState<string>(sampleStory.start);
   const [x, setX] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
-  const [fileName, setFileName] = useState(null);
+  const [fileName, setFileName] = useState<string | null>(null);
   const [showModal, setShowModal] = useState(false);
   const [showHints, setShowHints] = useState(false);
 
-  const dragRef = useRef({ dragging: false, startClientX: 0, startX: 0 });
-  const xRef = useRef(0);
+  const dragRef = useRef<DragRef>({
+    dragging: false,
+    startClientX: 0,
+    startX: 0,
+  });
+  const xRef = useRef<number>(0);
 
-  const node = currentStory.nodes[currentNodeId];
+  const node: StoryNode | undefined = currentStory.nodes[currentNodeId];
   const nodeText = node?.text ?? "";
   const options = (node?.options ?? []).slice(0, 2);
 
@@ -42,7 +74,7 @@ export default function AdventureGamePlayerPage() {
 
   const hasOptions = options.length > 0;
 
-  const direction = !hasOptions
+  const direction: SwipeDirection = !hasOptions
     ? "none"
     : x === 0
       ? "none"
@@ -70,7 +102,7 @@ export default function AdventureGamePlayerPage() {
 
   const rot = (x / MAX_DRAG) * MAX_ROT;
 
-  function commitChoice(dir) {
+  function commitChoice(dir: SwipeDir): void {
     const chosen = dir === "left" ? leftOption : rightOption;
 
     // Missing option => do nothing
@@ -79,7 +111,7 @@ export default function AdventureGamePlayerPage() {
     setCurrentNodeId(chosen.next);
   }
 
-  function onPointerDown(e) {
+  function onPointerDown(e: React.PointerEvent<HTMLDivElement>): void {
     if (!hasOptions) return;
 
     e.preventDefault();
@@ -88,7 +120,7 @@ export default function AdventureGamePlayerPage() {
     dragRef.current = { dragging: true, startClientX: e.clientX, startX: x };
   }
 
-  function onPointerMove(e) {
+  function onPointerMove(e: React.PointerEvent<HTMLDivElement>): void {
     if (!hasOptions) return;
 
     e.preventDefault();
@@ -126,7 +158,7 @@ export default function AdventureGamePlayerPage() {
     dragRef.current = { dragging: false, startClientX: 0, startX: 0 };
   }
 
-  function handleStoryUpload(event) {
+  function handleStoryUpload(event: React.ChangeEvent<HTMLInputElement>): void {
     const file = event.target.files?.[0];
     if (!file) return;
 
