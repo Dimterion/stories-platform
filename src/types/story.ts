@@ -3,18 +3,18 @@ export type Story = {
   author: string;
   description?: string;
   start: string;
-  nodes: Record<string, Node>;
+  nodes: NodesMap;
 };
 
-export type Option = {
+export type StoryOption = {
   text: string;
   next: string | null;
 };
 
-export type Node = {
+export type StoryNode = {
   text: string;
-  options: Option[];
+  options: StoryOption[];
   createdAt: number;
 };
 
-export type NodesMap = Record<string, Node>;
+export type NodesMap = Record<string, StoryNode>;

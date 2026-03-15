@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 import { toast } from "sonner";
 import { ArrowLeft, ArrowRight } from "lucide-react";
-import type { Node, Story } from "../types/story";
+import type { Story, StoryNode } from "../types/story";
 import { useMetadata } from "../utils/hooks";
 import Modal from "../components/ui/Modal";
 import Instructions from "../components/ui/Instructions";
@@ -43,7 +43,7 @@ export default function AdventureGamePlayerPage() {
   });
   const xRef = useRef<number>(0);
 
-  const node: Node | undefined = currentStory.nodes[currentNodeId];
+  const node: StoryNode | undefined = currentStory.nodes[currentNodeId];
   const nodeText = node?.text ?? "";
   const options = (node?.options ?? []).slice(0, 2);
 

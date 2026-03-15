@@ -25,7 +25,7 @@ import {
   Square,
   X,
 } from "lucide-react";
-import type { Node as StoryNode } from "../../types/story";
+import type { StoryNode } from "../../types/story";
 import { getLayoutElements } from "./useDiagramLayout";
 import { getOrderedNodeIds, getNodeLabel } from "../../utils/storyUtils";
 import {
