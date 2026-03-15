@@ -1,32 +1,12 @@
 import { useRef, useState } from "react";
 import { toast } from "sonner";
 import { ArrowLeft, ArrowRight } from "lucide-react";
+import type { Node, Story } from "../types/story";
 import { useMetadata } from "../utils/hooks";
 import Modal from "../components/ui/Modal";
 import Instructions from "../components/ui/Instructions";
 import Hint from "../components/ui/Hint";
 import sampleStoryJson from "../assets/sampleAdventureGame.json";
-
-type StoryOption = {
-  text: string;
-  next: string;
-  nextLabel?: string;
-};
-
-type StoryNode = {
-  label: string;
-  text: string;
-  options: StoryOption[];
-  createdAt?: number;
-};
-
-type Story = {
-  title: string;
-  author: string;
-  description?: string;
-  start: string;
-  nodes: Record<string, StoryNode>;
-};
 
 type SwipeDir = "left" | "right";
 type SwipeDirection = "none" | SwipeDir;
@@ -63,7 +43,7 @@ export default function AdventureGamePlayerPage() {
   });
   const xRef = useRef<number>(0);
 
-  const node: StoryNode | undefined = currentStory.nodes[currentNodeId];
+  const node: Node | undefined = currentStory.nodes[currentNodeId];
   const nodeText = node?.text ?? "";
   const options = (node?.options ?? []).slice(0, 2);
 
