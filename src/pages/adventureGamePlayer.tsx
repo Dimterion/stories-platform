@@ -239,7 +239,7 @@ export default function AdventureGamePlayerPage() {
         <div className="bg-darkGray flex h-[100px] w-full flex-row flex-wrap items-center justify-around">
           <button
             type="button"
-            className="bg-lightBlue text-softWhite hover:bg-darkBlue inline-flex max-w-[200px] cursor-pointer items-center gap-1 p-2 text-center text-sm active:scale-95"
+            className="bg-lightBlue text-softWhite hover:bg-darkBlue inline-flex max-w-[200px] min-w-28 cursor-pointer items-center justify-center p-2 text-center text-xs active:scale-95 sm:text-sm"
             onClick={() => setShowModal(true)}
           >
             Instructions
@@ -248,7 +248,7 @@ export default function AdventureGamePlayerPage() {
           <button
             onClick={() => setShowHints((prev) => !prev)}
             aria-pressed={showHints}
-            className="bg-lightBlue text-softWhite hover:bg-darkBlue z-50 inline-flex max-w-[200px] cursor-pointer items-center gap-1 p-2 text-center text-sm active:scale-95"
+            className="bg-lightBlue text-softWhite hover:bg-darkBlue z-50 inline-flex max-w-[200px] min-w-28 cursor-pointer items-center justify-center p-2 text-center text-xs active:scale-95 sm:text-sm"
           >
             {showHints ? "Hide hints" : "Show hints"}
           </button>
@@ -256,7 +256,7 @@ export default function AdventureGamePlayerPage() {
 
         <div className="relative flex h-full flex-col justify-between text-center">
           {showHints && <Hint text="Main story text is displayed here." />}
-          <p className="m-2 sm:text-lg">{nodeText}</p>
+          <p className="m-2 text-sm sm:text-lg">{nodeText}</p>
 
           {hasOptions ? (
             <div className="relative m-auto h-[250px] w-[250px] max-w-[90vw] sm:h-[400px] sm:w-[400px] sm:max-w-[80vw]">
@@ -289,12 +289,12 @@ export default function AdventureGamePlayerPage() {
                 onPointerCancel={endDrag}
               >
                 <div
-                  className="pointer-events-none absolute w-full bg-black/90 p-2 text-center text-sm transition-opacity duration-[120ms] ease-linear sm:text-base"
+                  className="pointer-events-none absolute w-full bg-black/90 p-2 text-center text-xs transition-opacity duration-[120ms] ease-linear sm:text-base"
                   style={{ opacity: labelOpacity }}
                 >
                   {foregroundText}
                 </div>
-                <div className="text-darkBlue flex flex-row justify-between text-sm sm:text-base">
+                <div className="text-darkBlue flex flex-row justify-between text-xs sm:text-base">
                   <ArrowLeft className="text-darkBlue relative top-[10rem] h-[5rem] w-[5rem]" />
                   <p className="relative top-[11.5rem]">Swipe left or right.</p>
                   <ArrowRight className="text-darkBlue relative top-[10rem] h-[5rem] w-[5rem]" />
@@ -320,7 +320,7 @@ export default function AdventureGamePlayerPage() {
           </div>
         </div>
 
-        <div className="bg-darkGray relative flex h-[100px] w-full flex-col items-center justify-around text-sm">
+        <div className="bg-darkGray relative flex h-[100px] w-full flex-col items-center justify-around text-xs sm:text-sm">
           {showHints && <Hint text="Upload your own story here." />}
           <label className="bg-lightBlue text-softWhite hover:bg-darkBlue inline-flex max-w-[200px] cursor-pointer items-center gap-2 px-2 py-1 text-center active:scale-95">
             <span>Upload story (JSON format)</span>
