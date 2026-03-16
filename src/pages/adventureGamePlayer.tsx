@@ -259,7 +259,7 @@ export default function AdventureGamePlayerPage() {
           <p className="m-2 text-sm sm:text-lg">{nodeText}</p>
 
           {hasOptions ? (
-            <div className="relative m-auto h-[250px] w-[250px] max-w-[90vw] sm:h-[400px] sm:w-[400px] sm:max-w-[80vw]">
+            <div className="relative m-auto h-[200px] w-[200px] max-w-[90vw] sm:h-[400px] sm:w-[400px] sm:max-w-[80vw]">
               <div className="bg-lightBlue grid h-full w-full grid-cols-3 grid-rows-3 gap-2 p-2">
                 {diamonds.map((d) => (
                   <div
@@ -295,9 +295,11 @@ export default function AdventureGamePlayerPage() {
                   {foregroundText}
                 </div>
                 <div className="text-darkBlue flex flex-row justify-between text-xs sm:text-base">
-                  <ArrowLeft className="text-darkBlue relative top-[10rem] h-[5rem] w-[5rem]" />
-                  <p className="relative top-[11.5rem]">Swipe left or right.</p>
-                  <ArrowRight className="text-darkBlue relative top-[10rem] h-[5rem] w-[5rem]" />
+                  <ArrowLeft className="text-darkBlue relative top-[8rem] h-[5rem] w-[5rem] sm:top-[10rem]" />
+                  <p className="relative top-[9.5rem] sm:top-[11.5rem]">
+                    Swipe left or right.
+                  </p>
+                  <ArrowRight className="text-darkBlue relative top-[8rem] h-[5rem] w-[5rem] sm:top-[10rem]" />
                 </div>
               </div>
             </div>
