@@ -23,7 +23,7 @@ export default function AdventureGamePlayerPage() {
   const MAX_DRAG = 70;
   const MAX_ROT = 10;
   // Require a meaningful drag to commit
-  const COMMIT_THRESHOLD = 35;
+  const COMMIT_THRESHOLD = 50;
   const PLACEHOLDER = "Only one option for this part.";
 
   const diamonds = [1, 2, 3, 4, 5, 6, 7, 8, 9];
@@ -289,7 +289,7 @@ export default function AdventureGamePlayerPage() {
                 onPointerCancel={endDrag}
               >
                 <div
-                  className="pointer-events-none absolute w-full bg-black/90 p-2 text-center text-xs transition-opacity duration-[120ms] ease-linear sm:text-base"
+                  className="pointer-events-none absolute flex min-h-[80px] w-full flex-col items-center justify-center bg-black/90 p-2 text-center text-xs transition-opacity duration-[120ms] ease-linear sm:text-base"
                   style={{ opacity: labelOpacity }}
                 >
                   {foregroundText}
