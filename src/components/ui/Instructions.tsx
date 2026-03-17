@@ -76,6 +76,13 @@ export default function Instructions() {
             Navigate through the stories by swiping left or right to choose an
             option.
           </li>
+          <li>
+            Switch to the{" "}
+            <Link to="/story-player" className="hover:text-lightBlue underline">
+              main Story Player
+            </Link>{" "}
+            for the standard functionality.
+          </li>
         </ul>
       )}
       <article>
