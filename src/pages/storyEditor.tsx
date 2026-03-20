@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { toast } from "sonner";
 import { PanelLeftOpen } from "lucide-react";
-import { Node, NodesMap, Option } from "../types/story";
+import { StoryNode, NodesMap, StoryOption } from "../types/story";
 import { useMetadata } from "../utils/hooks";
 import { validateStoryJson } from "../utils/storyUtils";
 import { generateStandaloneStoryHTML } from "../utils/exportStandaloneHTML";
@@ -28,9 +28,9 @@ type EditorSaveData = {
   selectedNode: string | null;
 };
 
-type ExportedOption = Option & { nextLabel: string };
+type ExportedOption = StoryOption & { nextLabel: string };
 
-type ExportedNode = Node & { label: string; options: ExportedOption[] };
+type ExportedNode = StoryNode & { label: string; options: ExportedOption[] };
 
 type ExportedNodesMap = Record<string, ExportedNode>;
 
